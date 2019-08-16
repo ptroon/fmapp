@@ -1,0 +1,35 @@
+TABLE DEFINITIONS
+=================
+
+Users
+==============
+ID integer
+Forename String(50)
+Surname String(50)
+Password String(100)
+Added DateTime
+LastLogin DateTime
+
+Roles
+==============
+ID Integer
+RoleName String(100)
+Active Integer default=1
+
+Users_Roles
+==============
+ID Integer
+User_ID Integer
+Role_ID Integer
+
+FortiManagers
+==============
+ID Integer
+Name String(100)
+SerialNumber String(100)
+UserAccount String(50)
+UserPassword String(50)
+ConnectHost String(50)
+ConnectPort Integer
+Added DateTime
+LastSync DateTime
