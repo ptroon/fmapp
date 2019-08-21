@@ -28,10 +28,10 @@ class DevelopmentConfig(Config):
 	ENV='development'
 	DEBUG=True
 	TESTING=True
-	SQLALCHEMY_DATABASE_URI='sqlite:///'+ os.path.join(basedir, 'db/fpa_dev.db')
+	SQLALCHEMY_DATABASE_URI='mysql://fmapp:fmapp@localhost/fmapp'
 	SESSION_COOKIE_NAME='fpa_dev_session_cookie'
-	SERVER_NAME='192.168.1.16:5000'
-	HOST='192.168.1.16'
+	SERVER_NAME='127.0.0.1:5000'
+	HOST='127.0.0.1'
 	PORT=5000
 
 class TestingConfig(Config):

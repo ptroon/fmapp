@@ -10,16 +10,16 @@ class User(db.Model):
 
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    login_id = db.Column(db.String, nullable=False)
-    forename = db.Column(db.String, nullable=False)
-    surname = db.Column(db.String, nullable=False)
+    login_id = db.Column(db.String(25), nullable=False)
+    forename = db.Column(db.String(100), nullable=False)
+    surname = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)
     role = db.Column(db.Integer, nullable=False)
     created_date = db.Column(db.DateTime, nullable=False)
     last_login = db.Column(db.DateTime)
     last_modified = db.Column(db.DateTime)
-    modified_by = db.Column(db.String)
+    modified_by = db.Column(db.String(100))
     deleted = db.Column(db.Integer)
 
     def __init__(self, login_id, forename, surname, plaintext_password, email, role):
@@ -45,3 +45,20 @@ class User(db.Model):
         #self._password = bcrypt.generate_password_hash(plaintext_password)
         self._password = plaintext_password
 '''
+
+class Roles(db.Model):
+
+    __tablename__ = "roles"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    role_name = db.Column(db.String(100), nullable=False)
+    role_admin = db.Column(db.Integer, nullable=False)
+    created_date = db.Column(db.DateTime, nullable=False)
+    deleted = db.Column(db.Integer)
+
+    def __init__(self, role_name, role_admin):
+        self.role_name = role_name
+        self.role_admin = role_admin
+        self.created_date = datetime.now()
+        self.deleted = 0
+
+    
