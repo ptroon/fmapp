@@ -1,10 +1,11 @@
 from flask import Flask, Blueprint, url_for
 from flask_restplus import Api, Resource
+from flask_login import login_required, current_user
 
 api_blueprint = Blueprint('api_blueprint', __name__, url_prefix="/fpa/api")
 api = Api(api_blueprint, version = "1.0", \
-		  title = "Firewall Policy Automation API",
-		  description = "Provide access to FortiManagers via an API")
+      title = "Firewall Policy Automation API",
+      description = "Provide access to FortiManagers via an API")
 
 nsp = api.namespace('v1', description='Firewall Policy Automation APIs v1')
 nsp2 = api.namespace('v2', description='Firewall Policy Automation APIs v2')
@@ -14,9 +15,13 @@ nsp2 = api.namespace('v2', description='Firewall Policy Automation APIs v2')
 #
 @nsp.route("/users")
 class _users(Resource):
-    def get(self):
-        return {"message":"Users route"}
 
+    def get(self):
+        if not current_user.is_authenticated:
+            return {"message":"Not authenticated"}
+        return {"message":"Authenticated"}
+
+    @login_required
     def post(self):
         return {"message": "Posted to Users Route"}
 
