@@ -1,6 +1,8 @@
-from flask import Flask, Blueprint, url_for
-from flask_restplus import Api, Resource
-from flask_login import login_required, current_user
+from flask import Flask, Blueprint, url_for, jsonify
+from flask_restplus import Api, Resource, reqparse
+from flask_login import login_required, login_user, logout_user, current_user
+
+from project.models import User
 
 api_blueprint = Blueprint('api_blueprint', __name__, url_prefix="/fpa/api")
 api = Api(api_blueprint, version = "1.0", \
@@ -43,9 +45,27 @@ class _roles(Resource):
 #
 # AUTHENTICATION
 #
-@nsp.route("/authenticate")
+
+rparser = api.parser()
+rparser.add_argument('login_id', type=str, required=True)
+rparser.add_argument('password', type=str, required=True)
+
+@nsp.route("/session")
 class _auth(Resource):
-    def get(self):
-        return "LOGIN route"
+    @api.expect(rparser)
+    def post(self):
+        args = rparser.parse_args(strict=True)
+        user = User.query.filter_by(login_id=args['login_id']).first()
+        if user and user.is_correct_password(args['password']):
+            login_user(user)
+            return jsonify(message = "Logged in as " + current_user.forename)
+        else:
+            return jsonify(message = "User not found")
+
     def delete(self):
-        return "LOGOUT route"
+        if current_user.is_authenticated:
+            user = current_user.login_id
+            logout_user()
+            return jsonify(message = "User " + user + " logged out")
+        else:
+            return jsonify(message = "Not currently logged in")

@@ -16,12 +16,6 @@ ID Integer
 RoleName String(100)
 Active Integer default=1
 
-Users_Roles
-==============
-ID Integer
-User_ID Integer
-Role_ID Integer
-
 FortiManagers
 ==============
 ID Integer

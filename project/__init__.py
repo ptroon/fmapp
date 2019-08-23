@@ -1,11 +1,10 @@
 from flask import Flask, Blueprint, url_for, jsonify, abort
 from flask_restplus import Api
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_user
 from flask_bcrypt import Bcrypt
+from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
 
 from project.instance.config import app_config, current_config
-from project.api.views import api_blueprint
 
 #
 # TBC
@@ -16,18 +15,26 @@ app = Flask(__name__, instance_relative_config=True)
 app.config.from_object(app_config[current_config])
 
 db = SQLAlchemy(app)
-app.register_blueprint(api_blueprint)
 bcrypt = Bcrypt(app)
+
 login_manager = LoginManager(app)
-login_manager.login_view='api_blueprint.authenticate'
-
-from project.models import User
-
-@login_manager.user_loader
-def load_user(user_id):
-    return 'philip'
+login_manager.login_view='api_blueprint.session'
 
 # This handles the unauthorised access requests to URIs
 @login_manager.unauthorized_handler
 def unauthorized():
     return abort(403)
+
+#
+# BLUEPRINTS
+from project.api.views import api_blueprint
+
+app.register_blueprint(api_blueprint)
+
+#
+# 
+from project.models import User
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.filter(User.id == int(user_id)).first()

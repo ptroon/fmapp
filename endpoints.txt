@@ -11,8 +11,7 @@ ENDPOINTS
 /roles (GET,POST,PUT,DELETE)
 /fortimanagers (GET,POST,PUT,DELETE)
 /changes (GET,POST,PUT,DELETE)
-/login (GET,POST)
-/logout (GET)
+/session (GET,POST,DELETE)
 /search (GET)
 /logs (GET,POST)
 
