@@ -1,6 +1,7 @@
-from flask import Flask, Blueprint, url_for, jsonify
+from flask import Flask, Blueprint, url_for, jsonify, make_response
 from flask_restplus import Api, Resource, reqparse
 from flask_login import login_required, login_user, logout_user, current_user
+from itsdangerous import JSONWebSignatureSerializer
 
 from project.models import User
 
@@ -30,7 +31,9 @@ class _users(Resource):
 @nsp.route("/fortimanagers")
 class _fortimanagers(Resource):
     def get(self):
-        return {"message":"fortimanagers route"}
+        if current_user.is_authenticated:
+            return {"message":"fortimanagers route"}
+        return {"message":"not logged in for Fortimanagers route"}
 
 @nsp.route("/changes")
 class _changes(Resource):
@@ -46,6 +49,8 @@ class _roles(Resource):
 # AUTHENTICATION
 #
 
+from project import app
+
 rparser = api.parser()
 rparser.add_argument('login_id', type=str, required=True)
 rparser.add_argument('password', type=str, required=True)
@@ -54,18 +59,35 @@ rparser.add_argument('password', type=str, required=True)
 class _auth(Resource):
     @api.expect(rparser)
     def post(self):
-        args = rparser.parse_args(strict=True)
-        user = User.query.filter_by(login_id=args['login_id']).first()
-        if user and user.is_correct_password(args['password']):
-            login_user(user)
-            return jsonify(message = "Logged in as " + current_user.forename)
+        if current_user.is_authenticated:
+            resp = jsonify(error='Already logged in', mimetype='application/json')
+            return make_response(resp, 400)
         else:
-            return jsonify(message = "User not found")
+            args = rparser.parse_args(strict=True)
+            user = User.query.filter_by(login_id=args['login_id']).first()
+            if user and user.is_correct_password(args['password']):
+                login_user(user, remember=True)
+                s = JSONWebSignatureSerializer(app.config['SECRET_KEY'])
+                token = s.dumps({'login_id': args['login_id'], 'password' : args['password']})
+                resp = jsonify(message = "Logged in successfully", login_id=current_user.forename, token=token.decode('utf-8'))
+                return make_response(resp, 200)
+            else:
+                resp = jsonify(message = "Authentication error")
+                return make_response(resp, 400)
 
     def delete(self):
         if current_user.is_authenticated:
             user = current_user.login_id
             logout_user()
-            return jsonify(message = "User " + user + " logged out")
+            return make_response(jsonify(message="User " + user + " logged out"), 200)
         else:
-            return jsonify(message = "Not currently logged in")
+            return make_response(jsonify(message="Not currently logged in"), 400)
+
+
+@nsp.route("/token")
+class _token(Resource):
+    def get(self):
+        pass
+
+    def delete(self):
+        pass

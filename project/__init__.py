@@ -28,11 +28,15 @@ def unauthorized():
 #
 # BLUEPRINTS
 from project.api.views import api_blueprint
+from project.gui.views import gui_blueprint
 
 app.register_blueprint(api_blueprint)
+app.register_blueprint(gui_blueprint)
+
+print(app.url_map)
 
 #
-# 
+#
 from project.models import User
 
 @login_manager.user_loader
