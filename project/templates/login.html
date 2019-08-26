@@ -27,10 +27,11 @@
             bottom: 0;
             left: 0;
             width: 320px;
-            height: 280px;
+            height: 300px;
         }
         .align-center {
             text-align:center;
+            vertical-align: text-bottom;
         }
       </style>
   </head>
@@ -58,11 +59,17 @@
                 <div class="align-center">
                     <button type="submit" class="btn btn-success btn-lg" id="login">LOGIN</button>
                 </div>
+
             </form>
         </div>
     </div>
     </div>
 
+    <div class="align-center">
+      {% if error %}
+      <p class="alert alert-warning"><strong>Error:</strong> {{ error }}
+      {% endif %}
+    </div>
 
   </body>
 </html>
