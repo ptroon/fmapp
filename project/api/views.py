@@ -69,7 +69,7 @@ class _auth(Resource):
                 login_user(user, remember=True)
                 s = JSONWebSignatureSerializer(app.config['SECRET_KEY'])
                 token = s.dumps({'login_id': args['login_id'], 'password' : args['password']})
-                resp = jsonify(message = "Logged in successfully", login_id=current_user.forename, token=token.decode('utf-8'))
+                resp = jsonify(message = "Logged in successfully", login_id=current_user.login_id, token=token.decode('utf-8'))
                 return make_response(resp, 200)
             else:
                 resp = jsonify(message = "Authentication error")

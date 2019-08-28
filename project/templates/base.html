@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    {% block head %}
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,7 +11,8 @@
 
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 
-    <title>Firewall Policy Automation</title>
+    <title>{% block title %}{% endblock %} - Firewall Policy Automation</title>
+    {% endblock %}
   </head>
   <body>
     <!-- Optional JavaScript -->
@@ -19,7 +21,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!--
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light nav-fill">
         <a class="navbar-brand" href="#"><h1><div class="badge badge-primary">FPA</div></h1></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -28,29 +42,29 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{{ url_for('gui_blueprint._index') }}">Dashboard <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Changes</a>
           </li>
 
-          {% if isAdmin %}
+          {% if is_admin() %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Administration
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Users</a>
-              <a class="dropdown-item" href="#">FortiManagers</a>
+              <a class="dropdown-item" href="{{ url_for('gui_blueprint._index') }}">Users</a>
+              <a class="dropdown-item" href="{{ url_for('gui_blueprint._index') }}">FortiManagers</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">System Logs</a>
+              <a class="dropdown-item" href="{{ url_for('gui_blueprint._index') }}">System Logs</a>
             </div>
           </li>
           {% endif %}
 
          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Logged in as: {{user_name}}
+              Logged in as<strong> {{ get_user() }}</strong>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._logout') }}">Logout</a>
@@ -59,7 +73,7 @@
 
         </ul>
 
-        <form class="form-inline my-2 my-lg-0">
+        <form class="form-inline my-2 my-lg-0" action="/fpa/gui/search" method="GET">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -68,8 +82,11 @@
     </nav>
 
     {% block content %}
-    <!-- This is where the Flask/Jinja template content is inserted -->
+    <!-- This is where the main page content is inserted -->
     {% endblock %}
 
+    {% block footer %}
+    &copy. 2019 written in Flask
+    {% endblock %}
   </body>
 </html>

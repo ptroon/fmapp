@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     comment = db.Column(db.String(2000))
     _password = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)
-    role = db.Column(db.Integer, nullable=False)
+    role = db.Column(db.Integer, db.ForeignKey("roles.id"))
     created_date = db.Column(db.DateTime, nullable=False)
     last_login = db.Column(db.DateTime)
     last_modified = db.Column(db.DateTime)

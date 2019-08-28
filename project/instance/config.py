@@ -24,6 +24,7 @@ class ProductionConfig(Config):
 	TESTING=False
 	SQLALCHEMY_DATABASE_URI='sqlite:///'+ os.path.join(basedir, 'db/fpa.db')
 	SESSION_COOKIE_NAME='fpa_session_cookie'
+	VERSION="v1.0 PROD"
 
 class DevelopmentConfig(Config):
 	ENV='development'
@@ -34,6 +35,7 @@ class DevelopmentConfig(Config):
 	SERVER_NAME='127.0.0.1:5000'
 	HOST='127.0.0.1'
 	PORT=5000
+	VERSION="v0.1 BETA"
 
 class TestingConfig(Config):
 	DEBUG=True
