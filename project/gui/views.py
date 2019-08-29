@@ -7,9 +7,11 @@ from flask import Flask, Blueprint, url_for, jsonify, make_response, app, \
         render_template, request, session, redirect, flash
 from flask_login import login_required, login_user, logout_user, current_user
 import requests
+import logging
 
-from project.models import User
+from project.models import User, Dashboard, ChangeProfile
 from project import app
+from project.gui.forms import UserForm, ChangeProfileForm
 
 gui_blueprint = Blueprint('gui_blueprint', __name__, url_prefix="/fpa")
 
@@ -31,9 +33,9 @@ def is_loggedin ():
 def _index ():
 
     if current_user.is_authenticated:
-        return render_template("dashboard.html")
+        dash = Dashboard.query.all()
+        return render_template("dashboard.html", data=dash)
     else:
-        #return render_template("login.html")
         return redirect(url_for('gui_blueprint._login'))
 
 
@@ -55,7 +57,7 @@ def _login ():
             user = User.query.filter_by(login_id=login_id).first()
             try:
                 token = r.json()['token']
-                print (r.text)
+                app.logger.info ("Logged in " + login_id + " with token " + token)
                 login_user(user)
             except:
                 token = None
@@ -90,16 +92,25 @@ def _admin ():
             return "ADMIN"
         return "NOT LOGGED IN ADMIN"
 
-
+@login_required
 @gui_blueprint.route("/changes")
 def _changes ():
 
     if request.method == 'GET':
-        return "CHANGES"
+        changes = ChangeProfile.query.order_by(ChangeProfile.id.desc())
+        return render_template("changes.html", data = changes)
 
-
-@gui_blueprint.route("/register")
-def _register ():
+@login_required
+@gui_blueprint.route("/editchange")
+def _editchange ():
 
     if request.method == 'GET':
-        return "REGISTER"
+        changeform = ChangeProfileForm()
+        # change = ChangeProfile.query.order_by(ChangeProfile.id.desc())
+        return render_template("editchange.html", title='New Change', form = changeform)
+
+@gui_blueprint.route("/search")
+def _search ():
+
+    if request.method == 'GET':
+        return render_template("search.html")

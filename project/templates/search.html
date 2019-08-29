@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Changes{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid mt-3">
+  <h3>Search Results</h3>
+
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Result</th>
+        <th scope="col">Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Madeup FortiManager</td>
+        <td>FortiManager</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>VPN change to add DENY for Oracle Listener (TCP/1521)</td>
+        <td>Change</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Change to add ALLOW for DNS (UDP/53)</td>
+        <td>Change</td>        
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>
+
+{% endblock %}

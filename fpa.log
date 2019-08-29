@@ -1,0 +1,13 @@
+2019-08-29 23:22:46,654 INFO werkzeug MainThread :  * Running on http://192.168.1.16:5000/ (Press CTRL+C to quit)
+2019-08-29 23:22:46,655 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-29 23:22:47,088 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-29 23:22:47,088 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-29 23:22:57,247 INFO werkzeug Thread-2 : 192.168.1.24 - - [29/Aug/2019 23:22:57] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-29 23:22:57,294 INFO werkzeug Thread-3 : 192.168.1.24 - - [29/Aug/2019 23:22:57] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-29 23:22:57,330 INFO werkzeug Thread-4 : 192.168.1.24 - - [29/Aug/2019 23:22:57] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-29 23:22:58,727 DEBUG urllib3.connectionpool Thread-5 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-29 23:22:58,999 INFO werkzeug Thread-6 : 192.168.1.16 - - [29/Aug/2019 23:22:58] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-29 23:22:58,999 DEBUG urllib3.connectionpool Thread-5 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-29 23:22:59,004 INFO project Thread-5 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-29 23:22:59,008 INFO werkzeug Thread-5 : 192.168.1.24 - - [29/Aug/2019 23:22:59] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-29 23:22:59,050 INFO werkzeug Thread-7 : 192.168.1.24 - - [29/Aug/2019 23:22:59] "GET /fpa/ HTTP/1.1" 200 -

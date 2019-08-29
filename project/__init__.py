@@ -3,6 +3,7 @@ from flask_restplus import Api
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+import logging
 
 from project.instance.config import app_config, current_config
 
@@ -32,6 +33,8 @@ def is_admin():
 # SET-UP
 ########
 
+logging.basicConfig(filename = 'fpa.log', level = logging.DEBUG, format = '%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object(app_config[current_config])
 
@@ -54,7 +57,8 @@ from project.gui.views import gui_blueprint
 app.register_blueprint(api_blueprint)
 app.register_blueprint(gui_blueprint)
 
-print(app.url_map)
+if app.config["ENV"] == 'development':
+    print(app.url_map)
 
 #
 # Delayed import & register LOAD_USER function for FLASK_LOGIN

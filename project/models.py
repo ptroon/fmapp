@@ -5,8 +5,9 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
 from datetime import datetime
 from flask_login import UserMixin
+from cryptography.fernet import Fernet
 
-from project import db, bcrypt
+from project import db, bcrypt, app
 
 class User(db.Model, UserMixin):
 
@@ -69,3 +70,87 @@ class Role(db.Model):
         self.role_app_sections = role_app_sections
         self.created_date = datetime.now()
         self.deleted = 0
+
+class FortiManager(db.Model):
+
+    __tablename__ = "fortimanagers"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    host_name = db.Column(db.String(128), nullable=False)
+    ip = db.Column(db.String(32), nullable=False)
+    adom_mode = db.Column(db.Integer, default=0)
+    serial = db.Column(db.String(32))
+    version = db.Column(db.String(64))
+    username = db.Column(db.String(64), nullable=False)
+    _password = db.Column(db.String(128), nullable=False)
+    sync_time = db.Column(db.DateTime)
+    status = db.Column(db.Integer, default=0)
+
+    def __init__(self, host_name, ip, username, plaintext_password):
+        self.host_name = host_name
+        self.ip = ip
+        self.username = username
+        self.password = plaintext_password
+        self.adom_mode = 0
+        self.serial = None
+        self.version = None
+        self.sync_time = None
+        self.status = None
+
+    @hybrid_property
+    def password(self):
+        f = Fernet(app.config["CRYPTO_KEY"])
+        return f.decrypt(self._password.encode()).decode()
+
+    @password.setter
+    def password(self, plaintext_password):
+        f = Fernet(app.config["CRYPTO_KEY"])
+        self._password = f.encrypt(plaintext_password.encode())
+
+class ChangeProfile(db.Model):
+
+    __tablename__ = "change_profiles"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    change_name = db.Column(db.String(256))
+    change_desc = db.Column(db.Text)
+    master_record = db.Column(db.String(32))
+    task_record = db.Column(db.String(32))
+    sbid = db.Column(db.String(9))
+    budget_code = db.Column(db.String(32))
+    target_date = db.Column(db.DateTime)
+    change_raiser = db.Column(db.Integer)
+    change_checker = db.Column(db.Integer)
+    change_approver = db.Column(db.Integer)
+    change_implementer = db.Column(db.Integer)
+    change_raised = db.Column(db.DateTime)
+    change_checked = db.Column(db.DateTime)
+    change_approved = db.Column(db.DateTime)
+    change_implemented = db.Column(db.DateTime)
+
+    def __init__(self, change_name, change_desc, master_record, task_record, sbid, budget_code, target_date, change_raiser):
+        self.change_name = change_name
+        self.change_desc = change_desc
+        self.master_record = master_record
+        self.task_record = task_record
+        self.sbid = sbid
+        self.budget_code = budget_code
+        self.target_date = target_date
+        self.change_raiser = change_raiser
+
+
+class Dashboard(db.Model):
+
+    __tablename__ = "dashboard"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    fm_text = db.Column(db.Text)
+    fg_text = db.Column(db.Text)
+    user_text = db.Column(db.Text)
+    log_text = db.Column(db.Text)
+
+    def __init__(self, fm, fg, user, log):
+        self.fm_text = fm
+        self.fg_text = fg
+        self.user_text = user
+        self.log_text = log

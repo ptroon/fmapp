@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Changes{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid mt-3">
+  <h3>Changes&nbsp;&nbsp;&nbsp;<button type="button" onclick=location.href='{{ url_for('gui_blueprint._editchange') }}' class="btn btn-success">Add</button></h3>
+
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Change Name</th>
+        <th scope="col">Change Raiser</th>
+        <th scope="col">SB ID</th>
+        <th scope="col">Target Date</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for rec in data %}
+      <tr>
+        <th scope="row">rec.id</th>
+        <td>rec.change_name</td>
+        <td>rec.change_raiser</td>
+        <td>rec.sbid</td>
+        <td>rec.target_date</td>
+      </tr>
+      {% else %}
+        <tr><td colspan=5 class="alert alert-primary"><strong>There are no changes to view </strong></td></tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+
+</div>
+
+{% endblock %}

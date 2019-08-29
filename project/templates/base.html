@@ -45,7 +45,7 @@
             <a class="nav-link" href="{{ url_for('gui_blueprint._index') }}">Dashboard <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Changes</a>
+            <a class="nav-link" href="{{ url_for('gui_blueprint._changes') }}">Changes</a>
           </li>
 
           {% if is_admin() %}
@@ -73,7 +73,7 @@
 
         </ul>
 
-        <form class="form-inline my-2 my-lg-0" action="/fpa/gui/search" method="GET">
+        <form class="form-inline my-2 my-lg-0" action="/fpa/search" method="GET">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -86,7 +86,7 @@
     {% endblock %}
 
     {% block footer %}
-    &copy. 2019 written in Flask
+    <small>&copy. 2019 written in Flask</small>
     {% endblock %}
   </body>
 </html>
