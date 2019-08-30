@@ -18,6 +18,7 @@ class Config(object):
     USE_SESSION_FOR_NEXT=True
     REMEMBER_COOKIE_DURATION=timedelta(seconds=20)
     CRYPTO_KEY=b'jj0jmmv7t-63PN818_B-Wjm3jm6zXRVS7q9W7SSRYyY='
+    LOG_FILE='project/instance/fpa.log'
 
 class ProductionConfig(Config):
     ENV='production'

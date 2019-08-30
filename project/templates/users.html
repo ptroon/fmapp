@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Changes{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid mt-3">
+  <h3>Users&nbsp;&nbsp;&nbsp;<button type="button" onclick=location.href='{{ url_for('gui_blueprint._edituser') }}' class="btn btn-success">Add</button></h3>
+
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">User Login</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for rec in data %}
+      <tr>
+        <td><a href="{{ url_for('gui_blueprint._edituser', id=rec[0].id) }}">{{ rec[0].login_id }}</a></td>
+        <td>{{ rec[0].forename }}&nbsp;{{ rec.surname }}</td>
+        <td>{{ rec[0].email }}</td>
+        <td>{{ rec[1].role_name }}</td>
+      </tr>
+      {% else %}
+        <tr><td colspan=5 class="alert alert-primary"><strong>There are no user accounts to view </strong></td></tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Edit User{{ title }}{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="card text-center w-50 border-dark mx-auto">
+
+{% if data %}
+
+    <h5 class="card-header text-white bg-info">Account: {{ data.forename + " " + data.surname }}</h5>
+
+    <div class="card-body px-lg-5 pt-0">
+    <form action="" method="POST" novalidate class="text-center" style="color: #757575;">
+        <table class="form-group">
+          <tr>
+            <td>&nbsp;</td>
+            <td>{{ form.id }}</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-1">{{ form.login_id.label }}</td>
+            <td class="px-4 py-1">{{ form.login_id(size=10, class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-1">{{ form.forename.label }}</td>
+            <td class="px-4 py-1">{{ form.forename(size=32, class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-1">{{ form.surname.label }}</td>
+            <td class="px-4 py-1">{{ form.surname(size=32, class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-1">{{ form.email.label }}</td>
+            <td class="px-4 py-1">{{ form.email(size=32, class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-1">{{ form.password.label }}</td>
+            <td class="px-4 py-1">{{ form.password(size=32, class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-1">{{ form.comment.label }}</td>
+            <td class="px-4 py-1">{{ form.comment(rows=5, cols=6, class_="form-control") }}</td>
+          </tr>
+        </table>
+    </form>
+    </div>
+
+{% else %}
+
+    <h3>New user</h3>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

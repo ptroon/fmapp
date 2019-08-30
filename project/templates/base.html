@@ -21,17 +21,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <!--
+<!--
     {% with messages = get_flashed_messages() %}
     {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="mr-auto">Messages</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body">{{ messages }}</div>
+    </div>
     {% endif %}
     {% endwith %}
-    -->
+-->
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light nav-fill">
         <a class="navbar-brand" href="#"><h1><div class="badge badge-primary">FPA</div></h1></a>
@@ -54,10 +58,10 @@
               Administration
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ url_for('gui_blueprint._index') }}">Users</a>
+              <a class="dropdown-item" href="{{ url_for('gui_blueprint._users') }}">Users</a>
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._index') }}">FortiManagers</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ url_for('gui_blueprint._index') }}">System Logs</a>
+              <a class="dropdown-item" href="{{ url_for('gui_blueprint._logs', counter=10) }}">System Logs</a>
             </div>
           </li>
           {% endif %}

@@ -8,20 +8,25 @@
 {% endblock %}
 {% block content %}
 
-<div class="container-fluid mt-3">
+
   <h3>Dashboard</h3>
-
-  {% for rec in data %}
-  <div class="d-flex mb-3 row">
-    <div class="text-center m-3 p-2 col rounded container-fluid bg-light border border-dark"><strong>FortiManagers</strong><br/>{{ rec.fm_text }}<br/></div>
-    <div class="text-center m-3 p-2 col rounded container-fluid bg-light border border-dark"><strong>Fortigates</strong><br/>{{ rec.fg_text }}</div>
-    <div class="text-center m-3 p-2 col rounded container-fluid bg-light border border-dark"><strong>Changes</strong><br/>{{ rec.user_text }}</div>
+  <div class="container-fluid mt-3">
+    {% for rec in data %}
+    <div class="d-flex mb-3 row">
+      <div class="text-center m-3 p-2 col rounded container-fluid bg-light border border-dark"><strong>FortiManagers</strong><br/>{{ rec.fm_text }}<br/></div>
+      <div class="text-center m-3 p-2 col rounded container-fluid bg-light border border-dark"><strong>Fortigates</strong><br/>{{ rec.fg_text }}</div>
+      <div class="text-center m-3 p-2 col rounded container-fluid bg-light border border-dark"><strong>Changes</strong><br/>{{ rec.user_text }}</div>
+    </div>
+    {% endfor %}
   </div>
-  <div class="d-flex mb-3 row">
-    <div class="text-center m-3 p-2 col rounded container-fluid bg-light border border-dark"><strong>Logs</strong><br/>{{ rec.log_text }}<br/></div>
-  </div>
-  {% endfor %}
 
-</div>
+  <div class="card w-25 mx-auto border-dark">
+    <div class="card-header text-white bg-info text-center">Logs</div>
+    <div class="card-body px-lg-5 pt-0">
+      {% for rec in logs %}
+        <br/>{{ rec }} {{ logs[rec] }}
+      {% endfor %}
+    </div>
+  </div>
 
 {% endblock %}

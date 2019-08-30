@@ -22,7 +22,7 @@
 
       {% for rec in data %}
       <tr>
-        <th scope="row">rec.id</th>
+        <th scope="row"><a href="{{ url_for('gui_blueprint._editchange', id=rec.id) }}">rec.id</a></th>
         <td>rec.change_name</td>
         <td>rec.change_raiser</td>
         <td>rec.sbid</td>

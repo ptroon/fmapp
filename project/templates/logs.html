@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Changes{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid mt-3">
+  <h3>Logs</h3>
+
+
+  <form action="{{ url_for('gui_blueprint._logs') }}" method="GET">
+    <select id="counter" name="counter" onchange="this.form.submit()">
+      <option value="10">Show last 10 entries</option>
+      <option value="50">Show last 50 entries</option>
+      <option value="99999">Show all entries</option>
+    </select>
+  </form>
+
+
+  <script>
+    $(document).ready(function() {
+      $("#counter option[value='{{ counter }}']").prop('selected', true);
+    });
+  </script>
+
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Record</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for rec in data %}
+        {% if loop.index <= counter|int %}
+          <tr>
+            <td>{{ rec }}</td>
+          </tr>
+        {% endif %}
+      {% else %}
+        <tr><td colspan=5 class="alert alert-primary"><strong>There are no changes to view </strong></td></tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+
+</div>
+
+{% endblock %}

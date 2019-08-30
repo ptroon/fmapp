@@ -1,0 +1,908 @@
+2019-08-30 08:35:14,081 INFO werkzeug MainThread :  * Running on http://192.168.1.16:5000/ (Press CTRL+C to quit)
+2019-08-30 08:35:14,082 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 08:35:14,505 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 08:35:14,506 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 08:35:53,274 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 08:35:53] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 08:35:53,295 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 08:35:53] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 08:35:53,323 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 08:35:53] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 08:35:54,526 DEBUG urllib3.connectionpool Thread-5 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 08:35:54,796 INFO werkzeug Thread-6 : 192.168.1.16 - - [30/Aug/2019 08:35:54] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 08:35:54,797 DEBUG urllib3.connectionpool Thread-5 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 08:35:54,802 INFO project Thread-5 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 08:35:54,805 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 08:35:54] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 08:35:54,860 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 08:35:54] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 08:35:56,376 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 08:35:56] "GET /fpa/changes HTTP/1.1" 200 -
+2019-08-30 08:39:28,449 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 08:39:28,523 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 08:39:28,944 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 08:39:28,944 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 08:44:26,544 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 08:44:26,612 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 08:44:27,027 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 08:44:27,028 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 08:46:13,080 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 08:46:13] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 08:46:22,617 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 08:46:22] "GET /fpa/admin/logs HTTP/1.1" 500 -
+2019-08-30 08:46:22,660 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 08:46:22] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 08:46:22,667 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 08:46:22] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 08:46:22,667 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 08:46:22] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 08:46:22,950 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 08:46:22] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 08:46:23,015 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 08:46:23] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 08:46:23,108 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 08:46:23] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 08:46:56,341 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 08:46:56,413 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 08:46:56,834 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 08:46:56,835 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 08:47:02,624 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 08:47:02] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 08:47:31,690 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 08:47:31] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 08:47:31,713 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 08:47:31] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 08:47:31,738 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 08:47:31] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 08:47:34,424 DEBUG urllib3.connectionpool Thread-6 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 08:47:34,695 INFO werkzeug Thread-7 : 192.168.1.16 - - [30/Aug/2019 08:47:34] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 08:47:34,696 DEBUG urllib3.connectionpool Thread-6 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 241
+2019-08-30 08:47:34,701 INFO project Thread-6 : Logged in frank with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6ImZyYW5rIiwicGFzc3dvcmQiOiJ0ZXN0In0.WZBwSKQeVj5RNuQH3k70ibHa-0Qc4AgX3xccjeMKNfZHrBpl-PbwAXZqoxP4OinoekSLcf0htlWpvS_SPCxM6Q
+2019-08-30 08:47:34,704 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 08:47:34] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 08:47:34,738 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 08:47:34] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 08:47:36,737 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 08:47:36] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 08:47:36,765 INFO werkzeug Thread-10 : 192.168.1.24 - - [30/Aug/2019 08:47:36] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 08:47:36,785 INFO werkzeug Thread-11 : 192.168.1.24 - - [30/Aug/2019 08:47:36] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 08:47:39,325 DEBUG urllib3.connectionpool Thread-12 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 08:47:39,598 INFO werkzeug Thread-13 : 192.168.1.16 - - [30/Aug/2019 08:47:39] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 08:47:39,599 DEBUG urllib3.connectionpool Thread-12 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 08:47:39,603 INFO project Thread-12 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 08:47:39,606 INFO werkzeug Thread-12 : 192.168.1.24 - - [30/Aug/2019 08:47:39] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 08:47:39,641 INFO werkzeug Thread-14 : 192.168.1.24 - - [30/Aug/2019 08:47:39] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 08:47:41,961 INFO werkzeug Thread-15 : 192.168.1.24 - - [30/Aug/2019 08:47:41] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 08:48:08,569 INFO werkzeug Thread-16 : 192.168.1.24 - - [30/Aug/2019 08:48:08] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 08:48:10,145 INFO werkzeug Thread-17 : 192.168.1.24 - - [30/Aug/2019 08:48:10] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 08:48:11,514 INFO werkzeug Thread-18 : 192.168.1.24 - - [30/Aug/2019 08:48:11] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 08:48:18,392 INFO werkzeug Thread-19 : 192.168.1.24 - - [30/Aug/2019 08:48:18] "GET /fpa/changes HTTP/1.1" 200 -
+2019-08-30 10:03:06,202 INFO werkzeug Thread-20 : 192.168.1.24 - - [30/Aug/2019 10:03:06] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 10:03:17,425 INFO werkzeug Thread-21 : 192.168.1.24 - - [30/Aug/2019 10:03:17] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 10:14:51,629 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 10:14:51,706 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 10:14:52,129 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 10:14:52,130 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 10:15:13,520 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 10:15:13] "GET /fpa/admin/logs HTTP/1.1" 500 -
+2019-08-30 10:15:13,627 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 10:15:13] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 10:15:13,631 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 10:15:13] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 10:15:13,632 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 10:15:13] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 10:15:14,403 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 10:15:14] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 10:15:14,445 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 10:15:14] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 10:15:14,616 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 10:15:14] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 10:15:32,765 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 10:15:32,839 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 10:15:33,259 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 10:15:33,259 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 10:15:39,293 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 10:15:39] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 10:18:17,440 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 10:18:17] "GET /fpa/changes HTTP/1.1" 200 -
+2019-08-30 10:18:19,036 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 10:18:19] "GET /fpa/editchange HTTP/1.1" 200 -
+2019-08-30 10:18:20,715 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 10:18:20] "GET /fpa/changes HTTP/1.1" 200 -
+2019-08-30 10:18:23,166 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 10:18:23] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 10:19:30,224 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 10:19:30] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 10:19:31,649 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 10:19:31] "GET /fpa/changes HTTP/1.1" 200 -
+2019-08-30 10:19:33,873 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 10:19:33] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 10:20:11,965 INFO werkzeug Thread-10 : 192.168.1.24 - - [30/Aug/2019 10:20:11] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 10:22:23,280 INFO werkzeug Thread-11 : 192.168.1.24 - - [30/Aug/2019 10:22:23] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 10:22:39,871 INFO werkzeug Thread-12 : 192.168.1.24 - - [30/Aug/2019 10:22:39] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 10:31:04,723 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 10:31:04,797 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 10:31:05,219 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 10:31:05,220 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 10:33:36,529 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 10:33:36,598 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 10:33:37,022 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 10:33:37,023 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 10:34:36,196 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 10:34:36] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 10:34:36,822 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 10:34:36] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 10:34:39,651 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 10:34:39] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 10:35:42,204 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 10:35:42] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 10:35:42,682 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 10:35:42] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 10:36:39,383 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 10:36:39] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 10:36:39,992 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 10:36:39] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 10:37:35,540 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 10:37:35] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 10:37:36,184 INFO werkzeug Thread-10 : 192.168.1.24 - - [30/Aug/2019 10:37:36] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 10:37:58,073 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 10:37:58,147 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 10:37:58,571 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 10:37:58,572 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 10:38:04,067 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 10:38:04] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 10:38:04,630 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 10:38:04] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 11:20:07,993 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 11:20:08,069 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 11:20:08,497 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 11:20:08,497 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 11:20:21,363 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 11:20:21] "GET /fpa/admin/users HTTP/1.1" 500 -
+2019-08-30 11:20:21,482 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 11:20:21] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 11:20:21,483 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 11:20:21] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 11:20:21,483 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 11:20:21] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 11:20:21,987 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 11:20:21] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 11:20:22,126 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 11:20:22] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 11:20:22,322 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 11:20:22] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 11:20:49,131 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 11:20:49,206 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 11:20:49,625 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 11:20:49,625 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 11:20:56,640 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 11:20:56] "GET /fpa/admin/users HTTP/1.1" 500 -
+2019-08-30 11:20:56,781 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 11:20:56] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 11:20:56,782 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 11:20:56] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 11:20:56,783 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 11:20:56] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 11:20:57,127 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 11:20:57] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 11:20:57,282 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 11:20:57] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 11:21:17,064 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 11:21:17,136 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 11:21:17,561 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 11:21:17,562 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 11:21:22,490 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 11:21:22] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:22:10,005 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 11:22:10] "GET /fpa/admin/users HTTP/1.1" 500 -
+2019-08-30 11:22:10,091 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 11:22:10] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 11:22:10,094 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 11:22:10] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 11:22:10,095 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 11:22:10] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 11:22:10,475 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 11:22:10] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 11:22:10,786 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 11:22:10] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 11:22:11,174 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 11:22:11] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 11:23:24,685 INFO werkzeug Thread-10 : 192.168.1.24 - - [30/Aug/2019 11:23:24] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:25:50,757 INFO werkzeug Thread-11 : 192.168.1.24 - - [30/Aug/2019 11:25:50] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:25:51,349 INFO werkzeug Thread-12 : 192.168.1.24 - - [30/Aug/2019 11:25:51] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 11:26:17,073 INFO werkzeug Thread-13 : 192.168.1.24 - - [30/Aug/2019 11:26:17] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:26:17,635 INFO werkzeug Thread-14 : 192.168.1.24 - - [30/Aug/2019 11:26:17] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 11:27:08,139 INFO werkzeug Thread-15 : 192.168.1.24 - - [30/Aug/2019 11:27:08] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:27:08,656 INFO werkzeug Thread-16 : 192.168.1.24 - - [30/Aug/2019 11:27:08] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 11:27:41,636 INFO werkzeug Thread-17 : 192.168.1.24 - - [30/Aug/2019 11:27:41] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:27:42,350 INFO werkzeug Thread-18 : 192.168.1.24 - - [30/Aug/2019 11:27:42] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 11:28:02,636 INFO werkzeug Thread-19 : 192.168.1.24 - - [30/Aug/2019 11:28:02] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:28:03,113 INFO werkzeug Thread-20 : 192.168.1.24 - - [30/Aug/2019 11:28:03] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 11:28:22,919 INFO werkzeug Thread-21 : 192.168.1.24 - - [30/Aug/2019 11:28:22] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:28:23,388 INFO werkzeug Thread-22 : 192.168.1.24 - - [30/Aug/2019 11:28:23] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 11:38:06,853 INFO werkzeug Thread-23 : 192.168.1.24 - - [30/Aug/2019 11:38:06] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:38:07,518 INFO werkzeug Thread-24 : 192.168.1.24 - - [30/Aug/2019 11:38:07] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 11:38:14,740 INFO werkzeug Thread-25 : 192.168.1.24 - - [30/Aug/2019 11:38:14] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 11:38:34,637 INFO werkzeug Thread-26 : 192.168.1.24 - - [30/Aug/2019 11:38:34] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:52:31,733 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 11:52:31,810 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 11:52:32,235 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 11:52:32,236 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 11:52:40,239 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 11:52:40] "GET /fpa/admin/users HTTP/1.1" 500 -
+2019-08-30 11:52:40,673 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 11:52:40] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 11:52:40,673 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 11:52:40] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 11:52:40,676 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 11:52:40] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 11:52:41,418 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 11:52:41] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 11:52:41,674 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 11:52:41] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 11:52:41,970 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 11:52:41] "GET /fpa/admin/users?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 11:53:34,178 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 11:53:34,252 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 11:53:34,678 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 11:53:34,679 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 11:53:41,555 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 11:53:41] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:54:42,757 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 11:54:42,828 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 11:54:43,247 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 11:54:43,247 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 11:54:46,531 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 11:54:46] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:54:54,429 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 11:54:54,501 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 11:54:54,926 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 11:54:54,927 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 11:54:59,400 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 11:54:59] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:55:10,227 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 11:55:10] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 11:55:12,178 DEBUG urllib3.connectionpool Thread-4 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 11:55:12,449 INFO werkzeug Thread-5 : 192.168.1.16 - - [30/Aug/2019 11:55:12] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 11:55:12,450 DEBUG urllib3.connectionpool Thread-4 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 11:55:12,457 INFO project Thread-4 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 11:55:12,461 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 11:55:12] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 11:55:12,531 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 11:55:12] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 11:55:19,410 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 11:55:19] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:55:26,115 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 11:55:26] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 11:55:30,124 DEBUG urllib3.connectionpool Thread-9 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 11:55:30,398 INFO werkzeug Thread-10 : 192.168.1.16 - - [30/Aug/2019 11:55:30] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 11:55:30,398 DEBUG urllib3.connectionpool Thread-9 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 11:55:30,403 INFO project Thread-9 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 11:55:30,406 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 11:55:30] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 11:55:30,449 INFO werkzeug Thread-11 : 192.168.1.24 - - [30/Aug/2019 11:55:30] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 11:59:08,229 INFO werkzeug Thread-12 : 192.168.1.24 - - [30/Aug/2019 11:59:08] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:59:51,623 INFO werkzeug Thread-13 : 192.168.1.24 - - [30/Aug/2019 11:59:51] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 11:59:52,404 INFO werkzeug Thread-14 : 192.168.1.24 - - [30/Aug/2019 11:59:52] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 12:00:22,535 INFO werkzeug Thread-15 : 192.168.1.24 - - [30/Aug/2019 12:00:22] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 12:00:23,172 INFO werkzeug Thread-16 : 192.168.1.24 - - [30/Aug/2019 12:00:23] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 12:00:39,611 INFO werkzeug Thread-17 : 192.168.1.24 - - [30/Aug/2019 12:00:39] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 12:00:41,357 DEBUG urllib3.connectionpool Thread-18 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 12:00:41,629 INFO werkzeug Thread-19 : 192.168.1.16 - - [30/Aug/2019 12:00:41] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 12:00:41,630 DEBUG urllib3.connectionpool Thread-18 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 12:00:41,635 INFO project Thread-18 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 12:00:41,638 INFO werkzeug Thread-18 : 192.168.1.24 - - [30/Aug/2019 12:00:41] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 12:00:41,694 INFO werkzeug Thread-20 : 192.168.1.24 - - [30/Aug/2019 12:00:41] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 12:04:36,002 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 12:04:36,075 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 12:04:36,505 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 12:04:36,505 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 12:04:54,596 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 12:04:54] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 12:27:37,307 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 12:27:37] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 12:27:37,856 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 12:27:37] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 12:28:58,376 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 12:28:58] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 12:28:59,067 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 12:28:59] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 12:29:18,124 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 12:29:18] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 12:29:18,684 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 12:29:18] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 12:29:36,973 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 12:29:37,047 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 12:29:37,468 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 12:29:37,469 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 12:29:41,806 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 12:29:41] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 12:29:42,280 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 12:29:42] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 12:30:03,332 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 12:30:03] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 12:30:05,417 DEBUG urllib3.connectionpool Thread-5 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 12:30:05,690 INFO werkzeug Thread-6 : 192.168.1.16 - - [30/Aug/2019 12:30:05] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 12:30:05,690 DEBUG urllib3.connectionpool Thread-5 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 12:30:05,695 INFO project Thread-5 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 12:30:05,699 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 12:30:05] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 12:30:05,765 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 12:30:05] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 12:30:08,383 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 12:30:08] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 12:30:23,193 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 12:30:23,270 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 12:30:23,694 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 12:30:23,695 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 12:30:45,019 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 12:30:45,094 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 12:30:45,510 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 12:30:45,511 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 12:31:01,841 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 12:31:01] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 12:31:04,148 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 12:31:04] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 12:31:04,177 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 12:31:04] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 12:31:04,211 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 12:31:04] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 12:31:06,234 DEBUG urllib3.connectionpool Thread-6 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 12:31:06,506 INFO werkzeug Thread-7 : 192.168.1.16 - - [30/Aug/2019 12:31:06] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 12:31:06,507 DEBUG urllib3.connectionpool Thread-6 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 12:31:06,511 INFO project Thread-6 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 12:31:06,515 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 12:31:06] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 12:31:06,556 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 12:31:06] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 12:31:08,434 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 12:31:08] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 12:31:08,470 INFO werkzeug Thread-10 : 192.168.1.24 - - [30/Aug/2019 12:31:08] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 12:31:08,499 INFO werkzeug Thread-11 : 192.168.1.24 - - [30/Aug/2019 12:31:08] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 12:31:10,967 DEBUG urllib3.connectionpool Thread-12 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 12:31:11,239 INFO werkzeug Thread-13 : 192.168.1.16 - - [30/Aug/2019 12:31:11] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 12:31:11,240 DEBUG urllib3.connectionpool Thread-12 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 241
+2019-08-30 12:31:11,245 INFO project Thread-12 : Logged in frank with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6ImZyYW5rIiwicGFzc3dvcmQiOiJ0ZXN0In0.WZBwSKQeVj5RNuQH3k70ibHa-0Qc4AgX3xccjeMKNfZHrBpl-PbwAXZqoxP4OinoekSLcf0htlWpvS_SPCxM6Q
+2019-08-30 12:31:11,248 INFO werkzeug Thread-12 : 192.168.1.24 - - [30/Aug/2019 12:31:11] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 12:31:11,290 INFO werkzeug Thread-14 : 192.168.1.24 - - [30/Aug/2019 12:31:11] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 12:31:18,300 INFO werkzeug Thread-15 : 192.168.1.24 - - [30/Aug/2019 12:31:18] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 12:32:34,156 INFO werkzeug Thread-16 : 192.168.1.24 - - [30/Aug/2019 12:32:34] "GET /fpa/admin/ HTTP/1.1" 404 -
+2019-08-30 12:37:45,497 INFO werkzeug Thread-17 : 192.168.1.24 - - [30/Aug/2019 12:37:45] "GET /fpa/admin/ HTTP/1.1" 404 -
+2019-08-30 12:37:59,818 INFO werkzeug Thread-18 : 192.168.1.24 - - [30/Aug/2019 12:37:59] "GET /fpa/admin/ HTTP/1.1" 404 -
+2019-08-30 12:38:02,537 INFO werkzeug Thread-19 : 192.168.1.24 - - [30/Aug/2019 12:38:02] "GET /fpa/admin/ HTTP/1.1" 404 -
+2019-08-30 12:38:03,805 INFO werkzeug Thread-20 : 192.168.1.24 - - [30/Aug/2019 12:38:03] "GET /fpa/admin/ HTTP/1.1" 404 -
+2019-08-30 12:38:12,196 INFO werkzeug Thread-21 : 192.168.1.24 - - [30/Aug/2019 12:38:12] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 12:38:14,786 INFO werkzeug Thread-22 : 192.168.1.24 - - [30/Aug/2019 12:38:14] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 12:38:14,814 INFO werkzeug Thread-23 : 192.168.1.24 - - [30/Aug/2019 12:38:14] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 12:38:14,845 INFO werkzeug Thread-24 : 192.168.1.24 - - [30/Aug/2019 12:38:14] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 12:38:18,317 DEBUG urllib3.connectionpool Thread-25 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 12:38:18,590 INFO werkzeug Thread-26 : 192.168.1.16 - - [30/Aug/2019 12:38:18] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 12:38:18,591 DEBUG urllib3.connectionpool Thread-25 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 12:38:18,595 INFO project Thread-25 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 12:38:18,598 INFO werkzeug Thread-25 : 192.168.1.24 - - [30/Aug/2019 12:38:18] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 12:38:18,688 INFO werkzeug Thread-27 : 192.168.1.24 - - [30/Aug/2019 12:38:18] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 12:38:21,217 INFO werkzeug Thread-28 : 192.168.1.24 - - [30/Aug/2019 12:38:21] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 12:40:45,894 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/__init__.py', reloading
+2019-08-30 12:40:45,980 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 12:40:46,406 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 12:40:46,407 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 12:40:56,368 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 12:40:56] "GET /fpa/admin/logsd HTTP/1.1" 500 -
+2019-08-30 12:40:56,439 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 12:40:56] "GET /fpa/admin/logsd?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 12:40:56,442 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 12:40:56] "GET /fpa/admin/logsd?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 12:40:56,444 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 12:40:56] "GET /fpa/admin/logsd?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 12:40:56,927 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 12:40:56] "GET /fpa/admin/logsd?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 12:40:57,117 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 12:40:57] "GET /fpa/admin/logsd?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 12:40:57,329 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 12:40:57] "GET /fpa/admin/logsd?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 12:41:11,781 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/__init__.py', reloading
+2019-08-30 12:41:11,863 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 12:41:12,289 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 12:41:12,289 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 12:41:18,439 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 12:41:18] "GET /fpa/admin/logse HTTP/1.1" 200 -
+2019-08-30 12:41:24,599 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 12:41:24] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 12:41:28,981 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 12:41:28] "GET /fpa/dsfdsf HTTP/1.1" 200 -
+2019-08-30 12:41:49,906 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/__init__.py', reloading
+2019-08-30 12:41:49,981 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 12:41:50,405 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 12:41:50,405 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 12:41:59,805 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 12:41:59] "GET /fpa/dsfdsf HTTP/1.1" 200 -
+2019-08-30 12:42:00,355 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 12:42:00] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 12:42:27,237 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 12:42:27] "GET /fpa/dsfdsf HTTP/1.1" 200 -
+2019-08-30 12:42:28,087 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 12:42:28] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 12:42:43,491 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 12:42:43] "GET /fpa/dsfdsf HTTP/1.1" 200 -
+2019-08-30 12:42:44,015 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 12:42:44] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 12:43:15,121 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 12:43:15] "GET /fpa/dsfdsf HTTP/1.1" 200 -
+2019-08-30 12:43:15,938 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 12:43:15] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 12:43:26,069 INFO werkzeug Thread-10 : 192.168.1.24 - - [30/Aug/2019 12:43:26] "GET /fpa/d HTTP/1.1" 200 -
+2019-08-30 12:43:28,645 INFO werkzeug Thread-11 : 192.168.1.24 - - [30/Aug/2019 12:43:28] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 12:43:32,246 INFO werkzeug Thread-12 : 192.168.1.24 - - [30/Aug/2019 12:43:32] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 12:44:41,059 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 12:44:41,138 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 12:44:41,560 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 12:44:41,560 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 12:44:44,886 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 12:44:44] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 12:44:44,923 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 12:44:44] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 12:44:44,958 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 12:44:44] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 12:44:48,226 DEBUG urllib3.connectionpool Thread-5 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 12:44:48,498 INFO werkzeug Thread-6 : 192.168.1.16 - - [30/Aug/2019 12:44:48] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 12:44:48,499 DEBUG urllib3.connectionpool Thread-5 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 241
+2019-08-30 12:44:48,504 INFO project Thread-5 : Logged in frank with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6ImZyYW5rIiwicGFzc3dvcmQiOiJ0ZXN0In0.WZBwSKQeVj5RNuQH3k70ibHa-0Qc4AgX3xccjeMKNfZHrBpl-PbwAXZqoxP4OinoekSLcf0htlWpvS_SPCxM6Q
+2019-08-30 12:44:48,507 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 12:44:48] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 12:44:48,713 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 12:44:48] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 12:44:52,966 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 12:44:52] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 12:45:00,282 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 12:45:00] "GET /fpa/admin/u HTTP/1.1" 200 -
+2019-08-30 12:45:08,008 INFO werkzeug Thread-10 : 192.168.1.24 - - [30/Aug/2019 12:45:08] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 12:45:11,779 INFO werkzeug Thread-11 : 192.168.1.24 - - [30/Aug/2019 12:45:11] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 12:45:11,811 INFO werkzeug Thread-12 : 192.168.1.24 - - [30/Aug/2019 12:45:11] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 12:45:11,837 INFO werkzeug Thread-13 : 192.168.1.24 - - [30/Aug/2019 12:45:11] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 12:45:14,636 DEBUG urllib3.connectionpool Thread-14 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 12:45:14,909 INFO werkzeug Thread-15 : 192.168.1.16 - - [30/Aug/2019 12:45:14] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 12:45:14,909 DEBUG urllib3.connectionpool Thread-14 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 12:45:14,913 INFO project Thread-14 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 12:45:14,916 INFO werkzeug Thread-14 : 192.168.1.24 - - [30/Aug/2019 12:45:14] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 12:45:14,992 INFO werkzeug Thread-16 : 192.168.1.24 - - [30/Aug/2019 12:45:14] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 12:45:17,039 INFO werkzeug Thread-17 : 192.168.1.24 - - [30/Aug/2019 12:45:17] "GET /fpa/changes HTTP/1.1" 200 -
+2019-08-30 12:45:18,704 INFO werkzeug Thread-18 : 192.168.1.24 - - [30/Aug/2019 12:45:18] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 12:45:55,294 INFO werkzeug Thread-19 : 192.168.1.24 - - [30/Aug/2019 12:45:55] "GET /fpa/search HTTP/1.1" 200 -
+2019-08-30 12:46:03,620 INFO werkzeug Thread-20 : 192.168.1.24 - - [30/Aug/2019 12:46:03] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 12:46:05,268 INFO werkzeug Thread-21 : 192.168.1.24 - - [30/Aug/2019 12:46:05] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 12:46:07,815 INFO werkzeug Thread-22 : 192.168.1.24 - - [30/Aug/2019 12:46:07] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 13:40:56,213 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 13:40:56,290 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 13:40:56,713 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 13:40:56,714 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 13:42:01,940 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 13:42:01] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 13:42:25,747 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 13:42:25] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 13:42:26,417 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 13:42:26] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 13:42:29,262 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 13:42:29] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 500 -
+2019-08-30 13:42:29,359 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 13:42:29] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 13:42:29,360 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 13:42:29] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 13:42:29,361 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 13:42:29] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 13:42:29,871 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 13:42:29] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 13:42:30,026 INFO werkzeug Thread-10 : 192.168.1.24 - - [30/Aug/2019 13:42:30] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 13:42:30,218 INFO werkzeug Thread-11 : 192.168.1.24 - - [30/Aug/2019 13:42:30] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 13:43:35,237 INFO werkzeug Thread-12 : 192.168.1.24 - - [30/Aug/2019 13:43:35] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 13:43:41,235 INFO werkzeug Thread-13 : 192.168.1.24 - - [30/Aug/2019 13:43:41] "GET /fpa/admin/edituser?id=3 HTTP/1.1" 200 -
+2019-08-30 13:43:58,093 INFO werkzeug Thread-14 : 192.168.1.24 - - [30/Aug/2019 13:43:58] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 13:44:06,018 INFO werkzeug Thread-15 : 192.168.1.24 - - [30/Aug/2019 13:44:06] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 13:44:55,892 INFO werkzeug Thread-16 : 192.168.1.24 - - [30/Aug/2019 13:44:55] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 13:44:58,824 INFO werkzeug Thread-17 : 192.168.1.24 - - [30/Aug/2019 13:44:58] "GET /fpa/admin/edituser HTTP/1.1" 200 -
+2019-08-30 13:47:47,960 INFO werkzeug Thread-18 : 192.168.1.24 - - [30/Aug/2019 13:47:47] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 13:47:49,138 INFO werkzeug Thread-19 : 192.168.1.24 - - [30/Aug/2019 13:47:49] "GET /fpa/admin/edituser?id=2 HTTP/1.1" 200 -
+2019-08-30 13:47:53,498 INFO werkzeug Thread-20 : 192.168.1.24 - - [30/Aug/2019 13:47:53] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 13:47:54,800 INFO werkzeug Thread-21 : 192.168.1.24 - - [30/Aug/2019 13:47:54] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 13:47:57,688 INFO werkzeug Thread-22 : 192.168.1.24 - - [30/Aug/2019 13:47:57] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 13:47:58,963 INFO werkzeug Thread-23 : 192.168.1.24 - - [30/Aug/2019 13:47:58] "GET /fpa/admin/edituser HTTP/1.1" 200 -
+2019-08-30 13:48:15,051 INFO werkzeug Thread-24 : 192.168.1.24 - - [30/Aug/2019 13:48:15] "GET /fpa/changes HTTP/1.1" 200 -
+2019-08-30 13:48:19,423 INFO werkzeug Thread-25 : 192.168.1.24 - - [30/Aug/2019 13:48:19] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 13:48:20,917 INFO werkzeug Thread-26 : 192.168.1.24 - - [30/Aug/2019 13:48:20] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 13:49:01,893 INFO werkzeug Thread-27 : 192.168.1.24 - - [30/Aug/2019 13:49:01] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 13:49:03,306 INFO werkzeug Thread-28 : 192.168.1.24 - - [30/Aug/2019 13:49:03] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 13:49:08,933 INFO werkzeug Thread-29 : 192.168.1.24 - - [30/Aug/2019 13:49:08] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 13:49:10,507 INFO werkzeug Thread-30 : 192.168.1.24 - - [30/Aug/2019 13:49:10] "GET /fpa/admin/edituser HTTP/1.1" 200 -
+2019-08-30 13:49:14,594 INFO werkzeug Thread-31 : 192.168.1.24 - - [30/Aug/2019 13:49:14] "GET /fpa/changes HTTP/1.1" 200 -
+2019-08-30 13:49:46,190 INFO werkzeug Thread-32 : 192.168.1.24 - - [30/Aug/2019 13:49:46] "GET /fpa/editchange HTTP/1.1" 200 -
+2019-08-30 13:49:50,093 INFO werkzeug Thread-33 : 192.168.1.24 - - [30/Aug/2019 13:49:50] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 13:49:51,963 INFO werkzeug Thread-34 : 192.168.1.24 - - [30/Aug/2019 13:49:51] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 13:49:54,527 INFO werkzeug Thread-35 : 192.168.1.24 - - [30/Aug/2019 13:49:54] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 13:49:55,592 INFO werkzeug Thread-36 : 192.168.1.24 - - [30/Aug/2019 13:49:55] "GET /fpa/admin/edituser HTTP/1.1" 200 -
+2019-08-30 13:50:06,886 INFO werkzeug Thread-37 : 192.168.1.24 - - [30/Aug/2019 13:50:06] "GET /fpa/changes HTTP/1.1" 200 -
+2019-08-30 13:50:09,146 INFO werkzeug Thread-38 : 192.168.1.24 - - [30/Aug/2019 13:50:09] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 13:50:11,993 INFO werkzeug Thread-39 : 192.168.1.24 - - [30/Aug/2019 13:50:11] "GET /fpa/admin/edituser?id=3 HTTP/1.1" 200 -
+2019-08-30 13:51:30,787 INFO werkzeug Thread-40 : 192.168.1.24 - - [30/Aug/2019 13:51:30] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 13:58:28,158 INFO werkzeug Thread-41 : 192.168.1.24 - - [30/Aug/2019 13:58:28] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 14:00:02,431 INFO werkzeug Thread-42 : 192.168.1.24 - - [30/Aug/2019 14:00:02] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 14:00:08,882 INFO werkzeug Thread-43 : 192.168.1.24 - - [30/Aug/2019 14:00:08] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 14:00:09,696 INFO werkzeug Thread-44 : 192.168.1.24 - - [30/Aug/2019 14:00:09] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 14:02:14,539 INFO werkzeug Thread-45 : 192.168.1.24 - - [30/Aug/2019 14:02:14] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 14:02:15,333 INFO werkzeug Thread-46 : 192.168.1.24 - - [30/Aug/2019 14:02:15] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 14:02:17,424 INFO werkzeug Thread-47 : 192.168.1.24 - - [30/Aug/2019 14:02:17] "GET /fpa/admin/logs?counter=50 HTTP/1.1" 200 -
+2019-08-30 14:02:21,628 INFO werkzeug Thread-48 : 192.168.1.24 - - [30/Aug/2019 14:02:21] "GET /fpa/admin/logs?counter=99999 HTTP/1.1" 200 -
+2019-08-30 14:02:29,999 INFO werkzeug Thread-49 : 192.168.1.24 - - [30/Aug/2019 14:02:29] "GET /fpa/admin/logs?counter=50 HTTP/1.1" 200 -
+2019-08-30 14:11:58,800 INFO werkzeug Thread-50 : 192.168.1.24 - - [30/Aug/2019 14:11:58] "GET /fpa/admin/logs?counter=50 HTTP/1.1" 200 -
+2019-08-30 14:11:59,664 INFO werkzeug Thread-51 : 192.168.1.24 - - [30/Aug/2019 14:11:59] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 14:12:01,955 INFO werkzeug Thread-52 : 192.168.1.24 - - [30/Aug/2019 14:12:01] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-08-30 14:14:54,461 INFO werkzeug Thread-53 : 192.168.1.24 - - [30/Aug/2019 14:14:54] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-08-30 14:14:55,241 INFO werkzeug Thread-54 : 192.168.1.24 - - [30/Aug/2019 14:14:55] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 14:14:56,993 INFO werkzeug Thread-55 : 192.168.1.24 - - [30/Aug/2019 14:14:56] "POST /fpa/admin/logs HTTP/1.1" 405 -
+2019-08-30 14:15:26,933 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 14:15:27,007 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 14:15:27,428 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 14:15:27,429 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 14:15:32,217 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 14:15:32] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 14:15:37,999 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 14:15:37] "POST /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 14:15:41,681 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 14:15:41] "POST /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 14:22:50,353 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 14:22:50,427 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 14:22:50,847 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 14:22:50,847 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 14:24:02,510 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 14:24:02] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 14:24:04,629 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 14:24:04] "GET /fpa/admin/logs?counter=50 HTTP/1.1" 200 -
+2019-08-30 14:24:06,748 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 14:24:06] "GET /fpa/admin/logs?counter=99999 HTTP/1.1" 200 -
+2019-08-30 14:24:09,592 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 14:24:09] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-08-30 14:30:55,078 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 14:30:55] "GET /fpa/admin/logs HTTP/1.1" 500 -
+2019-08-30 14:30:55,259 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 14:30:55] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 14:30:55,262 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 14:30:55] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 14:30:55,263 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 14:30:55] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 14:30:55,693 INFO werkzeug Thread-10 : 192.168.1.24 - - [30/Aug/2019 14:30:55] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 14:30:56,020 INFO werkzeug Thread-11 : 192.168.1.24 - - [30/Aug/2019 14:30:56] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 14:30:56,401 INFO werkzeug Thread-12 : 192.168.1.24 - - [30/Aug/2019 14:30:56] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 14:35:04,170 INFO werkzeug Thread-13 : 192.168.1.24 - - [30/Aug/2019 14:35:04] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 500 -
+2019-08-30 14:35:04,240 INFO werkzeug Thread-14 : 192.168.1.24 - - [30/Aug/2019 14:35:04] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 14:35:04,241 INFO werkzeug Thread-15 : 192.168.1.24 - - [30/Aug/2019 14:35:04] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 14:35:04,288 INFO werkzeug Thread-16 : 192.168.1.24 - - [30/Aug/2019 14:35:04] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 14:35:04,871 INFO werkzeug Thread-17 : 192.168.1.24 - - [30/Aug/2019 14:35:04] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 14:35:05,144 INFO werkzeug Thread-18 : 192.168.1.24 - - [30/Aug/2019 14:35:05] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 14:35:05,400 INFO werkzeug Thread-19 : 192.168.1.24 - - [30/Aug/2019 14:35:05] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 14:40:35,964 INFO werkzeug Thread-20 : 192.168.1.24 - - [30/Aug/2019 14:40:35] "GET /fpa/admin/logs?counter=99999 HTTP/1.1" 500 -
+2019-08-30 14:40:36,035 INFO werkzeug Thread-21 : 192.168.1.24 - - [30/Aug/2019 14:40:36] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 14:40:36,040 INFO werkzeug Thread-23 : 192.168.1.24 - - [30/Aug/2019 14:40:36] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 14:40:36,041 INFO werkzeug Thread-22 : 192.168.1.24 - - [30/Aug/2019 14:40:36] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 14:40:36,667 INFO werkzeug Thread-24 : 192.168.1.24 - - [30/Aug/2019 14:40:36] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 14:40:36,891 INFO werkzeug Thread-25 : 192.168.1.24 - - [30/Aug/2019 14:40:36] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 14:40:37,143 INFO werkzeug Thread-26 : 192.168.1.24 - - [30/Aug/2019 14:40:37] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 14:53:51,081 INFO werkzeug Thread-27 : 192.168.1.24 - - [30/Aug/2019 14:53:51] "GET /fpa/admin/logs HTTP/1.1" 500 -
+2019-08-30 14:53:51,175 INFO werkzeug Thread-28 : 192.168.1.24 - - [30/Aug/2019 14:53:51] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 14:53:51,189 INFO werkzeug Thread-29 : 192.168.1.24 - - [30/Aug/2019 14:53:51] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 14:53:51,206 INFO werkzeug Thread-30 : 192.168.1.24 - - [30/Aug/2019 14:53:51] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 14:53:51,789 INFO werkzeug Thread-31 : 192.168.1.24 - - [30/Aug/2019 14:53:51] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 14:53:52,079 INFO werkzeug Thread-32 : 192.168.1.24 - - [30/Aug/2019 14:53:52] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 14:54:19,513 INFO werkzeug Thread-33 : 192.168.1.24 - - [30/Aug/2019 14:54:19] "GET /fpa/admin/logs?counter=50 HTTP/1.1" 500 -
+2019-08-30 14:54:19,576 INFO werkzeug Thread-35 : 192.168.1.24 - - [30/Aug/2019 14:54:19] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 14:54:19,577 INFO werkzeug Thread-34 : 192.168.1.24 - - [30/Aug/2019 14:54:19] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 14:54:19,625 INFO werkzeug Thread-36 : 192.168.1.24 - - [30/Aug/2019 14:54:19] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 14:54:20,095 INFO werkzeug Thread-37 : 192.168.1.24 - - [30/Aug/2019 14:54:20] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 14:54:20,139 INFO werkzeug Thread-38 : 192.168.1.24 - - [30/Aug/2019 14:54:20] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 14:54:20,592 INFO werkzeug Thread-39 : 192.168.1.24 - - [30/Aug/2019 14:54:20] "GET /fpa/admin/logs?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 14:55:35,619 INFO werkzeug Thread-40 : 192.168.1.24 - - [30/Aug/2019 14:55:35] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 14:55:36,251 INFO werkzeug Thread-41 : 192.168.1.24 - - [30/Aug/2019 14:55:36] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 14:55:38,672 INFO werkzeug Thread-42 : 192.168.1.24 - - [30/Aug/2019 14:55:38] "GET /fpa/admin/logs?counter=50 HTTP/1.1" 200 -
+2019-08-30 14:55:43,213 INFO werkzeug Thread-43 : 192.168.1.24 - - [30/Aug/2019 14:55:43] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-08-30 14:55:52,752 INFO werkzeug Thread-44 : 192.168.1.24 - - [30/Aug/2019 14:55:52] "GET /fpa/admin/logs?counter=99999 HTTP/1.1" 200 -
+2019-08-30 14:56:01,216 INFO werkzeug Thread-45 : 192.168.1.24 - - [30/Aug/2019 14:56:01] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-08-30 14:56:14,673 INFO werkzeug Thread-46 : 192.168.1.24 - - [30/Aug/2019 14:56:14] "GET /fpa/admin/logs?counter=50 HTTP/1.1" 200 -
+2019-08-30 14:56:16,079 INFO werkzeug Thread-47 : 192.168.1.24 - - [30/Aug/2019 14:56:16] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-08-30 14:56:35,240 INFO werkzeug Thread-48 : 192.168.1.24 - - [30/Aug/2019 14:56:35] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-08-30 14:56:35,910 INFO werkzeug Thread-49 : 192.168.1.24 - - [30/Aug/2019 14:56:35] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 14:56:37,336 INFO werkzeug Thread-50 : 192.168.1.24 - - [30/Aug/2019 14:56:37] "GET /fpa/admin/logs?counter=50 HTTP/1.1" 200 -
+2019-08-30 14:56:42,024 INFO werkzeug Thread-51 : 192.168.1.24 - - [30/Aug/2019 14:56:42] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-08-30 14:57:08,629 INFO werkzeug Thread-52 : 192.168.1.24 - - [30/Aug/2019 14:57:08] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 14:57:12,242 INFO werkzeug Thread-53 : 192.168.1.24 - - [30/Aug/2019 14:57:12] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 14:57:59,036 INFO werkzeug Thread-54 : 192.168.1.24 - - [30/Aug/2019 14:57:59] "GET /fpa/admin/logs HTTP/1.1" 200 -
+2019-08-30 14:58:02,444 INFO werkzeug Thread-55 : 192.168.1.24 - - [30/Aug/2019 14:58:02] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 14:58:04,891 INFO werkzeug Thread-56 : 192.168.1.24 - - [30/Aug/2019 14:58:04] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-08-30 14:58:08,684 INFO werkzeug Thread-57 : 192.168.1.24 - - [30/Aug/2019 14:58:08] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 14:58:11,003 INFO werkzeug Thread-58 : 192.168.1.24 - - [30/Aug/2019 14:58:11] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-08-30 14:58:13,005 INFO werkzeug Thread-59 : 192.168.1.24 - - [30/Aug/2019 14:58:13] "GET /fpa/admin/logs?counter=50 HTTP/1.1" 200 -
+2019-08-30 14:58:19,580 INFO werkzeug Thread-60 : 192.168.1.24 - - [30/Aug/2019 14:58:19] "GET /fpa/admin/logs?counter=99999 HTTP/1.1" 200 -
+2019-08-30 14:58:22,636 INFO werkzeug Thread-61 : 192.168.1.24 - - [30/Aug/2019 14:58:22] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-08-30 14:58:25,673 INFO werkzeug Thread-62 : 192.168.1.24 - - [30/Aug/2019 14:58:25] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 14:58:28,812 INFO werkzeug Thread-63 : 192.168.1.24 - - [30/Aug/2019 14:58:28] "GET /fpa/admin/edituser?id=3 HTTP/1.1" 200 -
+2019-08-30 14:58:33,128 INFO werkzeug Thread-64 : 192.168.1.24 - - [30/Aug/2019 14:58:33] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 14:58:34,423 INFO werkzeug Thread-65 : 192.168.1.24 - - [30/Aug/2019 14:58:34] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 15:13:02,349 INFO werkzeug Thread-66 : 192.168.1.24 - - [30/Aug/2019 15:13:02] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 15:13:02,375 INFO werkzeug Thread-67 : 192.168.1.24 - - [30/Aug/2019 15:13:02] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 15:13:02,409 INFO werkzeug Thread-68 : 192.168.1.24 - - [30/Aug/2019 15:13:02] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 15:13:04,013 DEBUG urllib3.connectionpool Thread-69 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 15:13:04,286 INFO werkzeug Thread-70 : 192.168.1.16 - - [30/Aug/2019 15:13:04] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 15:13:04,287 DEBUG urllib3.connectionpool Thread-69 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 15:13:04,292 INFO project Thread-69 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 15:13:04,295 INFO werkzeug Thread-69 : 192.168.1.24 - - [30/Aug/2019 15:13:04] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 15:13:04,360 INFO werkzeug Thread-71 : 192.168.1.24 - - [30/Aug/2019 15:13:04] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 15:15:04,173 INFO werkzeug Thread-72 : 192.168.1.24 - - [30/Aug/2019 15:15:04] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 15:15:04,197 INFO werkzeug Thread-73 : 192.168.1.24 - - [30/Aug/2019 15:15:04] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 15:15:04,225 INFO werkzeug Thread-74 : 192.168.1.24 - - [30/Aug/2019 15:15:04] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 15:15:05,625 DEBUG urllib3.connectionpool Thread-75 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 15:15:05,898 INFO werkzeug Thread-76 : 192.168.1.16 - - [30/Aug/2019 15:15:05] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 15:15:05,899 DEBUG urllib3.connectionpool Thread-75 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 15:15:05,903 INFO project Thread-75 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 15:15:05,906 INFO werkzeug Thread-75 : 192.168.1.24 - - [30/Aug/2019 15:15:05] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 15:15:05,973 INFO werkzeug Thread-77 : 192.168.1.24 - - [30/Aug/2019 15:15:05] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 15:17:10,349 INFO werkzeug Thread-78 : 192.168.1.24 - - [30/Aug/2019 15:17:10] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 15:17:10,382 INFO werkzeug Thread-79 : 192.168.1.24 - - [30/Aug/2019 15:17:10] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 15:17:10,404 INFO werkzeug Thread-80 : 192.168.1.24 - - [30/Aug/2019 15:17:10] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 15:17:11,724 DEBUG urllib3.connectionpool Thread-81 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 15:17:11,997 INFO werkzeug Thread-82 : 192.168.1.16 - - [30/Aug/2019 15:17:11] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 15:17:11,998 DEBUG urllib3.connectionpool Thread-81 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 15:17:12,003 INFO project Thread-81 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 15:17:12,006 INFO werkzeug Thread-81 : 192.168.1.24 - - [30/Aug/2019 15:17:12] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 15:17:12,057 INFO werkzeug Thread-83 : 192.168.1.24 - - [30/Aug/2019 15:17:12] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 15:17:12,146 INFO werkzeug Thread-84 : 192.168.1.24 - - [30/Aug/2019 15:17:12] "GET /fpa/... HTTP/1.1" 200 -
+2019-08-30 15:20:59,388 INFO werkzeug Thread-85 : 192.168.1.24 - - [30/Aug/2019 15:20:59] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 15:20:59,417 INFO werkzeug Thread-86 : 192.168.1.24 - - [30/Aug/2019 15:20:59] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 15:20:59,444 INFO werkzeug Thread-87 : 192.168.1.24 - - [30/Aug/2019 15:20:59] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 15:21:00,940 DEBUG urllib3.connectionpool Thread-88 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 15:21:01,212 INFO werkzeug Thread-89 : 192.168.1.16 - - [30/Aug/2019 15:21:01] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 15:21:01,213 DEBUG urllib3.connectionpool Thread-88 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 15:21:01,217 INFO project Thread-88 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 15:21:01,220 INFO werkzeug Thread-88 : 192.168.1.24 - - [30/Aug/2019 15:21:01] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 15:21:02,985 INFO werkzeug Thread-90 : 192.168.1.24 - - [30/Aug/2019 15:21:02] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 15:22:31,590 INFO werkzeug Thread-91 : 192.168.1.24 - - [30/Aug/2019 15:22:31] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 15:22:31,615 INFO werkzeug Thread-92 : 192.168.1.24 - - [30/Aug/2019 15:22:31] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 15:22:31,635 INFO werkzeug Thread-93 : 192.168.1.24 - - [30/Aug/2019 15:22:31] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 15:22:33,128 DEBUG urllib3.connectionpool Thread-94 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 15:22:33,401 INFO werkzeug Thread-95 : 192.168.1.16 - - [30/Aug/2019 15:22:33] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 15:22:33,402 DEBUG urllib3.connectionpool Thread-94 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 15:22:33,406 INFO project Thread-94 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 15:22:33,410 INFO werkzeug Thread-94 : 192.168.1.24 - - [30/Aug/2019 15:22:33] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 15:22:33,483 INFO werkzeug Thread-96 : 192.168.1.24 - - [30/Aug/2019 15:22:33] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 15:22:33,576 INFO werkzeug Thread-97 : 192.168.1.24 - - [30/Aug/2019 15:22:33] "GET /fpa/... HTTP/1.1" 200 -
+2019-08-30 15:23:16,096 INFO werkzeug Thread-98 : 192.168.1.24 - - [30/Aug/2019 15:23:16] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 15:23:16,128 INFO werkzeug Thread-99 : 192.168.1.24 - - [30/Aug/2019 15:23:16] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 15:23:16,166 INFO werkzeug Thread-100 : 192.168.1.24 - - [30/Aug/2019 15:23:16] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 15:23:18,055 DEBUG urllib3.connectionpool Thread-101 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 15:23:18,328 INFO werkzeug Thread-102 : 192.168.1.16 - - [30/Aug/2019 15:23:18] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 15:23:18,328 DEBUG urllib3.connectionpool Thread-101 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 15:23:18,334 INFO project Thread-101 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 15:23:18,336 INFO werkzeug Thread-101 : 192.168.1.24 - - [30/Aug/2019 15:23:18] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 15:23:18,397 INFO werkzeug Thread-103 : 192.168.1.24 - - [30/Aug/2019 15:23:18] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 15:23:18,476 INFO werkzeug Thread-104 : 192.168.1.24 - - [30/Aug/2019 15:23:18] "GET /fpa/... HTTP/1.1" 200 -
+2019-08-30 15:26:19,465 INFO werkzeug Thread-105 : 192.168.1.24 - - [30/Aug/2019 15:26:19] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 15:26:19,510 INFO werkzeug Thread-106 : 192.168.1.24 - - [30/Aug/2019 15:26:19] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 15:26:19,542 INFO werkzeug Thread-107 : 192.168.1.24 - - [30/Aug/2019 15:26:19] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 15:26:21,163 DEBUG urllib3.connectionpool Thread-108 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 15:26:21,436 INFO werkzeug Thread-109 : 192.168.1.16 - - [30/Aug/2019 15:26:21] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 15:26:21,436 DEBUG urllib3.connectionpool Thread-108 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 15:26:21,441 INFO project Thread-108 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 15:26:21,444 INFO werkzeug Thread-108 : 192.168.1.24 - - [30/Aug/2019 15:26:21] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 15:26:21,564 INFO werkzeug Thread-110 : 192.168.1.24 - - [30/Aug/2019 15:26:21] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 15:28:19,098 INFO werkzeug Thread-111 : 192.168.1.24 - - [30/Aug/2019 15:28:19] "GET /fpa/logout HTTP/1.1" 302 -
+2019-08-30 15:28:19,126 INFO werkzeug Thread-112 : 192.168.1.24 - - [30/Aug/2019 15:28:19] "GET /fpa/ HTTP/1.1" 302 -
+2019-08-30 15:28:19,154 INFO werkzeug Thread-113 : 192.168.1.24 - - [30/Aug/2019 15:28:19] "GET /fpa/login HTTP/1.1" 200 -
+2019-08-30 15:28:20,823 DEBUG urllib3.connectionpool Thread-114 : Starting new HTTP connection (1): 192.168.1.16:5000
+2019-08-30 15:28:21,095 INFO werkzeug Thread-115 : 192.168.1.16 - - [30/Aug/2019 15:28:21] "POST /fpa/api/v1/session HTTP/1.1" 200 -
+2019-08-30 15:28:21,096 DEBUG urllib3.connectionpool Thread-114 : http://192.168.1.16:5000 "POST /fpa/api/v1/session HTTP/1.1" 200 243
+2019-08-30 15:28:21,100 INFO project Thread-114 : Logged in philip with token eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl9pZCI6InBoaWxpcCIsInBhc3N3b3JkIjoidGVzdCJ9.klKcs12xJB46FixiN8BoQ5FYUGStrHbMLz_kejyxX3CX8Uz3Zj17hsktWYtlPIM8zzgBvdvirtZsE4vAWYAydQ
+2019-08-30 15:28:21,102 INFO werkzeug Thread-114 : 192.168.1.24 - - [30/Aug/2019 15:28:21] "POST /fpa/login HTTP/1.1" 302 -
+2019-08-30 15:28:21,144 INFO werkzeug Thread-116 : 192.168.1.24 - - [30/Aug/2019 15:28:21] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 15:28:30,403 INFO werkzeug Thread-117 : 192.168.1.24 - - [30/Aug/2019 15:28:30] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 15:28:32,182 INFO werkzeug Thread-118 : 192.168.1.24 - - [30/Aug/2019 15:28:32] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-08-30 15:28:36,643 INFO werkzeug Thread-119 : 192.168.1.24 - - [30/Aug/2019 15:28:36] "GET /fpa/admin/logs?counter=50 HTTP/1.1" 200 -
+2019-08-30 15:28:41,117 INFO werkzeug Thread-120 : 192.168.1.24 - - [30/Aug/2019 15:28:41] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 15:50:53,016 INFO werkzeug Thread-121 : 192.168.1.24 - - [30/Aug/2019 15:50:53] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 15:50:53,758 INFO werkzeug Thread-122 : 192.168.1.24 - - [30/Aug/2019 15:50:53] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 15:51:05,590 INFO werkzeug Thread-123 : 192.168.1.24 - - [30/Aug/2019 15:51:05] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 15:51:05,937 INFO werkzeug Thread-124 : 192.168.1.24 - - [30/Aug/2019 15:51:05] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 15:51:09,910 INFO werkzeug Thread-125 : 192.168.1.24 - - [30/Aug/2019 15:51:09] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-08-30 15:51:16,353 INFO werkzeug Thread-126 : 192.168.1.24 - - [30/Aug/2019 15:51:16] "GET /fpa/admin/logs?counter=50 HTTP/1.1" 200 -
+2019-08-30 15:51:22,643 INFO werkzeug Thread-127 : 192.168.1.24 - - [30/Aug/2019 15:51:22] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 15:55:03,011 INFO werkzeug Thread-128 : 192.168.1.24 - - [30/Aug/2019 15:55:03] "GET /fpa/admin/edituser HTTP/1.1" 200 -
+2019-08-30 16:14:46,323 INFO werkzeug Thread-129 : 192.168.1.24 - - [30/Aug/2019 16:14:46] "GET /fpa/changes HTTP/1.1" 200 -
+2019-08-30 16:14:48,238 INFO werkzeug Thread-130 : 192.168.1.24 - - [30/Aug/2019 16:14:48] "GET /fpa/editchange HTTP/1.1" 200 -
+2019-08-30 16:14:50,128 INFO werkzeug Thread-131 : 192.168.1.24 - - [30/Aug/2019 16:14:50] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 16:18:42,003 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/forms.py', reloading
+2019-08-30 16:18:42,090 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 16:54:55,034 INFO werkzeug MainThread :  * Running on http://192.168.1.16:5000/ (Press CTRL+C to quit)
+2019-08-30 16:54:55,035 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 16:54:55,465 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 16:54:55,465 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 16:55:03,149 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 16:55:03] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 500 -
+2019-08-30 16:55:03,202 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 16:55:03] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 16:55:03,206 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 16:55:03] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 16:55:03,209 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 16:55:03] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 16:55:03,476 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 16:55:03] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 16:55:03,553 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 16:55:03] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 16:55:03,656 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 16:55:03] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 16:56:03,533 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 16:56:03,610 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 16:56:04,034 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 16:56:04,034 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 17:04:14,590 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 17:04:14] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 17:04:16,499 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 17:04:16] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 500 -
+2019-08-30 17:04:16,772 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 17:04:16] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 17:04:16,825 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 17:04:16] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 17:04:16,871 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 17:04:16] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 17:04:17,187 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 17:04:17] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 17:04:17,187 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 17:04:17] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 17:04:50,696 INFO werkzeug Thread-10 : 192.168.1.24 - - [30/Aug/2019 17:04:50] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 17:04:50,993 INFO werkzeug Thread-11 : 192.168.1.24 - - [30/Aug/2019 17:04:50] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 17:04:51,842 INFO werkzeug Thread-12 : 192.168.1.24 - - [30/Aug/2019 17:04:51] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:06:09,651 INFO werkzeug Thread-13 : 192.168.1.24 - - [30/Aug/2019 17:06:09] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:07:25,632 INFO werkzeug Thread-14 : 192.168.1.24 - - [30/Aug/2019 17:07:25] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:07:25,889 INFO werkzeug Thread-15 : 192.168.1.24 - - [30/Aug/2019 17:07:25] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 17:12:37,535 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/forms.py', reloading
+2019-08-30 17:12:37,611 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 17:12:38,036 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 17:12:38,037 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 17:12:43,429 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 17:12:43] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 500 -
+2019-08-30 17:12:43,497 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 17:12:43] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 17:12:43,497 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 17:12:43] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 17:12:43,499 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 17:12:43] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 17:12:43,707 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 17:12:43] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 17:12:43,777 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 17:12:43] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 17:12:43,894 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 17:12:43] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 17:14:01,335 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/forms.py', reloading
+2019-08-30 17:14:01,405 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 17:14:01,829 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 17:14:01,830 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 17:14:12,984 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 17:14:12] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 17:14:13,244 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 17:14:13] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 17:14:14,825 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 17:14:14] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 500 -
+2019-08-30 17:14:14,898 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 17:14:14] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 17:14:14,899 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 17:14:14] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 17:14:15,201 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 17:14:15] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 17:14:15,406 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 17:14:15] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 17:14:15,518 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 17:14:15] "GET /fpa/admin/edituser?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 17:15:56,615 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/forms.py', reloading
+2019-08-30 17:15:56,687 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 17:15:57,106 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 17:15:57,106 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 17:16:01,207 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 17:16:01] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:16:32,363 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 17:16:32] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:16:32,621 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 17:16:32] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 17:18:29,275 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 17:18:29] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:18:29,557 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 17:18:29] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 17:18:48,073 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 17:18:48] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:18:48,350 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 17:18:48] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 17:18:52,403 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 17:18:52] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 17:18:54,535 INFO werkzeug Thread-10 : 192.168.1.24 - - [30/Aug/2019 17:18:54] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:19:45,441 INFO werkzeug Thread-11 : 192.168.1.24 - - [30/Aug/2019 17:19:45] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:19:45,717 INFO werkzeug Thread-12 : 192.168.1.24 - - [30/Aug/2019 17:19:45] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 17:42:16,247 INFO werkzeug Thread-13 : 192.168.1.24 - - [30/Aug/2019 17:42:16] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:42:16,549 INFO werkzeug Thread-14 : 192.168.1.24 - - [30/Aug/2019 17:42:16] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 17:44:57,802 INFO werkzeug Thread-15 : 192.168.1.24 - - [30/Aug/2019 17:44:57] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:44:58,110 INFO werkzeug Thread-16 : 192.168.1.24 - - [30/Aug/2019 17:44:58] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 17:46:13,327 INFO werkzeug Thread-17 : 192.168.1.24 - - [30/Aug/2019 17:46:13] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:46:13,595 INFO werkzeug Thread-18 : 192.168.1.24 - - [30/Aug/2019 17:46:13] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 17:46:44,186 INFO werkzeug Thread-19 : 192.168.1.24 - - [30/Aug/2019 17:46:44] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:46:44,455 INFO werkzeug Thread-20 : 192.168.1.24 - - [30/Aug/2019 17:46:44] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 17:47:32,855 INFO werkzeug Thread-21 : 192.168.1.24 - - [30/Aug/2019 17:47:32] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:47:33,151 INFO werkzeug Thread-22 : 192.168.1.24 - - [30/Aug/2019 17:47:33] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 17:48:50,452 INFO werkzeug Thread-23 : 192.168.1.24 - - [30/Aug/2019 17:48:50] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:48:50,712 INFO werkzeug Thread-24 : 192.168.1.24 - - [30/Aug/2019 17:48:50] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 17:49:02,044 INFO werkzeug Thread-25 : 192.168.1.24 - - [30/Aug/2019 17:49:02] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:49:02,323 INFO werkzeug Thread-26 : 192.168.1.24 - - [30/Aug/2019 17:49:02] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 17:49:50,790 INFO werkzeug Thread-27 : 192.168.1.24 - - [30/Aug/2019 17:49:50] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 17:49:51,063 INFO werkzeug Thread-28 : 192.168.1.24 - - [30/Aug/2019 17:49:51] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:07:34,792 INFO werkzeug Thread-29 : 192.168.1.24 - - [30/Aug/2019 18:07:34] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 18:07:35,086 INFO werkzeug Thread-30 : 192.168.1.24 - - [30/Aug/2019 18:07:35] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:07:48,931 INFO werkzeug Thread-31 : 192.168.1.24 - - [30/Aug/2019 18:07:48] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 18:07:49,225 INFO werkzeug Thread-32 : 192.168.1.24 - - [30/Aug/2019 18:07:49] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:08:59,426 INFO werkzeug Thread-33 : 192.168.1.24 - - [30/Aug/2019 18:08:59] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 18:08:59,739 INFO werkzeug Thread-34 : 192.168.1.24 - - [30/Aug/2019 18:08:59] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:09:05,761 INFO werkzeug Thread-35 : 192.168.1.24 - - [30/Aug/2019 18:09:05] "GET /fpa/changes HTTP/1.1" 200 -
+2019-08-30 18:09:07,573 INFO werkzeug Thread-36 : 192.168.1.24 - - [30/Aug/2019 18:09:07] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 18:09:09,942 INFO werkzeug Thread-37 : 192.168.1.24 - - [30/Aug/2019 18:09:09] "GET /fpa/admin/edituser?id=2 HTTP/1.1" 200 -
+2019-08-30 18:09:46,412 INFO werkzeug Thread-38 : 192.168.1.24 - - [30/Aug/2019 18:09:46] "GET /fpa/admin/edituser?id=2 HTTP/1.1" 200 -
+2019-08-30 18:09:46,703 INFO werkzeug Thread-39 : 192.168.1.24 - - [30/Aug/2019 18:09:46] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:11:00,785 INFO werkzeug Thread-40 : 192.168.1.24 - - [30/Aug/2019 18:11:00] "GET /fpa/admin/edituser?id=2 HTTP/1.1" 200 -
+2019-08-30 18:11:01,085 INFO werkzeug Thread-41 : 192.168.1.24 - - [30/Aug/2019 18:11:01] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:11:12,652 INFO werkzeug Thread-42 : 192.168.1.24 - - [30/Aug/2019 18:11:12] "GET /fpa/admin/edituser?id=2 HTTP/1.1" 200 -
+2019-08-30 18:11:12,928 INFO werkzeug Thread-43 : 192.168.1.24 - - [30/Aug/2019 18:11:12] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:12:42,891 INFO werkzeug Thread-44 : 192.168.1.24 - - [30/Aug/2019 18:12:42] "GET /fpa/admin/edituser?id=2 HTTP/1.1" 200 -
+2019-08-30 18:12:43,247 INFO werkzeug Thread-45 : 192.168.1.24 - - [30/Aug/2019 18:12:43] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:13:04,403 INFO werkzeug Thread-46 : 192.168.1.24 - - [30/Aug/2019 18:13:04] "GET /fpa/admin/edituser?id=2 HTTP/1.1" 200 -
+2019-08-30 18:13:04,751 INFO werkzeug Thread-47 : 192.168.1.24 - - [30/Aug/2019 18:13:04] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:13:56,120 INFO werkzeug Thread-48 : 192.168.1.24 - - [30/Aug/2019 18:13:56] "GET /fpa/admin/edituser?id=2 HTTP/1.1" 200 -
+2019-08-30 18:13:56,399 INFO werkzeug Thread-49 : 192.168.1.24 - - [30/Aug/2019 18:13:56] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:14:02,166 INFO werkzeug Thread-50 : 192.168.1.24 - - [30/Aug/2019 18:14:02] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 18:14:05,009 INFO werkzeug Thread-51 : 192.168.1.24 - - [30/Aug/2019 18:14:05] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 18:14:06,648 INFO werkzeug Thread-52 : 192.168.1.24 - - [30/Aug/2019 18:14:06] "GET /fpa/admin/edituser?id=2 HTTP/1.1" 200 -
+2019-08-30 18:14:10,808 INFO werkzeug Thread-53 : 192.168.1.24 - - [30/Aug/2019 18:14:10] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 18:14:11,919 INFO werkzeug Thread-54 : 192.168.1.24 - - [30/Aug/2019 18:14:11] "GET /fpa/admin/edituser?id=3 HTTP/1.1" 200 -
+2019-08-30 18:14:51,351 INFO werkzeug Thread-55 : 192.168.1.24 - - [30/Aug/2019 18:14:51] "GET /fpa/admin/edituser?id=3 HTTP/1.1" 200 -
+2019-08-30 18:14:51,666 INFO werkzeug Thread-56 : 192.168.1.24 - - [30/Aug/2019 18:14:51] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:17:30,829 INFO werkzeug Thread-57 : 192.168.1.24 - - [30/Aug/2019 18:17:30] "GET /fpa/admin/edituser?id=3 HTTP/1.1" 200 -
+2019-08-30 18:17:31,091 INFO werkzeug Thread-58 : 192.168.1.24 - - [30/Aug/2019 18:17:31] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:18:49,747 INFO werkzeug Thread-59 : 192.168.1.24 - - [30/Aug/2019 18:18:49] "GET /fpa/admin/edituser?id=3 HTTP/1.1" 200 -
+2019-08-30 18:18:49,993 INFO werkzeug Thread-60 : 192.168.1.24 - - [30/Aug/2019 18:18:49] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:19:30,478 INFO werkzeug Thread-61 : 192.168.1.24 - - [30/Aug/2019 18:19:30] "GET /fpa/admin/edituser?id=3 HTTP/1.1" 200 -
+2019-08-30 18:19:30,758 INFO werkzeug Thread-62 : 192.168.1.24 - - [30/Aug/2019 18:19:30] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:20:14,336 INFO werkzeug Thread-63 : 192.168.1.24 - - [30/Aug/2019 18:20:14] "GET /fpa/admin/edituser?id=3 HTTP/1.1" 200 -
+2019-08-30 18:20:14,618 INFO werkzeug Thread-64 : 192.168.1.24 - - [30/Aug/2019 18:20:14] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:20:44,576 INFO werkzeug Thread-65 : 192.168.1.24 - - [30/Aug/2019 18:20:44] "GET /fpa/admin/edituser?id=3 HTTP/1.1" 200 -
+2019-08-30 18:20:44,864 INFO werkzeug Thread-66 : 192.168.1.24 - - [30/Aug/2019 18:20:44] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:21:05,039 INFO werkzeug Thread-67 : 192.168.1.24 - - [30/Aug/2019 18:21:05] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 18:21:06,490 INFO werkzeug Thread-68 : 192.168.1.24 - - [30/Aug/2019 18:21:06] "GET /fpa/admin/edituser?id=2 HTTP/1.1" 200 -
+2019-08-30 18:21:17,824 INFO werkzeug Thread-69 : 192.168.1.24 - - [30/Aug/2019 18:21:17] "GET /fpa/changes HTTP/1.1" 200 -
+2019-08-30 18:21:22,087 INFO werkzeug Thread-70 : 192.168.1.24 - - [30/Aug/2019 18:21:22] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 18:23:44,804 INFO werkzeug Thread-71 : 192.168.1.24 - - [30/Aug/2019 18:23:44] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 18:23:51,462 INFO werkzeug Thread-72 : 192.168.1.24 - - [30/Aug/2019 18:23:51] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 18:23:52,737 INFO werkzeug Thread-73 : 192.168.1.24 - - [30/Aug/2019 18:23:52] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 18:40:05,725 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 18:40:05,800 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 18:40:06,226 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 18:40:06,226 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 18:40:12,380 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 18:40:12] "GET /fpa/ HTTP/1.1" 500 -
+2019-08-30 18:40:12,451 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 18:40:12] "GET /fpa/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 18:40:12,452 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 18:40:12] "GET /fpa/?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 18:40:12,454 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 18:40:12] "GET /fpa/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 18:40:12,675 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 18:40:12] "GET /fpa/?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 18:40:12,738 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 18:40:12] "GET /fpa/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 18:40:12,832 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 18:40:12] "GET /fpa/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 18:40:47,912 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 18:40:47,990 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 18:40:48,419 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 18:40:48,419 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 18:40:53,792 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 18:40:53] "GET /fpa/ HTTP/1.1" 500 -
+2019-08-30 18:40:53,852 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 18:40:53] "GET /fpa/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 18:40:53,853 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 18:40:53] "GET /fpa/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 18:40:53,854 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 18:40:53] "GET /fpa/?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 18:40:54,081 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 18:40:54] "GET /fpa/?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 18:40:54,141 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 18:40:54] "GET /fpa/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 18:41:20,935 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/logic.py', reloading
+2019-08-30 18:41:21,006 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 18:41:21,428 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 18:41:21,429 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 18:41:26,602 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 18:41:26] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 18:41:26,897 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 18:41:26] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:41:32,427 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 18:41:32] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 18:41:32,688 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 18:41:32] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:41:33,523 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 18:41:33] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 18:41:33,794 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 18:41:33] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:41:34,083 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 18:41:34] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 18:41:34,333 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 18:41:34] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:52:15,623 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/logic.py', reloading
+2019-08-30 18:52:15,695 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 18:52:16,119 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 18:52:16,120 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 18:54:35,259 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/logic.py', reloading
+2019-08-30 18:54:35,328 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 18:54:35,747 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 18:54:35,747 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 18:54:43,220 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 18:54:43] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 18:54:43,540 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 18:54:43] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:56:16,311 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/logic.py', reloading
+2019-08-30 18:56:16,384 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 18:56:16,805 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 18:56:16,806 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 18:56:20,117 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 18:56:20] "GET /fpa/ HTTP/1.1" 500 -
+2019-08-30 18:56:20,174 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 18:56:20] "GET /fpa/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 18:56:20,192 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 18:56:20] "GET /fpa/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 18:56:20,193 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 18:56:20] "GET /fpa/?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 18:56:20,403 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 18:56:20] "GET /fpa/?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 18:56:20,464 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 18:56:20] "GET /fpa/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 18:56:20,561 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 18:56:20] "GET /fpa/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 18:56:28,124 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 18:56:28] "GET /fpa/ HTTP/1.1" 500 -
+2019-08-30 18:56:28,190 INFO werkzeug Thread-10 : 192.168.1.24 - - [30/Aug/2019 18:56:28] "GET /fpa/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 18:56:28,191 INFO werkzeug Thread-12 : 192.168.1.24 - - [30/Aug/2019 18:56:28] "GET /fpa/?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 18:56:28,193 INFO werkzeug Thread-11 : 192.168.1.24 - - [30/Aug/2019 18:56:28] "GET /fpa/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 18:56:28,410 INFO werkzeug Thread-13 : 192.168.1.24 - - [30/Aug/2019 18:56:28] "GET /fpa/?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 18:56:28,470 INFO werkzeug Thread-14 : 192.168.1.24 - - [30/Aug/2019 18:56:28] "GET /fpa/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 18:56:54,400 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/logic.py', reloading
+2019-08-30 18:56:54,476 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 18:56:54,896 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 18:56:54,896 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 18:56:57,818 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 18:56:57] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 18:56:58,108 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 18:56:58] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 18:57:25,375 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/logic.py', reloading
+2019-08-30 18:57:25,447 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 18:57:25,867 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 18:57:25,867 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 18:57:27,045 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 18:57:27] "GET /fpa/ HTTP/1.1" 500 -
+2019-08-30 18:57:27,101 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 18:57:27] "GET /fpa/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 18:57:27,106 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 18:57:27] "GET /fpa/?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 18:57:27,119 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 18:57:27] "GET /fpa/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 18:57:27,410 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 18:57:27] "GET /fpa/?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 18:57:27,530 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 18:57:27] "GET /fpa/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 18:57:27,604 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 18:57:27] "GET /fpa/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 18:57:32,335 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 18:57:32] "GET /fpa/ HTTP/1.1" 500 -
+2019-08-30 18:57:32,427 INFO werkzeug Thread-10 : 192.168.1.24 - - [30/Aug/2019 18:57:32] "GET /fpa/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 18:57:32,432 INFO werkzeug Thread-11 : 192.168.1.24 - - [30/Aug/2019 18:57:32] "GET /fpa/?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 18:57:32,437 INFO werkzeug Thread-12 : 192.168.1.24 - - [30/Aug/2019 18:57:32] "GET /fpa/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 18:57:32,755 INFO werkzeug Thread-13 : 192.168.1.24 - - [30/Aug/2019 18:57:32] "GET /fpa/?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 18:57:32,892 INFO werkzeug Thread-14 : 192.168.1.24 - - [30/Aug/2019 18:57:32] "GET /fpa/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 18:57:59,407 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/logic.py', reloading
+2019-08-30 18:57:59,483 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 18:57:59,906 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 18:57:59,907 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 18:58:02,730 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 18:58:02] "GET /fpa/ HTTP/1.1" 500 -
+2019-08-30 18:58:02,811 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 18:58:02] "GET /fpa/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 18:58:02,820 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 18:58:02] "GET /fpa/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 18:58:02,821 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 18:58:02] "GET /fpa/?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 18:58:03,116 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 18:58:03] "GET /fpa/?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 18:58:03,129 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 18:58:03] "GET /fpa/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 18:58:03,274 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 18:58:03] "GET /fpa/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 18:59:21,179 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/logic.py', reloading
+2019-08-30 18:59:21,254 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 18:59:21,677 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 18:59:21,678 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 18:59:26,486 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 18:59:26] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:01:30,701 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/logic.py', reloading
+2019-08-30 19:01:30,781 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 19:01:31,201 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 19:01:31,202 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 19:01:36,288 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 19:01:36] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:01:36,554 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 19:01:36] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:01:55,590 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/logic.py', reloading
+2019-08-30 19:01:55,666 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 19:01:56,089 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 19:01:56,090 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 19:01:57,511 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 19:01:57] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:01:57,825 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 19:01:57] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:02:44,872 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/logic.py', reloading
+2019-08-30 19:02:44,941 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 19:02:45,359 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 19:02:45,360 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 19:02:48,502 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 19:02:48] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:02:48,764 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 19:02:48] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:09:27,667 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/logic.py', reloading
+2019-08-30 19:09:27,744 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 19:09:28,166 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 19:09:28,166 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 19:09:39,343 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/logic.py', reloading
+2019-08-30 19:09:39,412 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 19:09:39,830 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 19:09:39,831 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 19:09:44,761 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 19:09:44] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:09:45,052 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 19:09:45] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:11:41,711 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/logic.py', reloading
+2019-08-30 19:11:41,781 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 19:11:42,201 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 19:11:42,202 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 19:12:16,729 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-08-30 19:12:16,796 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 19:12:17,218 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 19:12:17,218 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 19:13:24,361 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 19:13:24] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:13:24,725 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 19:13:24] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:22:05,234 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 19:22:05] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:22:05,531 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 19:22:05] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:22:40,255 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 19:22:40] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:22:40,530 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 19:22:40] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:24:45,895 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/logic.py', reloading
+2019-08-30 19:24:45,965 INFO werkzeug MainThread :  * Restarting with stat
+2019-08-30 19:24:46,384 WARNING werkzeug MainThread :  * Debugger is active!
+2019-08-30 19:24:46,384 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-08-30 19:24:51,074 INFO werkzeug Thread-2 : 192.168.1.24 - - [30/Aug/2019 19:24:51] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:24:51,374 INFO werkzeug Thread-3 : 192.168.1.24 - - [30/Aug/2019 19:24:51] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:25:06,939 INFO werkzeug Thread-4 : 192.168.1.24 - - [30/Aug/2019 19:25:06] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:25:07,204 INFO werkzeug Thread-5 : 192.168.1.24 - - [30/Aug/2019 19:25:07] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:26:46,990 INFO werkzeug Thread-6 : 192.168.1.24 - - [30/Aug/2019 19:26:46] "GET /fpa/ HTTP/1.1" 500 -
+2019-08-30 19:26:47,140 INFO werkzeug Thread-8 : 192.168.1.24 - - [30/Aug/2019 19:26:47] "GET /fpa/?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-08-30 19:26:47,141 INFO werkzeug Thread-7 : 192.168.1.24 - - [30/Aug/2019 19:26:47] "GET /fpa/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-08-30 19:26:47,142 INFO werkzeug Thread-9 : 192.168.1.24 - - [30/Aug/2019 19:26:47] "GET /fpa/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-08-30 19:26:47,336 INFO werkzeug Thread-10 : 192.168.1.24 - - [30/Aug/2019 19:26:47] "GET /fpa/?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-08-30 19:26:47,451 INFO werkzeug Thread-11 : 192.168.1.24 - - [30/Aug/2019 19:26:47] "GET /fpa/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 19:26:47,585 INFO werkzeug Thread-12 : 192.168.1.24 - - [30/Aug/2019 19:26:47] "GET /fpa/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-08-30 19:27:15,107 INFO werkzeug Thread-13 : 192.168.1.24 - - [30/Aug/2019 19:27:15] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:27:15,460 INFO werkzeug Thread-14 : 192.168.1.24 - - [30/Aug/2019 19:27:15] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:28:27,066 INFO werkzeug Thread-15 : 192.168.1.24 - - [30/Aug/2019 19:28:27] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:28:27,364 INFO werkzeug Thread-16 : 192.168.1.24 - - [30/Aug/2019 19:28:27] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:29:10,954 INFO werkzeug Thread-17 : 192.168.1.24 - - [30/Aug/2019 19:29:10] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:29:11,226 INFO werkzeug Thread-18 : 192.168.1.24 - - [30/Aug/2019 19:29:11] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:29:55,435 INFO werkzeug Thread-19 : 192.168.1.24 - - [30/Aug/2019 19:29:55] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:29:55,859 INFO werkzeug Thread-20 : 192.168.1.24 - - [30/Aug/2019 19:29:55] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:30:11,142 INFO werkzeug Thread-21 : 192.168.1.24 - - [30/Aug/2019 19:30:11] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:30:11,433 INFO werkzeug Thread-22 : 192.168.1.24 - - [30/Aug/2019 19:30:11] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:30:34,458 INFO werkzeug Thread-23 : 192.168.1.24 - - [30/Aug/2019 19:30:34] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:30:34,705 INFO werkzeug Thread-24 : 192.168.1.24 - - [30/Aug/2019 19:30:34] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:32:13,307 INFO werkzeug Thread-25 : 192.168.1.24 - - [30/Aug/2019 19:32:13] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:32:13,576 INFO werkzeug Thread-26 : 192.168.1.24 - - [30/Aug/2019 19:32:13] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:32:30,074 INFO werkzeug Thread-27 : 192.168.1.24 - - [30/Aug/2019 19:32:30] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:32:30,432 INFO werkzeug Thread-28 : 192.168.1.24 - - [30/Aug/2019 19:32:30] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:32:31,763 INFO werkzeug Thread-29 : 192.168.1.24 - - [30/Aug/2019 19:32:31] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:32:32,015 INFO werkzeug Thread-30 : 192.168.1.24 - - [30/Aug/2019 19:32:32] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:32:57,210 INFO werkzeug Thread-31 : 192.168.1.24 - - [30/Aug/2019 19:32:57] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:32:57,503 INFO werkzeug Thread-32 : 192.168.1.24 - - [30/Aug/2019 19:32:57] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:34:50,414 INFO werkzeug Thread-33 : 192.168.1.24 - - [30/Aug/2019 19:34:50] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:34:50,691 INFO werkzeug Thread-34 : 192.168.1.24 - - [30/Aug/2019 19:34:50] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:35:05,366 INFO werkzeug Thread-35 : 192.168.1.24 - - [30/Aug/2019 19:35:05] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:35:05,636 INFO werkzeug Thread-36 : 192.168.1.24 - - [30/Aug/2019 19:35:05] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:35:46,520 INFO werkzeug Thread-37 : 192.168.1.24 - - [30/Aug/2019 19:35:46] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:35:46,771 INFO werkzeug Thread-38 : 192.168.1.24 - - [30/Aug/2019 19:35:46] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:36:41,323 INFO werkzeug Thread-39 : 192.168.1.24 - - [30/Aug/2019 19:36:41] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:36:41,568 INFO werkzeug Thread-40 : 192.168.1.24 - - [30/Aug/2019 19:36:41] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:36:53,000 INFO werkzeug Thread-41 : 192.168.1.24 - - [30/Aug/2019 19:36:53] "GET /fpa/changes HTTP/1.1" 200 -
+2019-08-30 19:36:55,896 INFO werkzeug Thread-42 : 192.168.1.24 - - [30/Aug/2019 19:36:55] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 19:36:57,121 INFO werkzeug Thread-43 : 192.168.1.24 - - [30/Aug/2019 19:36:57] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 19:37:00,414 INFO werkzeug Thread-44 : 192.168.1.24 - - [30/Aug/2019 19:37:00] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:37:34,048 INFO werkzeug Thread-45 : 192.168.1.24 - - [30/Aug/2019 19:37:34] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:37:34,305 INFO werkzeug Thread-46 : 192.168.1.24 - - [30/Aug/2019 19:37:34] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:37:51,335 INFO werkzeug Thread-47 : 192.168.1.24 - - [30/Aug/2019 19:37:51] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-08-30 19:37:56,119 INFO werkzeug Thread-48 : 192.168.1.24 - - [30/Aug/2019 19:37:56] "GET /fpa/admin/logs?counter=99999 HTTP/1.1" 200 -
+2019-08-30 19:38:10,301 INFO werkzeug Thread-49 : 192.168.1.24 - - [30/Aug/2019 19:38:10] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-08-30 19:38:22,727 INFO werkzeug Thread-50 : 192.168.1.24 - - [30/Aug/2019 19:38:22] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:38:31,118 INFO werkzeug Thread-51 : 192.168.1.24 - - [30/Aug/2019 19:38:31] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 19:38:32,256 INFO werkzeug Thread-52 : 192.168.1.24 - - [30/Aug/2019 19:38:32] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 19:39:10,626 INFO werkzeug Thread-53 : 192.168.1.24 - - [30/Aug/2019 19:39:10] "GET /fpa/admin/edituser?id=1 HTTP/1.1" 200 -
+2019-08-30 19:39:10,883 INFO werkzeug Thread-54 : 192.168.1.24 - - [30/Aug/2019 19:39:10] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-08-30 19:39:15,692 INFO werkzeug Thread-55 : 192.168.1.24 - - [30/Aug/2019 19:39:15] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 19:39:17,197 INFO werkzeug Thread-56 : 192.168.1.24 - - [30/Aug/2019 19:39:17] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:39:19,454 INFO werkzeug Thread-57 : 192.168.1.24 - - [30/Aug/2019 19:39:19] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 19:39:20,887 INFO werkzeug Thread-58 : 192.168.1.24 - - [30/Aug/2019 19:39:20] "GET /fpa/admin/edituser?id=2 HTTP/1.1" 200 -
+2019-08-30 19:41:19,097 INFO werkzeug Thread-59 : 192.168.1.24 - - [30/Aug/2019 19:41:19] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 19:41:20,765 INFO werkzeug Thread-60 : 192.168.1.24 - - [30/Aug/2019 19:41:20] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:42:28,180 INFO werkzeug Thread-61 : 192.168.1.24 - - [30/Aug/2019 19:42:28] "GET /fpa/changes HTTP/1.1" 200 -
+2019-08-30 19:42:29,819 INFO werkzeug Thread-62 : 192.168.1.24 - - [30/Aug/2019 19:42:29] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:42:31,077 INFO werkzeug Thread-63 : 192.168.1.24 - - [30/Aug/2019 19:42:31] "GET /fpa/changes HTTP/1.1" 200 -
+2019-08-30 19:42:32,094 INFO werkzeug Thread-64 : 192.168.1.24 - - [30/Aug/2019 19:42:32] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-08-30 19:42:34,952 INFO werkzeug Thread-65 : 192.168.1.24 - - [30/Aug/2019 19:42:34] "GET /fpa/admin/edituser?id=3 HTTP/1.1" 200 -
+2019-08-30 19:59:11,633 INFO werkzeug Thread-66 : 192.168.1.24 - - [30/Aug/2019 19:59:11] "GET /fpa/ HTTP/1.1" 200 -
+2019-08-30 19:59:31,303 INFO werkzeug Thread-67 : 192.168.1.24 - - [30/Aug/2019 19:59:31] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -

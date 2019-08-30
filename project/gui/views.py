@@ -8,10 +8,12 @@ from flask import Flask, Blueprint, url_for, jsonify, make_response, app, \
 from flask_login import login_required, login_user, logout_user, current_user
 import requests
 import logging
+from file_read_backwards import FileReadBackwards
 
-from project.models import User, Dashboard, ChangeProfile
-from project import app
+from project.models import User, Role, Dashboard, ChangeProfile
+from project import app, db, is_admin
 from project.gui.forms import UserForm, ChangeProfileForm
+from project.gui.logic import dash_logs
 
 gui_blueprint = Blueprint('gui_blueprint', __name__, url_prefix="/fpa")
 
@@ -34,7 +36,8 @@ def _index ():
 
     if current_user.is_authenticated:
         dash = Dashboard.query.all()
-        return render_template("dashboard.html", data=dash)
+        #dash_logs()
+        return render_template("dashboard.html", data=dash, logs=dash_logs())
     else:
         return redirect(url_for('gui_blueprint._login'))
 
@@ -108,6 +111,36 @@ def _editchange ():
         changeform = ChangeProfileForm()
         # change = ChangeProfile.query.order_by(ChangeProfile.id.desc())
         return render_template("editchange.html", title='New Change', form = changeform)
+
+@login_required
+@gui_blueprint.route("/admin/logs", methods=["GET","POST"])
+def _logs ():
+    if is_admin():
+        counter = request.args.get('counter')
+        data = FileReadBackwards(app.config["LOG_FILE"], encoding="utf-8")
+        return render_template("logs.html", data = data, counter = counter)
+    else:
+        return render_template("403.html", error = "You are not an administrator")
+
+@login_required
+@gui_blueprint.route("/admin/users", methods=["GET"])
+def _users ():
+    if is_admin():
+        users = db.session.query(User,Role).join(Role).all()
+        return render_template("users.html", data = users)
+    else:
+        return render_template("403.html", error = "You are not an administrator")
+
+@login_required
+@gui_blueprint.route("/admin/edituser", methods=["GET"])
+def _edituser ():
+    if is_admin():
+        id = request.args.get('id')
+        user = User.query.filter_by(id=id).first()
+        form = UserForm()
+        return render_template("edituser.html", data = user, form = form)
+    else:
+        return render_template("403.html", error = "You are not an administrator")
 
 @gui_blueprint.route("/search")
 def _search ():

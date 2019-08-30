@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, url_for, jsonify, abort, session
+from flask import Flask, Blueprint, url_for, jsonify, abort, session, render_template
 from flask_restplus import Api
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
@@ -33,10 +33,12 @@ def is_admin():
 # SET-UP
 ########
 
-logging.basicConfig(filename = 'fpa.log', level = logging.DEBUG, format = '%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object(app_config[current_config])
+
+logging.basicConfig(filename = app.config["LOG_FILE"], level = logging.DEBUG, format = '%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
@@ -72,3 +74,9 @@ def load_user(user_id):
 app.jinja_env.globals.update(get_version=get_version)
 app.jinja_env.globals.update(get_user=get_user)
 app.jinja_env.globals.update(is_admin=is_admin)
+
+
+# Default 404 Error handler
+@app.errorhandler(404)
+def not_found (e):
+    return render_template("404.html", error = e)
