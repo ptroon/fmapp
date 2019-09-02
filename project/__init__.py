@@ -43,6 +43,8 @@ logging.basicConfig(filename = app.config["LOG_FILE"], level = logging.DEBUG, fo
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
+# logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
+
 login_manager = LoginManager(app)
 login_manager.login_view='api_blueprint.session'
 

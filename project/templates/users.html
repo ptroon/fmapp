@@ -6,7 +6,7 @@
 {% block content %}
 
 <div class="container-fluid mt-3">
-  <h3>Users&nbsp;&nbsp;&nbsp;<button type="button" onclick=location.href='{{ url_for('gui_blueprint._edituser') }}' class="btn btn-success">Add</button></h3>
+  <h3>Users&nbsp;&nbsp;&nbsp;<button type="button" onclick=location.href='{{ url_for('gui_blueprint._edituser', id=0) }}' class="btn btn-success">Add</button></h3>
 
   <table class="table table-striped">
     <thead class="thead-light">
@@ -15,6 +15,7 @@
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">Role</th>
+        <th scope="col">Updated</th>
       </tr>
     </thead>
     <tbody>
@@ -25,6 +26,7 @@
         <td>{{ rec[0].forename }}&nbsp;{{ rec.surname }}</td>
         <td>{{ rec[0].email }}</td>
         <td>{{ rec[1].role_name }}</td>
+        <td>{{ rec[0].last_modified }}</td>        
       </tr>
       {% else %}
         <tr><td colspan=5 class="alert alert-primary"><strong>There are no user accounts to view </strong></td></tr>

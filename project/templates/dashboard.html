@@ -2,31 +2,59 @@
 {% block title %}Dashboard{% endblock %}
 {% block head %}
     {{ super() }}
-    <style type="text/css">
-        .important { color: #336699; }
-    </style>
 {% endblock %}
 {% block content %}
 
 
   <h3>Dashboard</h3>
-  <div class="container-fluid mt-3">
+
+  <div class="d-flex flex-row flex-nowrap" style="width:1280px">
     {% for rec in data %}
-    <div class="d-flex mb-3 row">
-      <div class="text-center m-3 p-2 col rounded container-fluid bg-light border border-dark"><strong>FortiManagers</strong><br/>{{ rec.fm_text }}<br/></div>
-      <div class="text-center m-3 p-2 col rounded container-fluid bg-light border border-dark"><strong>Fortigates</strong><br/>{{ rec.fg_text }}</div>
-      <div class="text-center m-3 p-2 col rounded container-fluid bg-light border border-dark"><strong>Changes</strong><br/>{{ rec.user_text }}</div>
+    <div class="d-flex">
+
+      <div class="card w-auto mx-2 border-dark text-center">
+        <div class="card-header text-white bg-info text-center">FortiManagers</div>
+        <div class="card-body px-lg-1 pt-0">{{ rec.fm_text }}</div>
+      </div>
+
+      <div class="card w-auto mx-2 border-dark text-center">
+        <div class="card-header text-white bg-info text-center">Fortigates</div>
+        <div class="card-body px-lg-1 pt-0">{{ rec.fg_text }}</div>
+      </div>
+
+      <div class="card w-auto mx-2 border-dark text-center">
+        <div class="card-header text-white bg-info text-center">Changes</div>
+        <div class="card-body px-lg-1 pt-0">{{ rec.user_text }}</div>
+      </div>
+
     </div>
     {% endfor %}
-  </div>
 
-  <div class="card w-25 mx-auto border-dark">
-    <div class="card-header text-white bg-info text-center">Logs</div>
-    <div class="card-body px-lg-5 pt-0">
-      {% for rec in logs %}
-        <br/>{{ rec }} {{ logs[rec] }}
-      {% endfor %}
+    <div class="d-flex flex-column" >
+
+    <div class="d-flex flex-row my-2" style="width:220px">
+    <div class="card border-dark">
+      <div class="card-header text-white bg-info">Log Messages</div>
+      <div class="card-body px-lg-4 pt-1">
+        {% for rec in logs %}
+          <br/>{{ rec }} {{ logs[rec] }}
+        {% endfor %}
+      </div>
     </div>
-  </div>
+    </div>
 
+    <div class="d-flex flex-row my-2" style="width:220px">
+    <div class="card border-dark">
+      <div class="card-header text-white bg-info ">Users</div>
+      <div class="card-body px-lg-4 pt-1">
+        {% for rec in users %}
+          <br/>{{ rec }} {{ users[rec] }}
+        {% endfor %}
+      </div>
+    </div>
+    </div>
+
+    </div>
+
+  </div>
 {% endblock %}

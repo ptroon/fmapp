@@ -8,12 +8,13 @@ from flask import Flask, Blueprint, url_for, jsonify, make_response, app, \
 from flask_login import login_required, login_user, logout_user, current_user
 import requests
 import logging
+from datetime import datetime
 from file_read_backwards import FileReadBackwards
 
 from project.models import User, Role, Dashboard, ChangeProfile
 from project import app, db, is_admin
 from project.gui.forms import UserForm, ChangeProfileForm
-from project.gui.logic import dash_logs
+from project.gui.logic import dash_logs, dash_users
 
 gui_blueprint = Blueprint('gui_blueprint', __name__, url_prefix="/fpa")
 
@@ -36,8 +37,7 @@ def _index ():
 
     if current_user.is_authenticated:
         dash = Dashboard.query.all()
-        #dash_logs()
-        return render_template("dashboard.html", data=dash, logs=dash_logs())
+        return render_template("dashboard.html", data=dash, logs=dash_logs(), users=dash_users())
     else:
         return redirect(url_for('gui_blueprint._login'))
 
@@ -48,25 +48,18 @@ def _login ():
 
     if request.method=='POST':
 
-        url = app.config['PROTOCOL'] + app.config['SERVER_NAME'] \
-        + "/fpa/api/v1/session"
-
         if request.form['login_id'] and request.form['password']:
+            user = User.query.filter_by(login_id=request.form['login_id']).first()
+            if not user:
+                app.logger.warning ("Log in error for " + request.form['login_id'])
+                flash('Not account found for ' + request.form['login_id'])
+                return render_template("login.html")
+            else:
+                if user.is_correct_password(request.form['password']):
+                    session['login_id'] = request.form['login_id']
+                    login_user(user)
+                    app.logger.info ("Successfully logged in " + request.form['login_id'])
 
-            data = {'login_id':request.form['login_id'], 'password':request.form['password']}
-            r = requests.post(url, data)
-
-            login_id = request.form['login_id']
-            user = User.query.filter_by(login_id=login_id).first()
-            try:
-                token = r.json()['token']
-                app.logger.info ("Logged in " + login_id + " with token " + token)
-                login_user(user)
-            except:
-                token = None
-
-            session['token'] = token
-            session['login_id'] = login_id
             if current_user.is_authenticated:
                 flash('You were successfully logged in')
                 return redirect(url_for('gui_blueprint._index'))
@@ -83,7 +76,7 @@ def _logout ():
 
     if request.method == 'GET':
         if current_user.is_authenticated:
-            session['token'] = None
+            session['login_id'] = None
             logout_user()
     return redirect(url_for('gui_blueprint._index'))
 
@@ -126,19 +119,46 @@ def _logs ():
 @gui_blueprint.route("/admin/users", methods=["GET"])
 def _users ():
     if is_admin():
-        users = db.session.query(User,Role).join(Role).all()
+        users = db.session.query(User,Role).join(Role).order_by(User.id.asc())
         return render_template("users.html", data = users)
     else:
         return render_template("403.html", error = "You are not an administrator")
 
 @login_required
-@gui_blueprint.route("/admin/edituser", methods=["GET"])
-def _edituser ():
+@gui_blueprint.route("/admin/edituser/<id>", methods=["GET","POST"])
+def _edituser (id):
     if is_admin():
-        id = request.args.get('id')
+
         user = User.query.filter_by(id=id).first()
-        form = UserForm()
-        return render_template("edituser.html", data = user, form = form)
+        form = UserForm(obj=user)
+
+        if request.method == "GET":
+            return render_template("edituser.html", data = user, form = form)
+
+        if form.validate_on_submit():
+            if not user:
+                user = User(form.login_id.data, form.forename.data, form.surname.data, form.comment.data, form.password.data, form.email.data, form.role.data)
+                db.session.add(user)
+
+            if not form.password.data:
+              del form.password
+
+            form.populate_obj(user)
+            user.last_modified = datetime.now()
+            user.modified_by = session["login_id"]
+            user.last_login = datetime.now()
+
+            if not form.created_date:
+                user.created_date = datetime.now()
+
+            db.session.commit()
+            return redirect(url_for('gui_blueprint._users'))
+        else:
+            for fieldName, errorMessages in form.errors.items():
+                for err in errorMessages:
+                    print (fieldName + " " + err + " value:(" + form.role.data + ")")
+            return render_template("400.html", error = form.errors)
+
     else:
         return render_template("403.html", error = "You are not an administrator")
 

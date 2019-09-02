@@ -24,5 +24,15 @@ def dash_logs ():
     for x in results:
         res[x] = len(results[x])
 
-    print (res)
+    # print (res)
     return res
+
+
+def dash_users ():
+    user = User.query.filter_by().all()
+
+    res = {}
+    for x in user:
+        res[x] = len(user)
+
+    return user
