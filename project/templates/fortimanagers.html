@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}FortiManagers{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid mt-3">
+  <h3>Users&nbsp;&nbsp;&nbsp;<button type="button" onclick=location.href='{{ url_for('gui_blueprint._editfm', id=0) }}' class="btn btn-success">Add</button></h3>
+
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Host Name</th>
+        <th scope="col">IP Address</th>
+        <th scope="col">Serial</th>
+        <th scope="col">Version</th>
+        <th scope="col">Synchronised</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for rec in data %}
+      <tr>
+        <td><a href="{{ url_for('gui_blueprint._editfm', id=rec.id) }}">{{ rec.host_name }}</a></td>
+        <td>{{ rec.ip }}</td>
+        <td>{{ rec.serial }}</td>
+        <td>{{ rec.version }}</td>
+        <td>{{ rec.sync_time }}</td>
+        <td>{{ rec.status }}</td>
+      </tr>
+      {% else %}
+        <tr><td colspan=5 class="alert alert-primary"><strong>There are no FortiManagers to view </strong></td></tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+
+</div>
+
+{% endblock %}

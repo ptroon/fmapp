@@ -32,3 +32,8 @@ class UserForm(FlaskForm):
 class ChangeProfileForm(FlaskForm):
     id = IntegerField('id', validators=[DataRequired()])
     change_name = StringField('change_name', validators=[DataRequired()])
+
+
+class ZoneForm(FlaskForm):
+    id = IntegerField('id', validators=[DataRequired()])
+    zone_name = SelectField('change_name', validators=[DataRequired()])

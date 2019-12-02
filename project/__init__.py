@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 import logging
+from datetime import datetime
 
 from project.instance.config import app_config, current_config
 
@@ -22,6 +23,9 @@ def get_version():
 # Gets the user LOGIN_ID
 def get_user():
     return session["login_id"]
+
+def unique_time():
+    return "?=" + str(datetime.utcnow()).replace(" ","")
 
 # Check if the current user is in an admin flagged role and if yes, return True to show the admin menu
 def is_admin():
@@ -76,6 +80,7 @@ def load_user(user_id):
 app.jinja_env.globals.update(get_version=get_version)
 app.jinja_env.globals.update(get_user=get_user)
 app.jinja_env.globals.update(is_admin=is_admin)
+app.jinja_env.globals.update(unique_time=unique_time)
 
 
 # Default 404 Error handler

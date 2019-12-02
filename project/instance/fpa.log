@@ -2457,3 +2457,834 @@ WHERE users.login_id = %s AND roles.role_admin = %s
 2019-09-02 21:01:46,412 INFO werkzeug Thread-234 : 192.168.1.24 - - [02/Sep/2019 21:01:46] "GET /fpa/ HTTP/1.1" 200 -
 2019-09-02 21:25:39,136 INFO werkzeug Thread-235 : 192.168.1.24 - - [02/Sep/2019 21:25:39] "GET /fpa/ HTTP/1.1" 200 -
 2019-09-02 21:25:39,516 INFO werkzeug Thread-236 : 192.168.1.24 - - [02/Sep/2019 21:25:39] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 08:59:14,159 INFO werkzeug Thread-237 : 192.168.1.24 - - [03/Sep/2019 08:59:14] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 08:59:15,844 INFO werkzeug Thread-238 : 192.168.1.24 - - [03/Sep/2019 08:59:15] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 08:59:18,046 INFO werkzeug Thread-239 : 192.168.1.24 - - [03/Sep/2019 08:59:18] "GET /fpa/admin/edituser/6 HTTP/1.1" 200 -
+2019-09-03 08:59:26,070 INFO werkzeug Thread-240 : 192.168.1.24 - - [03/Sep/2019 08:59:26] "POST /fpa/admin/edituser/6 HTTP/1.1" 302 -
+2019-09-03 08:59:26,104 INFO werkzeug Thread-241 : 192.168.1.24 - - [03/Sep/2019 08:59:26] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 09:00:50,199 INFO werkzeug Thread-242 : 192.168.1.24 - - [03/Sep/2019 09:00:50] "GET /fpa/admin/edituser/6 HTTP/1.1" 200 -
+2019-09-03 09:00:56,184 INFO werkzeug Thread-243 : 192.168.1.24 - - [03/Sep/2019 09:00:56] "POST /fpa/admin/edituser/6 HTTP/1.1" 302 -
+2019-09-03 09:00:56,220 INFO werkzeug Thread-244 : 192.168.1.24 - - [03/Sep/2019 09:00:56] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 09:01:23,976 INFO werkzeug Thread-245 : 192.168.1.24 - - [03/Sep/2019 09:01:23] "GET /fpa/admin/edituser/6 HTTP/1.1" 200 -
+2019-09-03 09:01:30,927 INFO werkzeug Thread-246 : 192.168.1.24 - - [03/Sep/2019 09:01:30] "POST /fpa/admin/edituser/6 HTTP/1.1" 302 -
+2019-09-03 09:01:30,959 INFO werkzeug Thread-247 : 192.168.1.24 - - [03/Sep/2019 09:01:30] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 09:02:03,415 INFO werkzeug Thread-248 : 192.168.1.24 - - [03/Sep/2019 09:02:03] "GET /fpa/admin/edituser/6 HTTP/1.1" 200 -
+2019-09-03 09:02:03,455 INFO werkzeug Thread-249 : 192.168.1.24 - - [03/Sep/2019 09:02:03] "GET /static/css/fpa.css HTTP/1.1" 304 -
+2019-09-03 09:02:08,978 INFO werkzeug Thread-250 : 192.168.1.24 - - [03/Sep/2019 09:02:08] "POST /fpa/admin/edituser/6 HTTP/1.1" 302 -
+2019-09-03 09:02:09,011 INFO werkzeug Thread-251 : 192.168.1.24 - - [03/Sep/2019 09:02:09] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 09:02:23,907 INFO werkzeug Thread-252 : 192.168.1.24 - - [03/Sep/2019 09:02:23] "GET /fpa/admin/edituser/6 HTTP/1.1" 200 -
+2019-09-03 09:02:33,948 INFO werkzeug Thread-253 : 192.168.1.24 - - [03/Sep/2019 09:02:33] "POST /fpa/admin/edituser/6 HTTP/1.1" 302 -
+2019-09-03 09:02:33,986 INFO werkzeug Thread-254 : 192.168.1.24 - - [03/Sep/2019 09:02:33] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 09:02:56,589 INFO werkzeug Thread-255 : 192.168.1.24 - - [03/Sep/2019 09:02:56] "GET /fpa/admin/edituser/0 HTTP/1.1" 200 -
+2019-09-03 09:02:58,589 INFO werkzeug Thread-256 : 192.168.1.24 - - [03/Sep/2019 09:02:58] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 09:03:08,724 INFO werkzeug Thread-257 : 192.168.1.24 - - [03/Sep/2019 09:03:08] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 09:07:49,936 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-09-03 09:07:50,007 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 09:07:50,436 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 09:07:50,436 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 09:07:54,676 INFO werkzeug Thread-2 : 192.168.1.24 - - [03/Sep/2019 09:07:54] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 09:07:57,680 INFO werkzeug Thread-3 : 192.168.1.24 - - [03/Sep/2019 09:07:57] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 09:07:59,667 INFO werkzeug Thread-4 : 192.168.1.24 - - [03/Sep/2019 09:07:59] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 09:08:03,641 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-09-03 09:08:03,715 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 09:08:04,134 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 09:08:04,135 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 09:08:05,516 INFO werkzeug Thread-2 : 192.168.1.24 - - [03/Sep/2019 09:08:05] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 09:08:28,981 INFO werkzeug Thread-3 : 192.168.1.24 - - [03/Sep/2019 09:08:28] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 09:08:29,254 INFO werkzeug Thread-4 : 192.168.1.24 - - [03/Sep/2019 09:08:29] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 09:08:30,787 INFO werkzeug Thread-5 : 192.168.1.24 - - [03/Sep/2019 09:08:30] "GET /fpa/admin/fortimanagers HTTP/1.1" 500 -
+2019-09-03 09:08:30,852 INFO werkzeug Thread-6 : 192.168.1.24 - - [03/Sep/2019 09:08:30] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-09-03 09:08:30,855 INFO werkzeug Thread-7 : 192.168.1.24 - - [03/Sep/2019 09:08:30] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-09-03 09:08:30,856 INFO werkzeug Thread-8 : 192.168.1.24 - - [03/Sep/2019 09:08:30] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-09-03 09:08:31,206 INFO werkzeug Thread-9 : 192.168.1.24 - - [03/Sep/2019 09:08:31] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-09-03 09:08:31,296 INFO werkzeug Thread-10 : 192.168.1.24 - - [03/Sep/2019 09:08:31] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 09:08:31,409 INFO werkzeug Thread-11 : 192.168.1.24 - - [03/Sep/2019 09:08:31] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 09:38:58,037 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-09-03 09:38:58,119 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 09:38:58,541 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 09:38:58,541 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 09:39:02,378 INFO werkzeug Thread-2 : 192.168.1.24 - - [03/Sep/2019 09:39:02] "GET /fpa/admin/fortimanagers HTTP/1.1" 500 -
+2019-09-03 09:39:02,458 INFO werkzeug Thread-4 : 192.168.1.24 - - [03/Sep/2019 09:39:02] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-09-03 09:39:02,459 INFO werkzeug Thread-3 : 192.168.1.24 - - [03/Sep/2019 09:39:02] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-09-03 09:39:02,461 INFO werkzeug Thread-5 : 192.168.1.24 - - [03/Sep/2019 09:39:02] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-09-03 09:39:02,776 INFO werkzeug Thread-6 : 192.168.1.24 - - [03/Sep/2019 09:39:02] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-09-03 09:39:02,856 INFO werkzeug Thread-7 : 192.168.1.24 - - [03/Sep/2019 09:39:02] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 09:39:20,901 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-09-03 09:39:20,972 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 09:40:03,189 INFO werkzeug MainThread :  * Running on http://192.168.1.16:5000/ (Press CTRL+C to quit)
+2019-09-03 09:40:03,189 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 09:40:03,619 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 09:40:03,619 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 09:40:03,810 INFO werkzeug Thread-2 : 192.168.1.24 - - [03/Sep/2019 09:40:03] "GET /fpa/admin/fortimanagers HTTP/1.1" 500 -
+2019-09-03 09:40:03,926 INFO werkzeug Thread-3 : 192.168.1.24 - - [03/Sep/2019 09:40:03] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-09-03 09:40:03,929 INFO werkzeug Thread-4 : 192.168.1.24 - - [03/Sep/2019 09:40:03] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-09-03 09:40:03,931 INFO werkzeug Thread-5 : 192.168.1.24 - - [03/Sep/2019 09:40:03] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-09-03 09:40:04,396 INFO werkzeug Thread-6 : 192.168.1.24 - - [03/Sep/2019 09:40:04] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-09-03 09:40:04,535 INFO werkzeug Thread-7 : 192.168.1.24 - - [03/Sep/2019 09:40:04] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 09:41:20,828 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-09-03 09:41:20,902 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 09:41:51,750 INFO werkzeug MainThread :  * Running on http://192.168.1.16:5000/ (Press CTRL+C to quit)
+2019-09-03 09:41:51,751 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 09:41:52,179 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 09:41:52,179 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 09:41:54,713 INFO werkzeug Thread-2 : 192.168.1.24 - - [03/Sep/2019 09:41:54] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 09:41:55,165 INFO werkzeug Thread-3 : 192.168.1.24 - - [03/Sep/2019 09:41:55] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 09:41:56,951 INFO werkzeug Thread-4 : 192.168.1.24 - - [03/Sep/2019 09:41:56] "GET /fpa/admin/fortimanagers HTTP/1.1" 500 -
+2019-09-03 09:41:57,055 INFO werkzeug Thread-5 : 192.168.1.24 - - [03/Sep/2019 09:41:57] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-09-03 09:41:57,058 INFO werkzeug Thread-6 : 192.168.1.24 - - [03/Sep/2019 09:41:57] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-09-03 09:41:57,059 INFO werkzeug Thread-7 : 192.168.1.24 - - [03/Sep/2019 09:41:57] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-09-03 09:41:57,523 INFO werkzeug Thread-8 : 192.168.1.24 - - [03/Sep/2019 09:41:57] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-09-03 09:41:57,629 INFO werkzeug Thread-9 : 192.168.1.24 - - [03/Sep/2019 09:41:57] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 09:42:37,535 INFO werkzeug Thread-10 : 192.168.1.24 - - [03/Sep/2019 09:42:37] "GET /fpa/admin/fortimanagers HTTP/1.1" 500 -
+2019-09-03 09:42:37,614 INFO werkzeug Thread-13 : 192.168.1.24 - - [03/Sep/2019 09:42:37] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-09-03 09:42:37,615 INFO werkzeug Thread-12 : 192.168.1.24 - - [03/Sep/2019 09:42:37] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-09-03 09:42:37,615 INFO werkzeug Thread-11 : 192.168.1.24 - - [03/Sep/2019 09:42:37] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-09-03 09:42:37,944 INFO werkzeug Thread-14 : 192.168.1.24 - - [03/Sep/2019 09:42:37] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-09-03 09:42:37,952 INFO werkzeug Thread-15 : 192.168.1.24 - - [03/Sep/2019 09:42:37] "GET /fpa/admin/fortimanagers?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 09:43:01,819 INFO werkzeug Thread-16 : 192.168.1.24 - - [03/Sep/2019 09:43:01] "GET /fpa/admin/fortimanagers HTTP/1.1" 200 -
+2019-09-03 09:43:43,734 INFO werkzeug Thread-17 : 192.168.1.24 - - [03/Sep/2019 09:43:43] "GET /fpa/admin/fortimanagers HTTP/1.1" 200 -
+2019-09-03 09:43:43,995 INFO werkzeug Thread-18 : 192.168.1.24 - - [03/Sep/2019 09:43:43] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 09:43:55,223 INFO werkzeug Thread-19 : 192.168.1.24 - - [03/Sep/2019 09:43:55] "GET /fpa/admin/fortimanagers HTTP/1.1" 200 -
+2019-09-03 09:43:56,527 INFO werkzeug Thread-20 : 192.168.1.24 - - [03/Sep/2019 09:43:56] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 09:43:58,315 INFO werkzeug Thread-21 : 192.168.1.24 - - [03/Sep/2019 09:43:58] "GET /fpa/admin/fortimanagers HTTP/1.1" 200 -
+2019-09-03 09:44:07,258 INFO werkzeug Thread-22 : 192.168.1.24 - - [03/Sep/2019 09:44:07] "GET /fpa/logout HTTP/1.1" 302 -
+2019-09-03 09:44:07,290 INFO werkzeug Thread-23 : 192.168.1.24 - - [03/Sep/2019 09:44:07] "GET /fpa/ HTTP/1.1" 302 -
+2019-09-03 09:44:07,314 INFO werkzeug Thread-24 : 192.168.1.24 - - [03/Sep/2019 09:44:07] "GET /fpa/login HTTP/1.1" 200 -
+2019-09-03 09:44:07,608 INFO werkzeug Thread-25 : 192.168.1.24 - - [03/Sep/2019 09:44:07] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 09:44:11,265 INFO werkzeug Thread-26 : 192.168.1.24 - - [03/Sep/2019 09:44:11] "GET /fpa/admin/fortimanagers HTTP/1.1" 200 -
+2019-09-03 09:44:13,204 INFO werkzeug Thread-27 : 192.168.1.24 - - [03/Sep/2019 09:44:13] "GET /fpa/login HTTP/1.1" 200 -
+2019-09-03 09:44:13,455 INFO werkzeug Thread-28 : 192.168.1.24 - - [03/Sep/2019 09:44:13] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 09:44:15,724 INFO project Thread-29 : Successfully logged in frank
+2019-09-03 09:44:15,726 INFO werkzeug Thread-29 : 192.168.1.24 - - [03/Sep/2019 09:44:15] "POST /fpa/login HTTP/1.1" 302 -
+2019-09-03 09:44:15,765 INFO werkzeug Thread-30 : 192.168.1.24 - - [03/Sep/2019 09:44:15] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 09:44:19,724 INFO werkzeug Thread-31 : 192.168.1.24 - - [03/Sep/2019 09:44:19] "GET /fpa/admin/fortimanagers HTTP/1.1" 200 -
+2019-09-03 09:44:21,799 INFO werkzeug Thread-32 : 192.168.1.24 - - [03/Sep/2019 09:44:21] "GET /fpa/login HTTP/1.1" 200 -
+2019-09-03 09:44:22,032 INFO werkzeug Thread-33 : 192.168.1.24 - - [03/Sep/2019 09:44:22] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 09:44:24,649 INFO project Thread-34 : Successfully logged in philip
+2019-09-03 09:44:24,651 INFO werkzeug Thread-34 : 192.168.1.24 - - [03/Sep/2019 09:44:24] "POST /fpa/login HTTP/1.1" 302 -
+2019-09-03 09:44:24,684 INFO werkzeug Thread-35 : 192.168.1.24 - - [03/Sep/2019 09:44:24] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 09:44:29,576 INFO werkzeug Thread-36 : 192.168.1.24 - - [03/Sep/2019 09:44:29] "GET /fpa/admin/fortimanagers HTTP/1.1" 200 -
+2019-09-03 09:44:31,526 INFO werkzeug Thread-37 : 192.168.1.24 - - [03/Sep/2019 09:44:31] "GET /fpa/admin/editfm/1 HTTP/1.1" 200 -
+2019-09-03 09:44:35,022 INFO werkzeug Thread-38 : 192.168.1.24 - - [03/Sep/2019 09:44:35] "GET /fpa/admin/editfm/1 HTTP/1.1" 200 -
+2019-09-03 09:44:45,216 INFO werkzeug Thread-39 : 192.168.1.24 - - [03/Sep/2019 09:44:45] "GET /fpa/admin/editfm/0 HTTP/1.1" 200 -
+2019-09-03 09:44:48,609 INFO werkzeug Thread-40 : 192.168.1.24 - - [03/Sep/2019 09:44:48] "GET /fpa/admin/fortimanagers HTTP/1.1" 200 -
+2019-09-03 09:51:20,698 INFO werkzeug Thread-41 : 192.168.1.24 - - [03/Sep/2019 09:51:20] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-09-03 09:51:31,969 INFO werkzeug Thread-42 : 192.168.1.24 - - [03/Sep/2019 09:51:31] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 09:51:35,938 INFO werkzeug Thread-43 : 192.168.1.24 - - [03/Sep/2019 09:51:35] "GET /fpa/admin/fortimanagers HTTP/1.1" 200 -
+2019-09-03 09:51:41,389 INFO werkzeug Thread-44 : 192.168.1.24 - - [03/Sep/2019 09:51:41] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 09:51:45,284 INFO werkzeug Thread-45 : 192.168.1.24 - - [03/Sep/2019 09:51:45] "GET /fpa/admin/fortimanagers HTTP/1.1" 200 -
+2019-09-03 12:50:19,355 INFO werkzeug Thread-46 : 192.168.1.24 - - [03/Sep/2019 12:50:19] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 13:43:24,468 INFO werkzeug Thread-47 : 192.168.1.24 - - [03/Sep/2019 13:43:24] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 13:43:24,691 INFO werkzeug Thread-48 : 192.168.1.24 - - [03/Sep/2019 13:43:24] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 13:43:25,534 INFO werkzeug Thread-49 : 192.168.1.24 - - [03/Sep/2019 13:43:25] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 13:43:25,786 INFO werkzeug Thread-50 : 192.168.1.24 - - [03/Sep/2019 13:43:25] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 13:43:26,977 INFO werkzeug Thread-51 : 192.168.1.24 - - [03/Sep/2019 13:43:26] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 13:43:28,516 INFO werkzeug Thread-52 : 192.168.1.24 - - [03/Sep/2019 13:43:28] "GET /fpa/admin/edituser/0 HTTP/1.1" 200 -
+2019-09-03 13:43:30,428 INFO werkzeug Thread-53 : 192.168.1.24 - - [03/Sep/2019 13:43:30] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 13:53:11,053 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-09-03 13:53:11,132 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 13:53:58,478 INFO werkzeug MainThread :  * Running on http://192.168.1.16:5000/ (Press CTRL+C to quit)
+2019-09-03 13:53:58,478 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 13:53:58,905 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 13:53:58,905 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 13:54:01,515 INFO werkzeug Thread-2 : 192.168.1.24 - - [03/Sep/2019 13:54:01] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 13:54:01,995 INFO werkzeug Thread-3 : 192.168.1.24 - - [03/Sep/2019 13:54:01] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 13:54:07,629 INFO werkzeug Thread-4 : 192.168.1.24 - - [03/Sep/2019 13:54:07] "GET /fpa/calendar HTTP/1.1" 200 -
+2019-09-03 13:54:16,782 INFO werkzeug Thread-5 : 192.168.1.24 - - [03/Sep/2019 13:54:16] "GET /fpa/bookings HTTP/1.1" 500 -
+2019-09-03 13:54:16,895 INFO werkzeug Thread-6 : 192.168.1.24 - - [03/Sep/2019 13:54:16] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-09-03 13:54:16,896 INFO werkzeug Thread-7 : 192.168.1.24 - - [03/Sep/2019 13:54:16] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-09-03 13:54:16,896 INFO werkzeug Thread-8 : 192.168.1.24 - - [03/Sep/2019 13:54:16] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-09-03 13:54:17,335 INFO werkzeug Thread-9 : 192.168.1.24 - - [03/Sep/2019 13:54:17] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-09-03 13:54:17,474 INFO werkzeug Thread-10 : 192.168.1.24 - - [03/Sep/2019 13:54:17] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 13:54:17,560 INFO werkzeug Thread-11 : 192.168.1.24 - - [03/Sep/2019 13:54:17] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 13:55:39,622 INFO werkzeug Thread-12 : 192.168.1.24 - - [03/Sep/2019 13:55:39] "GET /fpa/bookings HTTP/1.1" 500 -
+2019-09-03 13:55:39,723 INFO werkzeug Thread-13 : 192.168.1.24 - - [03/Sep/2019 13:55:39] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-09-03 13:55:39,725 INFO werkzeug Thread-15 : 192.168.1.24 - - [03/Sep/2019 13:55:39] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-09-03 13:55:39,726 INFO werkzeug Thread-14 : 192.168.1.24 - - [03/Sep/2019 13:55:39] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-09-03 13:55:40,069 INFO werkzeug Thread-16 : 192.168.1.24 - - [03/Sep/2019 13:55:40] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-09-03 13:55:40,261 INFO werkzeug Thread-17 : 192.168.1.24 - - [03/Sep/2019 13:55:40] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 13:55:40,350 INFO werkzeug Thread-18 : 192.168.1.24 - - [03/Sep/2019 13:55:40] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 13:57:04,342 INFO werkzeug Thread-19 : 192.168.1.24 - - [03/Sep/2019 13:57:04] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 13:57:04,434 INFO werkzeug Thread-20 : 192.168.1.24 - - [03/Sep/2019 13:57:04] "GET /static//fullcalendar/packages/core/main.css HTTP/1.1" 200 -
+2019-09-03 13:57:04,442 INFO werkzeug Thread-23 : 192.168.1.24 - - [03/Sep/2019 13:57:04] "GET /static//fullcalendar/packages/daygrid/main.css HTTP/1.1" 200 -
+2019-09-03 13:57:04,443 INFO werkzeug Thread-21 : 192.168.1.24 - - [03/Sep/2019 13:57:04] "GET /static//fullcalendar/packages/fullcalendar/daygrid/main.js HTTP/1.1" 200 -
+2019-09-03 13:57:04,443 INFO werkzeug Thread-22 : 192.168.1.24 - - [03/Sep/2019 13:57:04] "GET /static//fullcalendar/packages/fullcalendar/core/main.js HTTP/1.1" 200 -
+2019-09-03 13:57:04,598 INFO werkzeug Thread-24 : 192.168.1.24 - - [03/Sep/2019 13:57:04] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 13:57:09,302 INFO werkzeug Thread-25 : 192.168.1.24 - - [03/Sep/2019 13:57:09] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 13:57:26,082 INFO werkzeug Thread-26 : 192.168.1.24 - - [03/Sep/2019 13:57:26] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 13:57:26,134 INFO werkzeug Thread-27 : 192.168.1.24 - - [03/Sep/2019 13:57:26] "GET /static/fullcalendar/packages/core/main.css HTTP/1.1" 200 -
+2019-09-03 13:57:26,137 INFO werkzeug Thread-28 : 192.168.1.24 - - [03/Sep/2019 13:57:26] "GET /static/fullcalendar/packages/daygrid/main.css HTTP/1.1" 200 -
+2019-09-03 13:57:26,150 INFO werkzeug Thread-30 : 192.168.1.24 - - [03/Sep/2019 13:57:26] "GET /static/fullcalendar/packages/fullcalendar/daygrid/main.js HTTP/1.1" 200 -
+2019-09-03 13:57:26,151 INFO werkzeug Thread-29 : 192.168.1.24 - - [03/Sep/2019 13:57:26] "GET /static/fullcalendar/packages/fullcalendar/core/main.js HTTP/1.1" 200 -
+2019-09-03 13:57:26,328 INFO werkzeug Thread-31 : 192.168.1.24 - - [03/Sep/2019 13:57:26] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 13:57:29,864 INFO werkzeug Thread-32 : 192.168.1.24 - - [03/Sep/2019 13:57:29] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 13:57:38,943 INFO werkzeug Thread-33 : 192.168.1.24 - - [03/Sep/2019 13:57:38] "GET /static/fullcalendar/packages/core/main.css HTTP/1.1" 200 -
+2019-09-03 13:58:33,484 INFO werkzeug Thread-34 : 192.168.1.24 - - [03/Sep/2019 13:58:33] "GET /static/fullcalendar/packages/core/main.css HTTP/1.1" 200 -
+2019-09-03 13:58:33,840 INFO werkzeug Thread-35 : 192.168.1.24 - - [03/Sep/2019 13:58:33] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 13:58:38,741 INFO werkzeug Thread-36 : 192.168.1.24 - - [03/Sep/2019 13:58:38] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 13:58:38,814 INFO werkzeug Thread-37 : 192.168.1.24 - - [03/Sep/2019 13:58:38] "GET /static/fullcalendar/packages/daygrid/main.css HTTP/1.1" 200 -
+2019-09-03 13:58:38,848 INFO werkzeug Thread-38 : 192.168.1.24 - - [03/Sep/2019 13:58:38] "GET /static/fullcalendar/packages/fullcalendar/core/main.js HTTP/1.1" 200 -
+2019-09-03 13:58:38,848 INFO werkzeug Thread-39 : 192.168.1.24 - - [03/Sep/2019 13:58:38] "GET /static/fullcalendar/packages/fullcalendar/daygrid/main.js HTTP/1.1" 200 -
+2019-09-03 13:58:39,010 INFO werkzeug Thread-40 : 192.168.1.24 - - [03/Sep/2019 13:58:39] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 13:58:42,897 INFO werkzeug Thread-41 : 192.168.1.24 - - [03/Sep/2019 13:58:42] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 13:58:44,750 INFO werkzeug Thread-42 : 192.168.1.24 - - [03/Sep/2019 13:58:44] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 13:58:48,234 INFO werkzeug Thread-43 : 192.168.1.24 - - [03/Sep/2019 13:58:48] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 13:58:50,884 INFO werkzeug Thread-44 : 192.168.1.24 - - [03/Sep/2019 13:58:50] "GET /static/fullcalendar/packages/fullcalendar/core/main.js HTTP/1.1" 200 -
+2019-09-03 13:59:37,520 INFO werkzeug Thread-45 : 192.168.1.24 - - [03/Sep/2019 13:59:37] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 13:59:37,566 INFO werkzeug Thread-47 : 192.168.1.24 - - [03/Sep/2019 13:59:37] "GET /static/fullcalendar/packages/daygrid/main.js HTTP/1.1" 200 -
+2019-09-03 13:59:37,567 INFO werkzeug Thread-46 : 192.168.1.24 - - [03/Sep/2019 13:59:37] "GET /static/fullcalendar/packages/core/main.js HTTP/1.1" 200 -
+2019-09-03 13:59:38,924 INFO werkzeug Thread-48 : 192.168.1.24 - - [03/Sep/2019 13:59:38] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:01:49,181 INFO werkzeug Thread-49 : 192.168.1.24 - - [03/Sep/2019 14:01:49] "GET /fpa/bookings HTTP/1.1" 500 -
+2019-09-03 14:01:49,297 INFO werkzeug Thread-51 : 192.168.1.24 - - [03/Sep/2019 14:01:49] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-09-03 14:01:49,298 INFO werkzeug Thread-50 : 192.168.1.24 - - [03/Sep/2019 14:01:49] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-09-03 14:01:49,307 INFO werkzeug Thread-52 : 192.168.1.24 - - [03/Sep/2019 14:01:49] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-09-03 14:01:49,657 INFO werkzeug Thread-53 : 192.168.1.24 - - [03/Sep/2019 14:01:49] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-09-03 14:01:49,786 INFO werkzeug Thread-54 : 192.168.1.24 - - [03/Sep/2019 14:01:49] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 14:01:49,893 INFO werkzeug Thread-55 : 192.168.1.24 - - [03/Sep/2019 14:01:49] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 14:02:12,007 INFO werkzeug Thread-56 : 192.168.1.24 - - [03/Sep/2019 14:02:12] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:02:12,435 INFO werkzeug Thread-57 : 192.168.1.24 - - [03/Sep/2019 14:02:12] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:02:16,352 INFO werkzeug Thread-58 : 192.168.1.24 - - [03/Sep/2019 14:02:16] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 14:02:25,013 INFO werkzeug Thread-59 : 192.168.1.24 - - [03/Sep/2019 14:02:25] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:03:55,040 INFO werkzeug Thread-60 : 192.168.1.24 - - [03/Sep/2019 14:03:55] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:03:55,331 INFO werkzeug Thread-61 : 192.168.1.24 - - [03/Sep/2019 14:03:55] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:03:57,424 INFO werkzeug Thread-62 : 192.168.1.24 - - [03/Sep/2019 14:03:57] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:03:57,726 INFO werkzeug Thread-63 : 192.168.1.24 - - [03/Sep/2019 14:03:57] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:04:54,230 INFO werkzeug Thread-64 : 192.168.1.24 - - [03/Sep/2019 14:04:54] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:04:54,612 INFO werkzeug Thread-65 : 192.168.1.24 - - [03/Sep/2019 14:04:54] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:05:02,899 INFO werkzeug Thread-66 : 192.168.1.24 - - [03/Sep/2019 14:05:02] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 14:06:09,297 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-09-03 14:06:09,381 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 14:06:09,802 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 14:06:09,803 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 14:06:33,381 INFO werkzeug Thread-2 : 192.168.1.24 - - [03/Sep/2019 14:06:33] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 14:06:33,613 INFO werkzeug Thread-3 : 192.168.1.24 - - [03/Sep/2019 14:06:33] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:06:34,745 INFO werkzeug Thread-4 : 192.168.1.24 - - [03/Sep/2019 14:06:34] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:06:36,109 INFO werkzeug Thread-5 : 192.168.1.24 - - [03/Sep/2019 14:06:36] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 14:06:36,862 INFO werkzeug Thread-6 : 192.168.1.24 - - [03/Sep/2019 14:06:36] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:06:43,633 INFO werkzeug Thread-7 : 192.168.1.24 - - [03/Sep/2019 14:06:43] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 14:06:45,775 INFO werkzeug Thread-8 : 192.168.1.24 - - [03/Sep/2019 14:06:45] "GET /fpa/admin/edituser/2 HTTP/1.1" 200 -
+2019-09-03 14:06:47,368 INFO werkzeug Thread-9 : 192.168.1.24 - - [03/Sep/2019 14:06:47] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 14:06:49,330 INFO werkzeug Thread-10 : 192.168.1.24 - - [03/Sep/2019 14:06:49] "GET /fpa/admin/fortimanagers HTTP/1.1" 200 -
+2019-09-03 14:06:51,235 INFO werkzeug Thread-11 : 192.168.1.24 - - [03/Sep/2019 14:06:51] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:08:49,246 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/views.py', reloading
+2019-09-03 14:08:49,321 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 14:08:49,739 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 14:08:49,740 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 14:09:44,569 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/api/views.py', reloading
+2019-09-03 14:09:44,641 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 14:09:45,088 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 14:09:45,088 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 14:10:49,950 INFO werkzeug Thread-2 : 192.168.1.24 - - [03/Sep/2019 14:10:49] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 14:10:51,344 INFO werkzeug Thread-3 : 192.168.1.24 - - [03/Sep/2019 14:10:51] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:10:52,820 INFO werkzeug Thread-4 : 192.168.1.24 - - [03/Sep/2019 14:10:52] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 14:10:55,087 INFO werkzeug Thread-5 : 192.168.1.24 - - [03/Sep/2019 14:10:55] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:10:59,357 INFO werkzeug Thread-6 : 192.168.1.24 - - [03/Sep/2019 14:10:59] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:11:00,877 INFO werkzeug Thread-7 : 192.168.1.24 - - [03/Sep/2019 14:11:00] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 14:11:01,771 INFO werkzeug Thread-8 : 192.168.1.24 - - [03/Sep/2019 14:11:01] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:13:58,330 INFO werkzeug Thread-9 : 192.168.1.24 - - [03/Sep/2019 14:13:58] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:13:58,607 INFO werkzeug Thread-10 : 192.168.1.24 - - [03/Sep/2019 14:13:58] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:13:59,796 INFO werkzeug Thread-11 : 192.168.1.24 - - [03/Sep/2019 14:13:59] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:14:00,088 INFO werkzeug Thread-12 : 192.168.1.24 - - [03/Sep/2019 14:14:00] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:14:34,686 INFO werkzeug Thread-13 : 192.168.1.24 - - [03/Sep/2019 14:14:34] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:14:35,035 INFO werkzeug Thread-14 : 192.168.1.24 - - [03/Sep/2019 14:14:35] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:14:58,809 INFO werkzeug Thread-15 : 192.168.1.24 - - [03/Sep/2019 14:14:58] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:15:04,443 INFO werkzeug Thread-16 : 192.168.1.24 - - [03/Sep/2019 14:15:04] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:15:07,313 INFO werkzeug Thread-17 : 192.168.1.24 - - [03/Sep/2019 14:15:07] "GET /static/css/fpa.css HTTP/1.1" 200 -
+2019-09-03 14:15:07,526 INFO werkzeug Thread-18 : 192.168.1.24 - - [03/Sep/2019 14:15:07] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:15:21,964 INFO werkzeug Thread-19 : 192.168.1.24 - - [03/Sep/2019 14:15:21] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:15:22,428 INFO werkzeug Thread-20 : 192.168.1.24 - - [03/Sep/2019 14:15:22] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:16:14,448 INFO werkzeug Thread-21 : 192.168.1.24 - - [03/Sep/2019 14:16:14] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:16:14,795 INFO werkzeug Thread-22 : 192.168.1.24 - - [03/Sep/2019 14:16:14] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:16:16,452 INFO werkzeug Thread-23 : 192.168.1.24 - - [03/Sep/2019 14:16:16] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 14:16:17,834 INFO werkzeug Thread-24 : 192.168.1.24 - - [03/Sep/2019 14:16:17] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:16:19,893 INFO werkzeug Thread-25 : 192.168.1.24 - - [03/Sep/2019 14:16:19] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 14:16:26,927 INFO werkzeug Thread-26 : 192.168.1.24 - - [03/Sep/2019 14:16:26] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 14:16:28,409 INFO werkzeug Thread-27 : 192.168.1.24 - - [03/Sep/2019 14:16:28] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 14:16:44,867 INFO werkzeug Thread-28 : 192.168.1.24 - - [03/Sep/2019 14:16:44] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:16:45,649 INFO werkzeug Thread-29 : 192.168.1.24 - - [03/Sep/2019 14:16:45] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 14:16:47,068 INFO werkzeug Thread-30 : 192.168.1.24 - - [03/Sep/2019 14:16:47] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 14:16:48,989 INFO werkzeug Thread-31 : 192.168.1.24 - - [03/Sep/2019 14:16:48] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 14:17:08,559 INFO werkzeug Thread-32 : 192.168.1.24 - - [03/Sep/2019 14:17:08] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:17:13,691 INFO werkzeug Thread-33 : 192.168.1.24 - - [03/Sep/2019 14:17:13] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 14:17:14,868 INFO werkzeug Thread-34 : 192.168.1.24 - - [03/Sep/2019 14:17:14] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:17:17,251 INFO werkzeug Thread-35 : 192.168.1.24 - - [03/Sep/2019 14:17:17] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 14:17:18,444 INFO werkzeug Thread-36 : 192.168.1.24 - - [03/Sep/2019 14:17:18] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:17:20,161 INFO werkzeug Thread-37 : 192.168.1.24 - - [03/Sep/2019 14:17:20] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 14:17:21,419 INFO werkzeug Thread-38 : 192.168.1.24 - - [03/Sep/2019 14:17:21] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:17:48,899 INFO werkzeug Thread-39 : 192.168.1.24 - - [03/Sep/2019 14:17:48] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:17:49,168 INFO werkzeug Thread-40 : 192.168.1.24 - - [03/Sep/2019 14:17:49] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:17:50,612 INFO werkzeug Thread-41 : 192.168.1.24 - - [03/Sep/2019 14:17:50] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 14:18:10,245 INFO werkzeug Thread-42 : 192.168.1.24 - - [03/Sep/2019 14:18:10] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 14:18:13,231 INFO werkzeug Thread-43 : 192.168.1.24 - - [03/Sep/2019 14:18:13] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 14:18:14,198 INFO werkzeug Thread-44 : 192.168.1.24 - - [03/Sep/2019 14:18:14] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:18:15,878 INFO werkzeug Thread-45 : 192.168.1.24 - - [03/Sep/2019 14:18:15] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 14:18:16,813 INFO werkzeug Thread-46 : 192.168.1.24 - - [03/Sep/2019 14:18:16] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:18:48,464 INFO werkzeug Thread-47 : 192.168.1.24 - - [03/Sep/2019 14:18:48] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:18:48,745 INFO werkzeug Thread-48 : 192.168.1.24 - - [03/Sep/2019 14:18:48] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:21:03,864 INFO werkzeug Thread-49 : 192.168.1.24 - - [03/Sep/2019 14:21:03] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 14:21:03,904 INFO werkzeug Thread-50 : 192.168.1.24 - - [03/Sep/2019 14:21:03] "GET /static/css/fpa.css%3Fv%3D%7B%7Bdatetime.now%28%29%7D%7D HTTP/1.1" 200 -
+2019-09-03 14:21:05,208 INFO werkzeug Thread-51 : 192.168.1.24 - - [03/Sep/2019 14:21:05] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:21:05,273 INFO werkzeug Thread-52 : 192.168.1.24 - - [03/Sep/2019 14:21:05] "GET /static/css/fpa.css%3Fv%3D%7B%7Bdatetime.now%28%29%7D%7D HTTP/1.1" 200 -
+2019-09-03 14:21:11,435 INFO werkzeug Thread-53 : 192.168.1.24 - - [03/Sep/2019 14:21:11] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:21:31,578 INFO werkzeug Thread-54 : 192.168.1.24 - - [03/Sep/2019 14:21:31] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:21:31,623 INFO werkzeug Thread-55 : 192.168.1.24 - - [03/Sep/2019 14:21:31] "GET /static/css/fpa.css%3Fv%3D%7B%25datetime.now%28%29%25%7D HTTP/1.1" 200 -
+2019-09-03 14:21:34,269 INFO werkzeug Thread-56 : 192.168.1.24 - - [03/Sep/2019 14:21:34] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:22:19,411 INFO werkzeug Thread-57 : 192.168.1.24 - - [03/Sep/2019 14:22:19] "GET /fpa/bookings HTTP/1.1" 500 -
+2019-09-03 14:22:19,496 INFO werkzeug Thread-59 : 192.168.1.24 - - [03/Sep/2019 14:22:19] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-09-03 14:22:19,498 INFO werkzeug Thread-58 : 192.168.1.24 - - [03/Sep/2019 14:22:19] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-09-03 14:22:19,499 INFO werkzeug Thread-60 : 192.168.1.24 - - [03/Sep/2019 14:22:19] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-09-03 14:22:19,872 INFO werkzeug Thread-61 : 192.168.1.24 - - [03/Sep/2019 14:22:19] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-09-03 14:22:20,006 INFO werkzeug Thread-62 : 192.168.1.24 - - [03/Sep/2019 14:22:20] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 14:22:20,103 INFO werkzeug Thread-63 : 192.168.1.24 - - [03/Sep/2019 14:22:20] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 14:36:14,781 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/__init__.py', reloading
+2019-09-03 14:36:14,865 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 14:36:15,287 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 14:36:15,288 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 14:36:23,405 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/__init__.py', reloading
+2019-09-03 14:36:23,484 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 14:36:23,912 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 14:36:23,912 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 14:36:30,136 INFO werkzeug Thread-2 : 192.168.1.24 - - [03/Sep/2019 14:36:30] "GET /fpa/bookings HTTP/1.1" 500 -
+2019-09-03 14:36:30,276 INFO werkzeug Thread-3 : 192.168.1.24 - - [03/Sep/2019 14:36:30] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-09-03 14:36:30,276 INFO werkzeug Thread-4 : 192.168.1.24 - - [03/Sep/2019 14:36:30] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-09-03 14:36:30,277 INFO werkzeug Thread-5 : 192.168.1.24 - - [03/Sep/2019 14:36:30] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-09-03 14:36:30,735 INFO werkzeug Thread-6 : 192.168.1.24 - - [03/Sep/2019 14:36:30] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-09-03 14:36:30,908 INFO werkzeug Thread-7 : 192.168.1.24 - - [03/Sep/2019 14:36:30] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 14:36:31,080 INFO werkzeug Thread-8 : 192.168.1.24 - - [03/Sep/2019 14:36:31] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 14:37:02,498 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/__init__.py', reloading
+2019-09-03 14:37:02,579 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 14:37:03,000 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 14:37:03,001 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 14:37:07,057 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/__init__.py', reloading
+2019-09-03 14:37:07,129 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 14:37:07,551 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 14:37:07,552 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 14:37:23,485 INFO werkzeug Thread-2 : 192.168.1.24 - - [03/Sep/2019 14:37:23] "GET /fpa/bookings HTTP/1.1" 500 -
+2019-09-03 14:37:23,572 INFO werkzeug Thread-3 : 192.168.1.24 - - [03/Sep/2019 14:37:23] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-09-03 14:37:23,573 INFO werkzeug Thread-4 : 192.168.1.24 - - [03/Sep/2019 14:37:23] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-09-03 14:37:23,575 INFO werkzeug Thread-5 : 192.168.1.24 - - [03/Sep/2019 14:37:23] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-09-03 14:37:23,904 INFO werkzeug Thread-6 : 192.168.1.24 - - [03/Sep/2019 14:37:23] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2019-09-03 14:37:24,052 INFO werkzeug Thread-7 : 192.168.1.24 - - [03/Sep/2019 14:37:24] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 14:37:24,129 INFO werkzeug Thread-8 : 192.168.1.24 - - [03/Sep/2019 14:37:24] "GET /fpa/bookings?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-09-03 14:37:50,214 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/__init__.py', reloading
+2019-09-03 14:37:50,290 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 14:37:50,714 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 14:37:50,715 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 14:37:51,687 INFO werkzeug Thread-2 : 192.168.1.24 - - [03/Sep/2019 14:37:51] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:37:51,776 INFO werkzeug Thread-3 : 192.168.1.24 - - [03/Sep/2019 14:37:51] "GET /static/css/fpa.css%3Fv%3D%3Cbuilt-in%20method%20utcnow%20of%20type%20object%20at%200x88eb20%3E HTTP/1.1" 200 -
+2019-09-03 14:37:52,112 INFO werkzeug Thread-4 : 192.168.1.24 - - [03/Sep/2019 14:37:52] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:37:55,514 INFO werkzeug Thread-5 : 192.168.1.24 - - [03/Sep/2019 14:37:55] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:40:48,490 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/__init__.py', reloading
+2019-09-03 14:40:48,568 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 14:40:48,990 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 14:40:48,991 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 14:41:02,189 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/__init__.py', reloading
+2019-09-03 14:41:02,263 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 14:41:02,691 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 14:41:02,691 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 14:41:04,716 INFO werkzeug Thread-2 : 192.168.1.24 - - [03/Sep/2019 14:41:04] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:41:04,799 INFO werkzeug Thread-3 : 192.168.1.24 - - [03/Sep/2019 14:41:04] "GET /static/css/fpa.css%3Fv%3D2019-09-0313:41:04.712588 HTTP/1.1" 200 -
+2019-09-03 14:41:05,096 INFO werkzeug Thread-4 : 192.168.1.24 - - [03/Sep/2019 14:41:05] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:41:07,436 INFO werkzeug Thread-5 : 192.168.1.24 - - [03/Sep/2019 14:41:07] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:41:13,707 INFO werkzeug Thread-6 : 192.168.1.24 - - [03/Sep/2019 14:41:13] "GET /static/css/fpa.css%3Fv%3D2019-09-0313:41:04.712588 HTTP/1.1" 200 -
+2019-09-03 14:41:43,310 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/__init__.py', reloading
+2019-09-03 14:41:43,392 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 14:41:43,817 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 14:41:43,818 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 14:42:07,173 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/__init__.py', reloading
+2019-09-03 14:42:07,252 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 14:42:07,675 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 14:42:07,676 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 14:42:07,738 INFO werkzeug Thread-2 : 192.168.1.24 - - [03/Sep/2019 14:42:07] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:42:07,818 INFO werkzeug Thread-3 : 192.168.1.24 - - [03/Sep/2019 14:42:07] "GET /static/css/fpa.css?=2019-09-0313:42:07.734607 HTTP/1.1" 200 -
+2019-09-03 14:42:08,171 INFO werkzeug Thread-4 : 192.168.1.24 - - [03/Sep/2019 14:42:08] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:42:10,290 INFO werkzeug Thread-5 : 192.168.1.24 - - [03/Sep/2019 14:42:10] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:42:13,715 INFO werkzeug Thread-6 : 192.168.1.24 - - [03/Sep/2019 14:42:13] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:43:31,699 INFO werkzeug Thread-7 : 192.168.1.24 - - [03/Sep/2019 14:43:31] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:43:31,776 INFO werkzeug Thread-8 : 192.168.1.24 - - [03/Sep/2019 14:43:31] "GET /static/css/fpa.css?=2019-09-0313:43:31.694910 HTTP/1.1" 200 -
+2019-09-03 14:43:32,033 INFO werkzeug Thread-9 : 192.168.1.24 - - [03/Sep/2019 14:43:32] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:43:46,260 INFO werkzeug Thread-10 : 192.168.1.24 - - [03/Sep/2019 14:43:46] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:43:46,310 INFO werkzeug Thread-11 : 192.168.1.24 - - [03/Sep/2019 14:43:46] "GET /static/css/fpa.css?=2019-09-0313:43:46.256492 HTTP/1.1" 200 -
+2019-09-03 14:43:46,642 INFO werkzeug Thread-12 : 192.168.1.24 - - [03/Sep/2019 14:43:46] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:45:22,665 INFO werkzeug Thread-13 : 192.168.1.24 - - [03/Sep/2019 14:45:22] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:45:22,731 INFO werkzeug Thread-14 : 192.168.1.24 - - [03/Sep/2019 14:45:22] "GET /static/css/fpa.css?=2019-09-0313:45:22.662142 HTTP/1.1" 200 -
+2019-09-03 14:45:23,139 INFO werkzeug Thread-15 : 192.168.1.24 - - [03/Sep/2019 14:45:23] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:48:45,084 INFO werkzeug Thread-16 : 192.168.1.24 - - [03/Sep/2019 14:48:45] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:48:45,147 INFO werkzeug Thread-17 : 192.168.1.24 - - [03/Sep/2019 14:48:45] "GET /static/css/fpa.css?=2019-09-0313:48:45.078262 HTTP/1.1" 200 -
+2019-09-03 14:48:45,453 INFO werkzeug Thread-18 : 192.168.1.24 - - [03/Sep/2019 14:48:45] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:50:17,529 INFO werkzeug Thread-19 : 192.168.1.24 - - [03/Sep/2019 14:50:17] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:50:17,584 INFO werkzeug Thread-20 : 192.168.1.24 - - [03/Sep/2019 14:50:17] "GET /static/css/fpa.css?=2019-09-0313:50:17.524414 HTTP/1.1" 200 -
+2019-09-03 14:50:17,884 INFO werkzeug Thread-21 : 192.168.1.24 - - [03/Sep/2019 14:50:17] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:52:51,788 INFO werkzeug Thread-22 : 192.168.1.24 - - [03/Sep/2019 14:52:51] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:52:51,832 INFO werkzeug Thread-23 : 192.168.1.24 - - [03/Sep/2019 14:52:51] "GET /static/css/fpa.css?=2019-09-0313:52:51.784327 HTTP/1.1" 200 -
+2019-09-03 14:52:52,132 INFO werkzeug Thread-24 : 192.168.1.24 - - [03/Sep/2019 14:52:52] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:53:33,722 INFO werkzeug Thread-25 : 192.168.1.24 - - [03/Sep/2019 14:53:33] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:53:33,780 INFO werkzeug Thread-26 : 192.168.1.24 - - [03/Sep/2019 14:53:33] "GET /static/css/fpa.css?=2019-09-0313:53:33.719382 HTTP/1.1" 200 -
+2019-09-03 14:53:34,006 INFO werkzeug Thread-27 : 192.168.1.24 - - [03/Sep/2019 14:53:34] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:53:46,882 INFO werkzeug Thread-28 : 192.168.1.24 - - [03/Sep/2019 14:53:46] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:53:47,011 INFO werkzeug Thread-29 : 192.168.1.24 - - [03/Sep/2019 14:53:47] "GET /static/css/fpa.css?=2019-09-0313:53:46.879047 HTTP/1.1" 200 -
+2019-09-03 14:53:47,199 INFO werkzeug Thread-30 : 192.168.1.24 - - [03/Sep/2019 14:53:47] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:53:48,119 INFO werkzeug Thread-31 : 192.168.1.24 - - [03/Sep/2019 14:53:48] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:53:48,162 INFO werkzeug Thread-32 : 192.168.1.24 - - [03/Sep/2019 14:53:48] "GET /static/css/fpa.css?=2019-09-0313:53:48.113984 HTTP/1.1" 200 -
+2019-09-03 14:53:48,375 INFO werkzeug Thread-33 : 192.168.1.24 - - [03/Sep/2019 14:53:48] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:54:06,577 INFO werkzeug Thread-34 : 192.168.1.24 - - [03/Sep/2019 14:54:06] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:54:06,631 INFO werkzeug Thread-35 : 192.168.1.24 - - [03/Sep/2019 14:54:06] "GET /static/css/fpa.css?=2019-09-0313:54:06.574627 HTTP/1.1" 200 -
+2019-09-03 14:54:06,879 INFO werkzeug Thread-36 : 192.168.1.24 - - [03/Sep/2019 14:54:06] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:54:14,048 INFO werkzeug Thread-37 : 192.168.1.24 - - [03/Sep/2019 14:54:14] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:54:14,096 INFO werkzeug Thread-38 : 192.168.1.24 - - [03/Sep/2019 14:54:14] "GET /static/css/fpa.css?=2019-09-0313:54:14.045853 HTTP/1.1" 200 -
+2019-09-03 14:54:14,349 INFO werkzeug Thread-39 : 192.168.1.24 - - [03/Sep/2019 14:54:14] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:54:46,198 INFO werkzeug Thread-40 : 192.168.1.24 - - [03/Sep/2019 14:54:46] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:54:46,248 INFO werkzeug Thread-41 : 192.168.1.24 - - [03/Sep/2019 14:54:46] "GET /static/css/fpa.css?=2019-09-0313:54:46.195170 HTTP/1.1" 200 -
+2019-09-03 14:54:46,558 INFO werkzeug Thread-42 : 192.168.1.24 - - [03/Sep/2019 14:54:46] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:54:59,582 INFO werkzeug Thread-43 : 192.168.1.24 - - [03/Sep/2019 14:54:59] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:54:59,625 INFO werkzeug Thread-44 : 192.168.1.24 - - [03/Sep/2019 14:54:59] "GET /static/css/fpa.css?=2019-09-0313:54:59.579278 HTTP/1.1" 200 -
+2019-09-03 14:54:59,926 INFO werkzeug Thread-45 : 192.168.1.24 - - [03/Sep/2019 14:54:59] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 14:55:57,569 INFO werkzeug Thread-46 : 192.168.1.24 - - [03/Sep/2019 14:55:57] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 14:55:57,642 INFO werkzeug Thread-47 : 192.168.1.24 - - [03/Sep/2019 14:55:57] "GET /static/css/fpa.css?=2019-09-0313:55:57.565795 HTTP/1.1" 200 -
+2019-09-03 14:55:57,925 INFO werkzeug Thread-48 : 192.168.1.24 - - [03/Sep/2019 14:55:57] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:00:24,677 INFO werkzeug Thread-49 : 192.168.1.24 - - [03/Sep/2019 15:00:24] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:00:24,762 INFO werkzeug Thread-50 : 192.168.1.24 - - [03/Sep/2019 15:00:24] "GET /static/css/fpa.css?=2019-09-0314:00:24.674515 HTTP/1.1" 200 -
+2019-09-03 15:00:25,115 INFO werkzeug Thread-51 : 192.168.1.24 - - [03/Sep/2019 15:00:25] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:01:02,403 INFO werkzeug Thread-52 : 192.168.1.24 - - [03/Sep/2019 15:01:02] "GET /projects/fmapp/fmapp/project/static/fullcalendar/examples/selectable.html HTTP/1.1" 200 -
+2019-09-03 15:01:04,537 INFO werkzeug Thread-53 : 192.168.1.24 - - [03/Sep/2019 15:01:04] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-03 15:01:04,576 INFO werkzeug Thread-54 : 192.168.1.24 - - [03/Sep/2019 15:01:04] "GET /static/css/fpa.css?=2019-09-0314:01:04.534048 HTTP/1.1" 200 -
+2019-09-03 15:01:24,679 INFO werkzeug Thread-55 : 192.168.1.24 - - [03/Sep/2019 15:01:24] "GET /fpa/static/fullcalendar/examples/selectable.html HTTP/1.1" 200 -
+2019-09-03 15:01:43,035 INFO werkzeug Thread-56 : 192.168.1.24 - - [03/Sep/2019 15:01:43] "GET /static/fullcalendar/examples/selectable.html HTTP/1.1" 200 -
+2019-09-03 15:01:43,111 INFO werkzeug Thread-59 : 192.168.1.24 - - [03/Sep/2019 15:01:43] "GET /static/fullcalendar/packages/timegrid/main.js HTTP/1.1" 200 -
+2019-09-03 15:01:43,112 INFO werkzeug Thread-57 : 192.168.1.24 - - [03/Sep/2019 15:01:43] "GET /static/fullcalendar/packages/interaction/main.js HTTP/1.1" 200 -
+2019-09-03 15:01:43,113 INFO werkzeug Thread-58 : 192.168.1.24 - - [03/Sep/2019 15:01:43] "GET /static/fullcalendar/packages/timegrid/main.css HTTP/1.1" 200 -
+2019-09-03 15:01:43,855 INFO werkzeug Thread-60 : 192.168.1.24 - - [03/Sep/2019 15:01:43] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:02:40,915 INFO werkzeug Thread-61 : 192.168.1.24 - - [03/Sep/2019 15:02:40] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:03:19,959 INFO werkzeug Thread-62 : 192.168.1.24 - - [03/Sep/2019 15:03:19] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:03:20,048 INFO werkzeug Thread-63 : 192.168.1.24 - - [03/Sep/2019 15:03:20] "GET /static/css/fpa.css?=2019-09-0314:03:19.955822 HTTP/1.1" 200 -
+2019-09-03 15:03:20,378 INFO werkzeug Thread-64 : 192.168.1.24 - - [03/Sep/2019 15:03:20] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:15:33,893 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/models.py', reloading
+2019-09-03 15:15:33,968 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 15:15:34,406 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 15:15:34,406 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 15:15:52,692 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/api/views.py', reloading
+2019-09-03 15:15:52,767 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 15:15:53,201 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 15:15:53,201 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 15:22:41,500 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/api/views.py', reloading
+2019-09-03 15:22:41,568 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 15:22:41,997 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 15:22:41,998 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 15:23:47,272 INFO werkzeug Thread-2 : 192.168.1.24 - - [03/Sep/2019 15:23:47] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:23:47,343 INFO werkzeug Thread-3 : 192.168.1.24 - - [03/Sep/2019 15:23:47] "GET /static/css/fpa.css?=2019-09-0314:23:47.269021 HTTP/1.1" 200 -
+2019-09-03 15:23:47,797 INFO werkzeug Thread-4 : 192.168.1.24 - - [03/Sep/2019 15:23:47] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:24:03,231 INFO werkzeug Thread-5 : 192.168.1.24 - - [03/Sep/2019 15:24:03] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:24:03,282 INFO werkzeug Thread-6 : 192.168.1.24 - - [03/Sep/2019 15:24:03] "GET /static/css/fpa.css?=2019-09-0314:24:03.227607 HTTP/1.1" 200 -
+2019-09-03 15:24:03,657 INFO werkzeug Thread-7 : 192.168.1.24 - - [03/Sep/2019 15:24:03] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:29:45,507 INFO werkzeug Thread-8 : 192.168.1.24 - - [03/Sep/2019 15:29:45] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:29:45,590 INFO werkzeug Thread-9 : 192.168.1.24 - - [03/Sep/2019 15:29:45] "GET /static/css/fpa.css?=2019-09-0314:29:45.504069 HTTP/1.1" 200 -
+2019-09-03 15:29:45,850 INFO werkzeug Thread-10 : 192.168.1.24 - - [03/Sep/2019 15:29:45] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:30:01,003 INFO werkzeug Thread-11 : 192.168.1.24 - - [03/Sep/2019 15:30:01] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:30:01,084 INFO werkzeug Thread-12 : 192.168.1.24 - - [03/Sep/2019 15:30:01] "GET /static/css/fpa.css?=2019-09-0314:30:00.999563 HTTP/1.1" 200 -
+2019-09-03 15:30:01,410 INFO werkzeug Thread-13 : 192.168.1.24 - - [03/Sep/2019 15:30:01] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:31:21,513 INFO werkzeug Thread-14 : 192.168.1.24 - - [03/Sep/2019 15:31:21] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:31:21,592 INFO werkzeug Thread-15 : 192.168.1.24 - - [03/Sep/2019 15:31:21] "GET /static/css/fpa.css?=2019-09-0314:31:21.509995 HTTP/1.1" 200 -
+2019-09-03 15:31:21,596 INFO werkzeug Thread-16 : 192.168.1.24 - - [03/Sep/2019 15:31:21] "GET /static/fullcalendar/packages/moment/main.js HTTP/1.1" 200 -
+2019-09-03 15:31:21,895 INFO werkzeug Thread-17 : 192.168.1.24 - - [03/Sep/2019 15:31:21] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:33:09,462 INFO werkzeug Thread-18 : 192.168.1.24 - - [03/Sep/2019 15:33:09] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:33:11,780 INFO werkzeug Thread-19 : 192.168.1.24 - - [03/Sep/2019 15:33:11] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:33:21,323 INFO werkzeug Thread-20 : 192.168.1.24 - - [03/Sep/2019 15:33:21] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:33:21,408 INFO werkzeug Thread-21 : 192.168.1.24 - - [03/Sep/2019 15:33:21] "GET /static/css/fpa.css?=2019-09-0314:33:21.318171 HTTP/1.1" 200 -
+2019-09-03 15:33:21,769 INFO werkzeug Thread-22 : 192.168.1.24 - - [03/Sep/2019 15:33:21] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:34:38,686 INFO werkzeug Thread-23 : 192.168.1.24 - - [03/Sep/2019 15:34:38] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:34:38,763 INFO werkzeug Thread-24 : 192.168.1.24 - - [03/Sep/2019 15:34:38] "GET /static/css/fpa.css?=2019-09-0314:34:38.682979 HTTP/1.1" 200 -
+2019-09-03 15:34:39,064 INFO werkzeug Thread-25 : 192.168.1.24 - - [03/Sep/2019 15:34:39] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:34:52,487 INFO werkzeug Thread-26 : 192.168.1.24 - - [03/Sep/2019 15:34:52] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:34:52,536 INFO werkzeug Thread-27 : 192.168.1.24 - - [03/Sep/2019 15:34:52] "GET /static/css/fpa.css?=2019-09-0314:34:52.481324 HTTP/1.1" 200 -
+2019-09-03 15:34:53,006 INFO werkzeug Thread-28 : 192.168.1.24 - - [03/Sep/2019 15:34:53] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:35:25,651 INFO werkzeug Thread-29 : 192.168.1.24 - - [03/Sep/2019 15:35:25] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:35:25,722 INFO werkzeug Thread-30 : 192.168.1.24 - - [03/Sep/2019 15:35:25] "GET /static/css/fpa.css?=2019-09-0314:35:25.644721 HTTP/1.1" 200 -
+2019-09-03 15:35:26,304 INFO werkzeug Thread-31 : 192.168.1.24 - - [03/Sep/2019 15:35:26] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:37:21,508 INFO werkzeug Thread-32 : 192.168.1.24 - - [03/Sep/2019 15:37:21] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:37:21,589 INFO werkzeug Thread-33 : 192.168.1.24 - - [03/Sep/2019 15:37:21] "GET /static/css/fpa.css?=2019-09-0314:37:21.502180 HTTP/1.1" 200 -
+2019-09-03 15:37:22,119 INFO werkzeug Thread-34 : 192.168.1.24 - - [03/Sep/2019 15:37:22] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:37:54,787 INFO werkzeug Thread-35 : 192.168.1.24 - - [03/Sep/2019 15:37:54] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:37:54,862 INFO werkzeug Thread-36 : 192.168.1.24 - - [03/Sep/2019 15:37:54] "GET /static/css/fpa.css?=2019-09-0314:37:54.781924 HTTP/1.1" 200 -
+2019-09-03 15:37:55,299 INFO werkzeug Thread-37 : 192.168.1.24 - - [03/Sep/2019 15:37:55] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:41:46,787 INFO werkzeug Thread-38 : 192.168.1.24 - - [03/Sep/2019 15:41:46] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:41:46,858 INFO werkzeug Thread-39 : 192.168.1.24 - - [03/Sep/2019 15:41:46] "GET /static/css/fpa.css?=2019-09-0314:41:46.782838 HTTP/1.1" 200 -
+2019-09-03 15:41:47,183 INFO werkzeug Thread-40 : 192.168.1.24 - - [03/Sep/2019 15:41:47] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:42:15,661 INFO werkzeug Thread-41 : 192.168.1.24 - - [03/Sep/2019 15:42:15] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:42:15,709 INFO werkzeug Thread-42 : 192.168.1.24 - - [03/Sep/2019 15:42:15] "GET /static/css/fpa.css?=2019-09-0314:42:15.658070 HTTP/1.1" 200 -
+2019-09-03 15:42:15,724 INFO werkzeug Thread-43 : 192.168.1.24 - - [03/Sep/2019 15:42:15] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0314:42:15.658302 HTTP/1.1" 200 -
+2019-09-03 15:42:16,018 INFO werkzeug Thread-44 : 192.168.1.24 - - [03/Sep/2019 15:42:16] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:42:21,211 INFO werkzeug Thread-45 : 192.168.1.24 - - [03/Sep/2019 15:42:21] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:42:27,483 INFO werkzeug Thread-46 : 192.168.1.24 - - [03/Sep/2019 15:42:27] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:47:03,671 INFO werkzeug Thread-47 : 192.168.1.24 - - [03/Sep/2019 15:47:03] "GET /static/fullcalendar/examples/selectable.html HTTP/1.1" 304 -
+2019-09-03 15:47:04,104 INFO werkzeug Thread-48 : 192.168.1.24 - - [03/Sep/2019 15:47:04] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:47:08,790 INFO werkzeug Thread-49 : 192.168.1.24 - - [03/Sep/2019 15:47:08] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:47:08,870 INFO werkzeug Thread-50 : 192.168.1.24 - - [03/Sep/2019 15:47:08] "GET /static/css/fpa.css?=2019-09-0314:47:08.786523 HTTP/1.1" 200 -
+2019-09-03 15:47:08,874 INFO werkzeug Thread-51 : 192.168.1.24 - - [03/Sep/2019 15:47:08] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0314:47:08.786756 HTTP/1.1" 200 -
+2019-09-03 15:47:08,897 INFO werkzeug Thread-52 : 192.168.1.24 - - [03/Sep/2019 15:47:08] "GET /static/js/moment.js?=2019-09-0314:47:08.786799 HTTP/1.1" 200 -
+2019-09-03 15:47:09,262 INFO werkzeug Thread-53 : 192.168.1.24 - - [03/Sep/2019 15:47:09] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:47:12,403 INFO werkzeug Thread-54 : 192.168.1.24 - - [03/Sep/2019 15:47:12] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:47:26,725 INFO werkzeug Thread-55 : 192.168.1.24 - - [03/Sep/2019 15:47:26] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:48:09,141 INFO werkzeug Thread-56 : 192.168.1.24 - - [03/Sep/2019 15:48:09] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:48:09,214 INFO werkzeug Thread-57 : 192.168.1.24 - - [03/Sep/2019 15:48:09] "GET /static/css/fpa.css?=2019-09-0314:48:09.134619 HTTP/1.1" 200 -
+2019-09-03 15:48:09,239 INFO werkzeug Thread-58 : 192.168.1.24 - - [03/Sep/2019 15:48:09] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0314:48:09.135213 HTTP/1.1" 200 -
+2019-09-03 15:48:09,240 INFO werkzeug Thread-59 : 192.168.1.24 - - [03/Sep/2019 15:48:09] "GET /static/js/moment.js?=2019-09-0314:48:09.135324 HTTP/1.1" 200 -
+2019-09-03 15:48:09,592 INFO werkzeug Thread-60 : 192.168.1.24 - - [03/Sep/2019 15:48:09] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:48:19,105 INFO werkzeug Thread-61 : 192.168.1.24 - - [03/Sep/2019 15:48:19] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:48:19,158 INFO werkzeug Thread-62 : 192.168.1.24 - - [03/Sep/2019 15:48:19] "GET /static/css/fpa.css?=2019-09-0314:48:19.101955 HTTP/1.1" 200 -
+2019-09-03 15:48:19,177 INFO werkzeug Thread-63 : 192.168.1.24 - - [03/Sep/2019 15:48:19] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0314:48:19.102191 HTTP/1.1" 200 -
+2019-09-03 15:48:19,184 INFO werkzeug Thread-64 : 192.168.1.24 - - [03/Sep/2019 15:48:19] "GET /static/js/moment.js?=2019-09-0314:48:19.102233 HTTP/1.1" 200 -
+2019-09-03 15:48:19,520 INFO werkzeug Thread-65 : 192.168.1.24 - - [03/Sep/2019 15:48:19] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:51:06,269 INFO werkzeug Thread-66 : 192.168.1.24 - - [03/Sep/2019 15:51:06] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:51:06,347 INFO werkzeug Thread-68 : 192.168.1.24 - - [03/Sep/2019 15:51:06] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0314:51:06.263347 HTTP/1.1" 200 -
+2019-09-03 15:51:06,350 INFO werkzeug Thread-67 : 192.168.1.24 - - [03/Sep/2019 15:51:06] "GET /static/css/fpa.css?=2019-09-0314:51:06.262754 HTTP/1.1" 200 -
+2019-09-03 15:51:06,353 INFO werkzeug Thread-69 : 192.168.1.24 - - [03/Sep/2019 15:51:06] "GET /static/js/moment.js?=2019-09-0314:51:06.263460 HTTP/1.1" 200 -
+2019-09-03 15:51:06,945 INFO werkzeug Thread-70 : 192.168.1.24 - - [03/Sep/2019 15:51:06] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:52:23,150 INFO werkzeug Thread-71 : 192.168.1.24 - - [03/Sep/2019 15:52:23] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 15:52:23,227 INFO werkzeug Thread-73 : 192.168.1.24 - - [03/Sep/2019 15:52:23] "GET /static/js/moment.js?=2019-09-0314:52:23.145564 HTTP/1.1" 200 -
+2019-09-03 15:52:23,228 INFO werkzeug Thread-72 : 192.168.1.24 - - [03/Sep/2019 15:52:23] "GET /static/css/fpa.css?=2019-09-0314:52:23.145374 HTTP/1.1" 200 -
+2019-09-03 15:52:26,088 INFO werkzeug Thread-74 : 192.168.1.24 - - [03/Sep/2019 15:52:26] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 15:52:26,133 INFO werkzeug Thread-76 : 192.168.1.24 - - [03/Sep/2019 15:52:26] "GET /static/js/moment.js?=2019-09-0314:52:26.081533 HTTP/1.1" 200 -
+2019-09-03 15:52:26,134 INFO werkzeug Thread-75 : 192.168.1.24 - - [03/Sep/2019 15:52:26] "GET /static/css/fpa.css?=2019-09-0314:52:26.081409 HTTP/1.1" 200 -
+2019-09-03 15:52:29,173 INFO werkzeug Thread-77 : 192.168.1.24 - - [03/Sep/2019 15:52:29] "GET /fpa/admin/fortimanagers HTTP/1.1" 200 -
+2019-09-03 15:52:29,239 INFO werkzeug Thread-79 : 192.168.1.24 - - [03/Sep/2019 15:52:29] "GET /static/js/moment.js?=2019-09-0314:52:29.167872 HTTP/1.1" 200 -
+2019-09-03 15:52:29,240 INFO werkzeug Thread-78 : 192.168.1.24 - - [03/Sep/2019 15:52:29] "GET /static/css/fpa.css?=2019-09-0314:52:29.167772 HTTP/1.1" 200 -
+2019-09-03 15:52:44,075 INFO werkzeug Thread-80 : 192.168.1.24 - - [03/Sep/2019 15:52:44] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:52:44,123 INFO werkzeug Thread-81 : 192.168.1.24 - - [03/Sep/2019 15:52:44] "GET /static/css/fpa.css?=2019-09-0314:52:44.069750 HTTP/1.1" 200 -
+2019-09-03 15:52:44,124 INFO werkzeug Thread-82 : 192.168.1.24 - - [03/Sep/2019 15:52:44] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0314:52:44.070308 HTTP/1.1" 200 -
+2019-09-03 15:52:44,129 INFO werkzeug Thread-83 : 192.168.1.24 - - [03/Sep/2019 15:52:44] "GET /static/js/moment.js?=2019-09-0314:52:44.070413 HTTP/1.1" 200 -
+2019-09-03 15:52:45,713 INFO werkzeug Thread-84 : 192.168.1.24 - - [03/Sep/2019 15:52:45] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 15:52:45,784 INFO werkzeug Thread-85 : 192.168.1.24 - - [03/Sep/2019 15:52:45] "GET /static/css/fpa.css?=2019-09-0314:52:45.704223 HTTP/1.1" 200 -
+2019-09-03 15:52:45,785 INFO werkzeug Thread-86 : 192.168.1.24 - - [03/Sep/2019 15:52:45] "GET /static/js/moment.js?=2019-09-0314:52:45.704468 HTTP/1.1" 200 -
+2019-09-03 15:52:47,078 INFO werkzeug Thread-87 : 192.168.1.24 - - [03/Sep/2019 15:52:47] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:52:47,130 INFO werkzeug Thread-88 : 192.168.1.24 - - [03/Sep/2019 15:52:47] "GET /static/css/fpa.css?=2019-09-0314:52:47.072024 HTTP/1.1" 200 -
+2019-09-03 15:52:47,132 INFO werkzeug Thread-89 : 192.168.1.24 - - [03/Sep/2019 15:52:47] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0314:52:47.072630 HTTP/1.1" 200 -
+2019-09-03 15:52:47,134 INFO werkzeug Thread-90 : 192.168.1.24 - - [03/Sep/2019 15:52:47] "GET /static/js/moment.js?=2019-09-0314:52:47.072745 HTTP/1.1" 200 -
+2019-09-03 15:57:11,163 INFO werkzeug Thread-91 : 192.168.1.24 - - [03/Sep/2019 15:57:11] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:57:11,274 INFO werkzeug Thread-94 : 192.168.1.24 - - [03/Sep/2019 15:57:11] "GET /static/css/fpa.css?=2019-09-0314:57:11.158872 HTTP/1.1" 200 -
+2019-09-03 15:57:11,275 INFO werkzeug Thread-93 : 192.168.1.24 - - [03/Sep/2019 15:57:11] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0314:57:11.159202 HTTP/1.1" 200 -
+2019-09-03 15:57:11,279 INFO werkzeug Thread-92 : 192.168.1.24 - - [03/Sep/2019 15:57:11] "GET /static/js/moment.js?=2019-09-0314:57:11.159260 HTTP/1.1" 200 -
+2019-09-03 15:57:11,739 INFO werkzeug Thread-95 : 192.168.1.24 - - [03/Sep/2019 15:57:11] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:57:31,297 INFO werkzeug Thread-96 : 192.168.1.24 - - [03/Sep/2019 15:57:31] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 15:57:31,356 INFO werkzeug Thread-98 : 192.168.1.24 - - [03/Sep/2019 15:57:31] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0314:57:31.294330 HTTP/1.1" 200 -
+2019-09-03 15:57:31,358 INFO werkzeug Thread-97 : 192.168.1.24 - - [03/Sep/2019 15:57:31] "GET /static/css/fpa.css?=2019-09-0314:57:31.294102 HTTP/1.1" 200 -
+2019-09-03 15:57:31,363 INFO werkzeug Thread-99 : 192.168.1.24 - - [03/Sep/2019 15:57:31] "GET /static/js/moment.js?=2019-09-0314:57:31.294372 HTTP/1.1" 200 -
+2019-09-03 15:57:32,162 INFO werkzeug Thread-100 : 192.168.1.24 - - [03/Sep/2019 15:57:32] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 15:58:46,395 INFO werkzeug Thread-101 : 192.168.1.24 - - [03/Sep/2019 15:58:46] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:01:22,136 INFO werkzeug Thread-102 : 192.168.1.24 - - [03/Sep/2019 16:01:22] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:01:22,217 INFO werkzeug Thread-104 : 192.168.1.24 - - [03/Sep/2019 16:01:22] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:01:22.132837 HTTP/1.1" 200 -
+2019-09-03 16:01:22,219 INFO werkzeug Thread-103 : 192.168.1.24 - - [03/Sep/2019 16:01:22] "GET /static/css/fpa.css?=2019-09-0315:01:22.132611 HTTP/1.1" 200 -
+2019-09-03 16:01:22,241 INFO werkzeug Thread-105 : 192.168.1.24 - - [03/Sep/2019 16:01:22] "GET /static/js/moment.js?=2019-09-0315:01:22.132879 HTTP/1.1" 200 -
+2019-09-03 16:01:22,846 INFO werkzeug Thread-106 : 192.168.1.24 - - [03/Sep/2019 16:01:22] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:02:00,306 INFO werkzeug Thread-107 : 192.168.1.24 - - [03/Sep/2019 16:02:00] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:02:00,364 INFO werkzeug Thread-108 : 192.168.1.24 - - [03/Sep/2019 16:02:00] "GET /static/css/fpa.css?=2019-09-0315:02:00.302619 HTTP/1.1" 200 -
+2019-09-03 16:02:00,366 INFO werkzeug Thread-109 : 192.168.1.24 - - [03/Sep/2019 16:02:00] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:02:00.302847 HTTP/1.1" 200 -
+2019-09-03 16:02:00,390 INFO werkzeug Thread-110 : 192.168.1.24 - - [03/Sep/2019 16:02:00] "GET /static/js/moment.js?=2019-09-0315:02:00.302888 HTTP/1.1" 200 -
+2019-09-03 16:02:00,904 INFO werkzeug Thread-111 : 192.168.1.24 - - [03/Sep/2019 16:02:00] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:02:55,470 INFO werkzeug Thread-112 : 192.168.1.24 - - [03/Sep/2019 16:02:55] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:02:55,548 INFO werkzeug Thread-113 : 192.168.1.24 - - [03/Sep/2019 16:02:55] "GET /static/css/fpa.css?=2019-09-0315:02:55.466853 HTTP/1.1" 200 -
+2019-09-03 16:02:55,553 INFO werkzeug Thread-114 : 192.168.1.24 - - [03/Sep/2019 16:02:55] "GET /static/js/moment.js?=2019-09-0315:02:55.467123 HTTP/1.1" 200 -
+2019-09-03 16:02:55,557 INFO werkzeug Thread-115 : 192.168.1.24 - - [03/Sep/2019 16:02:55] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:02:55.467082 HTTP/1.1" 200 -
+2019-09-03 16:02:56,123 INFO werkzeug Thread-116 : 192.168.1.24 - - [03/Sep/2019 16:02:56] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:05:44,153 INFO werkzeug Thread-117 : 192.168.1.24 - - [03/Sep/2019 16:05:44] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:05:44,242 INFO werkzeug Thread-118 : 192.168.1.24 - - [03/Sep/2019 16:05:44] "GET /static/css/fpa.css?=2019-09-0315:05:44.150423 HTTP/1.1" 200 -
+2019-09-03 16:05:44,244 INFO werkzeug Thread-120 : 192.168.1.24 - - [03/Sep/2019 16:05:44] "GET /static/js/moment.js?=2019-09-0315:05:44.150692 HTTP/1.1" 200 -
+2019-09-03 16:05:44,245 INFO werkzeug Thread-119 : 192.168.1.24 - - [03/Sep/2019 16:05:44] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:05:44.150650 HTTP/1.1" 200 -
+2019-09-03 16:05:44,863 INFO werkzeug Thread-121 : 192.168.1.24 - - [03/Sep/2019 16:05:44] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:07:30,522 INFO werkzeug Thread-122 : 192.168.1.24 - - [03/Sep/2019 16:07:30] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:07:30,597 INFO werkzeug Thread-123 : 192.168.1.24 - - [03/Sep/2019 16:07:30] "GET /static/css/fpa.css?=2019-09-0315:07:30.518958 HTTP/1.1" 200 -
+2019-09-03 16:07:30,608 INFO werkzeug Thread-124 : 192.168.1.24 - - [03/Sep/2019 16:07:30] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:07:30.519192 HTTP/1.1" 200 -
+2019-09-03 16:07:30,610 INFO werkzeug Thread-125 : 192.168.1.24 - - [03/Sep/2019 16:07:30] "GET /static/js/moment.js?=2019-09-0315:07:30.519235 HTTP/1.1" 200 -
+2019-09-03 16:07:31,132 INFO werkzeug Thread-126 : 192.168.1.24 - - [03/Sep/2019 16:07:31] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:08:34,170 INFO werkzeug Thread-127 : 192.168.1.24 - - [03/Sep/2019 16:08:34] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:08:34,228 INFO werkzeug Thread-128 : 192.168.1.24 - - [03/Sep/2019 16:08:34] "GET /static/css/fpa.css?=2019-09-0315:08:34.167204 HTTP/1.1" 200 -
+2019-09-03 16:08:34,233 INFO werkzeug Thread-129 : 192.168.1.24 - - [03/Sep/2019 16:08:34] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:08:34.167441 HTTP/1.1" 200 -
+2019-09-03 16:08:34,237 INFO werkzeug Thread-130 : 192.168.1.24 - - [03/Sep/2019 16:08:34] "GET /static/js/moment.js?=2019-09-0315:08:34.167484 HTTP/1.1" 200 -
+2019-09-03 16:08:34,765 INFO werkzeug Thread-131 : 192.168.1.24 - - [03/Sep/2019 16:08:34] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:10:47,730 INFO werkzeug Thread-132 : 192.168.1.24 - - [03/Sep/2019 16:10:47] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:10:47,814 INFO werkzeug Thread-134 : 192.168.1.24 - - [03/Sep/2019 16:10:47] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:10:47.727615 HTTP/1.1" 200 -
+2019-09-03 16:10:47,814 INFO werkzeug Thread-135 : 192.168.1.24 - - [03/Sep/2019 16:10:47] "GET /static/css/fpa.css?=2019-09-0315:10:47.727382 HTTP/1.1" 200 -
+2019-09-03 16:10:47,815 INFO werkzeug Thread-133 : 192.168.1.24 - - [03/Sep/2019 16:10:47] "GET /static/js/moment.js?=2019-09-0315:10:47.727658 HTTP/1.1" 200 -
+2019-09-03 16:10:48,414 INFO werkzeug Thread-136 : 192.168.1.24 - - [03/Sep/2019 16:10:48] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:11:02,295 INFO werkzeug Thread-137 : 192.168.1.24 - - [03/Sep/2019 16:11:02] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:11:02,344 INFO werkzeug Thread-138 : 192.168.1.24 - - [03/Sep/2019 16:11:02] "GET /static/css/fpa.css?=2019-09-0315:11:02.291521 HTTP/1.1" 200 -
+2019-09-03 16:11:02,365 INFO werkzeug Thread-140 : 192.168.1.24 - - [03/Sep/2019 16:11:02] "GET /static/js/moment.js?=2019-09-0315:11:02.291793 HTTP/1.1" 200 -
+2019-09-03 16:11:02,366 INFO werkzeug Thread-139 : 192.168.1.24 - - [03/Sep/2019 16:11:02] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:11:02.291749 HTTP/1.1" 200 -
+2019-09-03 16:11:02,862 INFO werkzeug Thread-141 : 192.168.1.24 - - [03/Sep/2019 16:11:02] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:11:26,212 INFO werkzeug Thread-142 : 192.168.1.24 - - [03/Sep/2019 16:11:26] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:11:26,284 INFO werkzeug Thread-143 : 192.168.1.24 - - [03/Sep/2019 16:11:26] "GET /static/css/fpa.css?=2019-09-0315:11:26.209327 HTTP/1.1" 200 -
+2019-09-03 16:11:26,292 INFO werkzeug Thread-144 : 192.168.1.24 - - [03/Sep/2019 16:11:26] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:11:26.209605 HTTP/1.1" 200 -
+2019-09-03 16:11:26,298 INFO werkzeug Thread-145 : 192.168.1.24 - - [03/Sep/2019 16:11:26] "GET /static/js/moment.js?=2019-09-0315:11:26.209654 HTTP/1.1" 200 -
+2019-09-03 16:11:26,809 INFO werkzeug Thread-146 : 192.168.1.24 - - [03/Sep/2019 16:11:26] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:11:38,123 INFO werkzeug Thread-147 : 192.168.1.24 - - [03/Sep/2019 16:11:38] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:11:38,160 INFO werkzeug Thread-148 : 192.168.1.24 - - [03/Sep/2019 16:11:38] "GET /static/css/fpa.css?=2019-09-0315:11:38.119187 HTTP/1.1" 200 -
+2019-09-03 16:11:38,175 INFO werkzeug Thread-150 : 192.168.1.24 - - [03/Sep/2019 16:11:38] "GET /static/js/moment.js?=2019-09-0315:11:38.119611 HTTP/1.1" 200 -
+2019-09-03 16:11:38,177 INFO werkzeug Thread-149 : 192.168.1.24 - - [03/Sep/2019 16:11:38] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:11:38.119545 HTTP/1.1" 200 -
+2019-09-03 16:11:38,936 INFO werkzeug Thread-151 : 192.168.1.24 - - [03/Sep/2019 16:11:38] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:16:33,949 INFO werkzeug Thread-152 : 192.168.1.24 - - [03/Sep/2019 16:16:33] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:16:34,054 INFO werkzeug Thread-154 : 192.168.1.24 - - [03/Sep/2019 16:16:34] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:16:33.947021 HTTP/1.1" 200 -
+2019-09-03 16:16:34,055 INFO werkzeug Thread-155 : 192.168.1.24 - - [03/Sep/2019 16:16:34] "GET /static/js/moment.js?=2019-09-0315:16:33.947064 HTTP/1.1" 200 -
+2019-09-03 16:16:34,057 INFO werkzeug Thread-153 : 192.168.1.24 - - [03/Sep/2019 16:16:34] "GET /static/css/fpa.css?=2019-09-0315:16:33.946787 HTTP/1.1" 200 -
+2019-09-03 16:16:34,711 INFO werkzeug Thread-156 : 192.168.1.24 - - [03/Sep/2019 16:16:34] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:17:07,401 INFO werkzeug Thread-157 : 192.168.1.24 - - [03/Sep/2019 16:17:07] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:17:07,468 INFO werkzeug Thread-158 : 192.168.1.24 - - [03/Sep/2019 16:17:07] "GET /static/css/fpa.css?=2019-09-0315:17:07.397391 HTTP/1.1" 200 -
+2019-09-03 16:17:07,478 INFO werkzeug Thread-159 : 192.168.1.24 - - [03/Sep/2019 16:17:07] "GET /static/js/moment.js?=2019-09-0315:17:07.397853 HTTP/1.1" 200 -
+2019-09-03 16:17:07,479 INFO werkzeug Thread-160 : 192.168.1.24 - - [03/Sep/2019 16:17:07] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:17:07.397780 HTTP/1.1" 200 -
+2019-09-03 16:17:08,028 INFO werkzeug Thread-161 : 192.168.1.24 - - [03/Sep/2019 16:17:08] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:17:23,581 INFO werkzeug Thread-162 : 192.168.1.24 - - [03/Sep/2019 16:17:23] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:17:23,657 INFO werkzeug Thread-163 : 192.168.1.24 - - [03/Sep/2019 16:17:23] "GET /static/css/fpa.css?=2019-09-0315:17:23.577576 HTTP/1.1" 200 -
+2019-09-03 16:17:23,666 INFO werkzeug Thread-164 : 192.168.1.24 - - [03/Sep/2019 16:17:23] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:17:23.577869 HTTP/1.1" 200 -
+2019-09-03 16:17:23,668 INFO werkzeug Thread-165 : 192.168.1.24 - - [03/Sep/2019 16:17:23] "GET /static/js/moment.js?=2019-09-0315:17:23.577926 HTTP/1.1" 200 -
+2019-09-03 16:17:24,168 INFO werkzeug Thread-166 : 192.168.1.24 - - [03/Sep/2019 16:17:24] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:17:47,770 INFO werkzeug Thread-167 : 192.168.1.24 - - [03/Sep/2019 16:17:47] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:17:47,844 INFO werkzeug Thread-168 : 192.168.1.24 - - [03/Sep/2019 16:17:47] "GET /static/css/fpa.css?=2019-09-0315:17:47.766624 HTTP/1.1" 200 -
+2019-09-03 16:17:47,848 INFO werkzeug Thread-170 : 192.168.1.24 - - [03/Sep/2019 16:17:47] "GET /static/js/moment.js?=2019-09-0315:17:47.766903 HTTP/1.1" 200 -
+2019-09-03 16:17:47,849 INFO werkzeug Thread-169 : 192.168.1.24 - - [03/Sep/2019 16:17:47] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:17:47.766860 HTTP/1.1" 200 -
+2019-09-03 16:17:48,443 INFO werkzeug Thread-171 : 192.168.1.24 - - [03/Sep/2019 16:17:48] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:18:03,089 INFO werkzeug Thread-172 : 192.168.1.24 - - [03/Sep/2019 16:18:03] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:18:03,148 INFO werkzeug Thread-173 : 192.168.1.24 - - [03/Sep/2019 16:18:03] "GET /static/css/fpa.css?=2019-09-0315:18:03.084886 HTTP/1.1" 200 -
+2019-09-03 16:18:03,165 INFO werkzeug Thread-174 : 192.168.1.24 - - [03/Sep/2019 16:18:03] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:18:03.085245 HTTP/1.1" 200 -
+2019-09-03 16:18:03,167 INFO werkzeug Thread-175 : 192.168.1.24 - - [03/Sep/2019 16:18:03] "GET /static/js/moment.js?=2019-09-0315:18:03.085311 HTTP/1.1" 200 -
+2019-09-03 16:18:03,715 INFO werkzeug Thread-176 : 192.168.1.24 - - [03/Sep/2019 16:18:03] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:18:19,227 INFO werkzeug Thread-177 : 192.168.1.24 - - [03/Sep/2019 16:18:19] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:18:19,300 INFO werkzeug Thread-178 : 192.168.1.24 - - [03/Sep/2019 16:18:19] "GET /static/css/fpa.css?=2019-09-0315:18:19.223930 HTTP/1.1" 200 -
+2019-09-03 16:18:19,307 INFO werkzeug Thread-180 : 192.168.1.24 - - [03/Sep/2019 16:18:19] "GET /static/js/moment.js?=2019-09-0315:18:19.224201 HTTP/1.1" 200 -
+2019-09-03 16:18:19,308 INFO werkzeug Thread-179 : 192.168.1.24 - - [03/Sep/2019 16:18:19] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:18:19.224158 HTTP/1.1" 200 -
+2019-09-03 16:18:19,858 INFO werkzeug Thread-181 : 192.168.1.24 - - [03/Sep/2019 16:18:19] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:18:34,245 INFO werkzeug Thread-182 : 192.168.1.24 - - [03/Sep/2019 16:18:34] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:18:34,317 INFO werkzeug Thread-183 : 192.168.1.24 - - [03/Sep/2019 16:18:34] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:18:34.242264 HTTP/1.1" 200 -
+2019-09-03 16:18:34,318 INFO werkzeug Thread-185 : 192.168.1.24 - - [03/Sep/2019 16:18:34] "GET /static/js/moment.js?=2019-09-0315:18:34.242308 HTTP/1.1" 200 -
+2019-09-03 16:18:34,320 INFO werkzeug Thread-184 : 192.168.1.24 - - [03/Sep/2019 16:18:34] "GET /static/css/fpa.css?=2019-09-0315:18:34.242030 HTTP/1.1" 200 -
+2019-09-03 16:18:34,869 INFO werkzeug Thread-186 : 192.168.1.24 - - [03/Sep/2019 16:18:34] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:18:42,171 INFO werkzeug Thread-187 : 192.168.1.24 - - [03/Sep/2019 16:18:42] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:18:42,230 INFO werkzeug Thread-189 : 192.168.1.24 - - [03/Sep/2019 16:18:42] "GET /static/css/fpa.css?=2019-09-0315:18:42.167734 HTTP/1.1" 200 -
+2019-09-03 16:18:42,230 INFO werkzeug Thread-188 : 192.168.1.24 - - [03/Sep/2019 16:18:42] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:18:42.168081 HTTP/1.1" 200 -
+2019-09-03 16:18:42,234 INFO werkzeug Thread-190 : 192.168.1.24 - - [03/Sep/2019 16:18:42] "GET /static/js/moment.js?=2019-09-0315:18:42.168146 HTTP/1.1" 200 -
+2019-09-03 16:18:42,811 INFO werkzeug Thread-191 : 192.168.1.24 - - [03/Sep/2019 16:18:42] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:18:58,413 INFO werkzeug Thread-192 : 192.168.1.24 - - [03/Sep/2019 16:18:58] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:18:58,456 INFO werkzeug Thread-193 : 192.168.1.24 - - [03/Sep/2019 16:18:58] "GET /static/css/fpa.css?=2019-09-0315:18:58.410453 HTTP/1.1" 200 -
+2019-09-03 16:18:58,460 INFO werkzeug Thread-194 : 192.168.1.24 - - [03/Sep/2019 16:18:58] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:18:58.410685 HTTP/1.1" 200 -
+2019-09-03 16:18:58,566 INFO werkzeug Thread-195 : 192.168.1.24 - - [03/Sep/2019 16:18:58] "GET /static/js/moment.js?=2019-09-0315:18:58.410728 HTTP/1.1" 200 -
+2019-09-03 16:18:59,103 INFO werkzeug Thread-196 : 192.168.1.24 - - [03/Sep/2019 16:18:59] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:19:05,555 INFO werkzeug Thread-197 : 192.168.1.24 - - [03/Sep/2019 16:19:05] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:19:05,605 INFO werkzeug Thread-199 : 192.168.1.24 - - [03/Sep/2019 16:19:05] "GET /static/css/fpa.css?=2019-09-0315:19:05.551627 HTTP/1.1" 200 -
+2019-09-03 16:19:05,606 INFO werkzeug Thread-198 : 192.168.1.24 - - [03/Sep/2019 16:19:05] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:19:05.551865 HTTP/1.1" 200 -
+2019-09-03 16:19:05,610 INFO werkzeug Thread-200 : 192.168.1.24 - - [03/Sep/2019 16:19:05] "GET /static/js/moment.js?=2019-09-0315:19:05.551908 HTTP/1.1" 200 -
+2019-09-03 16:19:06,183 INFO werkzeug Thread-201 : 192.168.1.24 - - [03/Sep/2019 16:19:06] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:19:27,545 INFO werkzeug Thread-202 : 192.168.1.24 - - [03/Sep/2019 16:19:27] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 16:19:27,594 INFO werkzeug Thread-204 : 192.168.1.24 - - [03/Sep/2019 16:19:27] "GET /static/css/fpa.css?=2019-09-0315:19:27.537627 HTTP/1.1" 200 -
+2019-09-03 16:19:27,594 INFO werkzeug Thread-203 : 192.168.1.24 - - [03/Sep/2019 16:19:27] "GET /static/js/moment.js?=2019-09-0315:19:27.537876 HTTP/1.1" 200 -
+2019-09-03 16:19:28,855 INFO werkzeug Thread-205 : 192.168.1.24 - - [03/Sep/2019 16:19:28] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:19:28,896 INFO werkzeug Thread-206 : 192.168.1.24 - - [03/Sep/2019 16:19:28] "GET /static/css/fpa.css?=2019-09-0315:19:28.849568 HTTP/1.1" 200 -
+2019-09-03 16:19:28,900 INFO werkzeug Thread-207 : 192.168.1.24 - - [03/Sep/2019 16:19:28] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:19:28.850173 HTTP/1.1" 200 -
+2019-09-03 16:19:28,904 INFO werkzeug Thread-208 : 192.168.1.24 - - [03/Sep/2019 16:19:28] "GET /static/js/moment.js?=2019-09-0315:19:28.850289 HTTP/1.1" 200 -
+2019-09-03 16:19:54,768 INFO werkzeug Thread-209 : 192.168.1.24 - - [03/Sep/2019 16:19:54] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 16:19:54,852 INFO werkzeug Thread-210 : 192.168.1.24 - - [03/Sep/2019 16:19:54] "GET /static/js/moment.js?=2019-09-0315:19:54.762209 HTTP/1.1" 200 -
+2019-09-03 16:19:54,853 INFO werkzeug Thread-211 : 192.168.1.24 - - [03/Sep/2019 16:19:54] "GET /static/css/fpa.css?=2019-09-0315:19:54.761968 HTTP/1.1" 200 -
+2019-09-03 16:20:00,883 INFO werkzeug Thread-212 : 192.168.1.24 - - [03/Sep/2019 16:20:00] "GET /fpa/admin/edituser/0 HTTP/1.1" 200 -
+2019-09-03 16:20:00,929 INFO werkzeug Thread-213 : 192.168.1.24 - - [03/Sep/2019 16:20:00] "GET /static/css/fpa.css?=2019-09-0315:20:00.879360 HTTP/1.1" 200 -
+2019-09-03 16:20:00,933 INFO werkzeug Thread-214 : 192.168.1.24 - - [03/Sep/2019 16:20:00] "GET /static/js/moment.js?=2019-09-0315:20:00.879476 HTTP/1.1" 200 -
+2019-09-03 16:20:02,873 INFO werkzeug Thread-215 : 192.168.1.24 - - [03/Sep/2019 16:20:02] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 16:20:02,948 INFO werkzeug Thread-216 : 192.168.1.24 - - [03/Sep/2019 16:20:02] "GET /static/css/fpa.css?=2019-09-0315:20:02.866867 HTTP/1.1" 200 -
+2019-09-03 16:20:02,948 INFO werkzeug Thread-217 : 192.168.1.24 - - [03/Sep/2019 16:20:02] "GET /static/js/moment.js?=2019-09-0315:20:02.867116 HTTP/1.1" 200 -
+2019-09-03 16:20:04,517 INFO werkzeug Thread-218 : 192.168.1.24 - - [03/Sep/2019 16:20:04] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:20:04,558 INFO werkzeug Thread-219 : 192.168.1.24 - - [03/Sep/2019 16:20:04] "GET /static/css/fpa.css?=2019-09-0315:20:04.510613 HTTP/1.1" 200 -
+2019-09-03 16:20:04,572 INFO werkzeug Thread-220 : 192.168.1.24 - - [03/Sep/2019 16:20:04] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:20:04.511210 HTTP/1.1" 200 -
+2019-09-03 16:20:04,586 INFO werkzeug Thread-221 : 192.168.1.24 - - [03/Sep/2019 16:20:04] "GET /static/js/moment.js?=2019-09-0315:20:04.511324 HTTP/1.1" 200 -
+2019-09-03 16:20:24,973 INFO werkzeug Thread-222 : 192.168.1.24 - - [03/Sep/2019 16:20:24] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:20:25,035 INFO werkzeug Thread-223 : 192.168.1.24 - - [03/Sep/2019 16:20:25] "GET /static/css/fpa.css?=2019-09-0315:20:24.970183 HTTP/1.1" 200 -
+2019-09-03 16:20:25,042 INFO werkzeug Thread-225 : 192.168.1.24 - - [03/Sep/2019 16:20:25] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:20:24.970409 HTTP/1.1" 200 -
+2019-09-03 16:20:25,043 INFO werkzeug Thread-224 : 192.168.1.24 - - [03/Sep/2019 16:20:25] "GET /static/js/moment.js?=2019-09-0315:20:24.970451 HTTP/1.1" 200 -
+2019-09-03 16:20:25,654 INFO werkzeug Thread-226 : 192.168.1.24 - - [03/Sep/2019 16:20:25] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:20:47,958 INFO werkzeug Thread-227 : 192.168.1.24 - - [03/Sep/2019 16:20:47] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 16:20:48,013 INFO werkzeug Thread-228 : 192.168.1.24 - - [03/Sep/2019 16:20:48] "GET /static/css/fpa.css?=2019-09-0315:20:47.955404 HTTP/1.1" 200 -
+2019-09-03 16:20:48,031 INFO werkzeug Thread-230 : 192.168.1.24 - - [03/Sep/2019 16:20:48] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0315:20:47.955636 HTTP/1.1" 200 -
+2019-09-03 16:20:48,031 INFO werkzeug Thread-229 : 192.168.1.24 - - [03/Sep/2019 16:20:48] "GET /static/js/moment.js?=2019-09-0315:20:47.955679 HTTP/1.1" 200 -
+2019-09-03 16:20:48,556 INFO werkzeug Thread-231 : 192.168.1.24 - - [03/Sep/2019 16:20:48] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 16:28:57,492 INFO werkzeug Thread-232 : 192.168.1.24 - - [03/Sep/2019 16:28:57] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 16:28:57,575 INFO werkzeug Thread-233 : 192.168.1.24 - - [03/Sep/2019 16:28:57] "GET /static/css/fpa.css?=2019-09-0315:28:57.486638 HTTP/1.1" 200 -
+2019-09-03 16:28:57,579 INFO werkzeug Thread-234 : 192.168.1.24 - - [03/Sep/2019 16:28:57] "GET /static/js/moment.js?=2019-09-0315:28:57.486879 HTTP/1.1" 200 -
+2019-09-03 18:29:45,946 INFO werkzeug Thread-235 : 192.168.1.24 - - [03/Sep/2019 18:29:45] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 18:29:46,021 INFO werkzeug Thread-238 : 192.168.1.24 - - [03/Sep/2019 18:29:46] "GET /static/css/fpa.css?=2019-09-0317:29:45.940565 HTTP/1.1" 200 -
+2019-09-03 18:29:46,026 INFO werkzeug Thread-236 : 192.168.1.24 - - [03/Sep/2019 18:29:46] "GET /static/js/moment.js?=2019-09-0317:29:45.941303 HTTP/1.1" 200 -
+2019-09-03 18:29:46,026 INFO werkzeug Thread-237 : 192.168.1.24 - - [03/Sep/2019 18:29:46] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0317:29:45.941185 HTTP/1.1" 200 -
+2019-09-03 18:40:12,331 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/gui/forms.py', reloading
+2019-09-03 18:40:12,408 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 18:40:12,838 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 18:40:12,838 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 18:52:32,311 INFO werkzeug MainThread :  * Detected change in '/projects/fmapp/fmapp/project/models.py', reloading
+2019-09-03 18:52:32,381 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 18:56:06,127 INFO werkzeug MainThread :  * Running on http://192.168.1.16:5000/ (Press CTRL+C to quit)
+2019-09-03 18:56:06,127 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-03 18:56:06,566 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-03 18:56:06,567 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-03 18:56:16,456 INFO werkzeug Thread-2 : 192.168.1.24 - - [03/Sep/2019 18:56:16] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 18:56:16,542 INFO werkzeug Thread-3 : 192.168.1.24 - - [03/Sep/2019 18:56:16] "GET /static/css/fpa.css?=2019-09-0317:56:16.450426 HTTP/1.1" 200 -
+2019-09-03 18:56:16,542 INFO werkzeug Thread-4 : 192.168.1.24 - - [03/Sep/2019 18:56:16] "GET /static/js/moment.js?=2019-09-0317:56:16.450528 HTTP/1.1" 200 -
+2019-09-03 18:56:17,074 INFO werkzeug Thread-5 : 192.168.1.24 - - [03/Sep/2019 18:56:17] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-03 18:56:21,954 INFO werkzeug Thread-6 : 192.168.1.24 - - [03/Sep/2019 18:56:21] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-03 18:56:22,019 INFO werkzeug Thread-7 : 192.168.1.24 - - [03/Sep/2019 18:56:22] "GET /static/css/fpa.css?=2019-09-0317:56:21.944970 HTTP/1.1" 200 -
+2019-09-03 18:56:22,021 INFO werkzeug Thread-8 : 192.168.1.24 - - [03/Sep/2019 18:56:22] "GET /static/js/moment.js?=2019-09-0317:56:21.945213 HTTP/1.1" 200 -
+2019-09-03 18:56:23,062 INFO werkzeug Thread-9 : 192.168.1.24 - - [03/Sep/2019 18:56:23] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-03 18:56:23,121 INFO werkzeug Thread-10 : 192.168.1.24 - - [03/Sep/2019 18:56:23] "GET /static/css/fpa.css?=2019-09-0317:56:23.059330 HTTP/1.1" 200 -
+2019-09-03 18:56:23,140 INFO werkzeug Thread-11 : 192.168.1.24 - - [03/Sep/2019 18:56:23] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0317:56:23.059558 HTTP/1.1" 200 -
+2019-09-03 18:56:23,142 INFO werkzeug Thread-12 : 192.168.1.24 - - [03/Sep/2019 18:56:23] "GET /static/js/moment.js?=2019-09-0317:56:23.059600 HTTP/1.1" 200 -
+2019-09-03 18:56:29,828 INFO werkzeug Thread-13 : 192.168.1.24 - - [03/Sep/2019 18:56:29] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-03 18:56:29,870 INFO werkzeug Thread-14 : 192.168.1.24 - - [03/Sep/2019 18:56:29] "GET /static/css/fpa.css?=2019-09-0317:56:29.822603 HTTP/1.1" 200 -
+2019-09-03 18:56:29,889 INFO werkzeug Thread-15 : 192.168.1.24 - - [03/Sep/2019 18:56:29] "GET /static/js/moment.js?=2019-09-0317:56:29.822700 HTTP/1.1" 200 -
+2019-09-03 18:56:31,727 INFO werkzeug Thread-16 : 192.168.1.24 - - [03/Sep/2019 18:56:31] "GET /fpa/admin/fortimanagers HTTP/1.1" 200 -
+2019-09-03 18:56:31,784 INFO werkzeug Thread-17 : 192.168.1.24 - - [03/Sep/2019 18:56:31] "GET /static/css/fpa.css?=2019-09-0317:56:31.721747 HTTP/1.1" 200 -
+2019-09-03 18:56:31,785 INFO werkzeug Thread-18 : 192.168.1.24 - - [03/Sep/2019 18:56:31] "GET /static/js/moment.js?=2019-09-0317:56:31.721846 HTTP/1.1" 200 -
+2019-09-05 14:46:17,585 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2019-09-05 14:46:17,587 INFO werkzeug MainThread :  * Restarting with stat
+2019-09-05 14:46:18,045 WARNING werkzeug MainThread :  * Debugger is active!
+2019-09-05 14:46:18,046 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-09-05 14:46:21,650 INFO werkzeug Thread-2 : 127.0.0.1 - - [05/Sep/2019 14:46:21] "GET /fpa/api/ HTTP/1.1" 200 -
+2019-09-05 14:46:21,706 INFO werkzeug Thread-3 : 127.0.0.1 - - [05/Sep/2019 14:46:21] "GET /swaggerui/swagger-ui.css HTTP/1.1" 304 -
+2019-09-05 14:46:21,709 INFO werkzeug Thread-4 : 127.0.0.1 - - [05/Sep/2019 14:46:21] "GET /swaggerui/droid-sans.css HTTP/1.1" 304 -
+2019-09-05 14:46:21,718 INFO werkzeug Thread-6 : 127.0.0.1 - - [05/Sep/2019 14:46:21] "GET /swaggerui/swagger-ui-standalone-preset.js HTTP/1.1" 304 -
+2019-09-05 14:46:21,720 INFO werkzeug Thread-5 : 127.0.0.1 - - [05/Sep/2019 14:46:21] "GET /swaggerui/swagger-ui-bundle.js HTTP/1.1" 304 -
+2019-09-05 14:46:22,018 INFO werkzeug Thread-7 : 127.0.0.1 - - [05/Sep/2019 14:46:22] "GET /fpa/api/swagger.json HTTP/1.1" 200 -
+2019-09-05 14:46:22,088 INFO werkzeug Thread-8 : 127.0.0.1 - - [05/Sep/2019 14:46:22] "GET /swaggerui/favicon-32x32.png HTTP/1.1" 200 -
+2019-09-05 14:46:31,120 INFO werkzeug Thread-9 : 127.0.0.1 - - [05/Sep/2019 14:46:31] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-05 14:46:31,179 INFO werkzeug Thread-11 : 127.0.0.1 - - [05/Sep/2019 14:46:31] "GET /static/js/moment.js?=2019-09-0513:46:31.116003 HTTP/1.1" 200 -
+2019-09-05 14:46:31,179 INFO werkzeug Thread-10 : 127.0.0.1 - - [05/Sep/2019 14:46:31] "GET /static/css/fpa.css?=2019-09-0513:46:31.115908 HTTP/1.1" 200 -
+2019-09-05 14:46:31,380 INFO werkzeug Thread-12 : 127.0.0.1 - - [05/Sep/2019 14:46:31] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2019-09-05 14:46:36,538 INFO werkzeug Thread-13 : 127.0.0.1 - - [05/Sep/2019 14:46:36] "GET /fpa/logout HTTP/1.1" 302 -
+2019-09-05 14:46:36,545 INFO werkzeug Thread-14 : 127.0.0.1 - - [05/Sep/2019 14:46:36] "GET /fpa/ HTTP/1.1" 302 -
+2019-09-05 14:46:36,558 INFO werkzeug Thread-15 : 127.0.0.1 - - [05/Sep/2019 14:46:36] "GET /fpa/login HTTP/1.1" 200 -
+2019-09-05 14:46:36,722 INFO werkzeug Thread-16 : 127.0.0.1 - - [05/Sep/2019 14:46:36] "GET /favicon.ico HTTP/1.1" 200 -
+2019-09-05 14:46:39,877 INFO project Thread-17 : Successfully logged in philip
+2019-09-05 14:46:39,879 INFO werkzeug Thread-17 : 127.0.0.1 - - [05/Sep/2019 14:46:39] "POST /fpa/login HTTP/1.1" 302 -
+2019-09-05 14:46:39,904 INFO werkzeug Thread-18 : 127.0.0.1 - - [05/Sep/2019 14:46:39] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-05 14:46:39,926 INFO werkzeug Thread-19 : 127.0.0.1 - - [05/Sep/2019 14:46:39] "GET /static/css/fpa.css?=2019-09-0513:46:39.899207 HTTP/1.1" 200 -
+2019-09-05 14:46:39,930 INFO werkzeug Thread-20 : 127.0.0.1 - - [05/Sep/2019 14:46:39] "GET /static/js/moment.js?=2019-09-0513:46:39.899369 HTTP/1.1" 200 -
+2019-09-05 14:46:44,127 INFO werkzeug Thread-21 : 127.0.0.1 - - [05/Sep/2019 14:46:44] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-09-05 14:46:44,162 INFO werkzeug Thread-22 : 127.0.0.1 - - [05/Sep/2019 14:46:44] "GET /static/css/fpa.css?=2019-09-0513:46:44.121399 HTTP/1.1" 200 -
+2019-09-05 14:46:44,168 INFO werkzeug Thread-23 : 127.0.0.1 - - [05/Sep/2019 14:46:44] "GET /static/js/moment.js?=2019-09-0513:46:44.121515 HTTP/1.1" 200 -
+2019-09-05 14:46:50,818 INFO werkzeug Thread-24 : 127.0.0.1 - - [05/Sep/2019 14:46:50] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-09-05 14:46:50,846 INFO werkzeug Thread-25 : 127.0.0.1 - - [05/Sep/2019 14:46:50] "GET /static/css/fpa.css?=2019-09-0513:46:50.737788 HTTP/1.1" 200 -
+2019-09-05 14:46:50,849 INFO werkzeug Thread-26 : 127.0.0.1 - - [05/Sep/2019 14:46:50] "GET /static/js/moment.js?=2019-09-0513:46:50.737896 HTTP/1.1" 200 -
+2019-09-05 14:47:07,605 INFO werkzeug Thread-27 : 127.0.0.1 - - [05/Sep/2019 14:47:07] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-05 14:47:07,665 INFO werkzeug Thread-28 : 127.0.0.1 - - [05/Sep/2019 14:47:07] "GET /static/css/fpa.css?=2019-09-0513:47:07.601790 HTTP/1.1" 200 -
+2019-09-05 14:47:07,668 INFO werkzeug Thread-30 : 127.0.0.1 - - [05/Sep/2019 14:47:07] "GET /static/fullcalendar/packages/daygrid/main.css HTTP/1.1" 200 -
+2019-09-05 14:47:07,673 INFO werkzeug Thread-29 : 127.0.0.1 - - [05/Sep/2019 14:47:07] "GET /static/fullcalendar/packages/core/main.css HTTP/1.1" 200 -
+2019-09-05 14:47:07,674 INFO werkzeug Thread-31 : 127.0.0.1 - - [05/Sep/2019 14:47:07] "GET /static/fullcalendar/packages/core/main.js HTTP/1.1" 200 -
+2019-09-05 14:47:07,679 INFO werkzeug Thread-32 : 127.0.0.1 - - [05/Sep/2019 14:47:07] "GET /static/fullcalendar/packages/daygrid/main.js HTTP/1.1" 200 -
+2019-09-05 14:47:07,682 INFO werkzeug Thread-33 : 127.0.0.1 - - [05/Sep/2019 14:47:07] "GET /static/fullcalendar/packages/interaction/main.js HTTP/1.1" 200 -
+2019-09-05 14:47:07,697 INFO werkzeug Thread-35 : 127.0.0.1 - - [05/Sep/2019 14:47:07] "GET /static/js/moment.js?=2019-09-0513:47:07.602099 HTTP/1.1" 200 -
+2019-09-05 14:47:07,697 INFO werkzeug Thread-34 : 127.0.0.1 - - [05/Sep/2019 14:47:07] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0513:47:07.602052 HTTP/1.1" 200 -
+2019-09-05 14:47:12,804 INFO werkzeug Thread-36 : 127.0.0.1 - - [05/Sep/2019 14:47:12] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-09-05 14:47:12,844 INFO werkzeug Thread-37 : 127.0.0.1 - - [05/Sep/2019 14:47:12] "GET /static/css/fpa.css?=2019-09-0513:47:12.800030 HTTP/1.1" 200 -
+2019-09-05 14:47:12,845 INFO werkzeug Thread-38 : 127.0.0.1 - - [05/Sep/2019 14:47:12] "GET /static/fullcalendar/packages/moment/main.js?=2019-09-0513:47:12.800411 HTTP/1.1" 200 -
+2019-09-05 14:47:12,871 INFO werkzeug Thread-39 : 127.0.0.1 - - [05/Sep/2019 14:47:12] "GET /static/js/moment.js?=2019-09-0513:47:12.800495 HTTP/1.1" 200 -
+2019-09-05 14:47:13,760 INFO werkzeug Thread-40 : 127.0.0.1 - - [05/Sep/2019 14:47:13] "GET /fpa/changes HTTP/1.1" 200 -
+2019-09-05 14:47:13,791 INFO werkzeug Thread-41 : 127.0.0.1 - - [05/Sep/2019 14:47:13] "GET /static/css/fpa.css?=2019-09-0513:47:13.752725 HTTP/1.1" 200 -
+2019-09-05 14:47:13,793 INFO werkzeug Thread-42 : 127.0.0.1 - - [05/Sep/2019 14:47:13] "GET /static/js/moment.js?=2019-09-0513:47:13.752869 HTTP/1.1" 200 -
+2019-09-05 14:47:14,651 INFO werkzeug Thread-43 : 127.0.0.1 - - [05/Sep/2019 14:47:14] "GET /fpa/ HTTP/1.1" 200 -
+2019-09-05 14:47:14,685 INFO werkzeug Thread-45 : 127.0.0.1 - - [05/Sep/2019 14:47:14] "GET /static/js/moment.js?=2019-09-0513:47:14.648302 HTTP/1.1" 200 -
+2019-09-05 14:47:14,687 INFO werkzeug Thread-44 : 127.0.0.1 - - [05/Sep/2019 14:47:14] "GET /static/css/fpa.css?=2019-09-0513:47:14.648184 HTTP/1.1" 200 -
+2019-11-28 15:32:25,260 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2019-11-28 15:32:25,263 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-28 15:32:25,697 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-28 15:32:25,709 INFO werkzeug MainThread :  * Debugger PIN: 217-479-310
+2019-11-28 15:34:46,039 INFO werkzeug Thread-2 : 127.0.0.1 - - [28/Nov/2019 15:34:46] "GET /fmapp HTTP/1.1" 200 -
+2019-11-28 15:34:46,333 INFO werkzeug Thread-3 : 127.0.0.1 - - [28/Nov/2019 15:34:46] "GET /static/img/favicon.ico HTTP/1.1" 304 -
+2019-11-28 15:35:52,646 INFO werkzeug Thread-4 : 127.0.0.1 - - [28/Nov/2019 15:35:52] "GET /fmapp/fpa HTTP/1.1" 200 -
+2019-11-28 15:35:57,122 INFO werkzeug Thread-5 : 127.0.0.1 - - [28/Nov/2019 15:35:57] "GET /fmapp/fpa/admin HTTP/1.1" 200 -
+2019-11-28 15:36:57,520 INFO werkzeug Thread-6 : 127.0.0.1 - - [28/Nov/2019 15:36:57] "GET /fpa/ HTTP/1.1" 302 -
+2019-11-28 15:36:57,532 INFO werkzeug Thread-7 : 127.0.0.1 - - [28/Nov/2019 15:36:57] "GET /fpa/login HTTP/1.1" 200 -
+2019-11-28 15:36:57,777 INFO werkzeug Thread-8 : 127.0.0.1 - - [28/Nov/2019 15:36:57] "GET /favicon.ico HTTP/1.1" 200 -
+2019-11-28 15:37:01,673 INFO project Thread-9 : Successfully logged in philip
+2019-11-28 15:37:01,674 INFO werkzeug Thread-9 : 127.0.0.1 - - [28/Nov/2019 15:37:01] "POST /fpa/login HTTP/1.1" 302 -
+2019-11-28 15:37:01,716 INFO werkzeug Thread-10 : 127.0.0.1 - - [28/Nov/2019 15:37:01] "GET /fpa/ HTTP/1.1" 200 -
+2019-11-28 15:37:01,765 INFO werkzeug Thread-11 : 127.0.0.1 - - [28/Nov/2019 15:37:01] "GET /static/css/fpa.css?=2019-11-2815:37:01.710871 HTTP/1.1" 200 -
+2019-11-28 15:37:01,771 INFO werkzeug Thread-12 : 127.0.0.1 - - [28/Nov/2019 15:37:01] "GET /static/js/moment.js?=2019-11-2815:37:01.710966 HTTP/1.1" 200 -
+2019-11-28 15:37:09,851 INFO werkzeug Thread-13 : 127.0.0.1 - - [28/Nov/2019 15:37:09] "GET /fpa/logout HTTP/1.1" 302 -
+2019-11-28 15:37:09,857 INFO werkzeug Thread-14 : 127.0.0.1 - - [28/Nov/2019 15:37:09] "GET /fpa/ HTTP/1.1" 302 -
+2019-11-28 15:37:09,864 INFO werkzeug Thread-15 : 127.0.0.1 - - [28/Nov/2019 15:37:09] "GET /fpa/login HTTP/1.1" 200 -
+2019-11-28 15:37:10,009 INFO werkzeug Thread-16 : 127.0.0.1 - - [28/Nov/2019 15:37:10] "GET /favicon.ico HTTP/1.1" 200 -
+2019-11-28 15:37:13,309 INFO project Thread-17 : Successfully logged in frank
+2019-11-28 15:37:13,312 INFO werkzeug Thread-17 : 127.0.0.1 - - [28/Nov/2019 15:37:13] "POST /fpa/login HTTP/1.1" 302 -
+2019-11-28 15:37:13,333 INFO werkzeug Thread-18 : 127.0.0.1 - - [28/Nov/2019 15:37:13] "GET /fpa/ HTTP/1.1" 200 -
+2019-11-28 15:37:13,388 INFO werkzeug Thread-20 : 127.0.0.1 - - [28/Nov/2019 15:37:13] "GET /static/js/moment.js?=2019-11-2815:37:13.329407 HTTP/1.1" 200 -
+2019-11-28 15:37:13,390 INFO werkzeug Thread-19 : 127.0.0.1 - - [28/Nov/2019 15:37:13] "GET /static/css/fpa.css?=2019-11-2815:37:13.329308 HTTP/1.1" 200 -
+2019-11-28 15:37:18,517 INFO werkzeug Thread-21 : 127.0.0.1 - - [28/Nov/2019 15:37:18] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-11-28 15:37:18,586 INFO werkzeug Thread-22 : 127.0.0.1 - - [28/Nov/2019 15:37:18] "GET /static/css/fpa.css?=2019-11-2815:37:18.512796 HTTP/1.1" 200 -
+2019-11-28 15:37:18,592 INFO werkzeug Thread-23 : 127.0.0.1 - - [28/Nov/2019 15:37:18] "GET /static/fullcalendar/packages/core/main.css HTTP/1.1" 200 -
+2019-11-28 15:37:18,594 INFO werkzeug Thread-24 : 127.0.0.1 - - [28/Nov/2019 15:37:18] "GET /static/fullcalendar/packages/daygrid/main.css HTTP/1.1" 200 -
+2019-11-28 15:37:18,595 INFO werkzeug Thread-25 : 127.0.0.1 - - [28/Nov/2019 15:37:18] "GET /static/fullcalendar/packages/core/main.js HTTP/1.1" 200 -
+2019-11-28 15:37:18,604 INFO werkzeug Thread-26 : 127.0.0.1 - - [28/Nov/2019 15:37:18] "GET /static/fullcalendar/packages/daygrid/main.js HTTP/1.1" 200 -
+2019-11-28 15:37:18,610 INFO werkzeug Thread-27 : 127.0.0.1 - - [28/Nov/2019 15:37:18] "GET /static/fullcalendar/packages/interaction/main.js HTTP/1.1" 200 -
+2019-11-28 15:37:18,611 INFO werkzeug Thread-28 : 127.0.0.1 - - [28/Nov/2019 15:37:18] "GET /static/fullcalendar/packages/moment/main.js?=2019-11-2815:37:18.513085 HTTP/1.1" 200 -
+2019-11-28 15:37:18,617 INFO werkzeug Thread-29 : 127.0.0.1 - - [28/Nov/2019 15:37:18] "GET /static/js/moment.js?=2019-11-2815:37:18.513140 HTTP/1.1" 200 -
+2019-11-28 15:43:21,279 INFO werkzeug Thread-30 : 127.0.0.1 - - [28/Nov/2019 15:43:21] "GET /fpa/ HTTP/1.1" 200 -
+2019-11-28 15:43:21,327 INFO werkzeug Thread-31 : 127.0.0.1 - - [28/Nov/2019 15:43:21] "GET /static/css/fpa.css?=2019-11-2815:43:21.276772 HTTP/1.1" 200 -
+2019-11-28 15:43:21,332 INFO werkzeug Thread-32 : 127.0.0.1 - - [28/Nov/2019 15:43:21] "GET /static/js/moment.js?=2019-11-2815:43:21.276883 HTTP/1.1" 200 -
+2019-11-28 15:43:26,728 INFO werkzeug Thread-33 : 127.0.0.1 - - [28/Nov/2019 15:43:26] "GET /fpa/changes HTTP/1.1" 200 -
+2019-11-28 15:43:26,767 INFO werkzeug Thread-34 : 127.0.0.1 - - [28/Nov/2019 15:43:26] "GET /static/css/fpa.css?=2019-11-2815:43:26.721101 HTTP/1.1" 200 -
+2019-11-28 15:43:26,773 INFO werkzeug Thread-35 : 127.0.0.1 - - [28/Nov/2019 15:43:26] "GET /static/js/moment.js?=2019-11-2815:43:26.721212 HTTP/1.1" 200 -
+2019-11-28 15:43:29,957 INFO werkzeug Thread-36 : 127.0.0.1 - - [28/Nov/2019 15:43:29] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-11-28 15:43:30,002 INFO werkzeug Thread-37 : 127.0.0.1 - - [28/Nov/2019 15:43:30] "GET /static/css/fpa.css?=2019-11-2815:43:29.954854 HTTP/1.1" 200 -
+2019-11-28 15:43:30,015 INFO werkzeug Thread-38 : 127.0.0.1 - - [28/Nov/2019 15:43:30] "GET /static/fullcalendar/packages/moment/main.js?=2019-11-2815:43:29.955095 HTTP/1.1" 200 -
+2019-11-28 15:43:30,017 INFO werkzeug Thread-39 : 127.0.0.1 - - [28/Nov/2019 15:43:30] "GET /static/js/moment.js?=2019-11-2815:43:29.955140 HTTP/1.1" 200 -
+2019-11-28 15:43:32,120 INFO werkzeug Thread-40 : 127.0.0.1 - - [28/Nov/2019 15:43:32] "GET /fpa/changes HTTP/1.1" 200 -
+2019-11-28 15:43:32,167 INFO werkzeug Thread-41 : 127.0.0.1 - - [28/Nov/2019 15:43:32] "GET /static/css/fpa.css?=2019-11-2815:43:32.115970 HTTP/1.1" 200 -
+2019-11-28 15:43:32,168 INFO werkzeug Thread-42 : 127.0.0.1 - - [28/Nov/2019 15:43:32] "GET /static/js/moment.js?=2019-11-2815:43:32.116085 HTTP/1.1" 200 -
+2019-11-28 15:43:33,193 INFO werkzeug Thread-43 : 127.0.0.1 - - [28/Nov/2019 15:43:33] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-11-28 15:43:33,243 INFO werkzeug Thread-44 : 127.0.0.1 - - [28/Nov/2019 15:43:33] "GET /static/css/fpa.css?=2019-11-2815:43:33.188816 HTTP/1.1" 200 -
+2019-11-28 15:43:33,249 INFO werkzeug Thread-45 : 127.0.0.1 - - [28/Nov/2019 15:43:33] "GET /static/fullcalendar/packages/moment/main.js?=2019-11-2815:43:33.189082 HTTP/1.1" 200 -
+2019-11-28 15:43:33,253 INFO werkzeug Thread-46 : 127.0.0.1 - - [28/Nov/2019 15:43:33] "GET /static/js/moment.js?=2019-11-2815:43:33.189145 HTTP/1.1" 200 -
+2019-11-28 15:43:38,085 INFO werkzeug Thread-47 : 127.0.0.1 - - [28/Nov/2019 15:43:38] "GET /fpa/ HTTP/1.1" 200 -
+2019-11-28 15:43:38,133 INFO werkzeug Thread-49 : 127.0.0.1 - - [28/Nov/2019 15:43:38] "GET /static/js/moment.js?=2019-11-2815:43:38.083601 HTTP/1.1" 200 -
+2019-11-28 15:43:38,134 INFO werkzeug Thread-48 : 127.0.0.1 - - [28/Nov/2019 15:43:38] "GET /static/css/fpa.css?=2019-11-2815:43:38.083509 HTTP/1.1" 200 -
+2019-11-28 15:43:47,075 INFO werkzeug Thread-50 : 127.0.0.1 - - [28/Nov/2019 15:43:47] "GET /fpa/logout HTTP/1.1" 302 -
+2019-11-28 15:43:47,081 INFO werkzeug Thread-51 : 127.0.0.1 - - [28/Nov/2019 15:43:47] "GET /fpa/ HTTP/1.1" 302 -
+2019-11-28 15:43:47,094 INFO werkzeug Thread-52 : 127.0.0.1 - - [28/Nov/2019 15:43:47] "GET /fpa/login HTTP/1.1" 200 -
+2019-11-28 15:43:47,217 INFO werkzeug Thread-53 : 127.0.0.1 - - [28/Nov/2019 15:43:47] "GET /favicon.ico HTTP/1.1" 200 -
+2019-11-28 15:43:50,498 INFO project Thread-54 : Successfully logged in philip
+2019-11-28 15:43:50,500 INFO werkzeug Thread-54 : 127.0.0.1 - - [28/Nov/2019 15:43:50] "POST /fpa/login HTTP/1.1" 302 -
+2019-11-28 15:43:50,522 INFO werkzeug Thread-55 : 127.0.0.1 - - [28/Nov/2019 15:43:50] "GET /fpa/ HTTP/1.1" 200 -
+2019-11-28 15:43:50,565 INFO werkzeug Thread-56 : 127.0.0.1 - - [28/Nov/2019 15:43:50] "GET /static/css/fpa.css?=2019-11-2815:43:50.517790 HTTP/1.1" 200 -
+2019-11-28 15:43:50,573 INFO werkzeug Thread-57 : 127.0.0.1 - - [28/Nov/2019 15:43:50] "GET /static/js/moment.js?=2019-11-2815:43:50.517965 HTTP/1.1" 200 -
+2019-11-28 15:43:53,751 INFO werkzeug Thread-58 : 127.0.0.1 - - [28/Nov/2019 15:43:53] "GET /fpa/admin/logs?counter=10 HTTP/1.1" 200 -
+2019-11-28 15:43:53,793 INFO werkzeug Thread-59 : 127.0.0.1 - - [28/Nov/2019 15:43:53] "GET /static/css/fpa.css?=2019-11-2815:43:53.669780 HTTP/1.1" 200 -
+2019-11-28 15:43:53,797 INFO werkzeug Thread-60 : 127.0.0.1 - - [28/Nov/2019 15:43:53] "GET /static/js/moment.js?=2019-11-2815:43:53.669874 HTTP/1.1" 200 -
+2019-11-28 15:44:03,649 INFO werkzeug Thread-61 : 127.0.0.1 - - [28/Nov/2019 15:44:03] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-11-28 15:44:03,694 INFO werkzeug Thread-63 : 127.0.0.1 - - [28/Nov/2019 15:44:03] "GET /static/js/moment.js?=2019-11-2815:44:03.641697 HTTP/1.1" 200 -
+2019-11-28 15:44:03,696 INFO werkzeug Thread-62 : 127.0.0.1 - - [28/Nov/2019 15:44:03] "GET /static/css/fpa.css?=2019-11-2815:44:03.641568 HTTP/1.1" 200 -
+2019-11-28 15:44:07,767 INFO werkzeug Thread-64 : 127.0.0.1 - - [28/Nov/2019 15:44:07] "GET /fpa/admin/edituser/3 HTTP/1.1" 200 -
+2019-11-28 15:44:07,807 INFO werkzeug Thread-65 : 127.0.0.1 - - [28/Nov/2019 15:44:07] "GET /static/css/fpa.css?=2019-11-2815:44:07.763208 HTTP/1.1" 200 -
+2019-11-28 15:44:07,812 INFO werkzeug Thread-66 : 127.0.0.1 - - [28/Nov/2019 15:44:07] "GET /static/js/moment.js?=2019-11-2815:44:07.763310 HTTP/1.1" 200 -
+2019-11-28 15:44:14,211 INFO werkzeug Thread-67 : 127.0.0.1 - - [28/Nov/2019 15:44:14] "GET /fpa/admin/users HTTP/1.1" 200 -
+2019-11-28 15:44:14,251 INFO werkzeug Thread-68 : 127.0.0.1 - - [28/Nov/2019 15:44:14] "GET /static/css/fpa.css?=2019-11-2815:44:14.204195 HTTP/1.1" 200 -
+2019-11-28 15:44:14,262 INFO werkzeug Thread-69 : 127.0.0.1 - - [28/Nov/2019 15:44:14] "GET /static/js/moment.js?=2019-11-2815:44:14.204292 HTTP/1.1" 200 -
+2019-11-28 16:06:29,190 INFO werkzeug Thread-70 : 127.0.0.1 - - [28/Nov/2019 16:06:29] "GET /fpa/ HTTP/1.1" 200 -
+2019-11-28 16:06:29,247 INFO werkzeug Thread-72 : 127.0.0.1 - - [28/Nov/2019 16:06:29] "GET /static/js/moment.js?=2019-11-2816:06:29.188112 HTTP/1.1" 200 -
+2019-11-28 16:06:29,250 INFO werkzeug Thread-71 : 127.0.0.1 - - [28/Nov/2019 16:06:29] "GET /static/css/fpa.css?=2019-11-2816:06:29.188020 HTTP/1.1" 200 -
+2019-11-28 16:06:33,682 INFO werkzeug Thread-73 : 127.0.0.1 - - [28/Nov/2019 16:06:33] "GET /fpa/logout HTTP/1.1" 302 -
+2019-11-28 16:06:33,690 INFO werkzeug Thread-74 : 127.0.0.1 - - [28/Nov/2019 16:06:33] "GET /fpa/ HTTP/1.1" 302 -
+2019-11-28 16:06:33,696 INFO werkzeug Thread-75 : 127.0.0.1 - - [28/Nov/2019 16:06:33] "GET /fpa/login HTTP/1.1" 200 -
+2019-11-28 16:06:33,826 INFO werkzeug Thread-76 : 127.0.0.1 - - [28/Nov/2019 16:06:33] "GET /favicon.ico HTTP/1.1" 200 -
+2019-11-28 16:06:39,173 INFO werkzeug Thread-77 : 127.0.0.1 - - [28/Nov/2019 16:06:39] "GET /fpa/ HTTP/1.1" 302 -
+2019-11-28 16:06:39,180 INFO werkzeug Thread-78 : 127.0.0.1 - - [28/Nov/2019 16:06:39] "GET /fpa/login HTTP/1.1" 200 -
+2019-11-28 16:06:39,305 INFO werkzeug Thread-79 : 127.0.0.1 - - [28/Nov/2019 16:06:39] "GET /favicon.ico HTTP/1.1" 200 -
+2019-11-28 16:06:46,935 INFO project Thread-80 : Successfully logged in philip
+2019-11-28 16:06:46,937 INFO werkzeug Thread-80 : 127.0.0.1 - - [28/Nov/2019 16:06:46] "POST /fpa/login HTTP/1.1" 302 -
+2019-11-28 16:06:46,958 INFO werkzeug Thread-81 : 127.0.0.1 - - [28/Nov/2019 16:06:46] "GET /fpa/ HTTP/1.1" 200 -
+2019-11-28 16:06:47,007 INFO werkzeug Thread-83 : 127.0.0.1 - - [28/Nov/2019 16:06:47] "GET /static/js/moment.js?=2019-11-2816:06:46.955503 HTTP/1.1" 200 -
+2019-11-28 16:06:47,008 INFO werkzeug Thread-82 : 127.0.0.1 - - [28/Nov/2019 16:06:47] "GET /static/css/fpa.css?=2019-11-2816:06:46.955410 HTTP/1.1" 200 -
+2019-11-28 16:06:53,220 INFO werkzeug Thread-84 : 127.0.0.1 - - [28/Nov/2019 16:06:53] "GET /fpa/logout HTTP/1.1" 302 -
+2019-11-28 16:06:53,226 INFO werkzeug Thread-85 : 127.0.0.1 - - [28/Nov/2019 16:06:53] "GET /fpa/ HTTP/1.1" 302 -
+2019-11-28 16:06:53,233 INFO werkzeug Thread-86 : 127.0.0.1 - - [28/Nov/2019 16:06:53] "GET /fpa/login HTTP/1.1" 200 -
+2019-11-28 16:06:53,359 INFO werkzeug Thread-87 : 127.0.0.1 - - [28/Nov/2019 16:06:53] "GET /favicon.ico HTTP/1.1" 200 -
+2019-11-28 16:21:01,881 INFO project Thread-88 : Successfully logged in philip
+2019-11-28 16:21:01,882 INFO werkzeug Thread-88 : 127.0.0.1 - - [28/Nov/2019 16:21:01] "POST /fpa/login HTTP/1.1" 302 -
+2019-11-28 16:21:01,903 INFO werkzeug Thread-89 : 127.0.0.1 - - [28/Nov/2019 16:21:01] "GET /fpa/ HTTP/1.1" 200 -
+2019-11-28 16:21:01,945 INFO werkzeug Thread-90 : 127.0.0.1 - - [28/Nov/2019 16:21:01] "GET /static/css/fpa.css?=2019-11-2816:21:01.899915 HTTP/1.1" 200 -
+2019-11-28 16:21:01,949 INFO werkzeug Thread-91 : 127.0.0.1 - - [28/Nov/2019 16:21:01] "GET /static/js/moment.js?=2019-11-2816:21:01.900011 HTTP/1.1" 200 -
+2019-11-28 16:21:06,602 INFO werkzeug Thread-92 : 127.0.0.1 - - [28/Nov/2019 16:21:06] "GET /fpa/bookings HTTP/1.1" 200 -
+2019-11-28 16:21:06,658 INFO werkzeug Thread-93 : 127.0.0.1 - - [28/Nov/2019 16:21:06] "GET /static/css/fpa.css?=2019-11-2816:21:06.599085 HTTP/1.1" 200 -
+2019-11-28 16:21:06,674 INFO werkzeug Thread-95 : 127.0.0.1 - - [28/Nov/2019 16:21:06] "GET /static/js/moment.js?=2019-11-2816:21:06.599726 HTTP/1.1" 200 -
+2019-11-28 16:21:06,676 INFO werkzeug Thread-94 : 127.0.0.1 - - [28/Nov/2019 16:21:06] "GET /static/fullcalendar/packages/moment/main.js?=2019-11-2816:21:06.599624 HTTP/1.1" 200 -
+2019-11-28 16:21:09,114 INFO werkzeug Thread-96 : 127.0.0.1 - - [28/Nov/2019 16:21:09] "GET /favicon.ico HTTP/1.1" 200 -
+2019-11-28 16:21:58,467 INFO werkzeug Thread-97 : 127.0.0.1 - - [28/Nov/2019 16:21:58] "GET /favicon.ico HTTP/1.1" 200 -

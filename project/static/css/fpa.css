@@ -1,4 +1,9 @@
-.button_fpa
-{
+.button_fpa {
  width: 150px;
+}
+
+.calendar_fpa {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 10px;
 }

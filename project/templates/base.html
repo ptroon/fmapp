@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/fpa.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fpa.css') }}{{ unique_time() }}">
 
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 
@@ -17,6 +17,7 @@
   </head>
   <body>
     <!-- Optional JavaScript -->
+    <script src="{{ url_for('static', filename='js/moment.js')}}{{ unique_time() }}"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -52,6 +53,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('gui_blueprint._changes') }}">Changes</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('gui_blueprint._bookings') }}">Bookings</a>
+          </li>
 
           {% if is_admin() %}
           <li class="nav-item dropdown">
@@ -60,7 +64,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._users') }}">Users</a>
-              <a class="dropdown-item" href="{{ url_for('gui_blueprint._index') }}">FortiManagers</a>
+              <a class="dropdown-item" href="{{ url_for('gui_blueprint._fms') }}">FortiManagers</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._logs', counter=10) }}">System Logs</a>
             </div>

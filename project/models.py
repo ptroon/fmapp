@@ -154,3 +154,45 @@ class Dashboard(db.Model):
         self.fg_text = fg
         self.user_text = user
         self.log_text = log
+
+class Booking(db.Model):
+
+    __tablename__ = "bookings"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(32))
+    start_time = db.Column(db.DateTime)
+    end_time = db.Column(db.DateTime)
+    url = db.Column(db.String(1000))
+    logged = db.Column(db.DateTime)
+    owner_id = db.Column(db.String(25))
+    zone = db.Column(db.String(200))
+    approved_date = db.Column(db.DateTime)
+    approved_by = db.Column(db.String(32))
+
+    def __init__(self):
+        self.logged = datetime.now()
+
+
+class Complex(db.Model):
+
+    __tablename__ = "complexes"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    complex_name = db.Column(db.String(1000), nullable=False)
+    complex_mgr = db.Column(db.String(1000), nullable=False)
+    complex_type = db.Column(db.String(1000), nullable=False)
+    firewall_type = db.Column(db.String(1000), nullable=False)
+    location = db.Column(db.String(1000), nullable=False)
+    environment = db.Column(db.String(1000), nullable=False)
+    updated = db.Column(db.String(1000), nullable=False)
+    active = db.Column(db.String(1000), nullable=False)
+
+class Parameter(db.Model):
+
+    __tablename__ = "parameters"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    param_name = db.Column(db.String(1000), nullable=False)
+    param_value = db.Column(db.String(2000), nullable=False)
+    param_parent = db.Column(db.Integer)

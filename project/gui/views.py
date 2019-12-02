@@ -11,7 +11,7 @@ import logging
 from datetime import datetime
 from file_read_backwards import FileReadBackwards
 
-from project.models import User, Role, Dashboard, ChangeProfile
+from project.models import User, Role, Dashboard, ChangeProfile, FortiManager
 from project import app, db, is_admin
 from project.gui.forms import UserForm, ChangeProfileForm
 from project.gui.logic import dash_logs, dash_users
@@ -31,7 +31,8 @@ def is_loggedin ():
     except:
         return False
 
-
+#
+# ROOT PAGE "/"
 @gui_blueprint.route("/")
 def _index ():
 
@@ -41,8 +42,8 @@ def _index ():
     else:
         return redirect(url_for('gui_blueprint._login'))
 
-
-# wrapper for the API
+#
+# LOGIN
 @gui_blueprint.route("/login", methods=["POST","GET"])
 def _login ():
 
@@ -70,7 +71,8 @@ def _login ():
 
     else:
         return render_template("login.html")
-
+#
+# LOGOUT
 @gui_blueprint.route("/logout", methods=["GET"])
 def _logout ():
 
@@ -80,14 +82,8 @@ def _logout ():
             logout_user()
     return redirect(url_for('gui_blueprint._index'))
 
-@gui_blueprint.route("/admin")
-def _admin ():
-
-    if request.method == 'GET':
-        if is_loggedin():
-            return "ADMIN"
-        return "NOT LOGGED IN ADMIN"
-
+#
+# CHANGES
 @login_required
 @gui_blueprint.route("/changes")
 def _changes ():
@@ -104,6 +100,28 @@ def _editchange ():
         changeform = ChangeProfileForm()
         # change = ChangeProfile.query.order_by(ChangeProfile.id.desc())
         return render_template("editchange.html", title='New Change', form = changeform)
+
+#
+# -------------------------------------------------
+# ADMIN SECTION
+# -------------------------------------------------
+@login_required
+@gui_blueprint.route("/admin/fortimanagers")
+def _fms ():
+    if is_admin():
+        fms = db.session.query(FortiManager).order_by(FortiManager.id.asc())
+        return render_template("fortimanagers.html", data = fms)
+    else:
+        return render_template("403.html", error = "You are not an administrator")
+
+@login_required
+@gui_blueprint.route("/admin/editfm/<id>", methods=["GET","POST"])
+def _editfm (id):
+    if is_admin():
+        fms = db.session.query(FortiManager).order_by(FortiManager.id.asc())
+        return render_template("fortimanagers.html", data = fms)
+    else:
+        return render_template("403.html", error = "You are not an administrator")
 
 @login_required
 @gui_blueprint.route("/admin/logs", methods=["GET","POST"])
@@ -167,3 +185,10 @@ def _search ():
 
     if request.method == 'GET':
         return render_template("search.html")
+
+
+@gui_blueprint.route("/bookings")
+def _bookings ():
+
+    if request.method == 'GET':
+        return render_template("calendar.html")

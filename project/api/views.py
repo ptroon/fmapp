@@ -3,7 +3,7 @@ from flask_restplus import Api, Resource, reqparse
 from flask_login import login_required, login_user, logout_user, current_user
 from itsdangerous import JSONWebSignatureSerializer
 
-from project.models import User
+from project.models import User, Booking
 
 api_blueprint = Blueprint('api_blueprint', __name__, url_prefix="/fpa/api")
 api = Api(api_blueprint, version = "1.0", \
@@ -44,6 +44,13 @@ class _changes(Resource):
 class _roles(Resource):
     def get(self):
         return "Roles route"
+
+@nsp.route("/bookings")
+class _bookings(Resource):
+    def get(self):
+        month_name = request.args.get('month', '')
+        booking = Booking.query().all()
+
 
 #
 # AUTHENTICATION
