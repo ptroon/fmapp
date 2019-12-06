@@ -9,12 +9,12 @@ from datetime import timedelta
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config(object):
-    DEBUG=False
+    DEBUG=True
     TESTING=False
     SECRET_KEY='6cf362b3053c446996275f13cfafa193'
     SQLALCHEMY_TRACK_MODIFICATIONS=False
     PROTOCOL='HTTP://'
-    SERVER_NAME='127.0.0.1:5000'
+    SERVER_NAME='0.0.0.0'
     USE_SESSION_FOR_NEXT=True
     REMEMBER_COOKIE_DURATION=timedelta(seconds=20)
     CRYPTO_KEY=b'jj0jmmv7t-63PN818_B-Wjm3jm6zXRVS7q9W7SSRYyY='
@@ -34,10 +34,8 @@ class DevelopmentConfig(Config):
     TESTING=True
     SQLALCHEMY_DATABASE_URI='mysql://fmapp:fmapp@localhost/fmapp'
     SESSION_COOKIE_NAME='fpa_dev_session_cookie'
-    SERVER_NAME='127.0.0.1:5000'
-    HOST='127.0.0.1'
-    PORT=5000
     VERSION="v0.1 BETA"
+    SERVER_NAME='192.168.1.248:8000'
 
 class TestingConfig(Config):
     DEBUG=True

@@ -1,2 +1,7 @@
 *.pyc
 *pycache*
+lib
+lib64
+config.py
+bin
+include
