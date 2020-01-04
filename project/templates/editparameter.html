@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Edit Parameter{{ title }}{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="card text-center w-50 border-dark mx-auto">
+
+    {% if data %}
+    <h5 class="card-header text-white bg-info">Parameter: #{{ data.id }} : "{{ data.param_name }}"</h5>
+    <div class="card-body px-lg-5 pt-0">
+    <form action="{{ url_for('gui_blueprint._editparameter', id=data.id) }}" method="POST" novalidate class="text-center" style="color: #000000;">
+    {% else %}
+    <h5 class="card-header text-white bg-info">New Parameter</h5>
+    <div class="card-body px-lg-5 pt-0">
+    <form action="{{ url_for('gui_blueprint._editparameter', id=0) }}" method="POST" novalidate class="text-center" style="color: #000000;">
+    {% endif %}
+
+        <table class="form-group">
+          <tr>
+            <td>{{ form.hidden_tag() }}</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-1">{{ form.param_name.label }}</td>
+            <td class="px-4 py-1">{{ form.param_name(size=32, class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-1">{{ form.param_value.label }}</td>
+            <td class="px-4 py-1">{{ form.param_value(size=64, class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-1">{{ form.param_group.label }}</td>
+            <td class="px-4 py-1">{{ form.param_group(class_="custom-select form-control input-lg") }}</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-1">{{ form.param_parent.label }}</td>
+            <td class="px-4 py-1">{{ form.param_parent(size=32, class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-1">{{ form.param_disabled.label }}</td>
+            <td class="px-4 py-1">{{ form.param_disabled(size=1, class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td class="p-5">{{ form.submit(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._parameters') }}'">Cancel</button></td>
+          </tr>
+        </table>
+    </form>
+    </div>
+
+</div>
+
+{% endblock %}

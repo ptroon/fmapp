@@ -8,13 +8,17 @@
 <div class="container-fluid mt-3">
   <h3>Logs</h3>
 
-
   <form action="{{ url_for('gui_blueprint._logs') }}" method="GET">
+    <div class="input-group my-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="param_groups">Show Entries:</label>
+      </div>
     <select id="counter" name="counter" onchange="this.form.submit()">
-      <option value="10">Show last 10 entries</option>
-      <option value="50">Show last 50 entries</option>
-      <option value="99999">Show all entries</option>
+      <option value="10">last 10</option>
+      <option value="50">last 50</option>
+      <option value="99999">All Logs</option>
     </select>
+    </div>
   </form>
 
 

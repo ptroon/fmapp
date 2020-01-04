@@ -53,7 +53,7 @@ class User(db.Model, UserMixin):
     def is_correct_password(self, plaintext_password):
         return bcrypt.check_password_hash(self.password, plaintext_password)
 
-class Role(db.Model):
+class Role(db.Model, UserMixin):
 
     __tablename__ = "roles"
 
@@ -71,7 +71,7 @@ class Role(db.Model):
         self.created_date = datetime.now()
         self.deleted = 0
 
-class FortiManager(db.Model):
+class FortiManager(db.Model, UserMixin):
 
     __tablename__ = "fortimanagers"
 
@@ -107,7 +107,7 @@ class FortiManager(db.Model):
         f = Fernet(app.config["CRYPTO_KEY"])
         self._password = f.encrypt(plaintext_password.encode())
 
-class ChangeProfile(db.Model):
+class ChangeProfile(db.Model, UserMixin):
 
     __tablename__ = "change_profiles"
 
@@ -139,7 +139,7 @@ class ChangeProfile(db.Model):
         self.change_raiser = change_raiser
 
 
-class Dashboard(db.Model):
+class Dashboard(db.Model, UserMixin):
 
     __tablename__ = "dashboard"
 
@@ -155,7 +155,7 @@ class Dashboard(db.Model):
         self.user_text = user
         self.log_text = log
 
-class Booking(db.Model):
+class Booking(db.Model, UserMixin):
 
     __tablename__ = "bookings"
 
@@ -174,7 +174,7 @@ class Booking(db.Model):
         self.logged = datetime.now()
 
 
-class Complex(db.Model):
+class Complex(db.Model, UserMixin):
 
     __tablename__ = "complexes"
 
@@ -188,11 +188,33 @@ class Complex(db.Model):
     updated = db.Column(db.String(1000), nullable=False)
     active = db.Column(db.String(1000), nullable=False)
 
-class Parameter(db.Model):
+class Parameter(db.Model, UserMixin):
 
     __tablename__ = "parameters"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     param_name = db.Column(db.String(1000), nullable=False)
     param_value = db.Column(db.String(2000), nullable=False)
+    param_group = db.Column(db.Integer)
     param_parent = db.Column(db.Integer)
+    param_disabled = db.Column(db.Integer)
+
+    def __init__(self, id, p_name, p_value, p_group, p_parent, p_disabled):
+        self.id = id
+        self.param_name = p_name
+        self.param_value = p_value
+        self.param_group = p_group
+        self.param_disabled = p_disabled
+        self.param_parent = p_parent
+
+
+class Job(db.Model, UserMixin):
+
+    __tablename__ = "jobs"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    job_name = db.Column(db.String(1000), nullable=False)
+    job_type = db.Column(db.Integer, nullable=False)
+    job_start = db.Column(db.DateTime, nullable=False)
+    job_complete = db.Column(db.DateTime)
+    job_content = db.Column(db.String(4000), nullable=False)

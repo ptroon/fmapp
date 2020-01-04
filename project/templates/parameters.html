@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Changes{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid mt-3">
+  <h3>Parameters&nbsp;&nbsp;&nbsp;<button type="button" onclick=location.href='{{ url_for('gui_blueprint._editparameter', id=0) }}' class="btn btn-success">Add</button></h3>
+
+ <form method="POST" action="{{ url_for('gui_blueprint._parameters', group=sel.param_groups.data) }}" id="sel_group">
+  <div class="input-group my-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="param_groups">Lookup Group:</label>
+    </div>
+    {{ sel.param_groups(class_="custom-select form-control input-lg w-25") }}
+  </div>
+  </form>
+
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Value</th>
+        <!-- <th scope="col">Group</th> -->
+        <th scope="col">Parent</th>
+        <th scope="col">Disabled</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% if data %}
+
+    <div class=pagination>
+      {%- for page in data.iter_pages() %}
+        {% if page %}
+          {% if page != data.page %}
+            <a href="{{ url_for('gui_blueprint._parameters', group=sel.param_groups.data, page=page) }}" class="badge badge-primary p-2">{{ page }}</a>
+          {% else %}
+            <span class="badge badge-secondary p-2">{{ page }}</span>
+          {% endif %}
+        {% else %}
+          <span class=ellipsis>…</span>
+        {% endif %}
+      {%- endfor %}
+    </div>
+
+      {% for rec in data.items %}
+      <tr>
+        <td><a href="{{ url_for('gui_blueprint._editparameter', id=rec.id) }}">{{ rec.param_name }}</a></td>
+        <td>{{ rec.param_value }}</td>
+        <!-- <td>{{ rec.param_group }}</td> -->
+
+        {% if rec.param_parent == 0 %}
+        <td>{{ "N/A" }}</td>
+        {% else %}
+        <td>{{ rec.param_parent }}</td>
+        {% endif %}
+
+        {% if rec.param_disabled == 0 %}
+        <td>{{ "NO" }}</td>
+        {% else %}
+        <td>{{ "YES" }}</td>
+        {% endif %}
+
+      </tr>
+      {% else %}
+        <tr><td colspan=5 class="alert alert-primary"><strong>There are no parameters to view </strong></td></tr>
+      {% endfor %}
+    {% endif %}
+
+    </tbody>
+  </table>
+
+</div>
+
+<script>
+  $('#param_groups').on('change', function() {
+    $('#sel_group').submit();
+  });
+</script>
+
+{% endblock %}

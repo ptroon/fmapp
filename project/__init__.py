@@ -3,6 +3,7 @@ from flask_restplus import Api
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail, Message
 import logging
 from datetime import datetime
 
@@ -13,12 +14,20 @@ from project.instance.config import app_config, current_config
 # Use Flask DispatcherMiddleware to combine API and GUI apps into one
 #
 
-# HELPER functions
-##################
+####################
+# HELPER functions #
+####################
+# Gets the application name from the config file
+def get_name():
+    return app.config["APP_NAME"]
 
 # Gets the application version from the config file
 def get_version():
     return app.config["VERSION"]
+
+# Gets the application copyright message from the config file
+def get_copyright():
+    return app.config["COPYRIGHT"]
 
 # Gets the user LOGIN_ID
 def get_user():
@@ -34,10 +43,9 @@ def is_admin():
         return True
     return False
 
-# SET-UP
-########
-
-
+##########
+# SET-UP #
+##########
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object(app_config[current_config])
@@ -46,6 +54,7 @@ logging.basicConfig(filename = app.config["LOG_FILE"], level = logging.DEBUG, fo
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
+mail = Mail(app)
 
 # logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
 
@@ -65,8 +74,10 @@ from project.gui.views import gui_blueprint
 app.register_blueprint(api_blueprint)
 app.register_blueprint(gui_blueprint)
 
+'''
 if app.config["ENV"] == 'development':
     print(app.url_map)
+'''
 
 #
 # Delayed import & register LOAD_USER function for FLASK_LOGIN
@@ -77,13 +88,16 @@ def load_user(user_id):
     return User.query.filter(User.id == int(user_id)).first()
 
 # Register the functions so Jinja can call them from templates
+app.jinja_env.globals.update(get_name=get_name)
 app.jinja_env.globals.update(get_version=get_version)
 app.jinja_env.globals.update(get_user=get_user)
 app.jinja_env.globals.update(is_admin=is_admin)
 app.jinja_env.globals.update(unique_time=unique_time)
+app.jinja_env.globals.update(get_copyright=get_copyright)
 
 
 # Default 404 Error handler
 @app.errorhandler(404)
 def not_found (e):
+    print(e)
     return render_template("404.html", error = e)

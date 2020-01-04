@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Changes{% endblock %}
+{% block title %}Users{% endblock %}
 {% block head %}
     {{ super() }}
 {% endblock %}
@@ -26,7 +26,7 @@
         <td>{{ rec[0].forename }}&nbsp;{{ rec.surname }}</td>
         <td>{{ rec[0].email }}</td>
         <td>{{ rec[1].role_name }}</td>
-        <td>{{ rec[0].last_modified }}</td>        
+        <td>{{ rec[0].last_modified }}</td>
       </tr>
       {% else %}
         <tr><td colspan=5 class="alert alert-primary"><strong>There are no user accounts to view </strong></td></tr>
