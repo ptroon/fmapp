@@ -60,13 +60,7 @@
           </tr>
           <tr>
             <td>&nbsp;</td>
-            <td class="p-5">{{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._users') }}'">Cancel</button></td>
-
-            {% if data.login_id != get_user() %}
-              <td class="p-5">{{ form.deletebtn(class_="btn btn-danger") }}</td>
-            {% endif %}
-
-
+            <td class="p-5">{{ form.submit(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._users') }}'">Cancel</button></td>
           </tr>
         </table>
     </form>

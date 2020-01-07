@@ -11,9 +11,12 @@
  <form method="POST" action="{{ url_for('gui_blueprint._parameters', group=sel.param_groups.data) }}" id="sel_group">
   <div class="input-group my-3">
     <div class="input-group-prepend">
-      <label class="input-group-text" for="param_groups">Lookup Group:</label>
+        <label class="input-group-text" for="param_groups">Lookup Group:</label>
     </div>
     {{ sel.param_groups(class_="custom-select form-control input-lg w-25") }}
+    <div class="input-group-append">
+      <span class="input-group-text"><a href="{{ url_for('gui_blueprint._editparameter', id=sel.param_groups.data) }}">Edit</a></span>
+    </div>
   </div>
   </form>
 

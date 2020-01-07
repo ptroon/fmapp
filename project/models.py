@@ -21,13 +21,14 @@ class User(db.Model, UserMixin):
     _password = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)
     role = db.Column(db.Integer, db.ForeignKey("roles.id"))
+    vendor = db.Column(db.Integer, db.ForeignKey("parameters.id"))
     created_date = db.Column(db.DateTime, nullable=False)
     last_login = db.Column(db.DateTime)
     last_modified = db.Column(db.DateTime)
     modified_by = db.Column(db.String(100))
     enabled = db.Column(db.Integer)
 
-    def __init__(self, login_id, forename, surname, comment, plaintext_password, email, role):
+    def __init__(self, login_id, forename, surname, comment, plaintext_password, email, role, vendor):
         self.login_id = login_id
         self.forename = forename
         self.surname = surname
@@ -35,6 +36,7 @@ class User(db.Model, UserMixin):
         self.password = plaintext_password
         self.email = email
         self.role = role
+        self.vendor = vendor
         self.created_date = datetime.now()
         self.last_login = None
         self.last_modified = None
@@ -174,6 +176,8 @@ class Booking(db.Model, UserMixin):
         self.logged = datetime.now()
 
 
+# OLD COMPLEX TABLE
+'''
 class Complex(db.Model, UserMixin):
 
     __tablename__ = "complexes"
@@ -187,6 +191,8 @@ class Complex(db.Model, UserMixin):
     environment = db.Column(db.String(1000), nullable=False)
     updated = db.Column(db.String(1000), nullable=False)
     active = db.Column(db.String(1000), nullable=False)
+'''
+
 
 class Parameter(db.Model, UserMixin):
 
@@ -198,14 +204,16 @@ class Parameter(db.Model, UserMixin):
     param_group = db.Column(db.Integer)
     param_parent = db.Column(db.Integer)
     param_disabled = db.Column(db.Integer)
+    param_critical = db.Column(db.Integer)
 
-    def __init__(self, id, p_name, p_value, p_group, p_parent, p_disabled):
+    def __init__(self, id, p_name, p_value, p_group, p_parent, p_disabled, p_critical):
         self.id = id
         self.param_name = p_name
         self.param_value = p_value
         self.param_group = p_group
         self.param_disabled = p_disabled
         self.param_parent = p_parent
+        self.param_critical = p_critical
 
 
 class Job(db.Model, UserMixin):
@@ -218,3 +226,54 @@ class Job(db.Model, UserMixin):
     job_start = db.Column(db.DateTime, nullable=False)
     job_complete = db.Column(db.DateTime)
     job_content = db.Column(db.String(4000), nullable=False)
+
+
+class Complex(db.Model, UserMixin):
+
+    __tablename__ = "complexes"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    complex_name = db.Column(db.String(1000), nullable=False)
+    complex_manager = db.Column(db.Integer, nullable=False)
+    complex_fw_inner_1 = db.Column(db.String(1000))
+    complex_fw_inner_2 = db.Column(db.String(1000))
+    complex_fw_outer_1 = db.Column(db.String(1000))
+    complex_fw_outer_2 = db.Column(db.String(1000))
+    complex_fw_location_1 = db.Column(db.String(1000))
+    complex_fw_location_1 = db.Column(db.String(1000))
+    complex_fw_type = db.Column(db.Integer, nullable=False)
+    complex_serial = db.Column(db.String(1000), default='N/A')
+    complex_license = db.Column(db.String(1000), default='N/A')
+    complex_push_start = db.Column(db.Integer, nullable=False)
+    complex_push_end = db.Column(db.Integer, nullable=False)
+    complex_push_days = db.Column(db.String(7))
+    complex_category = db.Column(db.String(1000))
+    complex_hardware = db.Column(db.String(1000))
+    complex_fw_inner_name_1 = db.Column(db.String(1000))
+    complex_fw_inner_name_2 = db.Column(db.String(1000))
+    complex_location_1 = db.Column(db.String(1000))
+    complex_fw_outer_name_1 = db.Column(db.String(1000))
+    complex_fw_outer_name_2 = db.Column(db.String(1000))
+    complex_location_2 = db.Column(db.String(1000))
+    complex_location_all = db.Column(db.String(1000))
+    complex_area = db.Column(db.Integer, nullable=False)
+    complex_fw_info1 = db.Column(db.String(1000))
+    complex_fw_info2 = db.Column(db.String(1000))
+    complex_fw_inner_info1 = db.Column(db.String(1000))
+    complex_fw_inner_info2 = db.Column(db.String(1000))
+    complex_fw_outer_info1 = db.Column(db.String(1000))
+    complex_fw_outer_info2 = db.Column(db.String(1000))
+    complex_type = db.Column(db.Integer, nullable=False)
+    complex_info_1 = db.Column(db.String(1000))
+    complex_country = db.Column(db.Integer, nullable=False)
+    complex_restricted = db.Column(db.Integer)
+    complex_restrict_start = db.Column(db.Integer)
+    complex_restrict_end = db.Column(db.Integer)
+    complex_allow_slot_day = db.Column(db.Integer)
+    complex_allow_slot_start = db.Column(db.Integer)
+    complex_allow_slot_end = db.Column(db.Integer)
+    complex_push_day_extra = db.Column(db.String(7))
+    complex_change_info = db.Column(db.String(2000))
+    complex_environment = db.Column(db.Integer)
+    complex_updated = db.Column(db.DateTime, default=datetime.now())
+    complex_active = db.Column(db.Integer, default=1)

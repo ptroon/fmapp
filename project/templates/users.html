@@ -15,6 +15,7 @@
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">Role</th>
+        <th scope="col">Vendor</th>
         <th scope="col">Updated</th>
       </tr>
     </thead>
@@ -23,9 +24,10 @@
       {% for rec in data %}
       <tr>
         <td><a href="{{ url_for('gui_blueprint._edituser', id=rec[0].id) }}">{{ rec[0].login_id }}</a></td>
-        <td>{{ rec[0].forename }}&nbsp;{{ rec.surname }}</td>
+        <td>{{ rec[0].forename }}&nbsp;{{ rec[0].surname }}</td>
         <td>{{ rec[0].email }}</td>
         <td>{{ rec[1].role_name }}</td>
+        <td>{{ rec[2].param_value }}</td>
         <td>{{ rec[0].last_modified }}</td>
       </tr>
       {% else %}

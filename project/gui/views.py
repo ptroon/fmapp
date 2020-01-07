@@ -13,7 +13,7 @@ from datetime import datetime
 from file_read_backwards import FileReadBackwards
 
 from project.models import *
-from project import app, db, is_admin, mail
+from project import app, db, is_admin, mail, get_user
 from project.gui.forms import *
 from project.gui.logic import dash_logs, dash_users
 
@@ -138,7 +138,7 @@ def _logs ():
 @gui_blueprint.route("/admin/users", methods=["GET"])
 def _users ():
     if is_admin():
-        users = db.session.query(User,Role).join(Role).order_by(User.id.asc())
+        users = db.session.query(User,Role,Parameter).join(Role).outerjoin(Parameter).order_by(User.id.asc())
         return render_template("users.html", data = users)
     else:
         return render_template("403.html", error = "You are not an administrator")
@@ -181,11 +181,11 @@ def _edituser (id):
     else:
         return render_template("403.html", error = "You are not an administrator")
 
-@gui_blueprint.route("/search")
+@gui_blueprint.route("/search", methods=["POST"])
 def _search ():
 
-    if request.method == 'GET':
-        return render_template("search.html")
+    if request.method == 'POST':
+        return render_template("search.html", query=request.form.getlist('query')[0])
 
 
 @gui_blueprint.route("/bookings")
@@ -204,30 +204,29 @@ def _parameters ():
 
     if is_admin():
         sel = ParameterSearchForm()
-        try:
-            print (">" + session["group"] + "<")
-        except Exception as ex:
-                template = "An exception of type {0} occurred. Arguments:\n{1!r}"
-                message = template.format(type(ex).__name__, ex.args)
-                print (message)
 
         if request.method == 'POST':
             sel.param_groups.default = request.form["param_groups"]
             sel.process()
             session["group"] = sel.param_groups.default # save group into session variable for reference.
-            params = Parameter.query.filter(Parameter.param_group == sel.param_groups.default).paginate(1, 20, False) # get the currently chosen option from the select list and use to control which parameters are shown
+            params = Parameter.query.filter(Parameter.param_group == sel.param_groups.default).paginate(1, app.config["PAGINATION_SIZE"], False) # get the currently chosen option from the select list and use to control which parameters are shown
         else:
-            try:
-                if request.args.get('group'):
-                    session["group"] = request.args.get('group')
-                    params = Parameter.query.filter(Parameter.param_group == Parameter.query.filter(Parameter.id == session["group"]).first().id).paginate(1, 20, False) # get the group for the selecter
-                else:
-                    params = Parameter.query.filter(Parameter.param_group == Parameter.query.filter(Parameter.param_group == 0).first().id).paginate(1, 20, False) # get the first group for the selecter as we are uisng GET
-                    session["group"] = Parameter.query.filter(Parameter.param_group == Parameter.query.filter(Parameter.param_group == 0).first().id)
-            except:
-                params = None
+            session["group"] = request.args.get('group', 0, type=int)
 
-        return render_template("parameters.html", data=params, sel=sel, group=session["group"])
+            if session["group"] > 0:
+                page = request.args.get('page', 1, type=int)
+                # set the session variable to the arg GROUP from the URL and then choose the params from that group id.
+                sel.param_groups.default = session["group"]
+                sel.process()
+                params = Parameter.query.filter(Parameter.param_group == Parameter.query.filter(Parameter.id == session["group"]).first().id).paginate(page, app.config["PAGINATION_SIZE"], False)
+            else:
+                # Just get the first in the list as the chosen option, then get the params for that id.
+                params = Parameter.query.filter(Parameter.param_group == Parameter.query.filter(Parameter.param_group == 0).first().id).paginate(1, app.config["PAGINATION_SIZE"], False)
+                session["group"] = Parameter.query.filter(Parameter.param_group==0).order_by(Parameter.param_name.asc()).first().id
+                sel.param_groups.default = session["group"]
+                sel.process()
+
+        return render_template("parameters.html", data=params, sel=sel)
     else:
         return render_template("403.html", error = "You are not an administrator")
 
@@ -239,33 +238,71 @@ def _editparameter (id):
     if is_admin():
 
         param = Parameter.query.filter_by(id=id).first()
-        grp_form = ParameterSearchForm()
         form = ParameterForm(obj=param)
 
         if request.method == "GET":
-            return render_template("editparameter.html", data=param, grp_form=grp_form, form=form)
+            return render_template("editparameter.html", data=param, form=form)
 
         if form.validate_on_submit():
-            if not param:
-                param = Parameter(form.id.data, form.param_name.data, form.param_value.data, form.param_group.data, form.param_parent.data, form.param_disabled.data)
-                db.session.add(param)
+            if form.savebtn.data:
+                if not param:
+                    param = Parameter(form.id.data, form.param_name.data, form.param_value.data, form.param_group.data, form.param_parent.data, form.param_disabled.data, form.param_critical.data)
+                    db.session.add(param)
 
-            form.populate_obj(param)
-            db.session.commit()
-            return redirect(url_for('gui_blueprint._parameters'))
+                form.populate_obj(param)
+                db.session.commit()
+                return redirect(url_for('gui_blueprint._parameters', group=session["group"]))
+
+            if form.deletebtn.data:
+                param = Parameter.query.filter_by(id=id).first()
+                capacity = Parameter.query.filter(Parameter.param_group==param.id).count()
+                if capacity == 0:
+                    db.session.delete(param)
+                    db.session.commit()
+                else:
+                    flash("Cannot delete non-empty Parameter Group: " + param.param_name, "warning")
+
+                return redirect(url_for('gui_blueprint._parameters', group=0))
 
         else:
             for fieldName, errorMessages in form.errors.items():
                 for err in errorMessages:
-                    print (fieldName + " " + err + " value:(" + form.param_name.data + ")")
+                    print (fieldName + " " + err + " value:(" + str(form.param_group.data) + ")")
             return render_template("400.html", error = form.errors)
 
     else:
         return render_template("403.html", error = "You are not an administrator")
 
 
+###########
+# PROFILE #
+###########
+@gui_blueprint.route("/editprofile", methods=["POST","GET"])
+def _editprofile ():
 
+    # Get user's details to be edited
+    profile = User.query.filter(User.login_id == get_user()).first()
+    form = UserForm(obj=profile)
 
+    # If we are GET'ing the form then add data and show correct form & template
+    if request.method == "GET":
+        return render_template("profile.html", data=profile, form=form)
+
+    # If we are POST'ing then we are making a change, so show message
+    if form.validate_on_submit():
+        if form.savebtn.data:
+            try:
+                profile.forename = request.form["forename"]
+                profile.surname = request.form["surname"]
+                profile.email = request.form["email"]
+                profile.comment = request.form["comment"]
+                profile.vendor = request.form["vendor"]
+                db.session.commit()
+                flash ("Saved Profile Details", 'success')
+            except:
+                flash ("Profile Not Saved", 'warning')
+
+        return render_template("profile.html", data=profile, form=form)
 
 
 @gui_blueprint.route("/email", methods=["POST","GET"])

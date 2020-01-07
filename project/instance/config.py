@@ -22,6 +22,7 @@ class Config(object):
     CRYPTO_KEY=b'jj0jmmv7t-63PN818_B-Wjm3jm6zXRVS7q9W7SSRYyY='
     LOG_FILE='project/instance/fpa.log'
     COPYRIGHT="&copy; Company_Name 2020 [written in Flask]"
+    PAGINATION_SIZE=20
 
 class ProductionConfig(Config):
     ENV='production'

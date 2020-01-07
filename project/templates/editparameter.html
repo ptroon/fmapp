@@ -10,11 +10,11 @@
     {% if data %}
     <h5 class="card-header text-white bg-info">Parameter: #{{ data.id }} : "{{ data.param_name }}"</h5>
     <div class="card-body px-lg-5 pt-0">
-    <form action="{{ url_for('gui_blueprint._editparameter', id=data.id) }}" method="POST" novalidate class="text-center" style="color: #000000;">
+    <form action="{{ url_for('gui_blueprint._editparameter', id=data.id, group=session["group"]) }}" method="POST" novalidate class="text-center" style="color: #000000;">
     {% else %}
     <h5 class="card-header text-white bg-info">New Parameter</h5>
     <div class="card-body px-lg-5 pt-0">
-    <form action="{{ url_for('gui_blueprint._editparameter', id=0) }}" method="POST" novalidate class="text-center" style="color: #000000;">
+    <form action="{{ url_for('gui_blueprint._editparameter', id=0, group=session["group"]) }}" method="POST" novalidate class="text-center" style="color: #000000;">
     {% endif %}
 
         <table class="form-group">
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="px-4 py-1">{{ form.param_value.label }}</td>
-            <td class="px-4 py-1">{{ form.param_value(size=64, class_="form-control") }}</td>
+            <td class="px-4 py-1">{{ form.param_value(rows=10, cols=30, class_="form-control") }}</td>
           </tr>
           <tr>
             <td class="px-4 py-1">{{ form.param_group.label }}</td>
@@ -42,9 +42,27 @@
             <td class="px-4 py-1">{{ form.param_disabled.label }}</td>
             <td class="px-4 py-1">{{ form.param_disabled(size=1, class_="form-control") }}</td>
           </tr>
+
+          {% if form.param_critical.data == 0 %}
+          <tr>
+            <td class="px-4 py-1">{{ form.param_critical.label }}</td>
+            <td class="px-4 py-1">{{ form.param_critical(size=1, class_="form-control") }}<small class="text-danger">Setting this option means the parameter cannot be deleted in future!</small></td>
+          </tr>
+          {% else %}
+          <tr>
+            <td class="px-4 py-1">{{ form.param_critical.label }}</td>
+            <td class="px-4 py-1">{{ form.param_critical(size=1, class_="form-control", disabled=True) }}<small class="text-danger">Setting this option means the parameter cannot be deleted or unset in future!</small></td>
+          </tr>
+          {% endif %}
+
           <tr>
             <td>&nbsp;</td>
-            <td class="p-5">{{ form.submit(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._parameters') }}'">Cancel</button></td>
+            <td class="p-5">{{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._parameters', group=session["group"]) }}'">Cancel</button></td>
+
+            {% if form.param_critical.data == 0 %}
+            <td class="p-5">{{ form.deletebtn(class_="btn btn-danger") }}</td>
+            {% endif %}
+
           </tr>
         </table>
     </form>
