@@ -66,12 +66,12 @@ class Role(db.Model, UserMixin):
     created_date = db.Column(db.DateTime, nullable=False)
     enabled = db.Column(db.Integer)
 
-    def __init__(self, role_name, role_admin, role_app_sections):
+    def __init__(self, role_name, role_admin, role_app_sections, enabled):
         self.role_name = role_name
         self.role_admin = role_admin
         self.role_app_sections = role_app_sections
         self.created_date = datetime.now()
-        self.deleted = 0
+        self.enabled = enabled
 
 class FortiManager(db.Model, UserMixin):
 
@@ -226,6 +226,25 @@ class Job(db.Model, UserMixin):
     job_start = db.Column(db.DateTime, nullable=False)
     job_complete = db.Column(db.DateTime)
     job_content = db.Column(db.String(4000), nullable=False)
+
+
+class DateOfInterest(db.Model, UserMixin):
+
+    __tablename__ = "datesofinterest"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    doi_name = db.Column(db.String(1000), nullable=False)
+    doi_priority = db.Column(db.Integer, default=0, nullable=False)
+    doi_comment = db.Column(db.String(2000))
+    doi_start_dt = db.Column(db.DateTime, nullable=False)
+    doi_end_dt = db.Column(db.DateTime, nullable=False)
+
+    def __init__(self, doi_name, doi_priority, doi_comment, doi_start_dt, doi_end_dt):
+        self.doi_name = doi_name
+        self.doi_priority = doi_priority
+        self.doi_comment = doi_comment
+        self.doi_start_dt = doi_start_dt
+        self.doi_end_dt = doi_end_dt
 
 
 class Complex(db.Model, UserMixin):

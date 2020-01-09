@@ -5,6 +5,7 @@
 import requests
 import logging
 from collections import Counter
+from flask import flash
 
 from project.models import User, Role, Dashboard, ChangeProfile
 from project import app, db, is_admin
@@ -36,3 +37,13 @@ def dash_users ():
         res[x] = len(user)
 
     return user
+
+
+def flash_errors(form):
+    """Flashes form errors"""
+    for field, errors in form.errors.items():
+        for error in errors:
+            flash(u"Error in the %s field - %s" % (
+                getattr(form, field).label.text,
+                error
+            ), 'warning')

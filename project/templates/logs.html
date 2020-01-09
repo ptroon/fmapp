@@ -13,11 +13,12 @@
       <div class="input-group-prepend">
         <label class="input-group-text" for="param_groups">Show Entries:</label>
       </div>
-    <select id="counter" name="counter" onchange="this.form.submit()">
-      <option value="10">last 10</option>
-      <option value="50">last 50</option>
-      <option value="99999">All Logs</option>
-    </select>
+      {{ form.log_records(class_="custom-select form-control input-lg w-25") }}
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="log_records">Log File:</label>
+      </div>
+      {{ form.log_options(class_="custom-select form-control input-lg w-25") }}
+      {{ form.submit(class_="btn btn-primary button_fpa") }}
     </div>
   </form>
 
@@ -25,6 +26,12 @@
   <script>
     $(document).ready(function() {
       $("#counter option[value='{{ counter }}']").prop('selected', true);
+    });
+  </script>
+
+  <script>
+    $('#log_options').on('change', function() {
+      $('#log_form').submit();
     });
   </script>
 

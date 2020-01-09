@@ -3,7 +3,7 @@
 #
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField, HiddenField, TextAreaField, SubmitField, SelectField
-from wtforms.validators import DataRequired
+from wtforms.validators import *
 from datetime import datetime
 
 from project.models import *
@@ -19,7 +19,7 @@ class UserForm(FlaskForm):
     surname = StringField('Surname', validators=[DataRequired()])
     comment = TextAreaField('Comment')
     password = PasswordField('Password')
-    email = StringField('Email', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
     role = SelectField('Role', coerce=int, validators=[DataRequired()])
     vendor = SelectField('Vendor', coerce=int, validators=[DataRequired()])
     created_date = HiddenField('Created', default=datetime.now())
@@ -34,7 +34,24 @@ class UserForm(FlaskForm):
         super(UserForm, self).__init__(*args, **kwargs)
         self.role.choices = [(a.id, a.role_name) for a in Role.query.order_by(Role.role_name)]
         self.vendor.choices = [(a.id, a.param_value) for a in Parameter.query.filter(Parameter.param_group == 63).order_by(Parameter.param_name)]
+        self.comment.render_kw = {'style': 'resize:none;'}
 
+class RoleForm(FlaskForm):
+    id = HiddenField('id', default=0)
+    role_name = StringField('Role Name', validators=[DataRequired()])
+    role_admin = SelectField('Administrator', coerce=int, default=0)
+    role_app_sections = TextAreaField('Sections')
+    created_date = StringField('Created')
+    enabled = SelectField('Enabled', coerce=int, default=0)
+    savebtn = SubmitField('Save')
+    deletebtn = SubmitField('Delete')
+
+    def __init__(self, *args, **kwargs):
+        super(RoleForm, self).__init__(*args, **kwargs)
+        self.role_admin.choices = [(1, 'Yes'), (0, 'No')]
+        self.enabled.choices = [(1, 'Yes'), (0, 'No')]
+        self.role_app_sections.render_kw = {'disabled': True}
+        self.created_date.render_kw = {'disabled': True}
 
 class ChangeProfileForm(FlaskForm):
     id = IntegerField('id', validators=[DataRequired()])
@@ -83,3 +100,37 @@ class ParameterSearchForm(FlaskForm):
     def __init__(self, *args, **kwargs):
         super(ParameterSearchForm, self).__init__(*args, **kwargs)
         self.param_groups.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 0).order_by(Parameter.param_name)]
+
+class MainSearchForm(FlaskForm):
+    search_input = StringField('Query')
+    search_options = SelectField('Options', coerce=int)
+    search = SubmitField('Search')
+
+    def __init__(self, *args, **kwargs):
+        super(MainSearchForm, self).__init__(*args, **kwargs)
+        self.search_options.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 71).order_by(Parameter.param_name)]
+
+class LogForm(FlaskForm):
+    log_options = SelectField('Options')
+    log_records = SelectField('Records')
+    submit = SubmitField('Submit')
+
+    def __init__(self, *args, **kwargs):
+        super(LogForm, self).__init__(*args, **kwargs)
+        self.log_options.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 75).order_by(Parameter.param_name)] # Parameters for Log Types
+        self.log_records.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 78).order_by(Parameter.param_name)] # Parameters for Number of Records
+
+class DOIForm(FlaskForm):
+    id = HiddenField('id', default=0)
+    doi_name = StringField('Name', validators=[DataRequired()])
+    doi_priority = SelectField('Priority', coerce=int)
+    doi_comment = TextAreaField('Comment')
+    doi_start_dt = StringField('Start', validators=[DataRequired()])
+    doi_end_dt = StringField('End', validators=[DataRequired()])
+    savebtn = SubmitField('Save')
+    deletebtn = SubmitField('Delete')
+
+    def __init__(self, *args, **kwargs):
+        super(DOIForm, self).__init__(*args, **kwargs)
+        self.doi_priority.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 82).order_by(Parameter.param_name)] # Parameters for Priories
+        self.doi_comment.render_kw = {'style': 'resize:none;'}

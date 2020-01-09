@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Users{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid mt-3">
+  <h3>Roles&nbsp;&nbsp;&nbsp;<button type="button" onclick=location.href='{{ url_for('gui_blueprint._editrole', id=0) }}' class="btn btn-success">Add</button></h3>
+
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Admin</th>
+        <th scope="col">Created</th>
+        <th scope="col">Enabled</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for rec in data %}
+      <tr>
+        <td><a href="{{ url_for('gui_blueprint._editrole', id=rec.id) }}">{{ rec.role_name }}</a></td>
+
+        {% if rec.role_admin == 0 %}
+          <td>NO</td>
+        {% else %}
+          <td>YES</td>
+        {% endif %}
+
+        <td>{{ rec.created_date }}</td>
+
+        {% if rec.enabled == 0 %}
+          <td>NO</td>
+        {% else %}
+          <td>YES</td>
+        {% endif %}
+
+      </tr>
+      {% else %}
+        <tr><td colspan=5 class="alert alert-primary"><strong>There are no role entries to view </strong></td></tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+
+</div>
+
+{% endblock %}

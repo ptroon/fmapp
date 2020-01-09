@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Dates{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid mt-3">
+  <h3>Dates&nbsp;&nbsp;&nbsp;<button type="button" onclick=location.href='{{ url_for('gui_blueprint._editdate', id=0) }}' class="btn btn-success">Add</button></h3>
+
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Comment</th>
+        <th scope="col">Start</th>
+        <th scope="col">End</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for rec in data %}
+      <tr>
+        <td><a href="{{ url_for('gui_blueprint._editdate', id=rec.id) }}">{{ rec.doi_name }}</a></td>
+        <td>{{ rec.doi_priority }}</td>
+        <td>{{ rec.doi_comment }}</td>
+        <td>{{ rec.doi_start_dt }}</td>
+        <td>{{ rec.doi_end_dt }}</td>
+      </tr>
+      {% else %}
+        <tr><td colspan=5 class="alert alert-primary"><strong>There are no dates of interest entries to view </strong></td></tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+
+</div>
+
+{% endblock %}

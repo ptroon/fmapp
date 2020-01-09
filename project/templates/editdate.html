@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Edit Date{{ title }}{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="card text-center w-50 border-dark mx-auto">
+
+    {% if data %}
+    <h5 class="card-header text-white bg-info">Date: #{{ data.id }} : "{{ data.doi_name }}"</h5>
+    <div class="card-body px-lg-5 pt-0">
+    <form action="{{ url_for('gui_blueprint._editdate', id=data.id) }}" method="POST" novalidate class="text-center" style="color: #000000;">
+    {% else %}
+    <h5 class="card-header text-white bg-info">New Date</h5>
+    <div class="card-body px-lg-5 pt-0">
+    <form action="{{ url_for('gui_blueprint._editdate', id=0) }}" method="POST" novalidate class="text-center" style="color: #000000;">
+    {% endif %}
+
+        <table class="form-group">
+          <tr>
+            <td>{{ form.hidden_tag() }}</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-1">{{ form.doi_name.label }}</td>
+            <td class="px-4 py-1">{{ form.doi_name(class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-1">{{ form.doi_priority.label }}</td>
+            <td class="px-4 py-1">{{ form.doi_priority(class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-1">{{ form.doi_comment.label }}</td>
+            <td class="px-4 py-1">{{ form.doi_comment(rows=10, cols=30, class_="form-control") }}</td>
+          </tr>
+
+          <tr>
+            <td class="px-4 py-1">{{ form.doi_start_dt.label }}</td>
+            <td class="px-4 py-1">{{ form.doi_start_dt(size=11, maxlength=12, class_="") }}</td>
+          </tr>
+
+          <tr>
+            <td class="px-4 py-1">{{ form.doi_end_dt.label }}</td>
+            <td class="px-4 py-1">{{ form.doi_end_dt(size=11, maxlength=12, class_="") }}</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td class="p-5">{{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._dates') }}'">Cancel</button></td>
+            {% if data %}
+            <td class="p-5">{{ form.deletebtn(class_="btn btn-danger") }}</td>
+            {% endif %}
+          </tr>
+        </table>
+    </form>
+    </div>
+
+    <script>
+    $('#doi_start_dt').datepicker({
+    format: "dd/mm/yyyy",
+    autoclose: true
+    });
+
+    $('#doi_end_dt').datepicker({
+    format: "dd/mm/yyyy",
+    autoclose: true
+    });
+    </script>
+
+</div>
+
+{% endblock %}

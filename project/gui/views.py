@@ -15,7 +15,7 @@ from file_read_backwards import FileReadBackwards
 from project.models import *
 from project import app, db, is_admin, mail, get_user
 from project.gui.forms import *
-from project.gui.logic import dash_logs, dash_users
+from project.gui.logic import *
 
 gui_blueprint = Blueprint('gui_blueprint', __name__, url_prefix="/fpa")
 
@@ -32,8 +32,9 @@ def is_loggedin ():
     except:
         return False
 
-#
-# ROOT PAGE "/"
+#################################################################
+# ROOT #
+########
 @gui_blueprint.route("/")
 def _index ():
 
@@ -43,19 +44,21 @@ def _index ():
     else:
         return redirect(url_for('gui_blueprint._login'))
 
-#
-# LOGIN
+#################################################################
+# LOGIN #
+#########
 @gui_blueprint.route("/login", methods=["POST","GET"])
 def _login ():
 
+    form = UserForm()
     if request.method=='POST':
 
         if request.form['login_id'] and request.form['password']:
             user = User.query.filter_by(login_id=request.form['login_id']).first()
             if not user:
-                app.logger.warning ("Log in error for " + request.form['login_id'])
-                flash('Not account found for ' + request.form['login_id'])
-                return render_template("login.html")
+                app.logger.warning ("Log in error for " + request.form['login_id'] + ", no account found")
+                flash('No account found for ' + request.form['login_id'], 'warning')
+                return render_template("login.html", form=form)
             else:
                 if user.is_correct_password(request.form['password']):
                     session['login_id'] = request.form['login_id']
@@ -63,17 +66,22 @@ def _login ():
                     app.logger.info ("Successfully logged in " + request.form['login_id'])
 
             if current_user.is_authenticated:
-                flash('You were successfully logged in')
+                flash('You were successfully logged in', 'success')
                 return redirect(url_for('gui_blueprint._index'))
-            return render_template("login.html", error="Error with login!")
+
+            flash('Error with login!', 'warning')
+            return render_template("login.html", form=form)
 
         else:
-            return render_template("login.html", error="Login or password missing!")
+            flash('Login or password missing!', 'warning')
+            return render_template("login.html", form=form)
 
     else:
-        return render_template("login.html")
-#
-# LOGOUT
+        return render_template("login.html", form=form)
+
+#################################################################
+# LOGOUT #
+##########
 @gui_blueprint.route("/logout", methods=["GET"])
 def _logout ():
 
@@ -83,8 +91,26 @@ def _logout ():
             logout_user()
     return redirect(url_for('gui_blueprint._index'))
 
-#
-# CHANGES
+#################################################################
+# REGISTER #
+############
+@gui_blueprint.route("/register", methods=["GET", "POST"])
+def _register ():
+
+    form = UserForm()
+    form.savebtn.label.text = 'Register'
+    if request.method == 'GET':
+        return render_template("register.html", form=form)
+
+    if form.validate_on_submit():
+        return render_template("register.html", form=form)
+    else:
+        flash_errors(form)
+        return render_template("register.html", form=form)
+
+#################################################################
+# CHANGES #
+###########
 @login_required
 @gui_blueprint.route("/changes")
 def _changes ():
@@ -102,10 +128,10 @@ def _editchange ():
         # change = ChangeProfile.query.order_by(ChangeProfile.id.desc())
         return render_template("editchange.html", title='New Change', form = changeform)
 
-#
-# -------------------------------------------------
-# ADMIN SECTION
-# -------------------------------------------------
+
+#################################################################
+# FORTIMANAGERS #
+#################
 @login_required
 @gui_blueprint.route("/admin/fortimanagers")
 def _fms ():
@@ -124,16 +150,39 @@ def _editfm (id):
     else:
         return render_template("403.html", error = "You are not an administrator")
 
+#################################################################
+# LOGS #
+########
 @login_required
 @gui_blueprint.route("/admin/logs", methods=["GET","POST"])
 def _logs ():
     if is_admin():
-        counter = request.args.get('counter')
-        data = FileReadBackwards(app.config["LOG_FILE"], encoding="utf-8")
-        return render_template("logs.html", data = data, counter = counter)
+
+        form = LogForm()
+
+        # Prevent the rec # counter from breaking the app - default to 10
+        try:
+            records = int(request.args.get('log_records'))
+        except:
+            records = 5
+
+        # Prevent the log name from breaking the app - default to LOG_FILE variable
+        try:
+            rec_t = request.args.get('log_options')
+            log_t   = app.config[rec_t]
+        except:
+            log_t = app.config["LOG_FILE"]
+
+        form.log_records.data = str(records)
+        form.log_options.data = rec_t
+        data = FileReadBackwards(log_t, encoding="utf-8")
+        return render_template("logs.html", data=data, form=form, counter=records)
     else:
         return render_template("403.html", error = "You are not an administrator")
 
+#################################################################
+# USERS #
+#########
 @login_required
 @gui_blueprint.route("/admin/users", methods=["GET"])
 def _users ():
@@ -181,11 +230,116 @@ def _edituser (id):
     else:
         return render_template("403.html", error = "You are not an administrator")
 
+#################################################################
+# ROLES #
+#########
+@login_required
+@gui_blueprint.route("/admin/roles", methods=["GET"])
+def _roles ():
+    if is_admin():
+        roles = Role.query.order_by(Role.id.asc())
+        return render_template("roles.html", data = roles)
+    else:
+        return render_template("403.html", error = "You are not an administrator")
+
+
+@login_required
+@gui_blueprint.route("/admin/editrole/<id>", methods=["GET","POST"])
+def _editrole (id):
+
+    if is_admin():
+
+        role = Role.query.filter_by(id=id).first()
+        form = RoleForm(obj=role)
+
+        if request.method == "GET":
+            return render_template("editrole.html", form=form, data=role)
+
+        if form.validate_on_submit():
+
+            if form.savebtn.data:
+                if not role:
+                    role = Role(form.role_name.data, form.role_admin.data, form.role_app_sections.data, form.enabled.data)
+                    db.session.add(role)
+
+                form.populate_obj(role)
+                db.session.commit()
+                flash ('Role saved successfully', 'success')
+                return redirect(url_for('gui_blueprint._roles'))
+
+            if form.deletebtn.data:
+                role = Role.query.filter_by(id=id).first()
+                counter = User.query.filter_by(role=role.id).count()
+                if counter == 0:  # there are no user accounts using this role
+                    db.session.delete(role)
+                    flash ('Role removed successfully', 'success')
+                    db.session.commit()
+                else:
+                    flash ('Cannot delete role as it is in use', 'warning')
+
+                return redirect(url_for('gui_blueprint._roles'))
+
+#################################################################
+# DATES #
+#########
+@login_required
+@gui_blueprint.route("/admin/dates", methods=["GET"])
+def _dates ():
+    if is_admin():
+        dates = DateOfInterest.query.order_by(DateOfInterest.id.asc())
+        return render_template("dates.html", data=dates)
+    else:
+        return render_template("403.html", error = "You are not an administrator")
+
+@login_required
+@gui_blueprint.route("/admin/editdate/<id>", methods=["GET","POST"])
+def _editdate (id):
+
+    if is_admin():
+
+        doi = DateOfInterest.query.filter_by(id=id).first()
+        form = DOIForm(obj=doi)
+
+        if request.method == "GET":
+            return render_template("editdate.html", form=form, data=doi)
+
+        if form.validate_on_submit():
+
+            if form.savebtn.data:
+                if not doi:
+                    doi = DateOfInterest(form.doi_name.data, form.doi_priority.data, form.doi_comment.data, form.doi_start_dt.data, form.doi_end_dt.data)
+                    db.session.add(doi)
+
+                form.populate_obj(doi)
+                db.session.commit()
+                flash ('Date saved successfully', 'success')
+                return redirect(url_for('gui_blueprint._dates'))
+
+            if form.deletebtn.data:
+                doi = DateOfInterest.query.filter_by(id=id).first()
+                db.session.delete(doi)
+                flash ('Date removed successfully', 'success')
+                db.session.commit()
+
+        else:
+            flash_errors(form)
+
+        return redirect(url_for('gui_blueprint._dates'))
+
+
+    else:
+        return render_template("403.html", error = "You are not an administrator")
+
+#################################################################
+#  #
+#########
 @gui_blueprint.route("/search", methods=["POST"])
 def _search ():
 
+    form = MainSearchForm()
+    results = db.session.query(Parameter.param_name.label("result")).filter(Parameter.param_group>0).order_by(Parameter.param_name.asc())
     if request.method == 'POST':
-        return render_template("search.html", query=request.form.getlist('query')[0])
+        return render_template("search.html", query=request.form.getlist('query')[0], results=results, form=form)
 
 
 @gui_blueprint.route("/bookings")
@@ -194,7 +348,8 @@ def _bookings ():
     if request.method == 'GET':
         return render_template("calendar.html")
 
-##############
+
+#################################################################
 # PARAMETERS #
 ##############
 # Show parameters in a form using a select box to control groupings
@@ -274,7 +429,7 @@ def _editparameter (id):
         return render_template("403.html", error = "You are not an administrator")
 
 
-###########
+#################################################################
 # PROFILE #
 ###########
 @gui_blueprint.route("/editprofile", methods=["POST","GET"])
@@ -304,6 +459,9 @@ def _editprofile ():
 
         return render_template("profile.html", data=profile, form=form)
 
+#################################################################
+# EMAIL #
+#########
 
 @gui_blueprint.route("/email", methods=["POST","GET"])
 def _email ():

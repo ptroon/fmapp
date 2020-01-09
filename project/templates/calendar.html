@@ -3,12 +3,6 @@
 {% block head %}
     {{ super() }}
 
-<link href="{{ url_for('static', filename='fullcalendar/packages/core/main.css')}}" rel='stylesheet' />
-<link href="{{ url_for('static', filename='fullcalendar/packages/daygrid/main.css')}}" rel='stylesheet' />
-<script src="{{ url_for('static', filename='fullcalendar/packages/core/main.js')}}"></script>
-<script src="{{ url_for('static', filename='fullcalendar/packages/daygrid/main.js')}}"></script>
-<script src="{{ url_for('static', filename='fullcalendar/packages/interaction/main.js')}}"></script>
-<script src="{{ url_for('static', filename='fullcalendar/packages/moment/main.js')}}{{ unique_time() }}"></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {

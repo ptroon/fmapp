@@ -5,18 +5,19 @@ from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
 import logging
+from logging.handlers import TimedRotatingFileHandler
 from datetime import datetime
 
 from project.instance.config import app_config, current_config
 
 #
 # TBC
-# Use Flask DispatcherMiddleware to combine API and GUI apps into one
+# Use Flask DispatcherMiddleware to combine API and GUI apps into one (Q1 2020)
 #
 
-####################
-# HELPER functions #
-####################
+#################################################################
+# HELPER functions for Jinja2 #
+###############################
 # Gets the application name from the config file
 def get_name():
     return app.config["APP_NAME"]
@@ -43,31 +44,46 @@ def is_admin():
         return True
     return False
 
-##########
+
+#################################################################
 # SET-UP #
 ##########
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object(app_config[current_config])
 
-logging.basicConfig(filename = app.config["LOG_FILE"], level = logging.DEBUG, format = '%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
-
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 mail = Mail(app)
 
-# logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
+#################################################################
+# LOGGING #
+###########
+
+logging.basicConfig(filename = app.config["LOG_FILE"], level = logging.DEBUG, format = '%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+
+db_logger = logging.getLogger('sqlalchemy.engine')
+db_handler = TimedRotatingFileHandler(app.config["DB_LOG_FILE"], when='midnight', backupCount=10)
+db_logger.setLevel(logging.DEBUG)
+db_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s'))
+db_logger.addHandler(db_handler)
+logging.getLogger('sqlalchemy.pool').addHandler(db_handler)
+logging.getLogger('sqlalchemy').propagate = False
+
+#################################################################
+# LOGIN MANAGEMENT #
+####################
 
 login_manager = LoginManager(app)
 login_manager.login_view='api_blueprint.session'
 
-# This handles the unauthorised access requests to URIs
 @login_manager.unauthorized_handler
 def unauthorized():
     return abort(403)
 
-#
-# BLUEPRINTS
+#################################################################
+# BLUEPRINTS #
+##############
 from project.api.views import api_blueprint
 from project.gui.views import gui_blueprint
 
@@ -94,7 +110,6 @@ app.jinja_env.globals.update(get_user=get_user)
 app.jinja_env.globals.update(is_admin=is_admin)
 app.jinja_env.globals.update(unique_time=unique_time)
 app.jinja_env.globals.update(get_copyright=get_copyright)
-
 
 # Default 404 Error handler
 @app.errorhandler(404)

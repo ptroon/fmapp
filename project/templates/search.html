@@ -6,34 +6,30 @@
 {% block content %}
 
 <div class="container-fluid mt-3">
-  <h3>Search Results for: <i class="text-primary">{{ query }}</i></h3>
+  <h3>Search Results for: <i class="text-primary">"{{ query }}"</i></h3>
 
 
+  {% if form %}
+    <div>{{ form.search_options(class_='form-control') }}</div>
+  {% endif %}
 
   <table class="table">
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Result</th>
-        <th scope="col">Type</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Madeup FortiManager</td>
-        <td>FortiManager</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>VPN change to add DENY for Oracle Listener (TCP/1521)</td>
-        <td>Change</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Change to add ALLOW for DNS (UDP/53)</td>
-        <td>Change</td>
-      </tr>
+
+
+      {% for result in results %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <td>{{ result.result }}</td>
+        </tr>
+      {% endfor %}
+
     </tbody>
   </table>
 
