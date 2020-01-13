@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
 
-<div class="card text-center w-50 border-dark mx-auto">
+<div class="card text-center border-dark mx-auto" style="width: 1000px">
 
     {% if data %}
     <h5 class="card-header text-white bg-info">Date: #{{ data.id }} : "{{ data.doi_name }}"</h5>
@@ -37,13 +37,80 @@
 
           <tr>
             <td class="px-4 py-1">{{ form.doi_start_dt.label }}</td>
-            <td class="px-4 py-1">{{ form.doi_start_dt(size=11, maxlength=12, class_="") }}</td>
+            <td class="px-4 py-1">
+            <div class="container">
+                <div class="row">
+                  <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                      {{ form.doi_start_dt(class_="form-control-plaintext form-control datetimepicker-input") }}
+                  </div>
+                  <script type="text/javascript">
+                      $(function () {
+                          $('#datetimepicker1').datetimepicker({
+                            icons: {
+                              time: 'far fa-clock',
+                              date: 'far fa-calendar',
+                              up: 'fas fa-arrow-up',
+                              down: 'fas fa-arrow-down',
+                              previous: 'fas fa-chevron-left',
+                              next: 'fas fa-chevron-right',
+                              today: 'far fa-calendar-check-o',
+                              clear: 'far fa-trash',
+                              close: 'far fa-times'
+                            },
+                            locale: 'en-gb',
+                            allowInputToggle: false,
+                            minDate: moment(),
+                            stepping: 15,
+                            showClose: true,
+                            sideBySide: true,
+                            ignoreReadonly: true
+                          });
+                      });
+                  </script>
+                </div>
+            </div>
+            </td>
+            <td><small>Click the field to select a date & time</small></td>
           </tr>
 
           <tr>
             <td class="px-4 py-1">{{ form.doi_end_dt.label }}</td>
-            <td class="px-4 py-1">{{ form.doi_end_dt(size=11, maxlength=12, class_="") }}</td>
+            <td class="px-4 py-1">
+            <div class="container">
+                <div class="row">
+                  <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                      {{ form.doi_end_dt(class_="form-control-plaintext form-control datetimepicker-input") }}
+                  </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker2').datetimepicker({
+                              icons: {
+                                time: 'far fa-clock',
+                                date: 'far fa-calendar',
+                                up: 'fas fa-arrow-up',
+                                down: 'fas fa-arrow-down',
+                                previous: 'fas fa-chevron-left',
+                                next: 'fas fa-chevron-right',
+                                today: 'far fa-calendar-check-o',
+                                clear: 'far fa-trash',
+                                close: 'far fa-times'
+                              },
+                              locale: 'en-gb',
+                              allowInputToggle: false,
+                          		minDate: moment(),
+                          		stepping: 15,
+                              showClose: true,
+                              sideBySide: true,
+                              ignoreReadonly: true
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+            </td>
+            <td><small>Click the field to select a date & time</small></td>
           </tr>
+
           <tr>
             <td>&nbsp;</td>
             <td class="p-5">{{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._dates') }}'">Cancel</button></td>
@@ -55,17 +122,7 @@
     </form>
     </div>
 
-    <script>
-    $('#doi_start_dt').datepicker({
-    format: "dd/mm/yyyy",
-    autoclose: true
-    });
 
-    $('#doi_end_dt').datepicker({
-    format: "dd/mm/yyyy",
-    autoclose: true
-    });
-    </script>
 
 </div>
 

@@ -301,25 +301,34 @@ def _editdate (id):
         form = DOIForm(obj=doi)
 
         if request.method == "GET":
+            form.doi_start_dt.data = datetime.strftime(doi.doi_start_dt, '%d/%m/%Y %H:%M')
+            form.doi_end_dt.data = datetime.strftime(doi.doi_end_dt, '%d/%m/%Y %H:%M')
             return render_template("editdate.html", form=form, data=doi)
+
+        if form.deletebtn.data:
+            doi = DateOfInterest.query.filter_by(id=id).first()
+            db.session.delete(doi)
+            flash ('Date removed successfully', 'success')
+            db.session.commit()
+            return redirect(url_for('gui_blueprint._dates'))
 
         if form.validate_on_submit():
 
+            start_dt = datetime.strptime(form.doi_start_dt.data, '%d/%m/%Y %H:%M')
+            end_dt = datetime.strptime(form.doi_end_dt.data, '%d/%m/%Y %H:%M')
+
             if form.savebtn.data:
                 if not doi:
-                    doi = DateOfInterest(form.doi_name.data, form.doi_priority.data, form.doi_comment.data, form.doi_start_dt.data, form.doi_end_dt.data)
+                    doi = DateOfInterest(form.doi_name.data, form.doi_priority.data, form.doi_comment.data, start_dt, end_dt)
                     db.session.add(doi)
 
                 form.populate_obj(doi)
+                doi.doi_start_dt = start_dt
+                doi.doi_end_dt = end_dt
                 db.session.commit()
+
                 flash ('Date saved successfully', 'success')
                 return redirect(url_for('gui_blueprint._dates'))
-
-            if form.deletebtn.data:
-                doi = DateOfInterest.query.filter_by(id=id).first()
-                db.session.delete(doi)
-                flash ('Date removed successfully', 'success')
-                db.session.commit()
 
         else:
             flash_errors(form)
@@ -432,6 +441,7 @@ def _editparameter (id):
 #################################################################
 # PROFILE #
 ###########
+@login_required
 @gui_blueprint.route("/editprofile", methods=["POST","GET"])
 def _editprofile ():
 

@@ -134,3 +134,5 @@ class DOIForm(FlaskForm):
         super(DOIForm, self).__init__(*args, **kwargs)
         self.doi_priority.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 82).order_by(Parameter.param_name)] # Parameters for Priories
         self.doi_comment.render_kw = {'style': 'resize:none;'}
+        self.doi_start_dt.render_kw = {'data-target': '#datetimepicker1', 'data-toggle': 'datetimepicker', 'readonly': ''}
+        self.doi_end_dt.render_kw = {'data-target': '#datetimepicker2', 'data-toggle': 'datetimepicker', 'readonly': ''}

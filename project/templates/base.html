@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}{{ unique_time() }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-select.min.css') }}{{ unique_time() }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fpa.css') }}{{ unique_time() }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datepicker.css') }}{{ unique_time() }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tempusdominus-bootstrap-4.css') }}{{ unique_time() }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome5/css/all.css') }}{{ unique_time() }}">
 
     <link href="{{ url_for('static', filename='fullcalendar/packages/core/main.css')}}" rel='stylesheet' />
     <link href="{{ url_for('static', filename='fullcalendar/packages/daygrid/main.css')}}" rel='stylesheet' />
@@ -22,18 +24,21 @@
   </head>
   <body>
     <!-- Optional JavaScript -->
-    <script src="{{ url_for('static', filename='js/moment.js')}}{{ unique_time() }}"></script>
+    <script src="{{ url_for('static', filename='js/moment-with-locales.min.js')}}{{ unique_time() }}"></script>
+    <!-- <script src="{{ url_for('static', filename='js/moment.js')}}{{ unique_time() }}"></script> -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ url_for('static', filename='js/jquery-3.2.1.slim.min.js')}}"></script>
     <script src="{{ url_for('static', filename='js/popper.min.js')}}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap-select.min.js')}}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap-datepicker.js')}}"></script>
+
+    <script src="{{ url_for('static', filename='js/tempusdominus-bootstrap-4.js')}}"></script>
+    <script src="{{ url_for('static', filename='fontawesome5/js/all.js')}}"></script>
 
     <script src="{{ url_for('static', filename='fullcalendar/packages/core/main.js')}}"></script>
     <script src="{{ url_for('static', filename='fullcalendar/packages/daygrid/main.js')}}"></script>
     <script src="{{ url_for('static', filename='fullcalendar/packages/interaction/main.js')}}"></script>
-    <script src="{{ url_for('static', filename='fullcalendar/packages/moment/main.js')}}{{ unique_time() }}"></script>
+
 
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light nav-fill">

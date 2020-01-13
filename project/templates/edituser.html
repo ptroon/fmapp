@@ -52,7 +52,12 @@
           </tr>
           <tr>
             <td class="px-4 py-1">{{ form.role.label }}</td>
+
+            {% if data.login_id == get_user() %}
+            <td class="px-4 py-1">{{ form.role(class_="form-control", disabled=True) }}</td>
+            {% else %}
             <td class="px-4 py-1">{{ form.role(class_="form-control") }}</td>
+            {% endif %}
           </tr>
           <tr>
             <td class="px-4 py-1">{{ form.vendor.label }}</td>
