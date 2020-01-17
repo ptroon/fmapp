@@ -53,6 +53,7 @@ app = Flask(__name__, instance_relative_config=True)
 app.config.from_object(app_config[current_config])
 
 db = SQLAlchemy(app)
+
 bcrypt = Bcrypt(app)
 mail = Mail(app)
 

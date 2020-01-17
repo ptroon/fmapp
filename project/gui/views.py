@@ -11,6 +11,7 @@ import requests
 import logging
 from datetime import datetime
 from file_read_backwards import FileReadBackwards
+from sqlalchemy.orm import aliased
 
 from project.models import *
 from project import app, db, is_admin, mail, get_user
@@ -130,23 +131,54 @@ def _editchange ():
 
 
 #################################################################
-# FORTIMANAGERS #
-#################
+# COMPLEXES #
+#############
 @login_required
-@gui_blueprint.route("/admin/fortimanagers")
-def _fms ():
+@gui_blueprint.route("/admin/complexes")
+def _complexes ():
     if is_admin():
-        fms = db.session.query(FortiManager).order_by(FortiManager.id.asc())
-        return render_template("fortimanagers.html", data = fms)
+
+        a = aliased(Parameter)
+        b = aliased(Parameter)
+        c = aliased(Parameter)
+        d = aliased(Parameter)
+
+        complexes = db.session.query(Complex, a, b, c, d).\
+        filter(Complex.complex_manager==a.id).\
+        filter(Complex.complex_type==b.id).\
+        filter(Complex.complex_country==c.id).\
+        filter(Complex.complex_active==d.id).all()
+        
+        return render_template("complexes.html", data = complexes)
     else:
         return render_template("403.html", error = "You are not an administrator")
 
 @login_required
-@gui_blueprint.route("/admin/editfm/<id>", methods=["GET","POST"])
-def _editfm (id):
+@gui_blueprint.route("/admin/editcomplex/<id>", methods=["GET","POST"])
+def _editcomplex (id):
     if is_admin():
-        fms = db.session.query(FortiManager).order_by(FortiManager.id.asc())
-        return render_template("fortimanagers.html", data = fms)
+
+        complex = Complex.query.filter_by(id=id).first()
+        form = ComplexForm(obj=complex)
+
+        if request.method == "GET":
+            return render_template("editcomplex.html", data=complex, form=form)
+
+        if form.validate_on_submit():
+            if not complex:
+                complex = Complex()
+                db.session.add(complex)
+
+            form.populate_obj(complex)
+            complex.complex_updated = datetime.now()
+            db.session.commit()
+            flash ('Complex saved successfully', 'success')
+            return redirect(url_for('gui_blueprint._complexes'))
+        else:
+            flash_errors(form)
+
+        return render_template("editcomplex.html", data=complex, form=form)
+
     else:
         return render_template("403.html", error = "You are not an administrator")
 
@@ -220,12 +252,12 @@ def _edituser (id):
                 user.created_date = datetime.now()
 
             db.session.commit()
+            flash ('User saved successfully', 'success')
             return redirect(url_for('gui_blueprint._users'))
         else:
-            for fieldName, errorMessages in form.errors.items():
-                for err in errorMessages:
-                    print (fieldName + " " + err + " value:(" + form.role.data + ")")
-            return render_template("400.html", error = form.errors)
+            flash_errors (form)
+
+        return render_template("edituser.html", data=user, form=form)
 
     else:
         return render_template("403.html", error = "You are not an administrator")
@@ -286,7 +318,7 @@ def _editrole (id):
 @gui_blueprint.route("/admin/dates", methods=["GET"])
 def _dates ():
     if is_admin():
-        dates = DateOfInterest.query.order_by(DateOfInterest.id.asc())
+        dates = db.session.query(DateOfInterest,Parameter).join(Parameter).order_by(DateOfInterest.id.asc())
         return render_template("dates.html", data=dates)
     else:
         return render_template("403.html", error = "You are not an administrator")

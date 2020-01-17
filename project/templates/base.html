@@ -40,7 +40,6 @@
     <script src="{{ url_for('static', filename='fullcalendar/packages/interaction/main.js')}}"></script>
 
 
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light nav-fill">
         <a class="navbar-brand" href="#"><h1><div class="badge badge-primary"> {{ get_name() }} </div></h1></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,7 +65,7 @@
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._users') }}">Users</a>
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._roles') }}">Roles</a>
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._dates') }}">Dates</a>
-              <a class="dropdown-item" href="{{ url_for('gui_blueprint._fms') }}">Complexes</a>
+              <a class="dropdown-item" href="{{ url_for('gui_blueprint._complexes') }}">Complexes</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._parameters') }}">Parameters</a>
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._logs', counter=10) }}">System Logs</a>

@@ -28,7 +28,7 @@
         <td>{{ rec[0].email }}</td>
         <td>{{ rec[1].role_name }}</td>
         <td>{{ rec[2].param_value }}</td>
-        <td>{{ rec[0].last_modified }}</td>
+        <td>{{ rec[0].last_modified.strftime('%d-%m-%Y %H:%M') }}</td>
       </tr>
       {% else %}
         <tr><td colspan=5 class="alert alert-primary"><strong>There are no user accounts to view </strong></td></tr>

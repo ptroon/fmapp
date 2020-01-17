@@ -5,57 +5,51 @@
 {% endblock %}
 {% block content %}
 
-<div class="card text-center w-50 border-dark mx-auto">
 
     {% if data %}
-    <h5 class="card-header text-white bg-info">Role: {{ data.role_name }} : {{ data.id }}</h5>
-    <div class="card-body px-lg-5 pt-0">
-    <form action="{{ url_for('gui_blueprint._editrole', id=data.id) }}" method="POST" novalidate class="text-center" style="color: #000000;">
+    <h5 class="card-header text-white bg-secondary">Role: {{ data.role_name }} : {{ data.id }}</h5>
+    <form action="{{ url_for('gui_blueprint._editrole', id=data.id) }}" method="POST" novalidate style="color: #000000;">
     {% else %}
-    <h5 class="card-header text-white bg-info">New Role</h5>
-    <div class="card-body px-lg-5 pt-0">
-    <form action="{{ url_for('gui_blueprint._editrole', id=0) }}" method="POST" novalidate class="text-center" style="color: #000000;">
+    <h5 class="card-header text-white bg-secondary">New Role</h5>
+    <form action="{{ url_for('gui_blueprint._editrole', id=0) }}" method="POST" novalidate style="color: #000000;">
     {% endif %}
 
-        <table class="form-group">
+        <table class="form-group w-75">
           <tr>
             <td>{{ form.hidden_tag() }}</td>
             <td>&nbsp;</td>
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.role_name.label }}</td>
-            <td class="px-4 py-1">{{ form.role_name(size=32, class_="form-control") }}</td>
+            <td class="w-25 text-right mx-2 p-1">{{ form.role_name.label }}</td>
+            <td class="w-75 text-right mx-2 p-1">{{ form.role_name(size=32, class_="form-control") }}</td>
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.role_admin.label }}</td>
-            <td class="px-4 py-1">{{ form.role_admin(class_="form-control") }}</td>
+            <td class="w-25 text-right mx-2 p-1">{{ form.role_admin.label }}</td>
+            <td class="w-75 text-right mx-2 p-1">{{ form.role_admin(class_="form-control") }}</td>
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.role_app_sections.label }}</td>
-            <td class="px-4 py-1">{{ form.role_app_sections(size=32, class_="form-control") }}</td>
+            <td class="w-25 text-right mx-2 p-1">{{ form.role_app_sections.label }}</td>
+            <td class="w-75 text-right mx-2 p-1">{{ form.role_app_sections(size=32, class_="form-control") }}</td>
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.created_date.label }}</td>
-            <td class="px-4 py-1">{{ form.created_date(size=32, class_="form-control") }}</td>
+            <td class="w-25 text-right mx-2 p-1">{{ form.created_date.label }}</td>
+            <td class="w-75 text-right mx-2 p-1">{{ form.created_date(size=32, class_="form-control") }}</td>
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.enabled.label }}</td>
-            <td class="px-4 py-1">{{ form.enabled(class_="form-control") }}</td>
+            <td class="w-25 text-right mx-2 p-1">{{ form.enabled.label }}</td>
+            <td class="w-75 text-right mx-2 p-1">{{ form.enabled(class_="form-control") }}</td>
           </tr>
           <tr>
             <td>&nbsp;</td>
-            <td class="p-5">{{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._roles') }}'">Cancel</button></td>
-
+            <td class="p-5">{{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._roles') }}'">Cancel</button>
             {% if data.role_admin == 0 or data.role_admin == None %}
-              <td class="p-5">{{ form.deletebtn(class_="btn btn-danger") }}</td>
+              &nbsp;{{ form.deletebtn(class_="btn btn-danger") }}
             {% endif %}
-
+            </td>
 
           </tr>
         </table>
     </form>
-    </div>
 
-</div>
 
 {% endblock %}

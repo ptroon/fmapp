@@ -3,7 +3,10 @@ from flask_restplus import Api, Resource, reqparse
 from flask_login import login_required, login_user, logout_user, current_user
 from itsdangerous import JSONWebSignatureSerializer
 
-from project.models import User, Booking
+from project.models import *
+from project import app, db, is_admin, mail, get_user
+from project.gui.forms import *
+from project.gui.logic import *
 
 api_blueprint = Blueprint('api_blueprint', __name__, url_prefix="/fpa/api")
 api = Api(api_blueprint, version = "1.0", \
@@ -16,41 +19,38 @@ nsp2 = api.namespace('v2', description='Firewall Policy Automation APIs v2')
 #
 # ENDPOINTS
 #
+@login_required
 @nsp.route("/users")
 class _users(Resource):
-
     def get(self):
-        if not current_user.is_authenticated:
-            return {"message":"Not authenticated"}
-        return {"message":"Authenticated"}
+        if is_admin():
+            users = db.session.query(User,Role,Parameter).join(Role).outerjoin(Parameter).order_by(User.id.asc())
+            return users
 
-    @login_required
-    def post(self):
-        return {"message": "Posted to Users Route"}
-
-@nsp.route("/fortimanagers")
+@nsp.route("/roles")
 class _fortimanagers(Resource):
     def get(self):
         if current_user.is_authenticated:
             return {"message":"fortimanagers route"}
         return {"message":"not logged in for Fortimanagers route"}
 
-@nsp.route("/changes")
+@nsp.route("/dates")
 class _changes(Resource):
     def get(self):
         return "Changes route"
 
-@nsp.route("/roles")
+@nsp.route("/complexes")
 class _roles(Resource):
     def get(self):
         return "Roles route"
 
+'''
 @nsp.route("/bookings")
 class _bookings(Resource):
     def get(self):
         month_name = request.args.get('month', '')
         booking = Booking.query().all()
-
+'''
 
 #
 # AUTHENTICATION

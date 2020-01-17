@@ -1,0 +1,699 @@
+2020-01-13 00:17:43,217 INFO sqlalchemy.engine.base.Engine Thread-582 : BEGIN (implicit)
+2020-01-13 00:17:43,219 INFO sqlalchemy.engine.base.Engine Thread-582 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 00:17:43,219 INFO sqlalchemy.engine.base.Engine Thread-582 : ('philip', 1, 1)
+2020-01-13 00:17:43,220 DEBUG sqlalchemy.engine.base.Engine Thread-582 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:43,221 DEBUG sqlalchemy.engine.base.Engine Thread-582 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:43,224 INFO sqlalchemy.engine.base.Engine Thread-582 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 00:17:43,224 INFO sqlalchemy.engine.base.Engine Thread-582 : (1, 1)
+2020-01-13 00:17:43,225 DEBUG sqlalchemy.engine.base.Engine Thread-582 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:43,225 DEBUG sqlalchemy.engine.base.Engine Thread-582 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:43,229 INFO sqlalchemy.engine.base.Engine Thread-582 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 00:17:43,229 INFO sqlalchemy.engine.base.Engine Thread-582 : ('philip', 1, 1)
+2020-01-13 00:17:43,229 DEBUG sqlalchemy.engine.base.Engine Thread-582 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:43,230 DEBUG sqlalchemy.engine.base.Engine Thread-582 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:43,233 INFO sqlalchemy.engine.base.Engine Thread-582 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled, roles.id AS roles_id, roles.role_name AS roles_role_name, roles.role_admin AS roles_role_admin, roles.role_app_sections AS roles_role_app_sections, roles.created_date AS roles_created_date, roles.enabled AS roles_enabled, parameters.id AS parameters_id, parameters.param_name AS parameters_param_name, parameters.param_value AS parameters_param_value, parameters.param_group AS parameters_param_group, parameters.param_parent AS parameters_param_parent, parameters.param_disabled AS parameters_param_disabled, parameters.param_critical AS parameters_param_critical 
+FROM users INNER JOIN roles ON roles.id = users.`role` LEFT OUTER JOIN parameters ON parameters.id = users.vendor ORDER BY users.id ASC
+2020-01-13 00:17:43,233 INFO sqlalchemy.engine.base.Engine Thread-582 : ()
+2020-01-13 00:17:43,234 DEBUG sqlalchemy.engine.base.Engine Thread-582 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled', 'roles_id', 'roles_role_name', 'roles_role_admin', 'roles_role_app_sections', 'roles_created_date', 'roles_enabled', 'parameters_id', 'parameters_param_name', 'parameters_param_value', 'parameters_param_group', 'parameters_param_parent', 'parameters_param_disabled', 'parameters_param_critical')
+2020-01-13 00:17:43,234 DEBUG sqlalchemy.engine.base.Engine Thread-582 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0, 2, 'Administrator User Access', 1, 'CHANGES,ADMIN', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 70, 'Main-Organisation', 'Main-Organisation', 63, 0, 0, 0)
+2020-01-13 00:17:43,235 DEBUG sqlalchemy.engine.base.Engine Thread-582 : Row (2, 'bob', 'Bob', 'Smith', 'User account for Bob Smith', '$2b$12$SjOFE3rvjz4Jpn4MUa5T9uS3TeoAXcgNhhRJOa0xiu2sQh0ux7pAK', 'bob@somewhere.com', 6, 64, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 8, 17, 20, 47), datetime.datetime(2020, 1, 8, 17, 20, 47), 'philip', 0, 6, 'New User', 0, '', datetime.datetime(2020, 1, 8, 17, 8, 55), 1, 64, 'Vendor-name1', 'Vendor-name1', 63, 0, 0, 0)
+2020-01-13 00:17:43,235 DEBUG sqlalchemy.engine.base.Engine Thread-582 : Row (3, 'frank', 'Frank', 'Black', 'User account for Frank Black test 123', '$2b$12$W7l0QbKXrOLKh2.7IDYI3.eP7gAsIzbJ730HJ0bgyd8.FGmrr4Je6', 'frank@somewhere.com', 2, 65, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 12, 17, 11, 44), datetime.datetime(2020, 1, 12, 17, 11, 44), 'frank', 0, 2, 'Administrator User Access', 1, 'CHANGES,ADMIN', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 65, 'Vendor-name2', 'Vendor-name2', 63, 0, 0, 0)
+2020-01-13 00:17:43,235 DEBUG sqlalchemy.engine.base.Engine Thread-582 : Row (4, 'evan', 'Evan', 'Troon', 'Account for Evan', '$2b$12$fRYijfQhLPT1wH9/akayhu/1F9l1IgozFbXG4uMk0p5H2u66/tUVy', 'evan@someone.com', 1, 70, datetime.datetime(2019, 9, 2, 15, 14, 53), datetime.datetime(2020, 1, 6, 15, 34, 20), datetime.datetime(2020, 1, 6, 15, 34, 20), 'philip', 1, 1, 'Standard User Access', 0, 'CHANGES', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 70, 'Main-Organisation', 'Main-Organisation', 63, 0, 0, 0)
+2020-01-13 00:17:43,235 DEBUG sqlalchemy.engine.base.Engine Thread-582 : Row (6, 'dylan', 'Dylan', 'Troon', 'Dylan Troon', '$2b$12$kyttQmBiV7Gxn4NdG1gh1eOwfzfp8LEy5.PUhMLcUyWlVd8F9DSku', 'dylan@somewhere.com', 1, 65, datetime.datetime(2019, 9, 2, 16, 50, 50), datetime.datetime(2020, 1, 7, 13, 49, 47), datetime.datetime(2020, 1, 7, 13, 49, 47), 'philip', 1, 1, 'Standard User Access', 0, 'CHANGES', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 65, 'Vendor-name2', 'Vendor-name2', 63, 0, 0, 0)
+2020-01-13 00:17:43,237 INFO sqlalchemy.engine.base.Engine Thread-582 : ROLLBACK
+2020-01-13 00:17:45,303 INFO sqlalchemy.engine.base.Engine Thread-589 : BEGIN (implicit)
+2020-01-13 00:17:45,304 INFO sqlalchemy.engine.base.Engine Thread-589 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 00:17:45,304 INFO sqlalchemy.engine.base.Engine Thread-589 : ('philip', 1, 1)
+2020-01-13 00:17:45,305 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:45,305 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:45,307 INFO sqlalchemy.engine.base.Engine Thread-589 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 00:17:45,307 INFO sqlalchemy.engine.base.Engine Thread-589 : ('1', 1)
+2020-01-13 00:17:45,308 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:45,308 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:45,310 INFO sqlalchemy.engine.base.Engine Thread-589 : SELECT roles.id AS roles_id, roles.role_name AS roles_role_name, roles.role_admin AS roles_role_admin, roles.role_app_sections AS roles_role_app_sections, roles.created_date AS roles_created_date, roles.enabled AS roles_enabled 
+FROM roles ORDER BY roles.role_name
+2020-01-13 00:17:45,310 INFO sqlalchemy.engine.base.Engine Thread-589 : ()
+2020-01-13 00:17:45,311 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Col ('roles_id', 'roles_role_name', 'roles_role_admin', 'roles_role_app_sections', 'roles_created_date', 'roles_enabled')
+2020-01-13 00:17:45,311 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Row (2, 'Administrator User Access', 1, 'CHANGES,ADMIN', datetime.datetime(2019, 8, 28, 11, 44, 3), 1)
+2020-01-13 00:17:45,311 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Row (6, 'New User', 0, '', datetime.datetime(2020, 1, 8, 17, 8, 55), 1)
+2020-01-13 00:17:45,311 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Row (1, 'Standard User Access', 0, 'CHANGES', datetime.datetime(2019, 8, 28, 11, 44, 3), 1)
+2020-01-13 00:17:45,312 INFO sqlalchemy.engine.base.Engine Thread-589 : SELECT parameters.id AS parameters_id, parameters.param_name AS parameters_param_name, parameters.param_value AS parameters_param_value, parameters.param_group AS parameters_param_group, parameters.param_parent AS parameters_param_parent, parameters.param_disabled AS parameters_param_disabled, parameters.param_critical AS parameters_param_critical 
+FROM parameters 
+WHERE parameters.param_group = %s ORDER BY parameters.param_name
+2020-01-13 00:17:45,312 INFO sqlalchemy.engine.base.Engine Thread-589 : (63,)
+2020-01-13 00:17:45,313 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Col ('parameters_id', 'parameters_param_name', 'parameters_param_value', 'parameters_param_group', 'parameters_param_parent', 'parameters_param_disabled', 'parameters_param_critical')
+2020-01-13 00:17:45,313 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Row (70, 'Main-Organisation', 'Main-Organisation', 63, 0, 0, 0)
+2020-01-13 00:17:45,313 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Row (64, 'Vendor-name1', 'Vendor-name1', 63, 0, 0, 0)
+2020-01-13 00:17:45,313 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Row (65, 'Vendor-name2', 'Vendor-name2', 63, 0, 0, 0)
+2020-01-13 00:17:45,315 INFO sqlalchemy.engine.base.Engine Thread-589 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 00:17:45,315 INFO sqlalchemy.engine.base.Engine Thread-589 : (1, 1)
+2020-01-13 00:17:45,315 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:45,316 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:45,349 INFO sqlalchemy.engine.base.Engine Thread-589 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 00:17:45,349 INFO sqlalchemy.engine.base.Engine Thread-589 : ('philip', 1, 1)
+2020-01-13 00:17:45,350 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:45,350 DEBUG sqlalchemy.engine.base.Engine Thread-589 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:45,353 INFO sqlalchemy.engine.base.Engine Thread-589 : ROLLBACK
+2020-01-13 00:17:48,013 INFO sqlalchemy.engine.base.Engine Thread-596 : BEGIN (implicit)
+2020-01-13 00:17:48,014 INFO sqlalchemy.engine.base.Engine Thread-596 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 00:17:48,014 INFO sqlalchemy.engine.base.Engine Thread-596 : ('philip', 1, 1)
+2020-01-13 00:17:48,015 DEBUG sqlalchemy.engine.base.Engine Thread-596 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:48,015 DEBUG sqlalchemy.engine.base.Engine Thread-596 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:48,017 INFO sqlalchemy.engine.base.Engine Thread-596 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 00:17:48,017 INFO sqlalchemy.engine.base.Engine Thread-596 : (1, 1)
+2020-01-13 00:17:48,018 DEBUG sqlalchemy.engine.base.Engine Thread-596 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:48,018 DEBUG sqlalchemy.engine.base.Engine Thread-596 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:48,021 INFO sqlalchemy.engine.base.Engine Thread-596 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 00:17:48,022 INFO sqlalchemy.engine.base.Engine Thread-596 : ('philip', 1, 1)
+2020-01-13 00:17:48,022 DEBUG sqlalchemy.engine.base.Engine Thread-596 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:48,022 DEBUG sqlalchemy.engine.base.Engine Thread-596 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:48,025 INFO sqlalchemy.engine.base.Engine Thread-596 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled, roles.id AS roles_id, roles.role_name AS roles_role_name, roles.role_admin AS roles_role_admin, roles.role_app_sections AS roles_role_app_sections, roles.created_date AS roles_created_date, roles.enabled AS roles_enabled, parameters.id AS parameters_id, parameters.param_name AS parameters_param_name, parameters.param_value AS parameters_param_value, parameters.param_group AS parameters_param_group, parameters.param_parent AS parameters_param_parent, parameters.param_disabled AS parameters_param_disabled, parameters.param_critical AS parameters_param_critical 
+FROM users INNER JOIN roles ON roles.id = users.`role` LEFT OUTER JOIN parameters ON parameters.id = users.vendor ORDER BY users.id ASC
+2020-01-13 00:17:48,026 INFO sqlalchemy.engine.base.Engine Thread-596 : ()
+2020-01-13 00:17:48,026 DEBUG sqlalchemy.engine.base.Engine Thread-596 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled', 'roles_id', 'roles_role_name', 'roles_role_admin', 'roles_role_app_sections', 'roles_created_date', 'roles_enabled', 'parameters_id', 'parameters_param_name', 'parameters_param_value', 'parameters_param_group', 'parameters_param_parent', 'parameters_param_disabled', 'parameters_param_critical')
+2020-01-13 00:17:48,027 DEBUG sqlalchemy.engine.base.Engine Thread-596 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0, 2, 'Administrator User Access', 1, 'CHANGES,ADMIN', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 70, 'Main-Organisation', 'Main-Organisation', 63, 0, 0, 0)
+2020-01-13 00:17:48,027 DEBUG sqlalchemy.engine.base.Engine Thread-596 : Row (2, 'bob', 'Bob', 'Smith', 'User account for Bob Smith', '$2b$12$SjOFE3rvjz4Jpn4MUa5T9uS3TeoAXcgNhhRJOa0xiu2sQh0ux7pAK', 'bob@somewhere.com', 6, 64, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 8, 17, 20, 47), datetime.datetime(2020, 1, 8, 17, 20, 47), 'philip', 0, 6, 'New User', 0, '', datetime.datetime(2020, 1, 8, 17, 8, 55), 1, 64, 'Vendor-name1', 'Vendor-name1', 63, 0, 0, 0)
+2020-01-13 00:17:48,027 DEBUG sqlalchemy.engine.base.Engine Thread-596 : Row (3, 'frank', 'Frank', 'Black', 'User account for Frank Black test 123', '$2b$12$W7l0QbKXrOLKh2.7IDYI3.eP7gAsIzbJ730HJ0bgyd8.FGmrr4Je6', 'frank@somewhere.com', 2, 65, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 12, 17, 11, 44), datetime.datetime(2020, 1, 12, 17, 11, 44), 'frank', 0, 2, 'Administrator User Access', 1, 'CHANGES,ADMIN', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 65, 'Vendor-name2', 'Vendor-name2', 63, 0, 0, 0)
+2020-01-13 00:17:48,027 DEBUG sqlalchemy.engine.base.Engine Thread-596 : Row (4, 'evan', 'Evan', 'Troon', 'Account for Evan', '$2b$12$fRYijfQhLPT1wH9/akayhu/1F9l1IgozFbXG4uMk0p5H2u66/tUVy', 'evan@someone.com', 1, 70, datetime.datetime(2019, 9, 2, 15, 14, 53), datetime.datetime(2020, 1, 6, 15, 34, 20), datetime.datetime(2020, 1, 6, 15, 34, 20), 'philip', 1, 1, 'Standard User Access', 0, 'CHANGES', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 70, 'Main-Organisation', 'Main-Organisation', 63, 0, 0, 0)
+2020-01-13 00:17:48,027 DEBUG sqlalchemy.engine.base.Engine Thread-596 : Row (6, 'dylan', 'Dylan', 'Troon', 'Dylan Troon', '$2b$12$kyttQmBiV7Gxn4NdG1gh1eOwfzfp8LEy5.PUhMLcUyWlVd8F9DSku', 'dylan@somewhere.com', 1, 65, datetime.datetime(2019, 9, 2, 16, 50, 50), datetime.datetime(2020, 1, 7, 13, 49, 47), datetime.datetime(2020, 1, 7, 13, 49, 47), 'philip', 1, 1, 'Standard User Access', 0, 'CHANGES', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 65, 'Vendor-name2', 'Vendor-name2', 63, 0, 0, 0)
+2020-01-13 00:17:48,029 INFO sqlalchemy.engine.base.Engine Thread-596 : ROLLBACK
+2020-01-13 00:17:52,421 INFO sqlalchemy.engine.base.Engine Thread-603 : BEGIN (implicit)
+2020-01-13 00:17:52,422 INFO sqlalchemy.engine.base.Engine Thread-603 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 00:17:52,422 INFO sqlalchemy.engine.base.Engine Thread-603 : (1, 1)
+2020-01-13 00:17:52,422 DEBUG sqlalchemy.engine.base.Engine Thread-603 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:52,423 DEBUG sqlalchemy.engine.base.Engine Thread-603 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:52,424 INFO sqlalchemy.engine.base.Engine Thread-603 : SELECT dashboard.id AS dashboard_id, dashboard.fm_text AS dashboard_fm_text, dashboard.fg_text AS dashboard_fg_text, dashboard.user_text AS dashboard_user_text, dashboard.log_text AS dashboard_log_text 
+FROM dashboard
+2020-01-13 00:17:52,424 INFO sqlalchemy.engine.base.Engine Thread-603 : ()
+2020-01-13 00:17:52,424 DEBUG sqlalchemy.engine.base.Engine Thread-603 : Col ('dashboard_id', 'dashboard_fm_text', 'dashboard_fg_text', 'dashboard_user_text', 'dashboard_log_text')
+2020-01-13 00:17:52,424 DEBUG sqlalchemy.engine.base.Engine Thread-603 : Row (1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  ... (147 characters truncated) ... illum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  ... (147 characters truncated) ... illum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  ... (147 characters truncated) ... illum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  ... (147 characters truncated) ... illum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+2020-01-13 00:17:52,441 INFO sqlalchemy.engine.base.Engine Thread-603 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users
+2020-01-13 00:17:52,441 INFO sqlalchemy.engine.base.Engine Thread-603 : ()
+2020-01-13 00:17:52,442 DEBUG sqlalchemy.engine.base.Engine Thread-603 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:52,442 DEBUG sqlalchemy.engine.base.Engine Thread-603 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:52,442 DEBUG sqlalchemy.engine.base.Engine Thread-603 : Row (2, 'bob', 'Bob', 'Smith', 'User account for Bob Smith', '$2b$12$SjOFE3rvjz4Jpn4MUa5T9uS3TeoAXcgNhhRJOa0xiu2sQh0ux7pAK', 'bob@somewhere.com', 6, 64, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 8, 17, 20, 47), datetime.datetime(2020, 1, 8, 17, 20, 47), 'philip', 0)
+2020-01-13 00:17:52,443 DEBUG sqlalchemy.engine.base.Engine Thread-603 : Row (3, 'frank', 'Frank', 'Black', 'User account for Frank Black test 123', '$2b$12$W7l0QbKXrOLKh2.7IDYI3.eP7gAsIzbJ730HJ0bgyd8.FGmrr4Je6', 'frank@somewhere.com', 2, 65, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 12, 17, 11, 44), datetime.datetime(2020, 1, 12, 17, 11, 44), 'frank', 0)
+2020-01-13 00:17:52,443 DEBUG sqlalchemy.engine.base.Engine Thread-603 : Row (4, 'evan', 'Evan', 'Troon', 'Account for Evan', '$2b$12$fRYijfQhLPT1wH9/akayhu/1F9l1IgozFbXG4uMk0p5H2u66/tUVy', 'evan@someone.com', 1, 70, datetime.datetime(2019, 9, 2, 15, 14, 53), datetime.datetime(2020, 1, 6, 15, 34, 20), datetime.datetime(2020, 1, 6, 15, 34, 20), 'philip', 1)
+2020-01-13 00:17:52,443 DEBUG sqlalchemy.engine.base.Engine Thread-603 : Row (6, 'dylan', 'Dylan', 'Troon', 'Dylan Troon', '$2b$12$kyttQmBiV7Gxn4NdG1gh1eOwfzfp8LEy5.PUhMLcUyWlVd8F9DSku', 'dylan@somewhere.com', 1, 65, datetime.datetime(2019, 9, 2, 16, 50, 50), datetime.datetime(2020, 1, 7, 13, 49, 47), datetime.datetime(2020, 1, 7, 13, 49, 47), 'philip', 1)
+2020-01-13 00:17:52,446 INFO sqlalchemy.engine.base.Engine Thread-603 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 00:17:52,447 INFO sqlalchemy.engine.base.Engine Thread-603 : ('philip', 1, 1)
+2020-01-13 00:17:52,447 DEBUG sqlalchemy.engine.base.Engine Thread-603 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:52,447 DEBUG sqlalchemy.engine.base.Engine Thread-603 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:52,449 INFO sqlalchemy.engine.base.Engine Thread-603 : ROLLBACK
+2020-01-13 00:17:53,935 INFO sqlalchemy.engine.base.Engine Thread-610 : BEGIN (implicit)
+2020-01-13 00:17:53,936 INFO sqlalchemy.engine.base.Engine Thread-610 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 00:17:53,936 INFO sqlalchemy.engine.base.Engine Thread-610 : (1, 1)
+2020-01-13 00:17:53,937 DEBUG sqlalchemy.engine.base.Engine Thread-610 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:53,937 DEBUG sqlalchemy.engine.base.Engine Thread-610 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:53,941 INFO sqlalchemy.engine.base.Engine Thread-610 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 00:17:53,941 INFO sqlalchemy.engine.base.Engine Thread-610 : ('philip', 1, 1)
+2020-01-13 00:17:53,941 DEBUG sqlalchemy.engine.base.Engine Thread-610 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:53,942 DEBUG sqlalchemy.engine.base.Engine Thread-610 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:53,943 INFO sqlalchemy.engine.base.Engine Thread-610 : ROLLBACK
+2020-01-13 00:17:57,549 INFO sqlalchemy.engine.base.Engine Thread-617 : BEGIN (implicit)
+2020-01-13 00:17:57,550 INFO sqlalchemy.engine.base.Engine Thread-617 : SELECT parameters.id AS parameters_id, parameters.param_name AS parameters_param_name, parameters.param_value AS parameters_param_value, parameters.param_group AS parameters_param_group, parameters.param_parent AS parameters_param_parent, parameters.param_disabled AS parameters_param_disabled, parameters.param_critical AS parameters_param_critical 
+FROM parameters 
+WHERE parameters.param_group = %s ORDER BY parameters.param_name
+2020-01-13 00:17:57,550 INFO sqlalchemy.engine.base.Engine Thread-617 : (71,)
+2020-01-13 00:17:57,551 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Col ('parameters_id', 'parameters_param_name', 'parameters_param_value', 'parameters_param_group', 'parameters_param_parent', 'parameters_param_disabled', 'parameters_param_critical')
+2020-01-13 00:17:57,551 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row (74, 'Everything', "{ \r\n'name' : 'Everything', \r\n'id' : 1, \r\n'query' : '' \r\n}", 71, 0, 0, 1)
+2020-01-13 00:17:57,551 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row (72, 'Parameters', '{\r\n\'name\' : \'Parameters\',\r\n\'id\' : 2,\r\n\'query\' : \'parameter.param_name.like("%{}%")\'\r\n}', 71, 0, 0, 1)
+2020-01-13 00:17:57,551 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row (73, 'Users', '{ \r\n\'name\' : \'Users\',\r\n\'id\' : 3,\r\n\'query\' : \'users.forename.like("%{}%") | users.surname.like("%{}%")\' \r\n}', 71, 0, 0, 1)
+2020-01-13 00:17:57,553 INFO sqlalchemy.engine.base.Engine Thread-617 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 00:17:57,554 INFO sqlalchemy.engine.base.Engine Thread-617 : (1, 1)
+2020-01-13 00:17:57,554 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:57,554 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:57,565 INFO sqlalchemy.engine.base.Engine Thread-617 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 00:17:57,565 INFO sqlalchemy.engine.base.Engine Thread-617 : ('philip', 1, 1)
+2020-01-13 00:17:57,566 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:17:57,566 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:17:57,568 INFO sqlalchemy.engine.base.Engine Thread-617 : SELECT parameters.param_name AS result 
+FROM parameters 
+WHERE parameters.param_group > %s ORDER BY parameters.param_name ASC
+2020-01-13 00:17:57,568 INFO sqlalchemy.engine.base.Engine Thread-617 : (0,)
+2020-01-13 00:17:57,568 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Col ('result',)
+2020-01-13 00:17:57,569 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Active',)
+2020-01-13 00:17:57,569 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Application Log',)
+2020-01-13 00:17:57,569 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Database Log',)
+2020-01-13 00:17:57,569 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Everything',)
+2020-01-13 00:17:57,569 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('High',)
+2020-01-13 00:17:57,569 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 00',)
+2020-01-13 00:17:57,569 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 01',)
+2020-01-13 00:17:57,569 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 02',)
+2020-01-13 00:17:57,569 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 03',)
+2020-01-13 00:17:57,569 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 04',)
+2020-01-13 00:17:57,569 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 05',)
+2020-01-13 00:17:57,569 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 06',)
+2020-01-13 00:17:57,570 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 07',)
+2020-01-13 00:17:57,570 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 08',)
+2020-01-13 00:17:57,570 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 09',)
+2020-01-13 00:17:57,570 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 10',)
+2020-01-13 00:17:57,570 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 11',)
+2020-01-13 00:17:57,570 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 12',)
+2020-01-13 00:17:57,570 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 13',)
+2020-01-13 00:17:57,570 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 14',)
+2020-01-13 00:17:57,570 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 15',)
+2020-01-13 00:17:57,570 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 16',)
+2020-01-13 00:17:57,571 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 17',)
+2020-01-13 00:17:57,571 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 18',)
+2020-01-13 00:17:57,571 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 19',)
+2020-01-13 00:17:57,571 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 20',)
+2020-01-13 00:17:57,571 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 21',)
+2020-01-13 00:17:57,571 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 22',)
+2020-01-13 00:17:57,571 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Hour 23',)
+2020-01-13 00:17:57,571 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('India',)
+2020-01-13 00:17:57,571 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Low',)
+2020-01-13 00:17:57,571 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Main-Organisation',)
+2020-01-13 00:17:57,571 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Medium',)
+2020-01-13 00:17:57,571 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Minute 00',)
+2020-01-13 00:17:57,571 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Minute 15',)
+2020-01-13 00:17:57,572 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Minute 30',)
+2020-01-13 00:17:57,572 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Minute 45',)
+2020-01-13 00:17:57,572 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Minute 59',)
+2020-01-13 00:17:57,572 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Not Active',)
+2020-01-13 00:17:57,572 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Parameters',)
+2020-01-13 00:17:57,572 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Show 10 Records',)
+2020-01-13 00:17:57,572 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Show 50 Records',)
+2020-01-13 00:17:57,572 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Show All Records',)
+2020-01-13 00:17:57,572 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('United Kingdom',)
+2020-01-13 00:17:57,572 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Users',)
+2020-01-13 00:17:57,572 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Vendor-name1',)
+2020-01-13 00:17:57,573 DEBUG sqlalchemy.engine.base.Engine Thread-617 : Row ('Vendor-name2',)
+2020-01-13 00:17:57,574 INFO sqlalchemy.engine.base.Engine Thread-617 : ROLLBACK
+2020-01-13 00:18:07,756 INFO sqlalchemy.engine.base.Engine Thread-624 : BEGIN (implicit)
+2020-01-13 00:18:07,756 INFO sqlalchemy.engine.base.Engine Thread-624 : SELECT parameters.id AS parameters_id, parameters.param_name AS parameters_param_name, parameters.param_value AS parameters_param_value, parameters.param_group AS parameters_param_group, parameters.param_parent AS parameters_param_parent, parameters.param_disabled AS parameters_param_disabled, parameters.param_critical AS parameters_param_critical 
+FROM parameters 
+WHERE parameters.param_group = %s ORDER BY parameters.param_name
+2020-01-13 00:18:07,756 INFO sqlalchemy.engine.base.Engine Thread-624 : (71,)
+2020-01-13 00:18:07,757 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Col ('parameters_id', 'parameters_param_name', 'parameters_param_value', 'parameters_param_group', 'parameters_param_parent', 'parameters_param_disabled', 'parameters_param_critical')
+2020-01-13 00:18:07,757 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row (74, 'Everything', "{ \r\n'name' : 'Everything', \r\n'id' : 1, \r\n'query' : '' \r\n}", 71, 0, 0, 1)
+2020-01-13 00:18:07,757 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row (72, 'Parameters', '{\r\n\'name\' : \'Parameters\',\r\n\'id\' : 2,\r\n\'query\' : \'parameter.param_name.like("%{}%")\'\r\n}', 71, 0, 0, 1)
+2020-01-13 00:18:07,758 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row (73, 'Users', '{ \r\n\'name\' : \'Users\',\r\n\'id\' : 3,\r\n\'query\' : \'users.forename.like("%{}%") | users.surname.like("%{}%")\' \r\n}', 71, 0, 0, 1)
+2020-01-13 00:18:07,760 INFO sqlalchemy.engine.base.Engine Thread-624 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 00:18:07,760 INFO sqlalchemy.engine.base.Engine Thread-624 : (1, 1)
+2020-01-13 00:18:07,760 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:18:07,761 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:18:07,765 INFO sqlalchemy.engine.base.Engine Thread-624 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 00:18:07,765 INFO sqlalchemy.engine.base.Engine Thread-624 : ('philip', 1, 1)
+2020-01-13 00:18:07,765 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:18:07,766 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:18:07,768 INFO sqlalchemy.engine.base.Engine Thread-624 : SELECT parameters.param_name AS result 
+FROM parameters 
+WHERE parameters.param_group > %s ORDER BY parameters.param_name ASC
+2020-01-13 00:18:07,768 INFO sqlalchemy.engine.base.Engine Thread-624 : (0,)
+2020-01-13 00:18:07,768 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Col ('result',)
+2020-01-13 00:18:07,769 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Active',)
+2020-01-13 00:18:07,769 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Application Log',)
+2020-01-13 00:18:07,769 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Database Log',)
+2020-01-13 00:18:07,769 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Everything',)
+2020-01-13 00:18:07,769 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('High',)
+2020-01-13 00:18:07,769 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 00',)
+2020-01-13 00:18:07,769 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 01',)
+2020-01-13 00:18:07,769 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 02',)
+2020-01-13 00:18:07,769 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 03',)
+2020-01-13 00:18:07,770 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 04',)
+2020-01-13 00:18:07,770 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 05',)
+2020-01-13 00:18:07,770 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 06',)
+2020-01-13 00:18:07,770 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 07',)
+2020-01-13 00:18:07,770 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 08',)
+2020-01-13 00:18:07,770 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 09',)
+2020-01-13 00:18:07,770 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 10',)
+2020-01-13 00:18:07,770 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 11',)
+2020-01-13 00:18:07,770 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 12',)
+2020-01-13 00:18:07,770 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 13',)
+2020-01-13 00:18:07,770 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 14',)
+2020-01-13 00:18:07,770 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 15',)
+2020-01-13 00:18:07,771 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 16',)
+2020-01-13 00:18:07,771 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 17',)
+2020-01-13 00:18:07,771 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 18',)
+2020-01-13 00:18:07,771 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 19',)
+2020-01-13 00:18:07,771 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 20',)
+2020-01-13 00:18:07,771 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 21',)
+2020-01-13 00:18:07,771 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 22',)
+2020-01-13 00:18:07,771 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Hour 23',)
+2020-01-13 00:18:07,771 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('India',)
+2020-01-13 00:18:07,771 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Low',)
+2020-01-13 00:18:07,771 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Main-Organisation',)
+2020-01-13 00:18:07,771 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Medium',)
+2020-01-13 00:18:07,772 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Minute 00',)
+2020-01-13 00:18:07,772 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Minute 15',)
+2020-01-13 00:18:07,772 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Minute 30',)
+2020-01-13 00:18:07,772 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Minute 45',)
+2020-01-13 00:18:07,772 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Minute 59',)
+2020-01-13 00:18:07,772 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Not Active',)
+2020-01-13 00:18:07,772 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Parameters',)
+2020-01-13 00:18:07,772 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Show 10 Records',)
+2020-01-13 00:18:07,772 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Show 50 Records',)
+2020-01-13 00:18:07,772 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Show All Records',)
+2020-01-13 00:18:07,772 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('United Kingdom',)
+2020-01-13 00:18:07,772 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Users',)
+2020-01-13 00:18:07,772 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Vendor-name1',)
+2020-01-13 00:18:07,773 DEBUG sqlalchemy.engine.base.Engine Thread-624 : Row ('Vendor-name2',)
+2020-01-13 00:18:07,774 INFO sqlalchemy.engine.base.Engine Thread-624 : ROLLBACK
+2020-01-13 00:18:10,937 INFO sqlalchemy.engine.base.Engine Thread-631 : BEGIN (implicit)
+2020-01-13 00:18:10,938 INFO sqlalchemy.engine.base.Engine Thread-631 : SELECT parameters.id AS parameters_id, parameters.param_name AS parameters_param_name, parameters.param_value AS parameters_param_value, parameters.param_group AS parameters_param_group, parameters.param_parent AS parameters_param_parent, parameters.param_disabled AS parameters_param_disabled, parameters.param_critical AS parameters_param_critical 
+FROM parameters 
+WHERE parameters.param_group = %s ORDER BY parameters.param_name
+2020-01-13 00:18:10,938 INFO sqlalchemy.engine.base.Engine Thread-631 : (71,)
+2020-01-13 00:18:10,939 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Col ('parameters_id', 'parameters_param_name', 'parameters_param_value', 'parameters_param_group', 'parameters_param_parent', 'parameters_param_disabled', 'parameters_param_critical')
+2020-01-13 00:18:10,939 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row (74, 'Everything', "{ \r\n'name' : 'Everything', \r\n'id' : 1, \r\n'query' : '' \r\n}", 71, 0, 0, 1)
+2020-01-13 00:18:10,939 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row (72, 'Parameters', '{\r\n\'name\' : \'Parameters\',\r\n\'id\' : 2,\r\n\'query\' : \'parameter.param_name.like("%{}%")\'\r\n}', 71, 0, 0, 1)
+2020-01-13 00:18:10,939 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row (73, 'Users', '{ \r\n\'name\' : \'Users\',\r\n\'id\' : 3,\r\n\'query\' : \'users.forename.like("%{}%") | users.surname.like("%{}%")\' \r\n}', 71, 0, 0, 1)
+2020-01-13 00:18:10,941 INFO sqlalchemy.engine.base.Engine Thread-631 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 00:18:10,941 INFO sqlalchemy.engine.base.Engine Thread-631 : (1, 1)
+2020-01-13 00:18:10,942 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:18:10,942 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:18:10,946 INFO sqlalchemy.engine.base.Engine Thread-631 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 00:18:10,946 INFO sqlalchemy.engine.base.Engine Thread-631 : ('philip', 1, 1)
+2020-01-13 00:18:10,947 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:18:10,948 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:18:10,949 INFO sqlalchemy.engine.base.Engine Thread-631 : SELECT parameters.param_name AS result 
+FROM parameters 
+WHERE parameters.param_group > %s ORDER BY parameters.param_name ASC
+2020-01-13 00:18:10,949 INFO sqlalchemy.engine.base.Engine Thread-631 : (0,)
+2020-01-13 00:18:10,950 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Col ('result',)
+2020-01-13 00:18:10,950 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Active',)
+2020-01-13 00:18:10,950 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Application Log',)
+2020-01-13 00:18:10,950 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Database Log',)
+2020-01-13 00:18:10,950 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Everything',)
+2020-01-13 00:18:10,950 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('High',)
+2020-01-13 00:18:10,950 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 00',)
+2020-01-13 00:18:10,950 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 01',)
+2020-01-13 00:18:10,950 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 02',)
+2020-01-13 00:18:10,951 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 03',)
+2020-01-13 00:18:10,951 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 04',)
+2020-01-13 00:18:10,951 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 05',)
+2020-01-13 00:18:10,951 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 06',)
+2020-01-13 00:18:10,951 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 07',)
+2020-01-13 00:18:10,951 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 08',)
+2020-01-13 00:18:10,951 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 09',)
+2020-01-13 00:18:10,951 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 10',)
+2020-01-13 00:18:10,951 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 11',)
+2020-01-13 00:18:10,951 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 12',)
+2020-01-13 00:18:10,951 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 13',)
+2020-01-13 00:18:10,952 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 14',)
+2020-01-13 00:18:10,952 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 15',)
+2020-01-13 00:18:10,952 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 16',)
+2020-01-13 00:18:10,952 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 17',)
+2020-01-13 00:18:10,952 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 18',)
+2020-01-13 00:18:10,952 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 19',)
+2020-01-13 00:18:10,952 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 20',)
+2020-01-13 00:18:10,952 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 21',)
+2020-01-13 00:18:10,952 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 22',)
+2020-01-13 00:18:10,952 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Hour 23',)
+2020-01-13 00:18:10,952 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('India',)
+2020-01-13 00:18:10,953 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Low',)
+2020-01-13 00:18:10,953 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Main-Organisation',)
+2020-01-13 00:18:10,953 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Medium',)
+2020-01-13 00:18:10,953 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Minute 00',)
+2020-01-13 00:18:10,953 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Minute 15',)
+2020-01-13 00:18:10,953 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Minute 30',)
+2020-01-13 00:18:10,953 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Minute 45',)
+2020-01-13 00:18:10,953 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Minute 59',)
+2020-01-13 00:18:10,953 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Not Active',)
+2020-01-13 00:18:10,953 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Parameters',)
+2020-01-13 00:18:10,953 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Show 10 Records',)
+2020-01-13 00:18:10,954 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Show 50 Records',)
+2020-01-13 00:18:10,954 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Show All Records',)
+2020-01-13 00:18:10,954 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('United Kingdom',)
+2020-01-13 00:18:10,954 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Users',)
+2020-01-13 00:18:10,954 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Vendor-name1',)
+2020-01-13 00:18:10,954 DEBUG sqlalchemy.engine.base.Engine Thread-631 : Row ('Vendor-name2',)
+2020-01-13 00:18:10,955 INFO sqlalchemy.engine.base.Engine Thread-631 : ROLLBACK
+2020-01-13 00:18:14,021 INFO sqlalchemy.engine.base.Engine Thread-638 : BEGIN (implicit)
+2020-01-13 00:18:14,022 INFO sqlalchemy.engine.base.Engine Thread-638 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 00:18:14,022 INFO sqlalchemy.engine.base.Engine Thread-638 : ('philip', 1, 1)
+2020-01-13 00:18:14,023 DEBUG sqlalchemy.engine.base.Engine Thread-638 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:18:14,024 DEBUG sqlalchemy.engine.base.Engine Thread-638 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:18:14,027 INFO sqlalchemy.engine.base.Engine Thread-638 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 00:18:14,027 INFO sqlalchemy.engine.base.Engine Thread-638 : (1, 1)
+2020-01-13 00:18:14,028 DEBUG sqlalchemy.engine.base.Engine Thread-638 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:18:14,028 DEBUG sqlalchemy.engine.base.Engine Thread-638 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:18:14,032 INFO sqlalchemy.engine.base.Engine Thread-638 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 00:18:14,032 INFO sqlalchemy.engine.base.Engine Thread-638 : ('philip', 1, 1)
+2020-01-13 00:18:14,033 DEBUG sqlalchemy.engine.base.Engine Thread-638 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:18:14,033 DEBUG sqlalchemy.engine.base.Engine Thread-638 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:18:14,036 INFO sqlalchemy.engine.base.Engine Thread-638 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled, roles.id AS roles_id, roles.role_name AS roles_role_name, roles.role_admin AS roles_role_admin, roles.role_app_sections AS roles_role_app_sections, roles.created_date AS roles_created_date, roles.enabled AS roles_enabled, parameters.id AS parameters_id, parameters.param_name AS parameters_param_name, parameters.param_value AS parameters_param_value, parameters.param_group AS parameters_param_group, parameters.param_parent AS parameters_param_parent, parameters.param_disabled AS parameters_param_disabled, parameters.param_critical AS parameters_param_critical 
+FROM users INNER JOIN roles ON roles.id = users.`role` LEFT OUTER JOIN parameters ON parameters.id = users.vendor ORDER BY users.id ASC
+2020-01-13 00:18:14,036 INFO sqlalchemy.engine.base.Engine Thread-638 : ()
+2020-01-13 00:18:14,037 DEBUG sqlalchemy.engine.base.Engine Thread-638 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled', 'roles_id', 'roles_role_name', 'roles_role_admin', 'roles_role_app_sections', 'roles_created_date', 'roles_enabled', 'parameters_id', 'parameters_param_name', 'parameters_param_value', 'parameters_param_group', 'parameters_param_parent', 'parameters_param_disabled', 'parameters_param_critical')
+2020-01-13 00:18:14,038 DEBUG sqlalchemy.engine.base.Engine Thread-638 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0, 2, 'Administrator User Access', 1, 'CHANGES,ADMIN', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 70, 'Main-Organisation', 'Main-Organisation', 63, 0, 0, 0)
+2020-01-13 00:18:14,038 DEBUG sqlalchemy.engine.base.Engine Thread-638 : Row (2, 'bob', 'Bob', 'Smith', 'User account for Bob Smith', '$2b$12$SjOFE3rvjz4Jpn4MUa5T9uS3TeoAXcgNhhRJOa0xiu2sQh0ux7pAK', 'bob@somewhere.com', 6, 64, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 8, 17, 20, 47), datetime.datetime(2020, 1, 8, 17, 20, 47), 'philip', 0, 6, 'New User', 0, '', datetime.datetime(2020, 1, 8, 17, 8, 55), 1, 64, 'Vendor-name1', 'Vendor-name1', 63, 0, 0, 0)
+2020-01-13 00:18:14,038 DEBUG sqlalchemy.engine.base.Engine Thread-638 : Row (3, 'frank', 'Frank', 'Black', 'User account for Frank Black test 123', '$2b$12$W7l0QbKXrOLKh2.7IDYI3.eP7gAsIzbJ730HJ0bgyd8.FGmrr4Je6', 'frank@somewhere.com', 2, 65, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 12, 17, 11, 44), datetime.datetime(2020, 1, 12, 17, 11, 44), 'frank', 0, 2, 'Administrator User Access', 1, 'CHANGES,ADMIN', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 65, 'Vendor-name2', 'Vendor-name2', 63, 0, 0, 0)
+2020-01-13 00:18:14,038 DEBUG sqlalchemy.engine.base.Engine Thread-638 : Row (4, 'evan', 'Evan', 'Troon', 'Account for Evan', '$2b$12$fRYijfQhLPT1wH9/akayhu/1F9l1IgozFbXG4uMk0p5H2u66/tUVy', 'evan@someone.com', 1, 70, datetime.datetime(2019, 9, 2, 15, 14, 53), datetime.datetime(2020, 1, 6, 15, 34, 20), datetime.datetime(2020, 1, 6, 15, 34, 20), 'philip', 1, 1, 'Standard User Access', 0, 'CHANGES', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 70, 'Main-Organisation', 'Main-Organisation', 63, 0, 0, 0)
+2020-01-13 00:18:14,038 DEBUG sqlalchemy.engine.base.Engine Thread-638 : Row (6, 'dylan', 'Dylan', 'Troon', 'Dylan Troon', '$2b$12$kyttQmBiV7Gxn4NdG1gh1eOwfzfp8LEy5.PUhMLcUyWlVd8F9DSku', 'dylan@somewhere.com', 1, 65, datetime.datetime(2019, 9, 2, 16, 50, 50), datetime.datetime(2020, 1, 7, 13, 49, 47), datetime.datetime(2020, 1, 7, 13, 49, 47), 'philip', 1, 1, 'Standard User Access', 0, 'CHANGES', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 65, 'Vendor-name2', 'Vendor-name2', 63, 0, 0, 0)
+2020-01-13 00:18:14,040 INFO sqlalchemy.engine.base.Engine Thread-638 : ROLLBACK
+2020-01-13 00:18:15,960 INFO sqlalchemy.engine.base.Engine Thread-645 : BEGIN (implicit)
+2020-01-13 00:18:15,961 INFO sqlalchemy.engine.base.Engine Thread-645 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 00:18:15,961 INFO sqlalchemy.engine.base.Engine Thread-645 : ('philip', 1, 1)
+2020-01-13 00:18:15,962 DEBUG sqlalchemy.engine.base.Engine Thread-645 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:18:15,962 DEBUG sqlalchemy.engine.base.Engine Thread-645 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:18:15,964 INFO sqlalchemy.engine.base.Engine Thread-645 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 00:18:15,964 INFO sqlalchemy.engine.base.Engine Thread-645 : (1, 1)
+2020-01-13 00:18:15,965 DEBUG sqlalchemy.engine.base.Engine Thread-645 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:18:15,965 DEBUG sqlalchemy.engine.base.Engine Thread-645 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:18:15,969 INFO sqlalchemy.engine.base.Engine Thread-645 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 00:18:15,969 INFO sqlalchemy.engine.base.Engine Thread-645 : ('philip', 1, 1)
+2020-01-13 00:18:15,970 DEBUG sqlalchemy.engine.base.Engine Thread-645 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 00:18:15,970 DEBUG sqlalchemy.engine.base.Engine Thread-645 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 00:18:15,972 INFO sqlalchemy.engine.base.Engine Thread-645 : SELECT fortimanagers.id AS fortimanagers_id, fortimanagers.host_name AS fortimanagers_host_name, fortimanagers.ip AS fortimanagers_ip, fortimanagers.adom_mode AS fortimanagers_adom_mode, fortimanagers.serial AS fortimanagers_serial, fortimanagers.version AS fortimanagers_version, fortimanagers.username AS fortimanagers_username, fortimanagers._password AS fortimanagers__password, fortimanagers.sync_time AS fortimanagers_sync_time, fortimanagers.status AS fortimanagers_status 
+FROM fortimanagers ORDER BY fortimanagers.id ASC
+2020-01-13 00:18:15,972 INFO sqlalchemy.engine.base.Engine Thread-645 : ()
+2020-01-13 00:18:15,973 DEBUG sqlalchemy.engine.base.Engine Thread-645 : Col ('fortimanagers_id', 'fortimanagers_host_name', 'fortimanagers_ip', 'fortimanagers_adom_mode', 'fortimanagers_serial', 'fortimanagers_version', 'fortimanagers_username', 'fortimanagers__password', 'fortimanagers_sync_time', 'fortimanagers_status')
+2020-01-13 00:18:15,973 DEBUG sqlalchemy.engine.base.Engine Thread-645 : Row (1, 'TESTFM', '192.168.1.200', 0, None, None, 'adminuser', 'gAAAAABdZ-BcyTP3ZFK1D126rxjaTGLSDGQQgTZDN4tyIQqvdUeliHdocdVLsDXcUgZsKqR1hQdGArHnSfxrG9jLHdPDhtkNkA==', None, 0)
+2020-01-13 00:18:15,974 INFO sqlalchemy.engine.base.Engine Thread-645 : ROLLBACK
+2020-01-13 20:21:28,831 INFO sqlalchemy.engine.base.Engine Thread-682 : BEGIN (implicit)
+2020-01-13 20:21:28,833 INFO sqlalchemy.engine.base.Engine Thread-682 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 20:21:28,833 INFO sqlalchemy.engine.base.Engine Thread-682 : ('philip', 1, 1)
+2020-01-13 20:21:28,834 DEBUG sqlalchemy.engine.base.Engine Thread-682 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 20:21:28,835 DEBUG sqlalchemy.engine.base.Engine Thread-682 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 20:21:28,837 INFO sqlalchemy.engine.base.Engine Thread-682 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 20:21:28,837 INFO sqlalchemy.engine.base.Engine Thread-682 : (1, 1)
+2020-01-13 20:21:28,838 DEBUG sqlalchemy.engine.base.Engine Thread-682 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 20:21:28,838 DEBUG sqlalchemy.engine.base.Engine Thread-682 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 20:21:28,842 INFO sqlalchemy.engine.base.Engine Thread-682 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 20:21:28,842 INFO sqlalchemy.engine.base.Engine Thread-682 : ('philip', 1, 1)
+2020-01-13 20:21:28,843 DEBUG sqlalchemy.engine.base.Engine Thread-682 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 20:21:28,843 DEBUG sqlalchemy.engine.base.Engine Thread-682 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 20:21:28,845 INFO sqlalchemy.engine.base.Engine Thread-682 : SELECT fortimanagers.id AS fortimanagers_id, fortimanagers.host_name AS fortimanagers_host_name, fortimanagers.ip AS fortimanagers_ip, fortimanagers.adom_mode AS fortimanagers_adom_mode, fortimanagers.serial AS fortimanagers_serial, fortimanagers.version AS fortimanagers_version, fortimanagers.username AS fortimanagers_username, fortimanagers._password AS fortimanagers__password, fortimanagers.sync_time AS fortimanagers_sync_time, fortimanagers.status AS fortimanagers_status 
+FROM fortimanagers ORDER BY fortimanagers.id ASC
+2020-01-13 20:21:28,846 INFO sqlalchemy.engine.base.Engine Thread-682 : ()
+2020-01-13 20:21:28,846 DEBUG sqlalchemy.engine.base.Engine Thread-682 : Col ('fortimanagers_id', 'fortimanagers_host_name', 'fortimanagers_ip', 'fortimanagers_adom_mode', 'fortimanagers_serial', 'fortimanagers_version', 'fortimanagers_username', 'fortimanagers__password', 'fortimanagers_sync_time', 'fortimanagers_status')
+2020-01-13 20:21:28,847 DEBUG sqlalchemy.engine.base.Engine Thread-682 : Row (1, 'TESTFM', '192.168.1.200', 0, None, None, 'adminuser', 'gAAAAABdZ-BcyTP3ZFK1D126rxjaTGLSDGQQgTZDN4tyIQqvdUeliHdocdVLsDXcUgZsKqR1hQdGArHnSfxrG9jLHdPDhtkNkA==', None, 0)
+2020-01-13 20:21:28,849 INFO sqlalchemy.engine.base.Engine Thread-682 : ROLLBACK
+2020-01-13 20:21:30,324 INFO sqlalchemy.engine.base.Engine Thread-689 : BEGIN (implicit)
+2020-01-13 20:21:30,326 INFO sqlalchemy.engine.base.Engine Thread-689 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 20:21:30,326 INFO sqlalchemy.engine.base.Engine Thread-689 : ('philip', 1, 1)
+2020-01-13 20:21:30,327 DEBUG sqlalchemy.engine.base.Engine Thread-689 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 20:21:30,327 DEBUG sqlalchemy.engine.base.Engine Thread-689 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 20:21:30,330 INFO sqlalchemy.engine.base.Engine Thread-689 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 20:21:30,330 INFO sqlalchemy.engine.base.Engine Thread-689 : (1, 1)
+2020-01-13 20:21:30,330 DEBUG sqlalchemy.engine.base.Engine Thread-689 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 20:21:30,331 DEBUG sqlalchemy.engine.base.Engine Thread-689 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 20:21:30,334 INFO sqlalchemy.engine.base.Engine Thread-689 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 20:21:30,335 INFO sqlalchemy.engine.base.Engine Thread-689 : ('philip', 1, 1)
+2020-01-13 20:21:30,335 DEBUG sqlalchemy.engine.base.Engine Thread-689 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 20:21:30,336 DEBUG sqlalchemy.engine.base.Engine Thread-689 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 20:21:30,339 INFO sqlalchemy.engine.base.Engine Thread-689 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled, roles.id AS roles_id, roles.role_name AS roles_role_name, roles.role_admin AS roles_role_admin, roles.role_app_sections AS roles_role_app_sections, roles.created_date AS roles_created_date, roles.enabled AS roles_enabled, parameters.id AS parameters_id, parameters.param_name AS parameters_param_name, parameters.param_value AS parameters_param_value, parameters.param_group AS parameters_param_group, parameters.param_parent AS parameters_param_parent, parameters.param_disabled AS parameters_param_disabled, parameters.param_critical AS parameters_param_critical 
+FROM users INNER JOIN roles ON roles.id = users.`role` LEFT OUTER JOIN parameters ON parameters.id = users.vendor ORDER BY users.id ASC
+2020-01-13 20:21:30,339 INFO sqlalchemy.engine.base.Engine Thread-689 : ()
+2020-01-13 20:21:30,340 DEBUG sqlalchemy.engine.base.Engine Thread-689 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled', 'roles_id', 'roles_role_name', 'roles_role_admin', 'roles_role_app_sections', 'roles_created_date', 'roles_enabled', 'parameters_id', 'parameters_param_name', 'parameters_param_value', 'parameters_param_group', 'parameters_param_parent', 'parameters_param_disabled', 'parameters_param_critical')
+2020-01-13 20:21:30,340 DEBUG sqlalchemy.engine.base.Engine Thread-689 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0, 2, 'Administrator User Access', 1, 'CHANGES,ADMIN', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 70, 'Main-Organisation', 'Main-Organisation', 63, 0, 0, 0)
+2020-01-13 20:21:30,340 DEBUG sqlalchemy.engine.base.Engine Thread-689 : Row (2, 'bob', 'Bob', 'Smith', 'User account for Bob Smith', '$2b$12$SjOFE3rvjz4Jpn4MUa5T9uS3TeoAXcgNhhRJOa0xiu2sQh0ux7pAK', 'bob@somewhere.com', 6, 64, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 8, 17, 20, 47), datetime.datetime(2020, 1, 8, 17, 20, 47), 'philip', 0, 6, 'New User', 0, '', datetime.datetime(2020, 1, 8, 17, 8, 55), 1, 64, 'Vendor-name1', 'Vendor-name1', 63, 0, 0, 0)
+2020-01-13 20:21:30,341 DEBUG sqlalchemy.engine.base.Engine Thread-689 : Row (3, 'frank', 'Frank', 'Black', 'User account for Frank Black test 123', '$2b$12$W7l0QbKXrOLKh2.7IDYI3.eP7gAsIzbJ730HJ0bgyd8.FGmrr4Je6', 'frank@somewhere.com', 2, 65, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 12, 17, 11, 44), datetime.datetime(2020, 1, 12, 17, 11, 44), 'frank', 0, 2, 'Administrator User Access', 1, 'CHANGES,ADMIN', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 65, 'Vendor-name2', 'Vendor-name2', 63, 0, 0, 0)
+2020-01-13 20:21:30,341 DEBUG sqlalchemy.engine.base.Engine Thread-689 : Row (4, 'evan', 'Evan', 'Troon', 'Account for Evan', '$2b$12$fRYijfQhLPT1wH9/akayhu/1F9l1IgozFbXG4uMk0p5H2u66/tUVy', 'evan@someone.com', 1, 70, datetime.datetime(2019, 9, 2, 15, 14, 53), datetime.datetime(2020, 1, 6, 15, 34, 20), datetime.datetime(2020, 1, 6, 15, 34, 20), 'philip', 1, 1, 'Standard User Access', 0, 'CHANGES', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 70, 'Main-Organisation', 'Main-Organisation', 63, 0, 0, 0)
+2020-01-13 20:21:30,341 DEBUG sqlalchemy.engine.base.Engine Thread-689 : Row (6, 'dylan', 'Dylan', 'Troon', 'Dylan Troon', '$2b$12$kyttQmBiV7Gxn4NdG1gh1eOwfzfp8LEy5.PUhMLcUyWlVd8F9DSku', 'dylan@somewhere.com', 1, 65, datetime.datetime(2019, 9, 2, 16, 50, 50), datetime.datetime(2020, 1, 7, 13, 49, 47), datetime.datetime(2020, 1, 7, 13, 49, 47), 'philip', 1, 1, 'Standard User Access', 0, 'CHANGES', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 65, 'Vendor-name2', 'Vendor-name2', 63, 0, 0, 0)
+2020-01-13 20:21:30,344 INFO sqlalchemy.engine.base.Engine Thread-689 : ROLLBACK
+2020-01-13 20:21:32,409 INFO sqlalchemy.engine.base.Engine Thread-696 : BEGIN (implicit)
+2020-01-13 20:21:32,410 INFO sqlalchemy.engine.base.Engine Thread-696 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 20:21:32,410 INFO sqlalchemy.engine.base.Engine Thread-696 : (1, 1)
+2020-01-13 20:21:32,411 DEBUG sqlalchemy.engine.base.Engine Thread-696 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 20:21:32,411 DEBUG sqlalchemy.engine.base.Engine Thread-696 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 20:21:32,412 INFO sqlalchemy.engine.base.Engine Thread-696 : SELECT dashboard.id AS dashboard_id, dashboard.fm_text AS dashboard_fm_text, dashboard.fg_text AS dashboard_fg_text, dashboard.user_text AS dashboard_user_text, dashboard.log_text AS dashboard_log_text 
+FROM dashboard
+2020-01-13 20:21:32,412 INFO sqlalchemy.engine.base.Engine Thread-696 : ()
+2020-01-13 20:21:32,413 DEBUG sqlalchemy.engine.base.Engine Thread-696 : Col ('dashboard_id', 'dashboard_fm_text', 'dashboard_fg_text', 'dashboard_user_text', 'dashboard_log_text')
+2020-01-13 20:21:32,413 DEBUG sqlalchemy.engine.base.Engine Thread-696 : Row (1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  ... (147 characters truncated) ... illum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  ... (147 characters truncated) ... illum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  ... (147 characters truncated) ... illum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  ... (147 characters truncated) ... illum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+2020-01-13 20:21:32,435 INFO sqlalchemy.engine.base.Engine Thread-696 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users
+2020-01-13 20:21:32,435 INFO sqlalchemy.engine.base.Engine Thread-696 : ()
+2020-01-13 20:21:32,436 DEBUG sqlalchemy.engine.base.Engine Thread-696 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 20:21:32,437 DEBUG sqlalchemy.engine.base.Engine Thread-696 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 20:21:32,437 DEBUG sqlalchemy.engine.base.Engine Thread-696 : Row (2, 'bob', 'Bob', 'Smith', 'User account for Bob Smith', '$2b$12$SjOFE3rvjz4Jpn4MUa5T9uS3TeoAXcgNhhRJOa0xiu2sQh0ux7pAK', 'bob@somewhere.com', 6, 64, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 8, 17, 20, 47), datetime.datetime(2020, 1, 8, 17, 20, 47), 'philip', 0)
+2020-01-13 20:21:32,437 DEBUG sqlalchemy.engine.base.Engine Thread-696 : Row (3, 'frank', 'Frank', 'Black', 'User account for Frank Black test 123', '$2b$12$W7l0QbKXrOLKh2.7IDYI3.eP7gAsIzbJ730HJ0bgyd8.FGmrr4Je6', 'frank@somewhere.com', 2, 65, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 12, 17, 11, 44), datetime.datetime(2020, 1, 12, 17, 11, 44), 'frank', 0)
+2020-01-13 20:21:32,437 DEBUG sqlalchemy.engine.base.Engine Thread-696 : Row (4, 'evan', 'Evan', 'Troon', 'Account for Evan', '$2b$12$fRYijfQhLPT1wH9/akayhu/1F9l1IgozFbXG4uMk0p5H2u66/tUVy', 'evan@someone.com', 1, 70, datetime.datetime(2019, 9, 2, 15, 14, 53), datetime.datetime(2020, 1, 6, 15, 34, 20), datetime.datetime(2020, 1, 6, 15, 34, 20), 'philip', 1)
+2020-01-13 20:21:32,437 DEBUG sqlalchemy.engine.base.Engine Thread-696 : Row (6, 'dylan', 'Dylan', 'Troon', 'Dylan Troon', '$2b$12$kyttQmBiV7Gxn4NdG1gh1eOwfzfp8LEy5.PUhMLcUyWlVd8F9DSku', 'dylan@somewhere.com', 1, 65, datetime.datetime(2019, 9, 2, 16, 50, 50), datetime.datetime(2020, 1, 7, 13, 49, 47), datetime.datetime(2020, 1, 7, 13, 49, 47), 'philip', 1)
+2020-01-13 20:21:32,441 INFO sqlalchemy.engine.base.Engine Thread-696 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 20:21:32,441 INFO sqlalchemy.engine.base.Engine Thread-696 : ('philip', 1, 1)
+2020-01-13 20:21:32,442 DEBUG sqlalchemy.engine.base.Engine Thread-696 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 20:21:32,442 DEBUG sqlalchemy.engine.base.Engine Thread-696 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 20:21:32,444 INFO sqlalchemy.engine.base.Engine Thread-696 : ROLLBACK
+2020-01-13 20:21:35,681 INFO sqlalchemy.engine.base.Engine Thread-703 : BEGIN (implicit)
+2020-01-13 20:21:35,682 INFO sqlalchemy.engine.base.Engine Thread-703 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 20:21:35,683 INFO sqlalchemy.engine.base.Engine Thread-703 : ('philip', 1, 1)
+2020-01-13 20:21:35,683 DEBUG sqlalchemy.engine.base.Engine Thread-703 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 20:21:35,684 DEBUG sqlalchemy.engine.base.Engine Thread-703 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 20:21:35,686 INFO sqlalchemy.engine.base.Engine Thread-703 : SELECT parameters.id AS parameters_id, parameters.param_name AS parameters_param_name, parameters.param_value AS parameters_param_value, parameters.param_group AS parameters_param_group, parameters.param_parent AS parameters_param_parent, parameters.param_disabled AS parameters_param_disabled, parameters.param_critical AS parameters_param_critical 
+FROM parameters 
+WHERE parameters.param_group = %s ORDER BY parameters.param_name
+2020-01-13 20:21:35,686 INFO sqlalchemy.engine.base.Engine Thread-703 : (75,)
+2020-01-13 20:21:35,687 DEBUG sqlalchemy.engine.base.Engine Thread-703 : Col ('parameters_id', 'parameters_param_name', 'parameters_param_value', 'parameters_param_group', 'parameters_param_parent', 'parameters_param_disabled', 'parameters_param_critical')
+2020-01-13 20:21:35,687 DEBUG sqlalchemy.engine.base.Engine Thread-703 : Row (76, 'Application Log', 'LOG_FILE', 75, 0, 0, 1)
+2020-01-13 20:21:35,687 DEBUG sqlalchemy.engine.base.Engine Thread-703 : Row (77, 'Database Log', 'DB_LOG_FILE', 75, 0, 0, 1)
+2020-01-13 20:21:35,688 INFO sqlalchemy.engine.base.Engine Thread-703 : SELECT parameters.id AS parameters_id, parameters.param_name AS parameters_param_name, parameters.param_value AS parameters_param_value, parameters.param_group AS parameters_param_group, parameters.param_parent AS parameters_param_parent, parameters.param_disabled AS parameters_param_disabled, parameters.param_critical AS parameters_param_critical 
+FROM parameters 
+WHERE parameters.param_group = %s ORDER BY parameters.param_name
+2020-01-13 20:21:35,688 INFO sqlalchemy.engine.base.Engine Thread-703 : (78,)
+2020-01-13 20:21:35,689 DEBUG sqlalchemy.engine.base.Engine Thread-703 : Col ('parameters_id', 'parameters_param_name', 'parameters_param_value', 'parameters_param_group', 'parameters_param_parent', 'parameters_param_disabled', 'parameters_param_critical')
+2020-01-13 20:21:35,689 DEBUG sqlalchemy.engine.base.Engine Thread-703 : Row (79, 'Show 10 Records', '10', 78, 0, 0, 1)
+2020-01-13 20:21:35,689 DEBUG sqlalchemy.engine.base.Engine Thread-703 : Row (80, 'Show 50 Records', '50', 78, 0, 0, 1)
+2020-01-13 20:21:35,689 DEBUG sqlalchemy.engine.base.Engine Thread-703 : Row (81, 'Show All Records', '99999', 78, 0, 0, 1)
+2020-01-13 20:21:35,691 INFO sqlalchemy.engine.base.Engine Thread-703 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 20:21:35,691 INFO sqlalchemy.engine.base.Engine Thread-703 : (1, 1)
+2020-01-13 20:21:35,692 DEBUG sqlalchemy.engine.base.Engine Thread-703 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 20:21:35,692 DEBUG sqlalchemy.engine.base.Engine Thread-703 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 20:21:35,696 INFO sqlalchemy.engine.base.Engine Thread-703 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 20:21:35,696 INFO sqlalchemy.engine.base.Engine Thread-703 : ('philip', 1, 1)
+2020-01-13 20:21:35,696 DEBUG sqlalchemy.engine.base.Engine Thread-703 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 20:21:35,696 DEBUG sqlalchemy.engine.base.Engine Thread-703 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 20:21:36,007 INFO sqlalchemy.engine.base.Engine Thread-703 : ROLLBACK
+2020-01-13 22:43:55,059 INFO sqlalchemy.engine.base.Engine Thread-4 : SHOW VARIABLES LIKE 'sql_mode'
+2020-01-13 22:43:55,060 INFO sqlalchemy.engine.base.Engine Thread-4 : ()
+2020-01-13 22:43:55,061 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Col ('Variable_name', 'Value')
+2020-01-13 22:43:55,062 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Row ('sql_mode', '')
+2020-01-13 22:43:55,062 INFO sqlalchemy.engine.base.Engine Thread-4 : SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-01-13 22:43:55,062 INFO sqlalchemy.engine.base.Engine Thread-4 : ()
+2020-01-13 22:43:55,063 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Col ('Variable_name', 'Value')
+2020-01-13 22:43:55,063 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Row ('lower_case_table_names', '0')
+2020-01-13 22:43:55,063 INFO sqlalchemy.engine.base.Engine Thread-4 : SELECT DATABASE()
+2020-01-13 22:43:55,063 INFO sqlalchemy.engine.base.Engine Thread-4 : ()
+2020-01-13 22:43:55,064 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Col ('DATABASE()',)
+2020-01-13 22:43:55,064 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Row ('fmapp',)
+2020-01-13 22:43:55,064 INFO sqlalchemy.engine.base.Engine Thread-4 : show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-01-13 22:43:55,064 INFO sqlalchemy.engine.base.Engine Thread-4 : ()
+2020-01-13 22:43:55,065 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Col ('Collation', 'Charset', 'Id', 'Default', 'Compiled', 'Sortlen')
+2020-01-13 22:43:55,065 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Row ('utf8mb4_bin', 'utf8mb4', 46, '', 'Yes', 1)
+2020-01-13 22:43:55,066 INFO sqlalchemy.engine.base.Engine Thread-4 : SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-01-13 22:43:55,066 INFO sqlalchemy.engine.base.Engine Thread-4 : ()
+2020-01-13 22:43:55,066 INFO sqlalchemy.engine.base.Engine Thread-4 : SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-01-13 22:43:55,066 INFO sqlalchemy.engine.base.Engine Thread-4 : ()
+2020-01-13 22:43:55,067 INFO sqlalchemy.engine.base.Engine Thread-4 : SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-01-13 22:43:55,067 INFO sqlalchemy.engine.base.Engine Thread-4 : ()
+2020-01-13 22:43:55,068 INFO sqlalchemy.engine.base.Engine Thread-4 : BEGIN (implicit)
+2020-01-13 22:43:55,070 INFO sqlalchemy.engine.base.Engine Thread-4 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 22:43:55,070 INFO sqlalchemy.engine.base.Engine Thread-4 : ('philip', 1, 1)
+2020-01-13 22:43:55,071 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 22:43:55,071 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 22:43:55,073 INFO sqlalchemy.engine.base.Engine Thread-4 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 22:43:55,074 INFO sqlalchemy.engine.base.Engine Thread-4 : (1, 1)
+2020-01-13 22:43:55,074 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 22:43:55,075 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 22:43:55,121 INFO sqlalchemy.engine.base.Engine Thread-4 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 22:43:55,121 INFO sqlalchemy.engine.base.Engine Thread-4 : ('philip', 1, 1)
+2020-01-13 22:43:55,122 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 22:43:55,122 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 22:43:55,125 INFO sqlalchemy.engine.base.Engine Thread-4 : SELECT fortimanagers.id AS fortimanagers_id, fortimanagers.host_name AS fortimanagers_host_name, fortimanagers.ip AS fortimanagers_ip, fortimanagers.adom_mode AS fortimanagers_adom_mode, fortimanagers.serial AS fortimanagers_serial, fortimanagers.version AS fortimanagers_version, fortimanagers.username AS fortimanagers_username, fortimanagers._password AS fortimanagers__password, fortimanagers.sync_time AS fortimanagers_sync_time, fortimanagers.status AS fortimanagers_status 
+FROM fortimanagers ORDER BY fortimanagers.id ASC
+2020-01-13 22:43:55,125 INFO sqlalchemy.engine.base.Engine Thread-4 : ()
+2020-01-13 22:43:55,126 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Col ('fortimanagers_id', 'fortimanagers_host_name', 'fortimanagers_ip', 'fortimanagers_adom_mode', 'fortimanagers_serial', 'fortimanagers_version', 'fortimanagers_username', 'fortimanagers__password', 'fortimanagers_sync_time', 'fortimanagers_status')
+2020-01-13 22:43:55,126 DEBUG sqlalchemy.engine.base.Engine Thread-4 : Row (1, 'TESTFM', '192.168.1.200', 0, None, None, 'adminuser', 'gAAAAABdZ-BcyTP3ZFK1D126rxjaTGLSDGQQgTZDN4tyIQqvdUeliHdocdVLsDXcUgZsKqR1hQdGArHnSfxrG9jLHdPDhtkNkA==', None, 0)
+2020-01-13 22:43:55,128 INFO sqlalchemy.engine.base.Engine Thread-4 : ROLLBACK
+2020-01-13 22:44:00,332 INFO sqlalchemy.engine.base.Engine Thread-22 : BEGIN (implicit)
+2020-01-13 22:44:00,333 INFO sqlalchemy.engine.base.Engine Thread-22 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 22:44:00,333 INFO sqlalchemy.engine.base.Engine Thread-22 : ('philip', 1, 1)
+2020-01-13 22:44:00,334 DEBUG sqlalchemy.engine.base.Engine Thread-22 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 22:44:00,334 DEBUG sqlalchemy.engine.base.Engine Thread-22 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 22:44:00,337 INFO sqlalchemy.engine.base.Engine Thread-22 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 22:44:00,337 INFO sqlalchemy.engine.base.Engine Thread-22 : (1, 1)
+2020-01-13 22:44:00,338 DEBUG sqlalchemy.engine.base.Engine Thread-22 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 22:44:00,339 DEBUG sqlalchemy.engine.base.Engine Thread-22 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 22:44:00,354 INFO sqlalchemy.engine.base.Engine Thread-22 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 22:44:00,354 INFO sqlalchemy.engine.base.Engine Thread-22 : ('philip', 1, 1)
+2020-01-13 22:44:00,355 DEBUG sqlalchemy.engine.base.Engine Thread-22 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 22:44:00,355 DEBUG sqlalchemy.engine.base.Engine Thread-22 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 22:44:00,360 INFO sqlalchemy.engine.base.Engine Thread-22 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled, roles.id AS roles_id, roles.role_name AS roles_role_name, roles.role_admin AS roles_role_admin, roles.role_app_sections AS roles_role_app_sections, roles.created_date AS roles_created_date, roles.enabled AS roles_enabled, parameters.id AS parameters_id, parameters.param_name AS parameters_param_name, parameters.param_value AS parameters_param_value, parameters.param_group AS parameters_param_group, parameters.param_parent AS parameters_param_parent, parameters.param_disabled AS parameters_param_disabled, parameters.param_critical AS parameters_param_critical 
+FROM users INNER JOIN roles ON roles.id = users.`role` LEFT OUTER JOIN parameters ON parameters.id = users.vendor ORDER BY users.id ASC
+2020-01-13 22:44:00,360 INFO sqlalchemy.engine.base.Engine Thread-22 : ()
+2020-01-13 22:44:00,361 DEBUG sqlalchemy.engine.base.Engine Thread-22 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled', 'roles_id', 'roles_role_name', 'roles_role_admin', 'roles_role_app_sections', 'roles_created_date', 'roles_enabled', 'parameters_id', 'parameters_param_name', 'parameters_param_value', 'parameters_param_group', 'parameters_param_parent', 'parameters_param_disabled', 'parameters_param_critical')
+2020-01-13 22:44:00,362 DEBUG sqlalchemy.engine.base.Engine Thread-22 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0, 2, 'Administrator User Access', 1, 'CHANGES,ADMIN', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 70, 'Main-Organisation', 'Main-Organisation', 63, 0, 0, 0)
+2020-01-13 22:44:00,362 DEBUG sqlalchemy.engine.base.Engine Thread-22 : Row (2, 'bob', 'Bob', 'Smith', 'User account for Bob Smith', '$2b$12$SjOFE3rvjz4Jpn4MUa5T9uS3TeoAXcgNhhRJOa0xiu2sQh0ux7pAK', 'bob@somewhere.com', 6, 64, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 8, 17, 20, 47), datetime.datetime(2020, 1, 8, 17, 20, 47), 'philip', 0, 6, 'New User', 0, '', datetime.datetime(2020, 1, 8, 17, 8, 55), 1, 64, 'Vendor-name1', 'Vendor-name1', 63, 0, 0, 0)
+2020-01-13 22:44:00,362 DEBUG sqlalchemy.engine.base.Engine Thread-22 : Row (3, 'frank', 'Frank', 'Black', 'User account for Frank Black test 123', '$2b$12$W7l0QbKXrOLKh2.7IDYI3.eP7gAsIzbJ730HJ0bgyd8.FGmrr4Je6', 'frank@somewhere.com', 2, 65, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 12, 17, 11, 44), datetime.datetime(2020, 1, 12, 17, 11, 44), 'frank', 0, 2, 'Administrator User Access', 1, 'CHANGES,ADMIN', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 65, 'Vendor-name2', 'Vendor-name2', 63, 0, 0, 0)
+2020-01-13 22:44:00,362 DEBUG sqlalchemy.engine.base.Engine Thread-22 : Row (4, 'evan', 'Evan', 'Troon', 'Account for Evan', '$2b$12$fRYijfQhLPT1wH9/akayhu/1F9l1IgozFbXG4uMk0p5H2u66/tUVy', 'evan@someone.com', 1, 70, datetime.datetime(2019, 9, 2, 15, 14, 53), datetime.datetime(2020, 1, 6, 15, 34, 20), datetime.datetime(2020, 1, 6, 15, 34, 20), 'philip', 1, 1, 'Standard User Access', 0, 'CHANGES', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 70, 'Main-Organisation', 'Main-Organisation', 63, 0, 0, 0)
+2020-01-13 22:44:00,362 DEBUG sqlalchemy.engine.base.Engine Thread-22 : Row (6, 'dylan', 'Dylan', 'Troon', 'Dylan Troon', '$2b$12$kyttQmBiV7Gxn4NdG1gh1eOwfzfp8LEy5.PUhMLcUyWlVd8F9DSku', 'dylan@somewhere.com', 1, 65, datetime.datetime(2019, 9, 2, 16, 50, 50), datetime.datetime(2020, 1, 7, 13, 49, 47), datetime.datetime(2020, 1, 7, 13, 49, 47), 'philip', 1, 1, 'Standard User Access', 0, 'CHANGES', datetime.datetime(2019, 8, 28, 11, 44, 3), 1, 65, 'Vendor-name2', 'Vendor-name2', 63, 0, 0, 0)
+2020-01-13 22:44:00,365 INFO sqlalchemy.engine.base.Engine Thread-22 : ROLLBACK
+2020-01-13 22:44:03,113 INFO sqlalchemy.engine.base.Engine Thread-29 : BEGIN (implicit)
+2020-01-13 22:44:03,114 INFO sqlalchemy.engine.base.Engine Thread-29 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 22:44:03,114 INFO sqlalchemy.engine.base.Engine Thread-29 : (1, 1)
+2020-01-13 22:44:03,115 DEBUG sqlalchemy.engine.base.Engine Thread-29 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 22:44:03,115 DEBUG sqlalchemy.engine.base.Engine Thread-29 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 22:44:03,117 INFO sqlalchemy.engine.base.Engine Thread-29 : SELECT dashboard.id AS dashboard_id, dashboard.fm_text AS dashboard_fm_text, dashboard.fg_text AS dashboard_fg_text, dashboard.user_text AS dashboard_user_text, dashboard.log_text AS dashboard_log_text 
+FROM dashboard
+2020-01-13 22:44:03,117 INFO sqlalchemy.engine.base.Engine Thread-29 : ()
+2020-01-13 22:44:03,118 DEBUG sqlalchemy.engine.base.Engine Thread-29 : Col ('dashboard_id', 'dashboard_fm_text', 'dashboard_fg_text', 'dashboard_user_text', 'dashboard_log_text')
+2020-01-13 22:44:03,118 DEBUG sqlalchemy.engine.base.Engine Thread-29 : Row (1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  ... (147 characters truncated) ... illum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  ... (147 characters truncated) ... illum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  ... (147 characters truncated) ... illum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  ... (147 characters truncated) ... illum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+2020-01-13 22:44:03,139 INFO sqlalchemy.engine.base.Engine Thread-29 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users
+2020-01-13 22:44:03,139 INFO sqlalchemy.engine.base.Engine Thread-29 : ()
+2020-01-13 22:44:03,140 DEBUG sqlalchemy.engine.base.Engine Thread-29 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 22:44:03,140 DEBUG sqlalchemy.engine.base.Engine Thread-29 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 22:44:03,140 DEBUG sqlalchemy.engine.base.Engine Thread-29 : Row (2, 'bob', 'Bob', 'Smith', 'User account for Bob Smith', '$2b$12$SjOFE3rvjz4Jpn4MUa5T9uS3TeoAXcgNhhRJOa0xiu2sQh0ux7pAK', 'bob@somewhere.com', 6, 64, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 8, 17, 20, 47), datetime.datetime(2020, 1, 8, 17, 20, 47), 'philip', 0)
+2020-01-13 22:44:03,140 DEBUG sqlalchemy.engine.base.Engine Thread-29 : Row (3, 'frank', 'Frank', 'Black', 'User account for Frank Black test 123', '$2b$12$W7l0QbKXrOLKh2.7IDYI3.eP7gAsIzbJ730HJ0bgyd8.FGmrr4Je6', 'frank@somewhere.com', 2, 65, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 12, 17, 11, 44), datetime.datetime(2020, 1, 12, 17, 11, 44), 'frank', 0)
+2020-01-13 22:44:03,140 DEBUG sqlalchemy.engine.base.Engine Thread-29 : Row (4, 'evan', 'Evan', 'Troon', 'Account for Evan', '$2b$12$fRYijfQhLPT1wH9/akayhu/1F9l1IgozFbXG4uMk0p5H2u66/tUVy', 'evan@someone.com', 1, 70, datetime.datetime(2019, 9, 2, 15, 14, 53), datetime.datetime(2020, 1, 6, 15, 34, 20), datetime.datetime(2020, 1, 6, 15, 34, 20), 'philip', 1)
+2020-01-13 22:44:03,140 DEBUG sqlalchemy.engine.base.Engine Thread-29 : Row (6, 'dylan', 'Dylan', 'Troon', 'Dylan Troon', '$2b$12$kyttQmBiV7Gxn4NdG1gh1eOwfzfp8LEy5.PUhMLcUyWlVd8F9DSku', 'dylan@somewhere.com', 1, 65, datetime.datetime(2019, 9, 2, 16, 50, 50), datetime.datetime(2020, 1, 7, 13, 49, 47), datetime.datetime(2020, 1, 7, 13, 49, 47), 'philip', 1)
+2020-01-13 22:44:03,150 INFO sqlalchemy.engine.base.Engine Thread-29 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 22:44:03,150 INFO sqlalchemy.engine.base.Engine Thread-29 : ('philip', 1, 1)
+2020-01-13 22:44:03,151 DEBUG sqlalchemy.engine.base.Engine Thread-29 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 22:44:03,151 DEBUG sqlalchemy.engine.base.Engine Thread-29 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 22:44:03,153 INFO sqlalchemy.engine.base.Engine Thread-29 : ROLLBACK
+2020-01-13 22:44:05,275 INFO sqlalchemy.engine.base.Engine Thread-36 : BEGIN (implicit)
+2020-01-13 22:44:05,276 INFO sqlalchemy.engine.base.Engine Thread-36 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users 
+WHERE users.id = %s 
+ LIMIT %s
+2020-01-13 22:44:05,276 INFO sqlalchemy.engine.base.Engine Thread-36 : (1, 1)
+2020-01-13 22:44:05,276 DEBUG sqlalchemy.engine.base.Engine Thread-36 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 22:44:05,277 DEBUG sqlalchemy.engine.base.Engine Thread-36 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 22:44:05,285 INFO sqlalchemy.engine.base.Engine Thread-36 : SELECT users.id AS users_id, users.login_id AS users_login_id, users.forename AS users_forename, users.surname AS users_surname, users.comment AS users_comment, users._password AS users__password, users.email AS users_email, users.`role` AS users_role, users.vendor AS users_vendor, users.created_date AS users_created_date, users.last_login AS users_last_login, users.last_modified AS users_last_modified, users.modified_by AS users_modified_by, users.enabled AS users_enabled 
+FROM users INNER JOIN roles ON users.`role` = roles.id 
+WHERE users.login_id = %s AND roles.role_admin = %s 
+ LIMIT %s
+2020-01-13 22:44:05,285 INFO sqlalchemy.engine.base.Engine Thread-36 : ('philip', 1, 1)
+2020-01-13 22:44:05,286 DEBUG sqlalchemy.engine.base.Engine Thread-36 : Col ('users_id', 'users_login_id', 'users_forename', 'users_surname', 'users_comment', 'users__password', 'users_email', 'users_role', 'users_vendor', 'users_created_date', 'users_last_login', 'users_last_modified', 'users_modified_by', 'users_enabled')
+2020-01-13 22:44:05,286 DEBUG sqlalchemy.engine.base.Engine Thread-36 : Row (1, 'philip', 'Philip', 'Troon', 'User account for Philip Troon', '$2b$12$pyyaZQRkxyVdz8SXVmrRCepr6UXs38rin1uk/Nqtqd9Q3WUuojF0i', 'philiptroon@gmail.com', 2, 70, datetime.datetime(2019, 8, 28, 11, 46, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), datetime.datetime(2020, 1, 6, 15, 34, 8), 'philip', 0)
+2020-01-13 22:44:05,288 INFO sqlalchemy.engine.base.Engine Thread-36 : ROLLBACK

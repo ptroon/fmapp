@@ -5,78 +5,78 @@
 {% endblock %}
 {% block content %}
 
-<div class="card text-center w-50 border-dark mx-auto">
-
     {% if data %}
-    <h5 class="card-header text-white bg-info">Account: {{ data.forename + " " + data.surname }}</h5>
-    <div class="card-body px-lg-5 pt-0">
+    <h5 class="card-header text-white bg-secondary">Account: {{ data.forename + " " + data.surname }}</h5>
     <form action="{{ url_for('gui_blueprint._edituser', id=data.id) }}" method="POST" novalidate class="text-center" style="color: #000000;">
     {% else %}
-    <h5 class="card-header text-white bg-info">New User</h5>
-    <div class="card-body px-lg-5 pt-0">
+    <h5 class="card-header text-white bg-secondary">New User</h5>
     <form action="{{ url_for('gui_blueprint._edituser', id=0) }}" method="POST" novalidate class="text-center" style="color: #000000;">
     {% endif %}
 
-        <table class="form-group">
+        <table class="form-group w-75">
           <tr>
             <td>{{ form.hidden_tag() }}</td>
             <td>&nbsp;</td>
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.login_id.label }}</td>
+            <td class="w-25 text-right mx-2 p-1">{{ form.login_id.label }}</td>
             {% if not data %}
-            <td class="px-4 py-1">{{ form.login_id(size=10, class_="form-control") }}</td>
+            <td class="w-75 text-right mx-2 p-1">{{ form.login_id(size=10, class_="form-control") }}</td>
             {% else %}
-            <td class="px-4 py-1">{{ form.login_id(size=10, class_="form-control", disabled=True) }}</td>
+            <td class="w-75 text-right mx-2 p-1">{{ form.login_id(size=10, class_="form-control", disabled=True) }}</td>
             {% endif %}
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.forename.label }}</td>
-            <td class="px-4 py-1">{{ form.forename(size=32, class_="form-control") }}</td>
+            <td class="w-25 text-right mx-2 p-1">{{ form.forename.label }}</td>
+            <td class="w-75 text-right mx-2 p-1">{{ form.forename(size=32, class_="form-control") }}</td>
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.surname.label }}</td>
-            <td class="px-4 py-1">{{ form.surname(size=64, class_="form-control") }}</td>
+            <td class="w-25 text-right mx-2 p-1">{{ form.surname.label }}</td>
+            <td class="w-75 text-right mx-2 p-1">{{ form.surname(size=64, class_="form-control") }}</td>
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.email.label }}</td>
-            <td class="px-4 py-1">{{ form.email(size=32, class_="form-control") }}</td>
+            <td class="w-25 text-right mx-2 p-1">{{ form.email.label }}</td>
+            <td class="w-75 text-right mx-2 p-1">{{ form.email(size=32, class_="form-control") }}</td>
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.password.label }}</td>
-            <td class="px-4 py-1">{{ form.password(size=32, class_="form-control") }}<small>Enter password to reset it for user</small></td>
+            <td class="w-25 text-right mx-2 p-1">{{ form.password.label }}</td>
+            <td class="w-75 text-right mx-2 p-1">
+              <div class="input-group my-3">
+                {{ form.password(size=32, class_="form-control") }}
+                <div class="input-group-append">
+                  <span class="input-group-text">Enter password to reset it for user</span>
+                </div>
+              </div>
+            </td>
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.comment.label }}</td>
-            <td class="px-4 py-1">{{ form.comment(rows=5, cols=20, class_="form-control") }}</td>
+            <td class="w-25 text-right mx-2 p-1">{{ form.comment.label }}</td>
+            <td class="w-75 text-right mx-2 p-1">{{ form.comment(rows=5, cols=20, class_="form-control") }}</td>
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.role.label }}</td>
+            <td class="w-25 text-right mx-2 p-1">{{ form.role.label }}</td>
 
             {% if data.login_id == get_user() %}
-            <td class="px-4 py-1">{{ form.role(class_="form-control", disabled=True) }}</td>
+            <td class="w-75 text-right mx-2 p-1">{{ form.role(class_="form-control", disabled=True) }}</td>
             {% else %}
-            <td class="px-4 py-1">{{ form.role(class_="form-control") }}</td>
+            <td class="w-75 text-right mx-2 p-1">{{ form.role(class_="form-control") }}</td>
             {% endif %}
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.vendor.label }}</td>
-            <td class="px-4 py-1">{{ form.vendor(class_="form-control") }}</td>
+            <td class="w-25 text-right mx-2 p-1">{{ form.vendor.label }}</td>
+            <td class="w-75 text-right mx-2 p-1">{{ form.vendor(class_="form-control") }}</td>
           </tr>
           <tr>
             <td>&nbsp;</td>
-            <td class="p-5">{{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._users') }}'">Cancel</button></td>
-
+            <td class="p-5">{{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._users') }}'">Cancel</button>
             {% if data.login_id != get_user() %}
-              <td class="p-5">{{ form.deletebtn(class_="btn btn-danger") }}</td>
+              {{ form.deletebtn(class_="btn btn-danger") }}
             {% endif %}
-
+            </td>
 
           </tr>
         </table>
     </form>
-    </div>
 
-</div>
 
 {% endblock %}

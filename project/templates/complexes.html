@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Complexes{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid mt-3">
+  <h3>Complexes&nbsp;&nbsp;&nbsp;<button type="button" onclick=location.href='{{ url_for('gui_blueprint._editcomplex', id=0) }}' class="btn btn-success">Add</button></h3>
+
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Complex Name</th>
+        <th scope="col">Manager</th>
+        <th scope="col">Type</th>
+        <th scope="col">Country</th>
+        <th scope="col">Updated</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for rec in data %}
+      <tr>
+        <td><a href="{{ url_for('gui_blueprint._editcomplex', id=rec[0].id) }}">{{ rec[0].complex_name }}</a></td>
+        <td>{{ rec[1].param_value }}</td>
+        <td>{{ rec[2].param_value }}</td>
+        <td>{{ rec[3].param_value }}</td>
+        <td>{{ rec[0].complex_updated.strftime('%d-%m-%Y %H:%M') }}</td>
+        <td>{{ rec[4].param_name }}</td>
+      </tr>
+      {% else %}
+        <tr><td colspan=6 class="alert alert-primary"><strong>There are no complexes to view </strong></td></tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+
+</div>
+
+{% endblock %}

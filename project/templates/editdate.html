@@ -5,45 +5,48 @@
 {% endblock %}
 {% block content %}
 
-<div class="card text-center border-dark mx-auto" style="width: 1000px">
 
     {% if data %}
-    <h5 class="card-header text-white bg-info">Date: #{{ data.id }} : "{{ data.doi_name }}"</h5>
-    <div class="card-body px-lg-5 pt-0">
-    <form action="{{ url_for('gui_blueprint._editdate', id=data.id) }}" method="POST" novalidate class="text-center" style="color: #000000;">
+    <h5 class="card-header text-white bg-secondary">Date: #{{ data.id }} : "{{ data.doi_name }}"</h5>
+    <form action="{{ url_for('gui_blueprint._editdate', id=data.id) }}" method="POST" novalidate class="text-center">
     {% else %}
-    <h5 class="card-header text-white bg-info">New Date</h5>
-    <div class="card-body px-lg-5 pt-0">
-    <form action="{{ url_for('gui_blueprint._editdate', id=0) }}" method="POST" novalidate class="text-center" style="color: #000000;">
+    <h5 class="card-header text-white bg-secondary">New Date</h5>
+    <form action="{{ url_for('gui_blueprint._editdate', id=0) }}" method="POST" novalidate class="text-center">
     {% endif %}
 
-        <table class="form-group">
+        <table class="form-group w-75 align-text-top">
           <tr>
             <td>{{ form.hidden_tag() }}</td>
             <td>&nbsp;</td>
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.doi_name.label }}</td>
-            <td class="px-4 py-1">{{ form.doi_name(class_="form-control") }}</td>
+            <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.doi_name.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ form.doi_name(class_="form-control") }}</td>
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.doi_priority.label }}</td>
-            <td class="px-4 py-1">{{ form.doi_priority(class_="form-control") }}</td>
+            <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.doi_priority.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ form.doi_priority(class_="form-control") }}</td>
           </tr>
           <tr>
-            <td class="px-4 py-1">{{ form.doi_comment.label }}</td>
-            <td class="px-4 py-1">{{ form.doi_comment(rows=10, cols=30, class_="form-control") }}</td>
+            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.doi_comment.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ form.doi_comment(rows=10, cols=30, class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.doi_regions.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ form.doi_regions(rows=3, class_="selectpicker, form-control") }}</td>
           </tr>
 
           <tr>
-            <td class="px-4 py-1">{{ form.doi_start_dt.label }}</td>
-            <td class="px-4 py-1">
-            <div class="container">
-                <div class="row">
-                  <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+            <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.doi_start_dt.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">
+
+                <div class="container">
+                  <div class="row">
+                    <div class="input-group">
+                      <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                       {{ form.doi_start_dt(class_="form-control-plaintext form-control datetimepicker-input") }}
-                  </div>
-                  <script type="text/javascript">
+
+                    <script type="text/javascript">
                       $(function () {
                           $('#datetimepicker1').datetimepicker({
                             icons: {
@@ -66,21 +69,27 @@
                             ignoreReadonly: true
                           });
                       });
-                  </script>
+                    </script>
+
+                    <div class="input-group-append">
+                      <span class="input-group-text">Click field to set date & time</span>
+                    </div>
+                    </div>
+                  </div>
                 </div>
-            </div>
             </td>
-            <td><small>Click the field to select a date & time</small></td>
           </tr>
 
           <tr>
-            <td class="px-4 py-1">{{ form.doi_end_dt.label }}</td>
-            <td class="px-4 py-1">
-            <div class="container">
+            <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.doi_end_dt.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">
+
+              <div class="container">
                 <div class="row">
-                  <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                  <div class="input-group">
+                    <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
                       {{ form.doi_end_dt(class_="form-control-plaintext form-control datetimepicker-input") }}
-                  </div>
+
                     <script type="text/javascript">
                         $(function () {
                             $('#datetimepicker2').datetimepicker({
@@ -105,25 +114,32 @@
                             });
                         });
                     </script>
+                    <div class="input-group-append">
+                      <span class="input-group-text">Click field to set date & time</span>
+                    </div>
+                    </div>
+                  </div>
                 </div>
-            </div>
             </td>
-            <td><small>Click the field to select a date & time</small></td>
           </tr>
 
           <tr>
             <td>&nbsp;</td>
-            <td class="p-5">{{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._dates') }}'">Cancel</button></td>
-            {% if data %}
-            <td class="p-5">{{ form.deletebtn(class_="btn btn-danger") }}</td>
-            {% endif %}
+            <td class="p-5">
+             {{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._dates') }}'">Cancel</button>
+             {% if data %}
+             &nbsp;&nbsp;&nbsp;{{ form.deletebtn(class_="btn btn-danger") }}
+             {% endif %}
+            </td>
           </tr>
         </table>
     </form>
-    </div>
 
+    <script>
+        $(document).ready(function () {
+            $('.selectpicker').selectpicker();
+        })
+    </script>
 
-
-</div>
 
 {% endblock %}

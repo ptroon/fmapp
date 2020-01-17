@@ -9,6 +9,14 @@ from cryptography.fernet import Fernet
 
 from project import db, bcrypt, app
 
+class DateTime2(db.TypeDecorator):
+    impl = db.DateTime
+
+    def process_bind_param(self, value, dialect):
+        if type(value) is str:
+            return datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
+        return value
+
 class User(db.Model, UserMixin):
 
     __tablename__ = "users"
@@ -22,9 +30,9 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(100), nullable=False)
     role = db.Column(db.Integer, db.ForeignKey("roles.id"))
     vendor = db.Column(db.Integer, db.ForeignKey("parameters.id"))
-    created_date = db.Column(db.DateTime, nullable=False)
-    last_login = db.Column(db.DateTime)
-    last_modified = db.Column(db.DateTime)
+    created_date = db.Column(DateTime2, nullable=False)
+    last_login = db.Column(DateTime2)
+    last_modified = db.Column(DateTime2)
     modified_by = db.Column(db.String(100))
     enabled = db.Column(db.Integer)
 
@@ -63,7 +71,7 @@ class Role(db.Model, UserMixin):
     role_name = db.Column(db.String(100), nullable=False)
     role_admin = db.Column(db.Integer, nullable=False)
     role_app_sections = db.Column(db.String(200))
-    created_date = db.Column(db.DateTime, nullable=False)
+    created_date = db.Column(DateTime2, nullable=False)
     enabled = db.Column(db.Integer)
 
     def __init__(self, role_name, role_admin, role_app_sections, enabled):
@@ -85,7 +93,7 @@ class FortiManager(db.Model, UserMixin):
     version = db.Column(db.String(64))
     username = db.Column(db.String(64), nullable=False)
     _password = db.Column(db.String(128), nullable=False)
-    sync_time = db.Column(db.DateTime)
+    sync_time = db.Column(DateTime2)
     status = db.Column(db.Integer, default=0)
 
     def __init__(self, host_name, ip, username, plaintext_password):
@@ -120,15 +128,15 @@ class ChangeProfile(db.Model, UserMixin):
     task_record = db.Column(db.String(32))
     sbid = db.Column(db.String(9))
     budget_code = db.Column(db.String(32))
-    target_date = db.Column(db.DateTime)
+    target_date = db.Column(DateTime2)
     change_raiser = db.Column(db.Integer)
     change_checker = db.Column(db.Integer)
     change_approver = db.Column(db.Integer)
     change_implementer = db.Column(db.Integer)
-    change_raised = db.Column(db.DateTime)
-    change_checked = db.Column(db.DateTime)
-    change_approved = db.Column(db.DateTime)
-    change_implemented = db.Column(db.DateTime)
+    change_raised = db.Column(DateTime2)
+    change_checked = db.Column(DateTime2)
+    change_approved = db.Column(DateTime2)
+    change_implemented = db.Column(DateTime2)
 
     def __init__(self, change_name, change_desc, master_record, task_record, sbid, budget_code, target_date, change_raiser):
         self.change_name = change_name
@@ -163,13 +171,13 @@ class Booking(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(32))
-    start_time = db.Column(db.DateTime)
-    end_time = db.Column(db.DateTime)
+    start_time = db.Column(DateTime2)
+    end_time = db.Column(DateTime2)
     url = db.Column(db.String(1000))
-    logged = db.Column(db.DateTime)
+    logged = db.Column(DateTime2)
     owner_id = db.Column(db.String(25))
     zone = db.Column(db.String(200))
-    approved_date = db.Column(db.DateTime)
+    approved_date = db.Column(DateTime2)
     approved_by = db.Column(db.String(32))
 
     def __init__(self):
@@ -223,8 +231,8 @@ class Job(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     job_name = db.Column(db.String(1000), nullable=False)
     job_type = db.Column(db.Integer, nullable=False)
-    job_start = db.Column(db.DateTime, nullable=False)
-    job_complete = db.Column(db.DateTime)
+    job_start = db.Column(DateTime2, nullable=False)
+    job_complete = db.Column(DateTime2)
     job_content = db.Column(db.String(4000), nullable=False)
 
 
@@ -234,33 +242,44 @@ class DateOfInterest(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     doi_name = db.Column(db.String(1000), nullable=False)
-    doi_priority = db.Column(db.Integer, default=0, nullable=False)
+    doi_priority = db.Column(db.Integer, db.ForeignKey("parameters.id"), default=0, nullable=False)
     doi_comment = db.Column(db.String(2000))
-    doi_start_dt = db.Column(db.DateTime, nullable=False)
-    doi_end_dt = db.Column(db.DateTime, nullable=False)
+    doi_start_dt = db.Column(DateTime2, nullable=False)
+    doi_end_dt = db.Column(DateTime2, nullable=False)
+    doi_regions = db.Column(db.String(100))
 
-    def __init__(self, doi_name, doi_priority, doi_comment, doi_start_dt, doi_end_dt):
+    def __init__(self, doi_name, doi_priority, doi_comment, doi_start_dt, doi_end_dt, doi_regions):
         self.doi_name = doi_name
         self.doi_priority = doi_priority
         self.doi_comment = doi_comment
         self.doi_start_dt = doi_start_dt
         self.doi_end_dt = doi_end_dt
+        self.doi_regions = doi_regions
 
+'''
+    @hybrid_property
+    def doi_regions_ms(self):
+        return self.doi_regions.split(',') # provides a list
+
+    @doi_regions_ms.setter
+    def doi_regions_ms(self, _doi_regions):
+        self.doi_regions = ','.join(_doi_regions) # creates a comma delimited string
+'''
 
 class Complex(db.Model, UserMixin):
 
     __tablename__ = "complexes"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    complex_name = db.Column(db.String(1000), nullable=False)
-    complex_manager = db.Column(db.Integer, nullable=False)
+    complex_name = db.Column(db.String(1000), db.ForeignKey("parameters.id"), nullable=False)
+    complex_manager = db.Column(db.Integer, db.ForeignKey("parameters.id"), nullable=False)
     complex_fw_inner_1 = db.Column(db.String(1000))
     complex_fw_inner_2 = db.Column(db.String(1000))
     complex_fw_outer_1 = db.Column(db.String(1000))
     complex_fw_outer_2 = db.Column(db.String(1000))
     complex_fw_location_1 = db.Column(db.String(1000))
-    complex_fw_location_1 = db.Column(db.String(1000))
-    complex_fw_type = db.Column(db.Integer, nullable=False)
+    complex_fw_location_2 = db.Column(db.String(1000))
+    complex_fw_type = db.Column(db.Integer, db.ForeignKey("parameters.id"), nullable=False)
     complex_serial = db.Column(db.String(1000), default='N/A')
     complex_license = db.Column(db.String(1000), default='N/A')
     complex_push_start = db.Column(db.Integer, nullable=False)
@@ -275,17 +294,17 @@ class Complex(db.Model, UserMixin):
     complex_fw_outer_name_2 = db.Column(db.String(1000))
     complex_location_2 = db.Column(db.String(1000))
     complex_location_all = db.Column(db.String(1000))
-    complex_area = db.Column(db.Integer, nullable=False)
+    complex_area = db.Column(db.Integer, db.ForeignKey("parameters.id"), nullable=False)
     complex_fw_info1 = db.Column(db.String(1000))
     complex_fw_info2 = db.Column(db.String(1000))
     complex_fw_inner_info1 = db.Column(db.String(1000))
     complex_fw_inner_info2 = db.Column(db.String(1000))
     complex_fw_outer_info1 = db.Column(db.String(1000))
     complex_fw_outer_info2 = db.Column(db.String(1000))
-    complex_type = db.Column(db.Integer, nullable=False)
+    complex_type = db.Column(db.Integer, db.ForeignKey("parameters.id"), nullable=False)
     complex_info_1 = db.Column(db.String(1000))
-    complex_country = db.Column(db.Integer, nullable=False)
-    complex_restricted = db.Column(db.Integer)
+    complex_country = db.Column(db.Integer, db.ForeignKey("parameters.id"), nullable=False)
+    complex_restricted = db.Column(db.Integer, db.ForeignKey("parameters.id"))
     complex_restrict_start = db.Column(db.Integer)
     complex_restrict_end = db.Column(db.Integer)
     complex_allow_slot_day = db.Column(db.Integer)
@@ -293,6 +312,6 @@ class Complex(db.Model, UserMixin):
     complex_allow_slot_end = db.Column(db.Integer)
     complex_push_day_extra = db.Column(db.String(7))
     complex_change_info = db.Column(db.String(2000))
-    complex_environment = db.Column(db.Integer)
-    complex_updated = db.Column(db.DateTime, default=datetime.now())
-    complex_active = db.Column(db.Integer, default=1)
+    complex_environment = db.Column(db.Integer, db.ForeignKey("parameters.id"))
+    complex_updated = db.Column(DateTime2, default=datetime.now())
+    complex_active = db.Column(db.Integer, db.ForeignKey("parameters.id"), default=1)
