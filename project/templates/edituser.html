@@ -71,6 +71,7 @@
             <td class="p-5">{{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._users') }}'">Cancel</button>
             {% if data.login_id != get_user() %}
               {{ form.deletebtn(class_="btn btn-danger") }}
+              &nbsp;<button type=button name="cancel" id="cancel" class="btn btn-danger button_fpa" data-toggle="modal" data-target="#messageModalCenter">Delete</button>
             {% endif %}
             </td>
 

@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, url_for, jsonify, abort, session, render_template
+from flask import Flask, Blueprint, url_for, jsonify, abort, session, render_template, request, flash
 from flask_restplus import Api
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
@@ -76,7 +76,8 @@ logging.getLogger('sqlalchemy').propagate = False
 ####################
 
 login_manager = LoginManager(app)
-login_manager.login_view='api_blueprint.session'
+#login_manager.login_view='api_blueprint.session'
+#login_manager.login_view='gui_blueprint._login'
 
 @login_manager.unauthorized_handler
 def unauthorized():
@@ -112,8 +113,20 @@ app.jinja_env.globals.update(is_admin=is_admin)
 app.jinja_env.globals.update(unique_time=unique_time)
 app.jinja_env.globals.update(get_copyright=get_copyright)
 
+login_manager.blueprint_login_views = { 'gui_blueprint' : '/fpa/login', 'api_blueprint' : '/fpa/login', }
+
 # Default 404 Error handler
 @app.errorhandler(404)
 def not_found (e):
-    print(e)
+    print ("cannot find file "+ request.path)
+    print (e)
     return render_template("404.html", error = e)
+
+# Default 401 Error handler
+@app.errorhandler(403)
+def not_found (e):
+    print ("error accessing "+ request.path)
+    print (e)
+    #return render_template("403.html", error=e)
+    flash (e, "warning")
+    return render_template("login.html", next=request.path)

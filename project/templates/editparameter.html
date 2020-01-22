@@ -43,12 +43,26 @@
           {% if form.param_critical.data == 0 %}
           <tr>
             <td class="w-25 text-right mx-2 p-1">{{ form.param_critical.label }}</td>
-            <td class="w-75 text-right mx-2 p-1">{{ form.param_critical(size=1, class_="form-control") }}<small class="text-danger">Setting this option means the parameter cannot be deleted in future!</small></td>
+            <td class="w-75 text-right mx-2 p-1">
+              <div class="input-group my-3">
+                {{ form.param_critical(size=1, class_="form-control font-weight-bold text-danger") }}
+                <div class="input-group-append">
+                  <span class="input-group-text bg-info text-white font-weight-bold">Setting this option means the parameter cannot be deleted in future!</span>
+                </div>
+              </div>
+            </td>
           </tr>
           {% else %}
           <tr>
             <td class="w-25 text-right mx-2 p-1">{{ form.param_critical.label }}</td>
-            <td class="w-75 text-right mx-2 p-1">{{ form.param_critical(size=1, class_="form-control", disabled=True) }}<small class="text-danger">Setting this option means the parameter cannot be deleted or unset in future!</small></td>
+            <td class="w-75 text-right mx-2 p-1">
+              <div class="input-group my-3">
+                {{ form.param_critical(size=1, class_="form-control font-weight-bold text-secondary", disabled=true) }}
+                <div class="input-group-append">
+                  <span class="input-group-text bg-info text-white font-weight-bold">Setting this option means the parameter cannot be deleted in future!</span>
+                </div>
+              </div>
+            </td>
           </tr>
           {% endif %}
 

@@ -44,21 +44,21 @@ class SelectMultipleField2(SelectMultipleField):
 
 class UserForm(FlaskForm):
     id = HiddenField('id', default=0)
-    login_id = StringField('Login ID', validators=[DataRequired()])
-    forename = StringField('Forename', validators=[DataRequired()])
-    surname = StringField('Surname', validators=[DataRequired()])
+    login_id = StringField('Login ID', validators=[InputRequired()])
+    forename = StringField('Forename', validators=[InputRequired()])
+    surname = StringField('Surname', validators=[InputRequired()])
     comment = TextAreaField('Comment')
     password = PasswordField('Password')
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    role = SelectField('Role', coerce=int, validators=[DataRequired()])
-    vendor = SelectField('Vendor', coerce=int, validators=[DataRequired()])
-    created_date = HiddenField('Created', default=datetime.now())
+    email = StringField('Email', validators=[InputRequired(), Email()])
+    role = SelectField('Role', coerce=int, validators=[InputRequired()])
+    vendor = SelectField('Vendor', coerce=int, validators=[InputRequired()])
+    created_date = HiddenField('Created')
     last_login = HiddenField('Last login')
     last_modified = HiddenField('Last modified')
     modified_by = HiddenField('Modified by')
     enabled = HiddenField('Enabled', default=1)
     savebtn = SubmitField('Save')
-    deletebtn = SubmitField('Delete')
+    deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
 
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
@@ -68,13 +68,13 @@ class UserForm(FlaskForm):
 
 class RoleForm(FlaskForm):
     id = HiddenField('id', default=0)
-    role_name = StringField('Role Name', validators=[DataRequired()])
+    role_name = StringField('Role Name', validators=[InputRequired()])
     role_admin = SelectField('Administrator', coerce=int, default=0)
     role_app_sections = TextAreaField('Sections')
     created_date = StringField('Created')
     enabled = SelectField('Enabled', coerce=int, default=0)
     savebtn = SubmitField('Save')
-    deletebtn = SubmitField('Delete')
+    deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
 
     def __init__(self, *args, **kwargs):
         super(RoleForm, self).__init__(*args, **kwargs)
@@ -84,34 +84,34 @@ class RoleForm(FlaskForm):
         self.created_date.render_kw = {'disabled': True}
 
 class ChangeProfileForm(FlaskForm):
-    id = IntegerField('id', validators=[DataRequired()])
-    change_name = StringField('change_name', validators=[DataRequired()])
+    id = IntegerField('id', validators=[InputRequired()])
+    change_name = StringField('change_name', validators=[InputRequired()])
 
 
 class ZoneForm(FlaskForm):
-    id = IntegerField('id', validators=[DataRequired()])
-    zone_name = SelectField('change_name', validators=[DataRequired()])
+    id = IntegerField('id', validators=[InputRequired()])
+    zone_name = SelectField('change_name', validators=[InputRequired()])
 
 
 class JobForm(FlaskForm):
-    id = IntegerField('id', validators=[DataRequired()])
-    job_name = StringField('job_name', validators=[DataRequired()])
-    job_type = SelectField('job_type', coerce=int, validators=[DataRequired()])
-    job_start = StringField('job_start', validators=[DataRequired()])
-    job_complete = StringField('job_complete', validators=[DataRequired()])
-    job_content = TextAreaField('job_content', validators=[DataRequired()])
+    id = IntegerField('id', validators=[InputRequired()])
+    job_name = StringField('job_name', validators=[InputRequired()])
+    job_type = SelectField('job_type', coerce=int, validators=[InputRequired()])
+    job_start = StringField('job_start', validators=[InputRequired()])
+    job_complete = StringField('job_complete', validators=[InputRequired()])
+    job_content = TextAreaField('job_content', validators=[InputRequired()])
 
 
 class ParameterForm(FlaskForm):
     id = HiddenField('id', default=0)
-    param_name = StringField('Name', validators=[DataRequired()])
-    param_value = TextAreaField('Value', validators=[DataRequired()])
+    param_name = StringField('Name', validators=[InputRequired()])
+    param_value = TextAreaField('Value', validators=[InputRequired()])
     param_group = NoValidateSelectfield('Group', coerce=int, default=0)
     param_parent = StringField('Parent')
     param_disabled = SelectField('Disabled', coerce=int, default=0)
     param_critical = SelectField('Critical', coerce=int, default=0)
     savebtn = SubmitField('Save')
-    deletebtn = SubmitField('Delete')
+    deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
 
     def __init__(self, *args, **kwargs):
         super(ParameterForm, self).__init__(*args, **kwargs)
@@ -152,14 +152,14 @@ class LogForm(FlaskForm):
 
 class DOIForm(FlaskForm):
     id = HiddenField('id', default=0)
-    doi_name = StringField('Name', validators=[DataRequired()])
+    doi_name = StringField('Name', validators=[InputRequired()])
     doi_priority = SelectField('Priority', coerce=int)
     doi_comment = TextAreaField('Comment')
-    doi_start_dt = StringField('Start', validators=[DataRequired()])
-    doi_end_dt = StringField('End', validators=[DataRequired()])
+    doi_start_dt = StringField('Start', validators=[InputRequired()])
+    doi_end_dt = StringField('End', validators=[InputRequired()])
     doi_regions = SelectMultipleField2('Regions')
     savebtn = SubmitField('Save')
-    deletebtn = SubmitField('Delete')
+    deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
 
     def __init__(self, *args, **kwargs):
         super(DOIForm, self).__init__(*args, **kwargs)
@@ -172,22 +172,22 @@ class DOIForm(FlaskForm):
 
 class ComplexForm(FlaskForm):
     id = HiddenField('id', default=0)
-    complex_name = StringField('Name', validators=[DataRequired()])
-    complex_manager = SelectField('Manager', coerce=int, validators=[DataRequired()])
-    complex_fw_inner_1 = StringField('Inner 1', validators=[DataRequired()])
-    complex_fw_inner_2 = StringField('Inner 2', validators=[DataRequired()])
-    complex_fw_outer_1 = StringField('Outer 1', validators=[DataRequired()])
-    complex_fw_outer_2 = StringField('Outer 2', validators=[DataRequired()])
-    complex_fw_location_1 = StringField('FW Location 1', validators=[DataRequired()])
-    complex_fw_location_2 = StringField('FW Location 2', validators=[DataRequired()])
-    complex_fw_type = SelectField('Firewall Type', coerce=int, validators=[DataRequired()])
-    complex_serial = StringField('Serial #', validators=[DataRequired()])
-    complex_license = StringField('License #', validators=[DataRequired()])
-    complex_push_start = StringField('Push Start', validators=[DataRequired()])
-    complex_push_end = StringField('Push End', validators=[DataRequired()])
-    complex_push_days = StringField('Push Days', validators=[DataRequired()])
-    complex_category = StringField('Category', validators=[DataRequired()])
-    complex_hardware = StringField('Hardware', validators=[DataRequired()])
+    complex_name = StringField('Name', validators=[InputRequired()])
+    complex_manager = SelectField('Manager', coerce=int, validators=[InputRequired()])
+    complex_fw_inner_1 = StringField('Inner 1', validators=[InputRequired()])
+    complex_fw_inner_2 = StringField('Inner 2', validators=[InputRequired()])
+    complex_fw_outer_1 = StringField('Outer 1', validators=[InputRequired()])
+    complex_fw_outer_2 = StringField('Outer 2', validators=[InputRequired()])
+    complex_fw_location_1 = StringField('FW Location 1', validators=[InputRequired()])
+    complex_fw_location_2 = StringField('FW Location 2', validators=[InputRequired()])
+    complex_fw_type = SelectField('Firewall Type', coerce=int, validators=[InputRequired()])
+    complex_serial = StringField('Serial #', validators=[InputRequired()])
+    complex_license = StringField('License #', validators=[InputRequired()])
+    complex_push_start = StringField('Push Start', validators=[InputRequired()])
+    complex_push_end = StringField('Push End', validators=[InputRequired()])
+    complex_push_days = StringField('Push Days', validators=[InputRequired()])
+    complex_category = StringField('Category', validators=[InputRequired()])
+    complex_hardware = StringField('Hardware', validators=[InputRequired()])
     complex_fw_inner_name_1 = StringField('FW Inner Name 1')
     complex_fw_inner_name_2 = StringField('FW Inner Name 2')
     complex_location_1 = StringField('Complex Location 1')
@@ -209,19 +209,19 @@ class ComplexForm(FlaskForm):
     complex_restrict_start = StringField('Restrict Start')
     complex_restrict_end = StringField('Restrict End')
     complex_allow_slot_day = StringField('Slot Day')
-    complex_allow_slot_start = StringField('Slot Start')
-    complex_allow_slot_end = StringField('Slot End')
-    complex_push_day_extra = StringField('Extra Push Days')
+    complex_allow_slot_start = StringField('Slot Start Time')
+    complex_allow_slot_end = StringField('Slot End Time')
+    complex_push_day_extra = StringField('Extra Push Days', validators=[InputRequired()])
     complex_change_info = StringField('Change Info')
     complex_environment = SelectField('Environment', coerce=int)
     complex_updated = StringField('Updated', render_kw={'readonly':'true'})
     complex_active = SelectField('Active', coerce=int)
     savebtn = SubmitField('Save')
-    deletebtn = SubmitField('Delete')
+    deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
 
     def __init__(self, *args, **kwargs):
         super(ComplexForm, self).__init__(*args, **kwargs)
-        self.complex_fw_type.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 82).order_by(Parameter.param_name)] # Parameters for Priorities
+        self.complex_fw_type.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 89).order_by(Parameter.param_name)] # Parameters for Priorities
         self.complex_manager.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 2).order_by(Parameter.param_name)] # Parameters for FW Managers
         self.complex_type.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 100).order_by(Parameter.param_name)] # Parameters for FW Types
         self.complex_area.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 1).order_by(Parameter.param_value.asc())] # Parameters for Locations
@@ -229,3 +229,47 @@ class ComplexForm(FlaskForm):
         self.complex_restricted.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_value.asc())] # Parameters for Restricted as Yes/No
         self.complex_environment.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 92).order_by(Parameter.param_value.asc())] # Parameters for Environments
         self.complex_active.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 66).order_by(Parameter.param_value.asc())] # Parameters for Active state
+
+    def validate_complex_push_day_extra(form, field):
+        if len(field.data) != 7:
+            raise ValidationError('Push Days must be exactly 7 characters')
+
+
+class ComplexNameSelectForm(FlaskForm):
+    complex_select = SelectField('Complex')
+    nextbtn = SubmitField('Next')
+
+    def __init__(self, *args, **kwargs):
+        super(ComplexNameSelectForm, self).__init__(*args, **kwargs)
+        self.complex_select.choices = [(a.id, a.complex_name) for a in Complex.query.order_by(Complex.complex_name)] # Complex Names
+
+
+class BookingForm(FlaskForm):
+    id = HiddenField('id', default=0)
+    slot_id = HiddenField('slot_id', default=0)
+    title = StringField('Title', validators=[InputRequired()])
+    start_dt = StringField('Start', validators=[InputRequired()])
+    end_dt = StringField('End', validators=[InputRequired()])
+    ticket = StringField('Ticket', validators=[InputRequired(),Length(6,7)])
+    stakeholder_id = StringField('Stakeholder')
+    budget = StringField('Budget Code')
+    project = StringField('Project Name', validators=[InputRequired()])
+    description = TextAreaField('Description', validators=[InputRequired()])
+    owner_id = StringField('Owner', validators=[InputRequired()])
+    complex = NoValidateSelectfield('Complex', coerce=int, render_kw={'disabled':'true'})
+    cluster = NoValidateSelectfield('Cluster', coerce=int)
+    approved_date = StringField('Approved')
+    approved_by = StringField('Approved By')
+    change_ref = StringField('Change Ref')
+    change_subref = StringField('Change Sub Ref')
+    logged = HiddenField('logged')
+    savebtn = SubmitField('Save')
+    deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
+
+    def __init__(self, *args, **kwargs):
+        super(BookingForm, self).__init__(*args, **kwargs)
+        self.description.render_kw = {'style': 'resize:none;'}
+        self.start_dt.render_kw = {'data-target': '#datetimepicker1', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Choose start date & time'}
+        self.end_dt.render_kw = {'data-target': '#datetimepicker2', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Choose end date & time'}
+        self.complex.choices = [(a.id, a.complex_name) for a in Complex.query.order_by(Complex.complex_name)] # Complex Names
+        self.cluster.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 97).order_by(Parameter.param_name)] # Cluster Names

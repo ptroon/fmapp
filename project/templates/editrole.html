@@ -8,10 +8,10 @@
 
     {% if data %}
     <h5 class="card-header text-white bg-secondary">Role: {{ data.role_name }} : {{ data.id }}</h5>
-    <form action="{{ url_for('gui_blueprint._editrole', id=data.id) }}" method="POST" novalidate style="color: #000000;">
+    <form id="roleForm" action="{{ url_for('gui_blueprint._editrole', id=data.id) }}" method="POST" novalidate style="color: #000000;">
     {% else %}
     <h5 class="card-header text-white bg-secondary">New Role</h5>
-    <form action="{{ url_for('gui_blueprint._editrole', id=0) }}" method="POST" novalidate style="color: #000000;">
+    <form id="roleForm" action="{{ url_for('gui_blueprint._editrole', id=0) }}" method="POST" novalidate style="color: #000000;">
     {% endif %}
 
         <table class="form-group w-75">
@@ -43,7 +43,8 @@
             <td>&nbsp;</td>
             <td class="p-5">{{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._roles') }}'">Cancel</button>
             {% if data.role_admin == 0 or data.role_admin == None %}
-              &nbsp;{{ form.deletebtn(class_="btn btn-danger") }}
+              &nbsp;<button type=button name="cancel" id="cancel" class="btn btn-danger button_fpa" data-toggle="modal" data-target="#messageModalCenter">Delete</button>
+              {{ form.deletebtn(class_="btn btn-danger") }}
             {% endif %}
             </td>
 

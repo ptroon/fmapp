@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}FortiManagers{% endblock %}
+{% block title %}Bookings{% endblock %}
 {% block head %}
     {{ super() }}
 
@@ -9,9 +9,18 @@
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
+      events: {
+        url: '/fpa/get_events',
+        type: 'GET',
+        error: function() {
+					$('#script-warning').show();
+        },
+        color: 'yellow',
+        textColor: 'black'
+      },
       plugins: [ 'dayGrid', 'timeGrid', 'interaction', 'timeGridDay' ],
       selectable: true,
-      editable: true,
+      editable: false,
       navLinks: true,
       eventLimit: true,
       header: {
@@ -19,11 +28,37 @@
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
       },
+      selectAllow: function(info) {
+          return moment().diff(info.start, 'days') <= 0
+      },
       select: function(arg) {
         var vdate = moment(arg.start).format("DD-MM-YYYY")
         $("#newBookingModal").modal();
         $("#startDate").html(vdate);
+        $("#start").val(vdate);
         calendar.unselect();
+      },
+      eventClick: function(info) {
+        $("#checkBookingModal").modal();
+        var dateStart = moment(info.event.start).format("DD-MMM-YYYY HH:mm");
+        var dateEnd   = moment(info.event.end).format("DD-MMM-YYYY HH:mm");
+        $("#bookingTitle").html(info.event.title);
+        $("#bookingInfo").html(info.event.extendedProps.description);
+        $("#bookingStart").html(dateStart);
+        if (dateEnd == 'Invalid date') {dateEnd=''};
+        $("#bookingEnd").html(dateEnd);
+        calendar.unselect();
+      },
+      eventMouseover: function(info) {
+        info.event.backgroundColor="red";
+      },
+      eventRender: function(info) {
+        var tooltip = new Tooltip(info.el, {
+          title: info.event.extendedProps.description,
+          placement: 'top',
+          trigger: 'hover',
+          container: 'body'
+        });
       }
     });
 
@@ -45,13 +80,43 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Booking for:  <span id="startDate" name="startDate" class="bg-primary text-white p-1"></span></h5>
+        <h5 class="modal-title" id="newModalLabel">New Booking for:  <span id="startDate" name="startDate" class="bg-secondary text-white p-1"></span></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <form action="{{ url_for('gui_blueprint._bookings', id=0) }}" method="POST">
         <div class="modal-body">
-          Choose a zone:
+          Choose a zone: {{ form.complex_select(class_="form-control") }}
+          <input type="hidden" id="start" name="start"/>
+        </div>
+        <div class="modal-footer">
+          {{ form.nextbtn(class_="btn btn-primary button_fpa") }}
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </form>
+      </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="checkBookingModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="checkModalLabel">Booking Details for: <span id="bookingTitle" name="startDate" class="bg-secondary text-white p-1"></span></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body bg-light">
+          <table>
+          <tr><td class="p-1 mx-1 font-weight-bold">Info</td><td><div id="bookingInfo"></div></td>
+          <tr><td class="p-1 mx-1 font-weight-bold">Start</td><td><div id="bookingStart"></div></td>
+          <tr><td class="p-1 mx-1 font-weight-bold">End</td><td><div id="bookingEnd"></div></td>
+          </table>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

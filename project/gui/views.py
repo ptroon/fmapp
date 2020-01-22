@@ -68,6 +68,8 @@ def _login ():
 
             if current_user.is_authenticated:
                 flash('You were successfully logged in', 'success')
+                if request.form["next"]:
+                    return redirect(request.form["next"])
                 return redirect(url_for('gui_blueprint._index'))
 
             flash('Error with login!', 'warning')
@@ -112,16 +114,16 @@ def _register ():
 #################################################################
 # CHANGES #
 ###########
-@login_required
 @gui_blueprint.route("/changes")
+@login_required
 def _changes ():
 
     if request.method == 'GET':
         changes = ChangeProfile.query.order_by(ChangeProfile.id.desc())
         return render_template("changes.html", data = changes)
 
-@login_required
 @gui_blueprint.route("/editchange")
+@login_required
 def _editchange ():
 
     if request.method == 'GET':
@@ -133,8 +135,8 @@ def _editchange ():
 #################################################################
 # COMPLEXES #
 #############
-@login_required
 @gui_blueprint.route("/admin/complexes")
+@login_required
 def _complexes ():
     if is_admin():
 
@@ -148,13 +150,13 @@ def _complexes ():
         filter(Complex.complex_type==b.id).\
         filter(Complex.complex_country==c.id).\
         filter(Complex.complex_active==d.id).all()
-        
+
         return render_template("complexes.html", data = complexes)
     else:
         return render_template("403.html", error = "You are not an administrator")
 
-@login_required
 @gui_blueprint.route("/admin/editcomplex/<id>", methods=["GET","POST"])
+@login_required
 def _editcomplex (id):
     if is_admin():
 
@@ -185,8 +187,8 @@ def _editcomplex (id):
 #################################################################
 # LOGS #
 ########
-@login_required
 @gui_blueprint.route("/admin/logs", methods=["GET","POST"])
+@login_required
 def _logs ():
     if is_admin():
 
@@ -215,8 +217,8 @@ def _logs ():
 #################################################################
 # USERS #
 #########
-@login_required
 @gui_blueprint.route("/admin/users", methods=["GET"])
+@login_required
 def _users ():
     if is_admin():
         users = db.session.query(User,Role,Parameter).join(Role).outerjoin(Parameter).order_by(User.id.asc())
@@ -224,8 +226,8 @@ def _users ():
     else:
         return render_template("403.html", error = "You are not an administrator")
 
-@login_required
 @gui_blueprint.route("/admin/edituser/<id>", methods=["GET","POST"])
+@login_required
 def _edituser (id):
     if is_admin():
 
@@ -236,24 +238,33 @@ def _edituser (id):
             return render_template("edituser.html", data = user, form = form)
 
         if form.validate_on_submit():
-            if not user:
-                user = User(form.login_id.data, form.forename.data, form.surname.data, form.comment.data, form.password.data, form.email.data, form.role.data)
-                db.session.add(user)
+            if form.savebtn.data:
+                if not user:
+                    user = User(form.login_id.data, form.forename.data, form.surname.data, form.comment.data, form.password.data, form.email.data, form.role.data, form.vendor.data)
+                    db.session.add(user)
 
-            if not form.password.data:
-              del form.password
+                if not form.password.data:
+                  del form.password
 
-            form.populate_obj(user)
-            user.last_modified = datetime.now()
-            user.modified_by = session["login_id"]
-            user.last_login = datetime.now()
+                form.populate_obj(user)
+                user.last_modified = datetime.now()
+                user.modified_by = session["login_id"]
+                user.last_login = None
 
-            if not form.created_date:
-                user.created_date = datetime.now()
+                if not form.created_date.data:
+                    user.created_date = datetime.now()
 
-            db.session.commit()
-            flash ('User saved successfully', 'success')
-            return redirect(url_for('gui_blueprint._users'))
+                db.session.commit()
+                flash ('User saved successfully', 'success')
+                return redirect(url_for('gui_blueprint._users'))
+
+            if form.deletebtn.data:
+                user = User.query.filter_by(id=id).first()
+                db.session.delete(user)
+                flash ('User removed successfully', 'success')
+                db.session.commit()
+                return redirect(url_for('gui_blueprint._users'))
+
         else:
             flash_errors (form)
 
@@ -265,8 +276,8 @@ def _edituser (id):
 #################################################################
 # ROLES #
 #########
-@login_required
 @gui_blueprint.route("/admin/roles", methods=["GET"])
+@login_required
 def _roles ():
     if is_admin():
         roles = Role.query.order_by(Role.id.asc())
@@ -275,8 +286,8 @@ def _roles ():
         return render_template("403.html", error = "You are not an administrator")
 
 
-@login_required
 @gui_blueprint.route("/admin/editrole/<id>", methods=["GET","POST"])
+@login_required
 def _editrole (id):
 
     if is_admin():
@@ -295,6 +306,7 @@ def _editrole (id):
                     db.session.add(role)
 
                 form.populate_obj(role)
+                role.created_date = datetime.now()
                 db.session.commit()
                 flash ('Role saved successfully', 'success')
                 return redirect(url_for('gui_blueprint._roles'))
@@ -309,13 +321,17 @@ def _editrole (id):
                 else:
                     flash ('Cannot delete role as it is in use', 'warning')
 
-                return redirect(url_for('gui_blueprint._roles'))
+        else:
+            flash_errors (form)
+            return render_template("editrole.html", form=form, data=role)
+
+        return redirect(url_for('gui_blueprint._roles'))
 
 #################################################################
 # DATES #
 #########
-@login_required
 @gui_blueprint.route("/admin/dates", methods=["GET"])
+@login_required
 def _dates ():
     if is_admin():
         dates = db.session.query(DateOfInterest,Parameter).join(Parameter).order_by(DateOfInterest.id.asc())
@@ -323,8 +339,8 @@ def _dates ():
     else:
         return render_template("403.html", error = "You are not an administrator")
 
-@login_required
 @gui_blueprint.route("/admin/editdate/<id>", methods=["GET","POST"])
+@login_required
 def _editdate (id):
 
     if is_admin():
@@ -333,8 +349,9 @@ def _editdate (id):
         form = DOIForm(obj=doi)
 
         if request.method == "GET":
-            form.doi_start_dt.data = datetime.strftime(doi.doi_start_dt, '%d/%m/%Y %H:%M')
-            form.doi_end_dt.data = datetime.strftime(doi.doi_end_dt, '%d/%m/%Y %H:%M')
+            if doi:
+                form.doi_start_dt.data = datetime.strftime(doi.doi_start_dt, '%d/%m/%Y %H:%M')
+                form.doi_end_dt.data = datetime.strftime(doi.doi_end_dt, '%d/%m/%Y %H:%M')
             return render_template("editdate.html", form=form, data=doi)
 
         if form.deletebtn.data:
@@ -351,7 +368,7 @@ def _editdate (id):
 
             if form.savebtn.data:
                 if not doi:
-                    doi = DateOfInterest(form.doi_name.data, form.doi_priority.data, form.doi_comment.data, start_dt, end_dt)
+                    doi = DateOfInterest(form.doi_name.data, form.doi_priority.data, form.doi_comment.data, start_dt, end_dt, form.doi_regions)
                     db.session.add(doi)
 
                 form.populate_obj(doi)
@@ -364,6 +381,7 @@ def _editdate (id):
 
         else:
             flash_errors(form)
+            return render_template("editdate.html", form=form, data=doi)
 
         return redirect(url_for('gui_blueprint._dates'))
 
@@ -372,8 +390,8 @@ def _editdate (id):
         return render_template("403.html", error = "You are not an administrator")
 
 #################################################################
-#  #
-#########
+# SEARCH #
+##########
 @gui_blueprint.route("/search", methods=["POST"])
 def _search ():
 
@@ -383,19 +401,76 @@ def _search ():
         return render_template("search.html", query=request.form.getlist('query')[0], results=results, form=form)
 
 
-@gui_blueprint.route("/bookings")
+#################################################################
+# BOOKINGS #
+############
+
+@gui_blueprint.route("/bookings", methods=["GET", "POST"])
 def _bookings ():
 
-    if request.method == 'GET':
-        return render_template("calendar.html")
+    # Show the booking calendar view
+    if request.method == "GET":
+        form = ComplexNameSelectForm()
+        return render_template("calendar.html", form=form)
 
+    # Show the edit booking form
+    if request.method == "POST":
+        form = BookingForm()
+        if not request.form["start"]:
+            vstart = datetime.now()
+        else:
+            vstart = request.form["start"]
+
+        form.start_dt.default = vstart
+        form.process()
+        return render_template("editbooking.html", form=form)
+
+
+
+@gui_blueprint.route("/editbooking/<id>", methods=["GET","POST"])
+def _editbooking (id):
+
+        #for key, value in request.form.items():
+        #    print(key, value)
+
+        booking = Booking.query.filter_by(id=id).first()
+        form = BookingForm(obj=request.form)
+
+        #if request.method == "GET":
+        #    return render_template("editbooking.html", form=form)
+
+        if form.validate_on_submit():
+            return redirect(url_for('gui_blueprint._bookings'))
+        else:
+            flash_errors(form)
+            return render_template("editbooking.html", form=form)
+
+
+
+#
+# ONLY FOR TESTING!!!
+@gui_blueprint.route("/get_events", methods=["GET"])
+def _get_events ():
+
+    for f in request.args.values():
+            try:
+                dt = datetime.strptime(f, '%Y-%m-%dT%H:%M:%SZ')
+            except:
+                print("error with " + f)
+
+
+    events = '[{"title": "Event1", "start": "2020-01-18 00:30", "end": "2020-01-18 06:30", "description": "this is a lot of text. More text again. Yet more"}, \
+              {"title": "Event2", "start": "2020-01-19", "end": "2020-01-20", "description": "this is a lot of text. More text again. Yet more"}, \
+              {"title": "Change Freeze", "start": "2020-02-09 10:00:00", "end": "2020-02-15 00:00:00"}]'
+
+    return events
 
 #################################################################
 # PARAMETERS #
 ##############
 # Show parameters in a form using a select box to control groupings
-@login_required
 @gui_blueprint.route("/admin/parameters", methods=["GET","POST"])
+@login_required
 def _parameters ():
 
     if is_admin():
@@ -417,8 +492,8 @@ def _parameters ():
                 params = Parameter.query.filter(Parameter.param_group == Parameter.query.filter(Parameter.id == session["group"]).first().id).paginate(page, app.config["PAGINATION_SIZE"], False)
             else:
                 # Just get the first in the list as the chosen option, then get the params for that id.
-                params = Parameter.query.filter(Parameter.param_group == Parameter.query.filter(Parameter.param_group == 0).first().id).paginate(1, app.config["PAGINATION_SIZE"], False)
                 session["group"] = Parameter.query.filter(Parameter.param_group==0).order_by(Parameter.param_name.asc()).first().id
+                params = Parameter.query.filter(Parameter.param_group == session["group"]).paginate(1, app.config["PAGINATION_SIZE"], False)
                 sel.param_groups.default = session["group"]
                 sel.process()
 
@@ -428,8 +503,8 @@ def _parameters ():
 
 
 # Edit Parameter for the application
-@login_required
 @gui_blueprint.route("/admin/editparameter/<id>", methods=["GET","POST"])
+@login_required
 def _editparameter (id):
     if is_admin():
 
@@ -473,8 +548,8 @@ def _editparameter (id):
 #################################################################
 # PROFILE #
 ###########
-@login_required
 @gui_blueprint.route("/editprofile", methods=["POST","GET"])
+@login_required
 def _editprofile ():
 
     # Get user's details to be edited
@@ -504,8 +579,8 @@ def _editprofile ():
 #################################################################
 # EMAIL #
 #########
-
-@gui_blueprint.route("/email", methods=["POST","GET"])
+@gui_blueprint.route("/admin/email", methods=["POST","GET"])
+@login_required
 def _email ():
 
     if request.method == "GET":

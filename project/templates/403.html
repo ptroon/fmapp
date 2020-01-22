@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    {% block head %}
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,10 +11,34 @@
 
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 
-    <title>{% block title %}{% endblock %} - Firewall Policy Automation</title>
-    {% endblock %}
+    <title>Firewall Booking - ERROR 403</title>
+    <style>
+      body {
+          background:#333;
+      }
+      .form_bg {
+          background-color:#eee;
+          color:#666;
+          padding:20px;
+          border-radius:10px;
+          position: absolute;
+          border:1px solid #fff;
+          margin: auto;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          width: 800px;
+          height: 600px;
+      }
+      .align-center {
+          text-align:center;
+          vertical-align: text-bottom;
+      }
+    </style>
   </head>
   <body>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -22,26 +46,41 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <div class="container">
-      <a class="navbar-brand" href="#"><h1><div class="badge badge-primary">FPA</div></h1></a>
+    <div class="row">
+        <div class="form_bg">
+            <form action="{{ url_for('gui_blueprint._login') }}" method="POST">
+                <div class="">
+                    <a class="navbar-brand" href="#"><h1><div class="badge badge-primary">FPA</div></h1>{{ get_version() }}</a>
+                </div>
+                <br/>                
+                <div class="form-group">
+                  <h3>{{ error }}</h3>
+                </div>
+                <br/><br/>
+                <div class="align-center">
+                    <button type="button" class="btn btn-info button_fpa" name="login" onclick=location.href="{{ url_for ('gui_blueprint._login') }}">Click to go to Login page</button>
+                </div>
+                <div class="align-center">
+                  <br/>
+                  <a href="{{ url_for('gui_blueprint._register') }}">Register for access to {{ get_name() }}</a>
+                </div>
 
-      <div class="jumbotron">
-        <h3>There was an error...</h3>
-        <button type="button" class="btn btn-success" name="login" onclick=location.href="{{ url_for ('gui_blueprint._login') }}">Click to go to Login page</button>
-        <br/><br/><br/>
-        <div class="alert alert-danger" role="alert">
-          Error was:<h3> {{ error }} </h3>
+            </form>
         </div>
-      </div>
+    </div>
     </div>
 
-    {% block content %}
-    <!-- This is where the main page content is inserted -->
-    {% endblock %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <!-- <strong>Title</strong> --> {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
 
-    {% block footer %}
-    <div class="alert alert-light" role="alert">
-      <small>&copy. 2019 written in Flask</small>
-    </div>
-    {% endblock %}
   </body>
 </html>

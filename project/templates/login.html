@@ -49,6 +49,9 @@
                 <div class="">
                     <a class="navbar-brand" href="#"><h1><div class="badge badge-primary">FPA</div></h1>{{ get_version() }}</a>
                 </div>
+                <div>
+                  <input type="hidden" id="next" name="next" value="{{ next }}"/>
+                </div>
                 <div class="form-group">
                     <input type="text" class="form-control" id="login_id" name="login_id" placeholder="User id">
                 </div>
@@ -63,7 +66,6 @@
                   <br/>
                   <a href="{{ url_for('gui_blueprint._register') }}">Register for access to {{ get_name() }}</a>
                 </div>
-
             </form>
         </div>
     </div>
@@ -88,6 +90,6 @@
       {% endif %}
     </div>
   -->
-  
+
   </body>
 </html>

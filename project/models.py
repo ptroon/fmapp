@@ -30,7 +30,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(100), nullable=False)
     role = db.Column(db.Integer, db.ForeignKey("roles.id"))
     vendor = db.Column(db.Integer, db.ForeignKey("parameters.id"))
-    created_date = db.Column(DateTime2, nullable=False)
+    created_date = db.Column(DateTime2)
     last_login = db.Column(DateTime2)
     last_modified = db.Column(DateTime2)
     modified_by = db.Column(db.String(100))
@@ -165,42 +165,6 @@ class Dashboard(db.Model, UserMixin):
         self.user_text = user
         self.log_text = log
 
-class Booking(db.Model, UserMixin):
-
-    __tablename__ = "bookings"
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.String(32))
-    start_time = db.Column(DateTime2)
-    end_time = db.Column(DateTime2)
-    url = db.Column(db.String(1000))
-    logged = db.Column(DateTime2)
-    owner_id = db.Column(db.String(25))
-    zone = db.Column(db.String(200))
-    approved_date = db.Column(DateTime2)
-    approved_by = db.Column(db.String(32))
-
-    def __init__(self):
-        self.logged = datetime.now()
-
-
-# OLD COMPLEX TABLE
-'''
-class Complex(db.Model, UserMixin):
-
-    __tablename__ = "complexes"
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    complex_name = db.Column(db.String(1000), nullable=False)
-    complex_mgr = db.Column(db.String(1000), nullable=False)
-    complex_type = db.Column(db.String(1000), nullable=False)
-    firewall_type = db.Column(db.String(1000), nullable=False)
-    location = db.Column(db.String(1000), nullable=False)
-    environment = db.Column(db.String(1000), nullable=False)
-    updated = db.Column(db.String(1000), nullable=False)
-    active = db.Column(db.String(1000), nullable=False)
-'''
-
 
 class Parameter(db.Model, UserMixin):
 
@@ -315,3 +279,31 @@ class Complex(db.Model, UserMixin):
     complex_environment = db.Column(db.Integer, db.ForeignKey("parameters.id"))
     complex_updated = db.Column(DateTime2, default=datetime.now())
     complex_active = db.Column(db.Integer, db.ForeignKey("parameters.id"), default=1)
+
+
+class Booking(db.Model, UserMixin):
+
+    __tablename__ = "bookings"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    slot_id = db.Column(db.Integer)
+    title = db.Column(db.String(32), nullable=False)
+    start_dt = db.Column(DateTime2, nullable=False)
+    end_dt = db.Column(DateTime2, nullable=False)
+    ticket = db.Column(db.String(20), nullable=False)
+    stakeholder_id = db.Column(db.String(20))
+    budget = db.Column(db.String(20))
+    project = db.Column(db.String(100))
+    description = db.Column(db.String(4000), nullable=False)
+    owner_id = db.Column(db.String(25))
+    complex = db.Column(db.Integer)
+    cluster = db.Column(db.Integer)
+    approved_date = db.Column(DateTime2)
+    approved_by = db.Column(db.String(25))
+    change_ref = db.Column(db.String(20))
+    change_subref = db.Column(db.String(20))
+    logged = db.Column(DateTime2)
+
+
+    def __init__(self):
+        self.logged = datetime.now()
