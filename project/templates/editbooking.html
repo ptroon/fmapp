@@ -24,6 +24,14 @@
             <td class="w-75 text-left mx-2 p-1">{{ form.title(class_="form-control") }}</td>
           </tr>
           <tr>
+            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.approval_required.label }}</td>
+            {% if form.approval_required.default == 0 %}
+            <td class="w-75 text-left mx-2 p-1">{{ form.approval_required(class_="form-control") }}</td>
+            {% else %}
+            <td class="w-75 text-left mx-2 p-1 bg-warning">{{ form.approval_required(class_="form-control") }}</td>
+            {% endif %}
+          </tr>
+          <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.ticket.label }}</td>
             <td class="w-75 text-left mx-2 p-1">{{ form.ticket(class_="form-control") }}</td>
           </tr>
@@ -66,6 +74,7 @@
                             stepping: 15,
                             showClose: true,
                             sideBySide: true,
+                            format: 'LT',
                             ignoreReadonly: true
                           });
                       });
@@ -136,8 +145,11 @@
             <td class="w-75 text-left mx-2 p-1">{{ form.owner_id(class_="form-control") }}</td>
           </tr>
           <tr>
-            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.complex.label }}</td>
-            <td class="w-75 text-left mx-2 p-1">{{ form.complex(class_="form-control") }}</td>
+            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.complex_text.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">
+              {{ form.complex_text(class_="form-control") }}
+              {{ form.complex(class_="form-control", hidden=True) }}
+            </td>
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.cluster.label }}</td>

@@ -8,6 +8,8 @@ from datetime import datetime
 
 from project.models import *
 
+PUSH_DAY_ERRORMSG = "Push Day must be 7 characters and use Y or N only"
+
 ###############################################################################
 # OVERIDES #
 ############
@@ -185,7 +187,7 @@ class ComplexForm(FlaskForm):
     complex_license = StringField('License #', validators=[InputRequired()])
     complex_push_start = StringField('Push Start', validators=[InputRequired()])
     complex_push_end = StringField('Push End', validators=[InputRequired()])
-    complex_push_days = StringField('Push Days', validators=[InputRequired()])
+    complex_push_days = StringField('Push Days', validators=[InputRequired(), Regexp('^[NY]{7}$', message=PUSH_DAY_ERRORMSG)], default="NNNNNNN")
     complex_category = StringField('Category', validators=[InputRequired()])
     complex_hardware = StringField('Hardware', validators=[InputRequired()])
     complex_fw_inner_name_1 = StringField('FW Inner Name 1')
@@ -211,7 +213,7 @@ class ComplexForm(FlaskForm):
     complex_allow_slot_day = StringField('Slot Day')
     complex_allow_slot_start = StringField('Slot Start Time')
     complex_allow_slot_end = StringField('Slot End Time')
-    complex_push_day_extra = StringField('Extra Push Days', validators=[InputRequired()])
+    complex_push_day_extra = StringField('Extra Push Days', validators=[InputRequired(), Regexp('^[NY]{7}$', message=PUSH_DAY_ERRORMSG)], default="NNNNNNN")
     complex_change_info = StringField('Change Info')
     complex_environment = SelectField('Environment', coerce=int)
     complex_updated = StringField('Updated', render_kw={'readonly':'true'})
@@ -229,10 +231,6 @@ class ComplexForm(FlaskForm):
         self.complex_restricted.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_value.asc())] # Parameters for Restricted as Yes/No
         self.complex_environment.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 92).order_by(Parameter.param_value.asc())] # Parameters for Environments
         self.complex_active.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 66).order_by(Parameter.param_value.asc())] # Parameters for Active state
-
-    def validate_complex_push_day_extra(form, field):
-        if len(field.data) != 7:
-            raise ValidationError('Push Days must be exactly 7 characters')
 
 
 class ComplexNameSelectForm(FlaskForm):
@@ -256,8 +254,10 @@ class BookingForm(FlaskForm):
     project = StringField('Project Name', validators=[InputRequired()])
     description = TextAreaField('Description', validators=[InputRequired()])
     owner_id = StringField('Owner', validators=[InputRequired()])
-    complex = NoValidateSelectfield('Complex', coerce=int, render_kw={'disabled':'true'})
-    cluster = NoValidateSelectfield('Cluster', coerce=int)
+    complex = SelectField('Complex', coerce=int)
+    complex_text = StringField('Complex', render_kw={'readonly':'true'})
+    cluster = SelectField('Cluster', coerce=int)
+    approval_required = SelectField('Approval Required?', coerce=int, render_kw={'disabled':'yes'})
     approved_date = StringField('Approved')
     approved_by = StringField('Approved By')
     change_ref = StringField('Change Ref')
@@ -273,3 +273,4 @@ class BookingForm(FlaskForm):
         self.end_dt.render_kw = {'data-target': '#datetimepicker2', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Choose end date & time'}
         self.complex.choices = [(a.id, a.complex_name) for a in Complex.query.order_by(Complex.complex_name)] # Complex Names
         self.cluster.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 97).order_by(Parameter.param_name)] # Cluster Names
+        self.approval_required.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_name)] # Yes/No

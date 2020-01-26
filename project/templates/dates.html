@@ -25,8 +25,8 @@
         <td><a href="{{ url_for('gui_blueprint._editdate', id=rec[0].id) }}">{{ rec[0].doi_name }}</a></td>
         <td>{{ rec[1].param_value }}</td>
         <td>{{ rec[0].doi_regions }}</td>
-        <td>{{ rec[0].doi_start_dt.strftime('%d-%m-%Y %H:%M') }}</td>
-        <td>{{ rec[0].doi_end_dt.strftime('%d-%m-%Y %H:%M') }}</td>
+        <td>{{ rec[0].doi_start_dt }}</td>
+        <td>{{ rec[0].doi_end_dt }}</td>
       </tr>
       {% else %}
         <tr><td colspan=5 class="alert alert-primary"><strong>There are no dates of interest entries to view </strong></td></tr>

@@ -23,7 +23,7 @@
             {% if not data %}
             <td class="w-75 text-right mx-2 p-1">{{ form.login_id(size=10, class_="form-control") }}</td>
             {% else %}
-            <td class="w-75 text-right mx-2 p-1">{{ form.login_id(size=10, class_="form-control", disabled=True) }}</td>
+            <td class="w-75 text-right mx-2 p-1">{{ form.login_id(size=10, class_="form-control", readonly=True) }}</td>
             {% endif %}
           </tr>
           <tr>

@@ -4,10 +4,10 @@
 #
 
 from flask import Flask, Blueprint, url_for, jsonify, make_response, app, \
-        render_template, request, session, redirect, flash
+        render_template, request, session, redirect, flash, g
 from flask_login import login_required, login_user, logout_user, current_user
 from flask_mail import Message
-import requests
+import base64
 import logging
 from datetime import datetime
 from file_read_backwards import FileReadBackwards
@@ -350,8 +350,8 @@ def _editdate (id):
 
         if request.method == "GET":
             if doi:
-                form.doi_start_dt.data = datetime.strftime(doi.doi_start_dt, '%d/%m/%Y %H:%M')
-                form.doi_end_dt.data = datetime.strftime(doi.doi_end_dt, '%d/%m/%Y %H:%M')
+                form.doi_start_dt.data = datetime.strftime(datetime.strptime(doi.doi_start_dt, '%Y-%m-%d %H:%M:%S'), '%d/%m/%Y %H:%M')
+                form.doi_end_dt.data = datetime.strftime(datetime.strptime(doi.doi_end_dt, '%Y-%m-%d %H:%M:%S'), '%d/%m/%Y %H:%M')
             return render_template("editdate.html", form=form, data=doi)
 
         if form.deletebtn.data:
@@ -405,7 +405,7 @@ def _search ():
 # BOOKINGS #
 ############
 
-@gui_blueprint.route("/bookings", methods=["GET", "POST"])
+@gui_blueprint.route("/bookings", methods=["GET"])
 def _bookings ():
 
     # Show the booking calendar view
@@ -413,38 +413,49 @@ def _bookings ():
         form = ComplexNameSelectForm()
         return render_template("calendar.html", form=form)
 
-    # Show the edit booking form
-    if request.method == "POST":
-        form = BookingForm()
-        if not request.form["start"]:
-            vstart = datetime.now()
-        else:
-            vstart = request.form["start"]
-
-        form.start_dt.default = vstart
-        form.process()
-        return render_template("editbooking.html", form=form)
-
-
 
 @gui_blueprint.route("/editbooking/<id>", methods=["GET","POST"])
 def _editbooking (id):
 
-        #for key, value in request.form.items():
-        #    print(key, value)
+    for key, value in request.form.items():
+        print(key, value)
 
-        booking = Booking.query.filter_by(id=id).first()
-        form = BookingForm(obj=request.form)
+    booking = Booking.query.filter_by(id=id).first()
+    form = BookingForm(obj=request.form)
 
-        #if request.method == "GET":
-        #    return render_template("editbooking.html", form=form)
+    if request.method == "POST":
 
+        # check from initial select form submitted as "Next"
+        if request.form.get("nextbtn", False):
+            cplx = int(request.form.get("complex_select", 1)) # Get Complex ID
+            complex = Complex.query.filter(Complex.id==int(cplx)).first() # Get complex object from query
+
+            s_time = " " + complex.complex_push_start
+            e_time = " " + complex.complex_push_end
+            form.start_dt.default = request.form.get("start") + s_time
+            form.end_dt.default = request.form.get("start") + e_time
+
+            print (is_day_allowed(request.form.get("start"), complex.complex_push_days))
+            if is_day_allowed(request.form.get("start"), complex.complex_push_days):
+                form.approval_required.default = 0
+            else:
+                form.approval_required.default = 1
+
+            form.complex.default = request.form.get("complex_select", 1)
+            form.complex_text.default = complex.complex_name
+
+            form.process()
+            return render_template("editbooking.html", form=form)
+
+        # This is not the initial page and we're trying to save the record
+        # VALID
         if form.validate_on_submit():
             return redirect(url_for('gui_blueprint._bookings'))
+
+        # INVALID
         else:
             flash_errors(form)
             return render_template("editbooking.html", form=form)
-
 
 
 #

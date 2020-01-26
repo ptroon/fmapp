@@ -6,9 +6,17 @@ from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
 from datetime import datetime
 from flask_login import UserMixin
 from cryptography.fernet import Fernet
+from sqlalchemy import inspect
 
 from project import db, bcrypt, app
 
+
+# creates a Dict from a db.Model
+def model_as_dict(obj):
+    return {c.key: getattr(obj, c.key)
+            for c in inspect(obj).mapper.column_attrs}
+
+# Custom DateTime type because Python Datetime is a PitA
 class DateTime2(db.TypeDecorator):
     impl = db.DateTime
 
@@ -16,6 +24,11 @@ class DateTime2(db.TypeDecorator):
         if type(value) is str:
             return datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
         return value
+
+
+    def process_result_value(self, value, dialect):
+        if type(value) is datetime:
+            return datetime.strftime(value, '%Y-%m-%d %H:%M:%S')
 
 class User(db.Model, UserMixin):
 
@@ -62,6 +75,10 @@ class User(db.Model, UserMixin):
     @hybrid_method
     def is_correct_password(self, plaintext_password):
         return bcrypt.check_password_hash(self.password, plaintext_password)
+
+    @hybrid_property
+    def created_date_str(self):
+        return datetime.strftime(self.created_date, '%d-%m-%Y %H:%M')
 
 class Role(db.Model, UserMixin):
 
@@ -248,7 +265,7 @@ class Complex(db.Model, UserMixin):
     complex_license = db.Column(db.String(1000), default='N/A')
     complex_push_start = db.Column(db.Integer, nullable=False)
     complex_push_end = db.Column(db.Integer, nullable=False)
-    complex_push_days = db.Column(db.String(7))
+    complex_push_days = db.Column(db.String(7), default="NNNNNNN")
     complex_category = db.Column(db.String(1000))
     complex_hardware = db.Column(db.String(1000))
     complex_fw_inner_name_1 = db.Column(db.String(1000))
@@ -298,6 +315,7 @@ class Booking(db.Model, UserMixin):
     owner_id = db.Column(db.String(25))
     complex = db.Column(db.Integer)
     cluster = db.Column(db.Integer)
+    approval_required = db.Column(db.Integer)
     approved_date = db.Column(DateTime2)
     approved_by = db.Column(db.String(25))
     change_ref = db.Column(db.String(20))

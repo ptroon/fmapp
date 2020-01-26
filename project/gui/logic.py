@@ -6,6 +6,7 @@ import requests
 import logging
 from collections import Counter
 from flask import flash
+from datetime import datetime
 
 from project.models import User, Role, Dashboard, ChangeProfile
 from project import app, db, is_admin
@@ -28,7 +29,7 @@ def dash_logs ():
     # print (res)
     return res
 
-
+# Returns all users for dashboard
 def dash_users ():
     user = User.query.filter_by().all()
 
@@ -47,3 +48,29 @@ def flash_errors(form):
                 getattr(form, field).label.text,
                 error
             ), 'warning')
+
+
+# takes a week_string in the format of e.g. 'NYNNYNN'
+# plus a date_string in the format of e.g. '20-01-2020'
+# It determines the day of the week from the date_string
+# then works out if the date_string is one of the 'Y' or 'N' in the
+# week_string
+def is_day_allowed(date_string, week_string):
+    try:
+        # create a datetime object from the string and check weekday to get a number 0-6
+        day_of_week = datetime.strptime(date_string, '%d-%m-%Y').weekday()
+        # we should have the DoW as Mon=0
+        if week_string[day_of_week] == 'Y':
+            return True
+        else:
+            return False
+
+    except:
+        return False # failed to convert string or not valid so return false
+
+
+def json_fmt_default(o):
+    if isinstance(o, datetime):
+        return o.isoformat()
+    if isInstance(o, InstanceState):
+        pass

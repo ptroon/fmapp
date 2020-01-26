@@ -29,7 +29,7 @@
           <td>YES</td>
         {% endif %}
 
-        <td>{{ rec.created_date.strftime('%d-%m-%Y %H:%M') }}</td>
+        <td>{{ rec.created_date }}</td>
 
         {% if rec.enabled == 0 %}
           <td>NO</td>

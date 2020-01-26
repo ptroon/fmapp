@@ -23,6 +23,7 @@
       editable: false,
       navLinks: true,
       eventLimit: true,
+      firstDay: 1,
       header: {
         left: 'prev,next today',
         center: 'title',
@@ -85,7 +86,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{ url_for('gui_blueprint._bookings', id=0) }}" method="POST">
+        <form action="{{ url_for('gui_blueprint._editbooking', id=0) }}" method="POST">
         <div class="modal-body">
           Choose a zone: {{ form.complex_select(class_="form-control") }}
           <input type="hidden" id="start" name="start"/>
