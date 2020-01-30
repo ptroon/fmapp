@@ -11,22 +11,26 @@
   <table class="table table-striped">
     <thead class="thead-light">
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Priority</th>
+        <th scope="col" class="w-50">Name</th>
         <th scope="col">Regions</th>
         <th scope="col">Start</th>
         <th scope="col">End</th>
+        <th scope="col">Priority</th>
+        <th scope="col">HAP</th>
+        <th scope="col">Locked</th>
       </tr>
     </thead>
     <tbody>
 
       {% for rec in data %}
       <tr>
-        <td><a href="{{ url_for('gui_blueprint._editdate', id=rec[0].id) }}">{{ rec[0].doi_name }}</a></td>
-        <td>{{ rec[1].param_value }}</td>
-        <td>{{ rec[0].doi_regions }}</td>
-        <td>{{ rec[0].doi_start_dt }}</td>
-        <td>{{ rec[0].doi_end_dt }}</td>
+        <td class="w-50"><a href="{{ url_for('gui_blueprint._editdate', id=rec[0]) }}">{{ rec[1] }}</a></td>
+        <td>{{ rec[2] }}</td>
+        <td>{{ rec[3] }}</td>
+        <td>{{ rec[4] }}</td>
+        <td>{{ rec[5] }}</td>
+        <td>{{ rec[6] }}</td>
+        <td>{{ rec[7] }}</td>
       </tr>
       {% else %}
         <tr><td colspan=5 class="alert alert-primary"><strong>There are no dates of interest entries to view </strong></td></tr>

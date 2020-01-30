@@ -37,6 +37,8 @@
     <script src="{{ url_for('static', filename='fullcalendar/packages/core/main.js')}}"></script>
     <script src="{{ url_for('static', filename='fullcalendar/packages/daygrid/main.js')}}"></script>
     <script src="{{ url_for('static', filename='fullcalendar/packages/interaction/main.js')}}"></script>
+    <script src="{{ url_for('static', filename='fullcalendar/packages/list/main.js')}}"></script>
+    <script src="{{ url_for('static', filename='fullcalendar/packages/timegrid/main.js')}}"></script>
 
     {% block head %}
     {% endblock %}
@@ -174,6 +176,24 @@
         {% endfor %}
       {% endif %}
     {% endwith %}
+
+    {% macro field_with_help(field, message, colour="bg-light", igid="default") %}
+      <div class="container">
+        <div class="row">
+          <div class="input-group">
+            <div class="input-group date" id="{{ igid }}" data-target-input="nearest">
+            {{ field }}
+            <div class="input-group-append">
+              {% if colour in ('bg-warning', 'bg-light', 'bg-white') %}
+              <span class="input-group-text {{ colour }} text-dark">{{ message }}</span>
+              {% else %}
+              <span class="input-group-text {{ colour }} text-white">{{ message }}</span>
+              {% endif %}
+            </div>
+            </div>
+          </div>
+        </div>
+    {% endmacro %}
 
     {% block content %}
     <!-- This is where the main page content is inserted -->

@@ -9,6 +9,7 @@ from datetime import datetime
 from project.models import *
 
 PUSH_DAY_ERRORMSG = "Push Day must be 7 characters and use Y or N only"
+PASSWORD_ERRORMSG = "Password must contain at least one numeric, alpha, upper & special char and be > 7 chars"
 
 ###############################################################################
 # OVERIDES #
@@ -50,9 +51,9 @@ class UserForm(FlaskForm):
     forename = StringField('Forename', validators=[InputRequired()])
     surname = StringField('Surname', validators=[InputRequired()])
     comment = TextAreaField('Comment')
-    password = PasswordField('Password')
+    password = PasswordField('Password', validators=[Regexp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})", message=PASSWORD_ERRORMSG)])
     email = StringField('Email', validators=[InputRequired(), Email()])
-    role = SelectField('Role', coerce=int, validators=[InputRequired()])
+    role = NoValidateSelectfield('Role', coerce=int, validators=[InputRequired()])
     vendor = SelectField('Vendor', coerce=int, validators=[InputRequired()])
     created_date = HiddenField('Created')
     last_login = HiddenField('Last login')
@@ -72,7 +73,7 @@ class RoleForm(FlaskForm):
     id = HiddenField('id', default=0)
     role_name = StringField('Role Name', validators=[InputRequired()])
     role_admin = SelectField('Administrator', coerce=int, default=0)
-    role_app_sections = TextAreaField('Sections')
+    role_app_sections = TextAreaField('Privileges')
     created_date = StringField('Created')
     enabled = SelectField('Enabled', coerce=int, default=0)
     savebtn = SubmitField('Save')
@@ -82,7 +83,7 @@ class RoleForm(FlaskForm):
         super(RoleForm, self).__init__(*args, **kwargs)
         self.role_admin.choices = [(1, 'Yes'), (0, 'No')]
         self.enabled.choices = [(1, 'Yes'), (0, 'No')]
-        self.role_app_sections.render_kw = {'disabled': True}
+        self.role_app_sections.render_kw = {'style': 'resize:none;'}
         self.created_date.render_kw = {'disabled': True}
 
 class ChangeProfileForm(FlaskForm):
@@ -160,6 +161,8 @@ class DOIForm(FlaskForm):
     doi_start_dt = StringField('Start', validators=[InputRequired()])
     doi_end_dt = StringField('End', validators=[InputRequired()])
     doi_regions = SelectMultipleField2('Regions')
+    doi_locked = SelectField('Locked', coerce=int, render_kw={"title":"Is the date locked for ALL changes?"})
+    doi_hap = SelectField('HAP', coerce=int, render_kw={"title":"Is the date a HAP?"})
     savebtn = SubmitField('Save')
     deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
 
@@ -171,6 +174,8 @@ class DOIForm(FlaskForm):
         self.doi_end_dt.render_kw = {'data-target': '#datetimepicker2', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Choose end date & time'}
         self.doi_regions.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 1).order_by(Parameter.param_value.asc())] # Parameters for Locations
         self.doi_regions.render_kw = {'multiple': 'true'}
+        self.doi_locked.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_name)] # Yes/No
+        self.doi_hap.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_name)] # Yes/No
 
 class ComplexForm(FlaskForm):
     id = HiddenField('id', default=0)
@@ -246,31 +251,35 @@ class BookingForm(FlaskForm):
     id = HiddenField('id', default=0)
     slot_id = HiddenField('slot_id', default=0)
     title = StringField('Title', validators=[InputRequired()])
-    start_dt = StringField('Start', validators=[InputRequired()])
-    end_dt = StringField('End', validators=[InputRequired()])
+    start_dt = HiddenField('Start', validators=[InputRequired()])
+    end_dt = HiddenField('End', validators=[InputRequired()])
     ticket = StringField('Ticket', validators=[InputRequired(),Length(6,7)])
-    stakeholder_id = StringField('Stakeholder')
+    stakeholder_id = StringField('Stakeholder', render_kw={"title": "Enter Stakeholder RACF"})
     budget = StringField('Budget Code')
     project = StringField('Project Name', validators=[InputRequired()])
     description = TextAreaField('Description', validators=[InputRequired()])
-    owner_id = StringField('Owner', validators=[InputRequired()])
-    complex = SelectField('Complex', coerce=int)
+    owner_id = StringField('Owner', validators=[InputRequired()], render_kw={"title": "Enter Owner RACF"})
+    complex = HiddenField('Complex')
     complex_text = StringField('Complex', render_kw={'readonly':'true'})
     cluster = SelectField('Cluster', coerce=int)
-    approval_required = SelectField('Approval Required?', coerce=int, render_kw={'disabled':'yes'})
+    approval_required = StringField('Approval Required?', render_kw={"title": "APPROVAL REQUIRED FOR THIS CHANGE"})
     approved_date = StringField('Approved')
     approved_by = StringField('Approved By')
-    change_ref = StringField('Change Ref')
-    change_subref = StringField('Change Sub Ref')
+    change_ref = StringField('Change Ref', render_kw={"title": "Enter SCR/MCR ID"})
+    change_subref = StringField('Change Sub Ref', render_kw={"title": "Enter TCR# if main is MCR"})
     logged = HiddenField('logged')
     savebtn = SubmitField('Save')
     deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
+    tmp_date = StringField('Booking Date', render_kw={'readonly':'true'})
+    tmp_start_t = StringField('Start Time')
+    tmp_end_t = StringField('End Time')
+    tmp_hash = HiddenField('Hash Token')
 
     def __init__(self, *args, **kwargs):
         super(BookingForm, self).__init__(*args, **kwargs)
         self.description.render_kw = {'style': 'resize:none;'}
-        self.start_dt.render_kw = {'data-target': '#datetimepicker1', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Choose start date & time'}
-        self.end_dt.render_kw = {'data-target': '#datetimepicker2', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Choose end date & time'}
+        self.tmp_start_t.render_kw = {'data-target': '#datetimepicker1', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose start time'}
+        self.tmp_end_t.render_kw = {'data-target': '#datetimepicker2', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose end time'}
         self.complex.choices = [(a.id, a.complex_name) for a in Complex.query.order_by(Complex.complex_name)] # Complex Names
         self.cluster.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 97).order_by(Parameter.param_name)] # Cluster Names
         self.approval_required.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_name)] # Yes/No

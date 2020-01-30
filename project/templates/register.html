@@ -27,13 +27,14 @@
             bottom: 0;
             left: 0;
             width: 600px;
-            height: 620px;
+            height:680px;
         }
         .align-center {
             text-align:center;
             vertical-align: text-bottom;
         }
       </style>
+
   </head>
   <body>
     <!-- Optional JavaScript -->
@@ -41,6 +42,17 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        var messages = "{{ get_flashed_messages(category_filter=['warning']) }}";
+        if (typeof messages != 'undefined' && messages != '[]') {
+            $("#errorModal").modal();
+        };
+
+    });
+    </script>
 
     <div class="form_bg">
     <form action="{{ url_for('gui_blueprint._register') }}" method="POST" novalidate class="text-center" style="color: #000000;">
@@ -50,7 +62,7 @@
 
         <table class="form-group">
           <tr>
-            <td>{{ form.hidden_tag() }}</td>
+            <td>{{ form.hidden_tag() }}{{ form.role(hidden=True) }}</td>
             <td>&nbsp;</td>
           </tr>
           <tr>
@@ -70,6 +82,10 @@
             <td class="px-4 py-1">{{ form.email(size=32, class_="form-control") }}</td>
           </tr>
           <tr>
+            <td class="px-4 py-1">{{ form.password.label }}</td>
+            <td class="px-4 py-1">{{ form.password(size=32, class_="form-control") }}</td>
+          </tr>
+          <tr>
             <td class="px-4 py-1">{{ form.comment.label }}</td>
             <td class="px-4 py-1">{{ form.comment(rows=5, cols=20, class_="form-control") }}</td>
           </tr>
@@ -85,17 +101,29 @@
     </form>
     </div>
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="alert alert-{{ category }} alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <!-- <strong>Title</strong> --> {{ message }}
-          </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
+    <div id="errorModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered ">
+
+            <!-- Modal content-->
+            <div class="modal-content alert-warning">
+                <div class="modal-body alert-warning">
+                    {% with messages = get_flashed_messages(category_filter=["warning"]) %}
+                    {% if messages %}
+                    <ul class=flashes>
+                        {% for message in messages %}
+                        <div class="text-dark alert-warning" role="alert">{{ message }}</div>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
+                </div>
+                <div class="modal-footer d-flex justify-content-center flex-column alert-warning">
+                    <button type="button" class="btn btn-default button_fpa bg-secondary text-white" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
   </body>
 </html>

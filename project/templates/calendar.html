@@ -9,25 +9,38 @@
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
-      events: {
-        url: '/fpa/get_events',
+      eventSources: [
+      {
+        url: '/fpa/api/v1/calendar_doi',
         type: 'GET',
         error: function() {
 					$('#script-warning').show();
         },
-        color: 'yellow',
+        color: '#8ABEE9',
         textColor: 'black'
       },
+      {
+        url: '/fpa/api/v1/calendar_doi',
+        type: 'GET',
+        error: function() {
+          $('#script-warning').show();
+        },
+        color: '#8AE996',
+        textColor: 'black'
+      }
+      ],
       plugins: [ 'dayGrid', 'timeGrid', 'interaction', 'timeGridDay' ],
       selectable: true,
+      aspectRatio: 1.35,
       editable: false,
       navLinks: true,
       eventLimit: true,
       firstDay: 1,
+      eventLimit: true,
       header: {
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        right: 'prevYear,nextYear'
       },
       selectAllow: function(info) {
           return moment().diff(info.start, 'days') <= 0
@@ -44,22 +57,12 @@
         var dateStart = moment(info.event.start).format("DD-MMM-YYYY HH:mm");
         var dateEnd   = moment(info.event.end).format("DD-MMM-YYYY HH:mm");
         $("#bookingTitle").html(info.event.title);
+        $("#bookingTitle").css({"background-color": info.el.style.backgroundColor});
         $("#bookingInfo").html(info.event.extendedProps.description);
         $("#bookingStart").html(dateStart);
         if (dateEnd == 'Invalid date') {dateEnd=''};
         $("#bookingEnd").html(dateEnd);
         calendar.unselect();
-      },
-      eventMouseover: function(info) {
-        info.event.backgroundColor="red";
-      },
-      eventRender: function(info) {
-        var tooltip = new Tooltip(info.el, {
-          title: info.event.extendedProps.description,
-          placement: 'top',
-          trigger: 'hover',
-          container: 'body'
-        });
       }
     });
 
@@ -107,7 +110,7 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="checkModalLabel">Booking Details for: <span id="bookingTitle" name="startDate" class="bg-secondary text-white p-1"></span></h5>
+        <h5 class="modal-title" id="checkModalLabel">Event Details: <span id="bookingTitle" name="startDate" class="text-dark p-1"></span></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

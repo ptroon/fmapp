@@ -59,7 +59,7 @@ def is_day_allowed(date_string, week_string):
     try:
         # create a datetime object from the string and check weekday to get a number 0-6
         day_of_week = datetime.strptime(date_string, '%d-%m-%Y').weekday()
-        # we should have the DoW as Mon=0
+        # we should have the DoW as e.g. Mon=0
         if week_string[day_of_week] == 'Y':
             return True
         else:

@@ -124,6 +124,15 @@
           </tr>
 
           <tr>
+            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.doi_locked.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.doi_locked(rows=3, class_="selectpicker, form-control"), form.doi_locked.render_kw["title"]) }}</td>
+          </tr>
+          <tr>
+            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.doi_hap.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.doi_hap(rows=3, class_="selectpicker, form-control"), form.doi_hap.render_kw["title"]) }}</td>
+          </tr>
+
+          <tr>
             <td>&nbsp;</td>
             <td class="p-5">
              {{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._dates') }}'">Cancel</button>

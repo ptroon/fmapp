@@ -7,12 +7,13 @@
 
 
     {% if data %}
-    <h5 class="card-header text-white bg-secondary">Date: #{{ data.id }} : "{{ data.doi_name }}"</h5>
+    <h5 class="card-header text-white bg-secondary">Booking: "{{ data.title }}"</h5>
     <form action="{{ url_for('gui_blueprint._editbooking', id=data.id) }}" method="POST" novalidate class="text-center">
     {% else %}
     <h5 class="card-header text-white bg-secondary">New Booking</h5>
     <form action="{{ url_for('gui_blueprint._editbooking', id=0) }}" method="POST" novalidate class="text-center">
     {% endif %}
+    <h3><span class="badge m-2 p-2 font-weight-bold badge-dark">Step 1 of 2</span></h3>
 
         <table class="form-group w-75 align-text-top">
           <tr>
@@ -22,14 +23,6 @@
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.title.label  }}</td>
             <td class="w-75 text-left mx-2 p-1">{{ form.title(class_="form-control") }}</td>
-          </tr>
-          <tr>
-            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.approval_required.label }}</td>
-            {% if form.approval_required.default == 0 %}
-            <td class="w-75 text-left mx-2 p-1">{{ form.approval_required(class_="form-control") }}</td>
-            {% else %}
-            <td class="w-75 text-left mx-2 p-1 bg-warning">{{ form.approval_required(class_="form-control") }}</td>
-            {% endif %}
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.ticket.label }}</td>
@@ -43,98 +36,33 @@
             <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.budget.label }}</td>
             <td class="w-75 text-left mx-2 p-1">{{ form.budget(class_="form-control") }}</td>
           </tr>
+          <tr>
+            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.tmp_date.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ form.tmp_date(class_="form-control", default=form.start_dt.data) }}</td>
+          </tr>
+
 
           <tr>
-            <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.start_dt.label }}</td>
+            <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.tmp_start_t.label }}</td>
             <td class="w-75 text-left mx-2 p-1">
-
-                <div class="container">
-                  <div class="row">
-                    <div class="input-group">
-                      <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                      {{ form.start_dt(class_="form-control-plaintext form-control datetimepicker-input") }}
-
-                    <script type="text/javascript">
-                      $(function () {
-                          $('#datetimepicker1').datetimepicker({
-                            icons: {
-                              time: 'far fa-clock',
-                              date: 'far fa-calendar',
-                              up: 'fas fa-arrow-up',
-                              down: 'fas fa-arrow-down',
-                              previous: 'fas fa-chevron-left',
-                              next: 'fas fa-chevron-right',
-                              today: 'far fa-calendar-check-o',
-                              clear: 'far fa-trash',
-                              close: 'far fa-times'
-                            },
-                            locale: 'en-gb',
-                            allowInputToggle: false,
-                            minDate: moment().subtract(1, 'days'),
-                            stepping: 15,
-                            showClose: true,
-                            sideBySide: true,
-                            format: 'LT',
-                            ignoreReadonly: true
-                          });
-                      });
-                    </script>
-
-                    <div class="input-group-append">
-                      <span class="input-group-text bg-info text-white">Click field to set date & time</span>
-                    </div>
-                    </div>
-                  </div>
-                </div>
+              <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+              {{ field_with_help(form.tmp_start_t(class_="form-control-plaintext form-control datetimepicker-input"), form.tmp_start_t.render_kw["title"], igid="datetimepicker1") }}
+              </div>
             </td>
           </tr>
 
           <tr>
-            <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.end_dt.label }}</td>
+            <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.tmp_end_t.label }}</td>
             <td class="w-75 text-left mx-2 p-1">
-
-              <div class="container">
-                <div class="row">
-                  <div class="input-group">
-                    <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-                      {{ form.end_dt(class_="form-control-plaintext form-control datetimepicker-input") }}
-
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#datetimepicker2').datetimepicker({
-                              icons: {
-                                time: 'far fa-clock',
-                                date: 'far fa-calendar',
-                                up: 'fas fa-arrow-up',
-                                down: 'fas fa-arrow-down',
-                                previous: 'fas fa-chevron-left',
-                                next: 'fas fa-chevron-right',
-                                today: 'far fa-calendar-check-o',
-                                clear: 'far fa-trash',
-                                close: 'far fa-times'
-                              },
-                              locale: 'en-gb',
-                              allowInputToggle: false,
-                          		minDate:  moment().subtract(1, 'days'),
-                          		stepping: 15,
-                              showClose: true,
-                              sideBySide: true,
-                              ignoreReadonly: true
-                            });
-                        });
-                    </script>
-                    <div class="input-group-append">
-                      <span class="input-group-text bg-info text-white">Click field to set date & time</span>
-                    </div>
-                    </div>
-                  </div>
-                </div>
+              <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+              {{ field_with_help(form.tmp_end_t(class_="form-control-plaintext form-control datetimepicker-input"), form.tmp_end_t.render_kw["title"], igid="datetimepicker2") }}
+              </div>
             </td>
           </tr>
 
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.stakeholder_id.label }}</td>
-            <td class="w-75 text-left mx-2 p-1">{{ form.stakeholder_id(class_="form-control") }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.stakeholder_id(class_="form-control"), form.stakeholder_id.render_kw["title"]) }}</td>
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.description.label }}</td>
@@ -142,14 +70,11 @@
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.owner_id.label }}</td>
-            <td class="w-75 text-left mx-2 p-1">{{ form.owner_id(class_="form-control") }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.owner_id(class_="form-control"), form.owner_id.render_kw["title"]) }}</td>
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.complex_text.label }}</td>
-            <td class="w-75 text-left mx-2 p-1">
-              {{ form.complex_text(class_="form-control") }}
-              {{ form.complex(class_="form-control", hidden=True) }}
-            </td>
+            <td class="w-75 text-left mx-2 p-1">{{ form.complex_text(class_="form-control") }}</td>
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.cluster.label }}</td>
@@ -157,11 +82,12 @@
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.change_ref.label }}</td>
-            <td class="w-75 text-left mx-2 p-1">{{ form.change_ref(class_="form-control") }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.change_ref(class_="form-control"),  form.change_ref.render_kw["title"]) }}</td>
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.change_subref.label }}</td>
-            <td class="w-75 text-left mx-2 p-1">{{ form.change_subref(class_="form-control") }}</td>
+            <!-- td class="w-75 text-left mx-2 p-1">{{ form.change_subref(class_="form-control") }}</td -->
+            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.change_subref(class_="form-control"), form.change_subref.render_kw["title"]) }}</td>
           </tr>
 
           <tr>
@@ -177,7 +103,53 @@
         </table>
     </form>
 
-    <script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+              icons: {
+                time: 'far fa-clock',
+                date: 'far fa-calendar',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-chevron-left',
+                next: 'fas fa-chevron-right',
+                today: 'far fa-calendar-check-o',
+                clear: 'far fa-trash',
+                close: 'far fa-times'
+              },
+              locale: 'en-gb',
+              allowInputToggle: false,
+              stepping: 5,
+              showClose: true,
+              sideBySide: false,
+              ignoreReadonly: true,
+              format: 'LT'
+            });
+        });
+
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+              icons: {
+                time: 'far fa-clock',
+                date: 'far fa-calendar',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-chevron-left',
+                next: 'fas fa-chevron-right',
+                today: 'far fa-calendar-check-o',
+                clear: 'far fa-trash',
+                close: 'far fa-times'
+              },
+              locale: 'en-gb',
+              allowInputToggle: false,
+              stepping: 5,
+              showClose: true,
+              sideBySide: false,
+              ignoreReadonly: true,
+              format: 'LT'
+            });
+        });
+
         $(document).ready(function () {
             $('.selectpicker').selectpicker();
         })

@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, url_for, jsonify, make_response
+from flask import Flask, Blueprint, url_for, jsonify, make_response, request
 from flask_restplus import Api, Resource, reqparse
 from flask_login import login_required, login_user, logout_user, current_user
 from itsdangerous import JSONWebSignatureSerializer
@@ -44,7 +44,7 @@ class _users(Resource):
             return result
 
 @login_required
-@nsp.route("/user/<id>")
+@nsp.route("/user/<int:id>")
 class _user(Resource):
     def get(self, id):
         if is_admin():
@@ -98,6 +98,36 @@ class _dates(Resource):
 
         else:
             return not_admin()
+
+
+@nsp.route("/calendar_doi")
+class _doi(Resource):
+    def get(self):
+
+            a = aliased(DateOfInterest)
+
+            print (request.args.get("start", None))
+            print (request.args.get("end", None))
+
+            try:
+                d1 = datetime.strptime(request.args.get("start", None).replace('+01:00','Z'), '%Y-%m-%dT%H:%M:%SZ')
+                d2 = datetime.strptime(request.args.get("end", None).replace('+01:00','Z'), '%Y-%m-%dT%H:%M:%SZ')
+
+                # get query from database
+                # (start between d1 and d2) AND (end between d1 and d2) OR (start < d1 AND d2 < end)
+                doi_ = db.session.query(a.doi_start_dt.label("start"), a.doi_end_dt.label("end"), \
+                a.doi_name.label("title"), a.doi_comment.label("description")).filter(\
+                ((a.doi_start_dt.between(d1, d2)) | \
+                (a.doi_end_dt.between(d1, d2))) | \
+                ((a.doi_start_dt < d1) & (d2 < a.doi_end_dt))) \
+                .all()
+
+                result = list(map(lambda x: x._asdict(), doi_))
+
+            except Exception as ex:
+                return json_error("error " + str(ex) + " getting calendar dates", 400)
+
+            return result
 
 #################################################################
 # COMPLEXES #
