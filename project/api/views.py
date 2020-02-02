@@ -4,6 +4,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 from itsdangerous import JSONWebSignatureSerializer
 import json
 from sqlalchemy.orm import aliased
+from sqlalchemy.sql.expression import literal
 
 from project.models import *
 from project import app, db, is_admin, mail, get_user
@@ -105,6 +106,7 @@ class _doi(Resource):
     def get(self):
 
             a = aliased(DateOfInterest)
+            b = aliased(Parameter)
 
             print (request.args.get("start", None))
             print (request.args.get("end", None))
@@ -115,17 +117,30 @@ class _doi(Resource):
 
                 # get query from database
                 # (start between d1 and d2) AND (end between d1 and d2) OR (start < d1 AND d2 < end)
-                doi_ = db.session.query(a.doi_start_dt.label("start"), a.doi_end_dt.label("end"), \
-                a.doi_name.label("title"), a.doi_comment.label("description")).filter(\
-                ((a.doi_start_dt.between(d1, d2)) | \
-                (a.doi_end_dt.between(d1, d2))) | \
-                ((a.doi_start_dt < d1) & (d2 < a.doi_end_dt))) \
-                .all()
 
-                result = list(map(lambda x: x._asdict(), doi_))
+                doi_ = db.session.query(a.doi_start_dt.label("start"), a.doi_end_dt.label("end"), \
+                a.doi_name.label("title"), a.doi_comment.label("description"), \
+                b.param_name.label("locked")).join(b, a.doi_locked==b.id).\
+                filter(((a.doi_start_dt.between(d1, d2)) | \
+                (a.doi_end_dt.between(d1, d2))) | \
+                ((a.doi_start_dt < d1) & (d2 < a.doi_end_dt)))
+
+                # subquery and then add columns and filter on locked = Yes
+                subq_locked_ = doi_.subquery()
+                locked_ = db.session.query(subq_locked_, literal("Salmon").label("backgroundColor"), \
+                literal("black").label("textColor")).filter(subq_locked_.c.locked=="Yes").all()
+
+                # subquery and then add columns and filter on locked = Yes
+                subq_notlocked_ = doi_.subquery()
+                notlocked_ = db.session.query(subq_notlocked_, literal("Lightblue").label("backgroundColor"), \
+                literal("black").label("textColor")).filter(subq_notlocked_.c.locked=="No").all()
+
+                # turn into a list of dicts and extend for extra queries
+                result = list(map(lambda x: x._asdict(), locked_))
+                result.extend(list(map(lambda x: x._asdict(), notlocked_)))
 
             except Exception as ex:
-                return json_error("error " + str(ex) + " getting calendar dates", 400)
+                return json_error("error " + str(ex) + " getting calendar events", 400)
 
             return result
 
