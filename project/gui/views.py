@@ -40,8 +40,9 @@ def is_loggedin ():
 def _index ():
 
     if current_user.is_authenticated:
-        dash = Dashboard.query.all()
-        return render_template("dashboard.html", data=dash, logs=dash_logs(), users=dash_users())
+        bookings = Booking.query.filter(Booking.owner_id==get_user()).all()
+        admin = Booking.query.all()
+        return render_template("dashboard.html", data1=bookings, data2=admin)
     else:
         return redirect(url_for('gui_blueprint._login'))
 
@@ -130,26 +131,6 @@ def _register ():
     else:
         flash_errors(form)
         return render_template("register.html", form=form)
-
-#################################################################
-# CHANGES #
-###########
-@gui_blueprint.route("/changes")
-@login_required
-def _changes ():
-
-    if request.method == 'GET':
-        changes = ChangeProfile.query.order_by(ChangeProfile.id.desc())
-        return render_template("changes.html", data = changes)
-
-@gui_blueprint.route("/editchange")
-@login_required
-def _editchange ():
-
-    if request.method == 'GET':
-        changeform = ChangeProfileForm()
-        # change = ChangeProfile.query.order_by(ChangeProfile.id.desc())
-        return render_template("editchange.html", title='New Change', form = changeform)
 
 
 #################################################################
@@ -259,7 +240,6 @@ def _edituser (id):
 
         if request.method == "POST":
             if not form.password.data:
-                print ("no password")
                 del form.password
 
 
@@ -424,14 +404,37 @@ def _editdate (id):
 #################################################################
 # SEARCH #
 ##########
-@gui_blueprint.route("/search", methods=["POST"])
+@gui_blueprint.route("/search", methods=["GET","POST"])
 def _search ():
 
-    form = MainSearchForm()
-    results = db.session.query(Parameter.param_name.label("result")).filter(Parameter.param_group>0).order_by(Parameter.param_name.asc())
-    if request.method == 'POST':
-        return render_template("search.html", query=request.form.getlist('query')[0], results=results, form=form)
+    a = aliased(DateOfInterest)
 
+    form = MainSearchForm()
+    if request.method == 'POST':
+
+        # get query
+        query = request.form.get('search_input', None)
+
+        if query:
+            # get matches
+            results = db.session.query(a.id, a.doi_name, a.doi_comment, a.doi_start_dt, a.doi_end_dt).\
+            filter((a.doi_comment+' '+a.doi_name).ilike(('%{}%').format(query))).all()
+
+            return render_template("search.html", query=query, results=results, form=form)
+        else:
+            return render_template("search.html", query=None, results=None, form=form)
+    else:
+        return render_template("search.html", query=None, results=None, form=form)
+
+#################################################################
+# HELP #
+########
+@gui_blueprint.route("/usage")
+def _help ():
+
+    if request.method == 'GET':
+        help = db.session.query(Parameter.param_name, Parameter.param_value).filter(Parameter.param_group==113).order_by(Parameter.id.desc()).all()
+        return render_template("help.html", data = help)
 
 #################################################################
 # BOOKINGS #
@@ -443,7 +446,8 @@ def _bookings ():
     # Show the booking calendar view
     if request.method == "GET":
         form = ComplexNameSelectForm()
-        return render_template("calendar.html", form=form)
+        defdate = request.args.get("defdate", datetime.now())
+        return render_template("calendar.html", form=form, defdate=defdate)
 
 
 @gui_blueprint.route("/editbooking/<id>", methods=["GET","POST"])
@@ -469,7 +473,12 @@ def _editbooking (id):
             form.tmp_date.default = request.form.get("start").replace("-","/")
             form.tmp_start_t.default = s_time
             form.tmp_end_t.default = e_time
-            form.approval_required = "No" # may change once the booking has been checked
+
+            if is_day_allowed(request.form.get("start"), complex.complex_push_days):
+                form.approval_required.default = 1
+            else:
+                form.approval_required.default = 0 # may change once the booking has been checked
+
             form.complex.default = request.form.get("complex_select", 1)
             form.complex_text.default = complex.complex_name
 
@@ -480,6 +489,8 @@ def _editbooking (id):
         # VALID
         if form.validate_on_submit():
 
+            if request.form.get("checkbtn", False):
+                return redirect(url_for('gui_blueprint._index'))
 
             return redirect(url_for('gui_blueprint._bookings'))
 
@@ -496,6 +507,27 @@ def _checkbooking (id):
 
     return redirect(url_for('gui_blueprint._bookings'))
 
+#################################################################
+# PUSH DAYS #
+#############
+@gui_blueprint.route("/pushdays", methods=["GET"])
+def _pushdays ():
+
+    cplx_list = []
+    a_cplx = []
+    # Show the booking calendar view
+    if request.method == "GET":
+
+        complexes = Complex.query.all() # get all complexes
+        for cplx in complexes:
+            a_cplx.append(cplx.complex_name)
+            for day_ in cplx.complex_push_days:
+                a_cplx.append(day_)
+            cplx_list.append(a_cplx)
+            print (a_cplx)
+            a_cplx = []
+
+        return render_template("push.html", data=cplx_list)
 
 #################################################################
 # PARAMETERS #
@@ -593,17 +625,19 @@ def _editprofile ():
         return render_template("profile.html", data=profile, form=form)
 
     del form.role # user can't change this in their profile
+    del form.last_login # they aren't logging in at this stage
+
+    # delete password if they haven't entered text to change it.
+    if request.method == "POST":
+        if not form.password.data:
+            del form.password
+
     # If we are POST'ing then we are making a change, so show message
     if form.validate_on_submit():
-        print ("valid")
         if form.savebtn.data:
-            print ("saving")
-            profile.forename = request.form["forename"]
-            profile.surname = request.form["surname"]
-            profile.email = request.form["email"]
-            profile.comment = request.form["comment"]
-            profile.vendor = request.form["vendor"]
-
+            form.populate_obj(profile)
+            profile.last_modified = datetime.now()
+            profile.modified_by = session["login_id"]
             db.session.commit()
             flash ("Saved Profile Details", 'success')
             return redirect(url_for('gui_blueprint._index'))

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Changes{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid mt-3">
+
+{%- if data -%}
+
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col"><h4><i class="text-primary">Help</i></h4></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {%- for result in data -%}
+        <tr>
+          <td class=""><strong>{{ result[0] }}</strong><br/>{{ result[1] }}</td>
+        </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+{%- endif -%}
+</div>
+
+{% endblock %}

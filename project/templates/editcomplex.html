@@ -48,10 +48,48 @@
                   <table class="form-group w-75">
                   {% for field in form %}
                    {% if field.validators %}
-                   <tr>
-                     <td class="w-25 text-right mx-2 p-1">{{ field.label }}</td>
-                     <td class="w-75 text-left mx-2 p-1">{{ field(class_="form-control") }}</td>
-                   </tr>
+                    {% if field.name in ['complex_push_start'] %}
+                    <tr>
+                      <td class="w-25 text-right mx-2 p-1 align-text-center">{{ field.label }}</td>
+                      <td class="w-75 text-left mx-2 p-1">
+                        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                        {{ field_with_help(field(class_="form-control-plaintext form-control datetimepicker-input"), field.render_kw["title"], igid="datetimepicker1") }}
+                        </div>
+                      </td>
+                    </tr>
+                    {% elif field.name in ['complex_push_end'] %}
+                    <tr>
+                      <td class="w-25 text-right mx-2 p-1 align-text-center">{{ field.label }}</td>
+                      <td class="w-75 text-left mx-2 p-1">
+                        <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                        {{ field_with_help(field(class_="form-control-plaintext form-control datetimepicker-input"), field.render_kw["title"], igid="datetimepicker2") }}
+                        </div>
+                      </td>
+                    </tr>
+                    {% elif field.name in ['complex_restrict_start'] %}
+                    <tr>
+                      <td class="w-25 text-right mx-2 p-1 align-text-center">{{ field.label }}</td>
+                      <td class="w-75 text-left mx-2 p-1">
+                        <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                        {{ field_with_help(field(class_="form-control-plaintext form-control datetimepicker-input"), field.render_kw["title"], igid="datetimepicker3") }}
+                        </div>
+                      </td>
+                    </tr>
+                    {% elif field.name in ['complex_restrict_end'] %}
+                    <tr>
+                      <td class="w-25 text-right mx-2 p-1 align-text-center">{{ field.label }}</td>
+                      <td class="w-75 text-left mx-2 p-1">
+                        <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                        {{ field_with_help(field(class_="form-control-plaintext form-control datetimepicker-input"), field.render_kw["title"], igid="datetimepicker4") }}
+                        </div>
+                      </td>
+                    </tr>
+                    {% else %}
+                      <tr>
+                        <td class="w-25 text-right mx-2 p-1">{{ field.label }}</td>
+                        <td class="w-75 text-left mx-2 p-1">{{ field(class_="form-control") }}</td>
+                      </tr>
+                    {% endif %}
                    {% endif %}
                   {% endfor %}
                   </table>
@@ -105,5 +143,102 @@
           </div>
 
     </form>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+              icons: {
+                time: 'far fa-clock',
+                date: 'far fa-calendar',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-chevron-left',
+                next: 'fas fa-chevron-right',
+                today: 'far fa-calendar-check-o',
+                clear: 'far fa-trash',
+                close: 'far fa-times'
+              },
+              locale: 'en-gb',
+              allowInputToggle: false,
+              stepping: 5,
+              showClose: true,
+              sideBySide: false,
+              ignoreReadonly: true,
+              format: 'LT'
+            });
+        });
+
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+              icons: {
+                time: 'far fa-clock',
+                date: 'far fa-calendar',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-chevron-left',
+                next: 'fas fa-chevron-right',
+                today: 'far fa-calendar-check-o',
+                clear: 'far fa-trash',
+                close: 'far fa-times'
+              },
+              locale: 'en-gb',
+              allowInputToggle: false,
+              stepping: 5,
+              showClose: true,
+              sideBySide: false,
+              ignoreReadonly: true,
+              format: 'LT'
+            });
+        });
+
+        $(function () {
+            $('#datetimepicker3').datetimepicker({
+              icons: {
+                time: 'far fa-clock',
+                date: 'far fa-calendar',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-chevron-left',
+                next: 'fas fa-chevron-right',
+                today: 'far fa-calendar-check-o',
+                clear: 'far fa-trash',
+                close: 'far fa-times'
+              },
+              locale: 'en-gb',
+              allowInputToggle: false,
+              stepping: 1,
+              showClose: true,
+              sideBySide: true,
+              ignoreReadonly: true
+            });
+        });
+
+        $(function () {
+            $('#datetimepicker4').datetimepicker({
+              icons: {
+                time: 'far fa-clock',
+                date: 'far fa-calendar',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-chevron-left',
+                next: 'fas fa-chevron-right',
+                today: 'far fa-calendar-check-o',
+                clear: 'far fa-trash',
+                close: 'far fa-times'
+              },
+              locale: 'en-gb',
+              allowInputToggle: false,
+              stepping: 1,
+              showClose: true,
+              sideBySide: true,
+              ignoreReadonly: true
+            });
+        });
+
+        $(document).ready(function () {
+            $('.selectpicker').selectpicker();
+        })
+    </script>
+
 
 {% endblock %}

@@ -128,12 +128,12 @@ class _doi(Resource):
                 # subquery and then add columns and filter on locked = Yes
                 subq_locked_ = doi_.subquery()
                 locked_ = db.session.query(subq_locked_, literal("Salmon").label("backgroundColor"), \
-                literal("black").label("textColor")).filter(subq_locked_.c.locked=="Yes").all()
+                literal("black").label("textColor")).filter(subq_locked_.c.locked.ilike("YES")).all()
 
                 # subquery and then add columns and filter on locked = Yes
                 subq_notlocked_ = doi_.subquery()
                 notlocked_ = db.session.query(subq_notlocked_, literal("Lightblue").label("backgroundColor"), \
-                literal("black").label("textColor")).filter(subq_notlocked_.c.locked=="No").all()
+                literal("black").label("textColor")).filter(subq_notlocked_.c.locked.ilike("NO")).all()
 
                 # turn into a list of dicts and extend for extra queries
                 result = list(map(lambda x: x._asdict(), locked_))

@@ -22,10 +22,9 @@
 
 
     <!-- Optional JavaScript -->
-    <script src="{{ url_for('static', filename='js/moment-with-locales.min.js')}}{{ unique_time() }}"></script>
-    <!-- <script src="{{ url_for('static', filename='js/moment.js')}}{{ unique_time() }}"></script> -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ url_for('static', filename='js/jquery-3.2.1.slim.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/moment-with-locales.min.js')}}{{ unique_time() }}"></script>
     <script src="{{ url_for('static', filename='js/popper.min.js')}}"></script>
     <script src="{{ url_for('static', filename='js/tooltip.min.js')}}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
@@ -40,6 +39,8 @@
     <script src="{{ url_for('static', filename='fullcalendar/packages/list/main.js')}}"></script>
     <script src="{{ url_for('static', filename='fullcalendar/packages/timegrid/main.js')}}"></script>
 
+    <script src="{{ url_for('static', filename='js/booking_calendar.js')}}{{ unique_time() }}"></script>
+
     {% block head %}
     {% endblock %}
   </head>
@@ -53,16 +54,16 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item font-weight-bold">
             <a class="nav-link" href="{{ url_for('gui_blueprint._index') }}">Dashboard</a>
           </li>
 
-          <li class="nav-item active">
+          <li class="nav-item font-weight-bold">
             <a class="nav-link" href="{{ url_for('gui_blueprint._bookings') }}">Bookings</a>
           </li>
 
           {% if is_admin() %}
-          <li class="nav-item dropdown active">
+          <li class="nav-item dropdown font-weight-bold">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Administration
             </a>
@@ -79,7 +80,18 @@
           </li>
           {% endif %}
 
-         <li class="nav-item dropdown active">
+        <li class="nav-item dropdown font-weight-bold">
+           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Information
+           </a>
+           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+             <a class="dropdown-item" href="{{ url_for('gui_blueprint._pushdays') }}">Push Days</a>
+             <div class="dropdown-divider"></div>
+             <a class="dropdown-item" href="{{ url_for('gui_blueprint._help') }}">Usage</a>
+           </div>
+        </li>
+
+         <li class="nav-item dropdown font-weight-bold">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Logged in as<strong> {{ get_user() }}</strong>
             </a>
@@ -90,12 +102,20 @@
             </div>
          </li>
 
-        </ul>
+         <li class="nav-item font-weight-bold">
+           <div class="">
+             <a class="nav-link" href="{{ url_for('gui_blueprint._search') }}">Search</a>
+           </div>
+         </li>
+       </ul>
 
+
+        <!--
         <form class="form-inline my-2 my-lg-0" action="/fpa/search" method="POST">
           <input class="form-control mr-sm-2" type="text" id="query" name="query" aria-label="Query">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+        -->
 
       </div>
     </nav>

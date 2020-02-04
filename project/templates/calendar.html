@@ -7,66 +7,14 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, calendar_options);
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      eventSources: [
-      {
-        url: '/fpa/api/v1/calendar_doi',
-        type: 'GET',
-        error: function() {
-					$('#script-warning').show();
-        },
-        color: '#8ABEE9',
-        textColor: 'black'
-      },
-      {
-        url: '/fpa/api/v1/calendar_doi',
-        type: 'GET',
-        error: function() {
-          $('#script-warning').show();
-        },
-        color: '#8AE996',
-        textColor: 'black'
-      }
-      ],
-      plugins: [ 'dayGrid', 'timeGrid', 'interaction', 'timeGridDay' ],
-      selectable: true,
-      aspectRatio: 1.35,
-      editable: false,
-      navLinks: true,
-      eventLimit: true,
-      firstDay: 1,
-      eventLimit: true,
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'prevYear,nextYear'
-      },
-      selectAllow: function(info) {
-          return moment().diff(info.start, 'days') <= 0
-      },
-      select: function(arg) {
-        var vdate = moment(arg.start).format("DD-MM-YYYY")
-        $("#newBookingModal").modal();
-        $("#startDate").html(vdate);
-        $("#start").val(vdate);
-        calendar.unselect();
-      },
-      eventClick: function(info) {
-        $("#checkBookingModal").modal();
-        var dateStart = moment(info.event.start).format("DD-MMM-YYYY HH:mm");
-        var dateEnd   = moment(info.event.end).format("DD-MMM-YYYY HH:mm");
-        $("#bookingTitle").html(info.event.title);
-        $("#bookingTitle").css({"background-color": info.el.style.backgroundColor});
-        $("#bookingInfo").html(info.event.extendedProps.description);
-        $("#bookingStart").html(dateStart);
-        if (dateEnd == 'Invalid date') {dateEnd=''};
-        $("#bookingEnd").html(dateEnd);
-        calendar.unselect();
-      }
-    });
+    {% if defdate is defined %}
+    calendar.gotoDate("{{defdate}}")
+    {% endif %}
 
     calendar.render();
+
   });
 </script>
 
@@ -80,27 +28,43 @@
 
 <div class="modal fade" id="newBookingModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
-
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="newModalLabel">New Booking for:  <span id="startDate" name="startDate" class="bg-secondary text-white p-1"></span></h5>
+        <h5 class="modal-title" id="newModalLabel">New Booking for:  <span id="startDate" name="startDate" class="badge badge-secondary text-white p-1"></span></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{ url_for('gui_blueprint._editbooking', id=0) }}" method="POST">
-        <div class="modal-body">
-          Choose a zone: {{ form.complex_select(class_="form-control") }}
-          <input type="hidden" id="start" name="start"/>
+        <div id="modal-body">
+          <form action="{{ url_for('gui_blueprint._editbooking', id=0) }}" method="POST">
+          <div class="modal-body">
+            Choose a zone: {{ form.complex_select(class_="form-control") }}
+            <input type="hidden" id="start" name="start"/>
+          </div>
+          <div class="modal-footer">
+            {{ form.nextbtn(class_="btn btn-primary button_fpa") }}
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+          </form>
         </div>
-        <div class="modal-footer">
-          {{ form.nextbtn(class_="btn btn-primary button_fpa") }}
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-        </form>
       </div>
+    </div>
+</div>
 
+<div class="modal fade" id="lockedBookingModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="lmodal-title font-weight-bold text-dark text-center" id="lockedModalLabel">Locked</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="modal-body p-2 m-5">
+            <h5 class="p-1 mx-1 font-weight-bold text-secondary text-center">Error: This date is currently locked.</h5>
+        </div>
+      </div>
     </div>
 </div>
 
@@ -110,7 +74,7 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="checkModalLabel">Event Details: <span id="bookingTitle" name="startDate" class="text-dark p-1"></span></h5>
+        <h5 class="modal-title" id="checkModalLabel">Event Details: <span id="bookingTitle" name="startDate" class="badge p-1"></span></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

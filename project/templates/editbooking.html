@@ -15,6 +15,10 @@
     {% endif %}
     <h3><span class="badge m-2 p-2 font-weight-bold badge-dark">Step 1 of 2</span></h3>
 
+    {% if form.approval_required.data == 1 -%}
+    <span class="bg-warning p-2 m-3">{{ form.approval_required.render_kw.title }}</span>
+    {% endif -%}
+
         <table class="form-group w-75 align-text-top">
           <tr>
             <td>{{ form.hidden_tag() }}</td>
@@ -93,7 +97,7 @@
           <tr>
             <td>&nbsp;</td>
             <td class="p-5">
-             {{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._bookings') }}'">Cancel</button>
+             {{ form.checkbtn(class_="btn btn-success button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._bookings') }}'">Cancel</button>
              {% if data %}
               {{ form.deletebtn(class_="btn btn-danger") }}
               &nbsp;<button type=button name="cancel" id="cancel" class="btn btn-danger button_fpa" data-toggle="modal" data-target="#messageModalCenter">Delete</button>

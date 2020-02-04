@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Push Days{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<h5 class="card-header text-white bg-secondary">Push Days</h5>
+<h6 class="p-2 m-2">This is a list of days that each complex is pushed as <strong>standard</strong></h6>    
+
+<div class="container-fluid mt-3">
+
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col" class="w-50">Complex Name</th>
+        <th scope="col">Mo</th>
+        <th scope="col">Tu</th>
+        <th scope="col">We</th>
+        <th scope="col">Th</th>
+        <th scope="col">Fr</th>
+        <th scope="col">Sa</th>
+        <th scope="col">Su</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for rec in data %}
+      <tr>
+        <td class="w-50">{{ rec[0] }}</td>
+        <td>{{ rec[1] }}</td>
+        <td>{{ rec[2] }}</td>
+        <td>{{ rec[3] }}</td>
+        <td>{{ rec[4] }}</td>
+        <td>{{ rec[5] }}</td>
+        <td>{{ rec[6] }}</td>
+        <td>{{ rec[7] }}</td>
+      </tr>
+      {% else %}
+        <tr><td colspan=5 class="alert alert-primary"><strong>There are no complex push days to view </strong></td></tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+
+</div>
+
+{% endblock %}

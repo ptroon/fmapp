@@ -5,12 +5,15 @@ from flask_wtf import FlaskForm
 from wtforms import *
 from wtforms.validators import *
 from datetime import datetime
+import re
 
 from project.models import *
 
 PUSH_DAY_ERRORMSG = "Push Day must be 7 characters and use Y or N only"
 PASSWORD_ERRORMSG = "Password must contain at least one numeric, alpha, upper & special char and be > 7 chars"
-
+ENDDATE_ERRORMSG  = 'End Date must be greater than Start Date and not blank'
+CHANGE_SUBREF_ERRORMSG = 'Task must start TCR and contain 7 digits if main reference is an MCR'
+CHANGE_REF_ERRORMSG = 'Change reference must start with MCR, SCR or RCR and have 7 digits'
 ###############################################################################
 # OVERIDES #
 ############
@@ -40,6 +43,7 @@ class SelectMultipleField2(SelectMultipleField):
 
             except (ValueError, TypeError):
                 self.data = []
+
 
 ###############################################################################
 # FORMS #
@@ -155,7 +159,7 @@ class LogForm(FlaskForm):
 
 class DOIForm(FlaskForm):
     id = HiddenField('id', default=0)
-    doi_name = StringField('Name', validators=[InputRequired()])
+    doi_name = StringField('Name', validators=[InputRequired(),Length(min=5,max=40)])
     doi_priority = SelectField('Priority', coerce=int)
     doi_comment = TextAreaField('Comment')
     doi_start_dt = StringField('Start', validators=[InputRequired()])
@@ -176,6 +180,11 @@ class DOIForm(FlaskForm):
         self.doi_regions.render_kw = {'multiple': 'true'}
         self.doi_locked.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_name)] # Yes/No
         self.doi_hap.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_name)] # Yes/No
+
+    def validate_doi_end_dt(form, field):
+        if datetime.strptime(field.data, '%d/%m/%Y %H:%M') <= datetime.strptime(form.doi_start_dt.data, '%d/%m/%Y %H:%M'):
+            raise ValidationError(ENDDATE_ERRORMSG)
+
 
 class ComplexForm(FlaskForm):
     id = HiddenField('id', default=0)
@@ -212,9 +221,9 @@ class ComplexForm(FlaskForm):
     complex_type = SelectField('Type', coerce=int)
     complex_info_1 = StringField('Complex Info 1')
     complex_country = SelectField('Country', coerce=int)
-    complex_restricted = SelectField('Restricted', coerce=int)
-    complex_restrict_start = StringField('Restrict Start')
-    complex_restrict_end = StringField('Restrict End')
+    complex_restricted = SelectField('Restricted', coerce=int, validators=[Optional()])
+    complex_restrict_start = StringField('Restrict Start', validators=[Optional()])
+    complex_restrict_end = StringField('Restrict End', validators=[Optional()])
     complex_allow_slot_day = StringField('Slot Day')
     complex_allow_slot_start = StringField('Slot Start Time')
     complex_allow_slot_end = StringField('Slot End Time')
@@ -236,7 +245,14 @@ class ComplexForm(FlaskForm):
         self.complex_restricted.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_value.asc())] # Parameters for Restricted as Yes/No
         self.complex_environment.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 92).order_by(Parameter.param_value.asc())] # Parameters for Environments
         self.complex_active.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 66).order_by(Parameter.param_value.asc())] # Parameters for Active state
+        self.complex_push_start.render_kw = {'data-target': '#datetimepicker1', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose Start time'}
+        self.complex_push_end.render_kw = {'data-target': '#datetimepicker2', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose End time'}
+        self.complex_restrict_start.render_kw = {'data-target': '#datetimepicker3', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose Start date & time'}
+        self.complex_restrict_end.render_kw = {'data-target': '#datetimepicker4', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose End date & time'}
 
+    def validate_complex_restrict_end(form, field):
+        if datetime.strptime(field.data, '%d/%m/%Y %H:%M') <= datetime.strptime(form.complex_restrict_start.data, '%d/%m/%Y %H:%M'):
+            raise ValidationError(ENDDATE_ERRORMSG)
 
 class ComplexNameSelectForm(FlaskForm):
     complex_select = SelectField('Complex')
@@ -262,13 +278,14 @@ class BookingForm(FlaskForm):
     complex = HiddenField('Complex')
     complex_text = StringField('Complex', render_kw={'readonly':'true'})
     cluster = SelectField('Cluster', coerce=int)
-    approval_required = StringField('Approval Required?', render_kw={"title": "APPROVAL REQUIRED FOR THIS CHANGE"})
+    approval_required = StringField('Approval Required?', render_kw={"title": "APPROVAL REQUIRED FOR THIS CHANGE DUE TO NON-STANDARD DAY OF WEEK"})
     approved_date = StringField('Approved')
     approved_by = StringField('Approved By')
-    change_ref = StringField('Change Ref', render_kw={"title": "Enter SCR/MCR ID"})
+    change_ref = StringField('Change Ref', render_kw={"title": "Enter SCR/MCR ID"}, validators=[Regexp('^[MRS]CR[1-9]{7}$', message=CHANGE_REF_ERRORMSG)])
     change_subref = StringField('Change Sub Ref', render_kw={"title": "Enter TCR# if main is MCR"})
     logged = HiddenField('logged')
     savebtn = SubmitField('Save')
+    checkbtn = SubmitField('Check')
     deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
     tmp_date = StringField('Booking Date', render_kw={'readonly':'true'})
     tmp_start_t = StringField('Start Time')
@@ -283,3 +300,7 @@ class BookingForm(FlaskForm):
         self.complex.choices = [(a.id, a.complex_name) for a in Complex.query.order_by(Complex.complex_name)] # Complex Names
         self.cluster.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 97).order_by(Parameter.param_name)] # Cluster Names
         self.approval_required.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_name)] # Yes/No
+
+    def validate_change_subref(form, field):
+        if form.change_ref.data.startswith('MCR',0) and not re.match('^[T]CR[1-9]{7}$', field.data):
+            raise ValidationError(CHANGE_SUBREF_ERRORMSG)

@@ -19,6 +19,10 @@
             <td class="w-75 text-left mx-2 p-1">{{ form.login_id(size=10, class_="form-control", readonly=True) }}</td>
           </tr>
           <tr>
+            <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.password.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.password(size=10, class_="form-control"), "Only enter a password if you wish to change it") }}</td>
+          </tr>
+          <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.forename.label }}</td>
             <td class="w-75 text-left mx-2 p-1">{{ form.forename(size=32, class_="form-control") }}</td>
           </tr>

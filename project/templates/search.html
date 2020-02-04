@@ -6,34 +6,44 @@
 {% block content %}
 
 <div class="container-fluid mt-3">
-  <h3>Search Results for: <i class="text-primary">"{{ query }}"</i></h3>
 
+{% if form %}
+  <form action="{{ url_for('gui_blueprint._search') }}" method="POST">
+  <div class="d-flex flex-row bg-secondary">
+    <div class="p-1 m-1">{{ form.search_input(size=100,maxlength=100,class_="p-1 m-1") }}</div>
+    <div class="p-1 m-1">{{ form.search(class_="btn button_fpa btn-success") }}</div>
+  </div>
+  </form>
+{% endif %}
 
-  {% if form %}
-    <div>{{ form.search_options(class_='form-control') }}</div>
-  {% endif %}
+{%- if results -%}
+  <h4>Search Results for: <i class="text-primary">"{{ query }}"</i></h4>
 
-  <table class="table">
+  <table class="table table-striped">
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Result</th>
+        <th scope="col">Dates</th>
       </tr>
     </thead>
     <tbody>
 
-
-      {% for result in results %}
+      {%- for result in results -%}
         <tr>
           <th scope="row">{{ loop.index }}</th>
-          <td>{{ result.result }}</td>
+          <td class=""><a href="{{ url_for('gui_blueprint._bookings', defdate=result[3]) }}">{{ result[1] }}</a><br/>{{ result[2] }}</td><td class="small">start: {{ result[3] }}<br/>end: {{ result[4] }}</td>
         </tr>
       {% endfor %}
 
     </tbody>
   </table>
 
+{%- else -%}
 
+<div class="alert-warning p-2 m-3">No results found or no search query given</div>
+
+{%- endif -%}
 </div>
 
 {% endblock %}
