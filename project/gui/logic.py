@@ -1,14 +1,14 @@
-#
-# Code for handling queries, database and logic that can be reused.
-#
+#####################################################################
+# Code for handling queries, database and logic that can be reused. #
+#####################################################################
 
 import requests
 import logging
 from collections import Counter
 from flask import flash
-from datetime import datetime
+from datetime import datetime, timedelta
 
-from project.models import User, Role, Dashboard, ChangeProfile
+from project.models import *
 from project import app, db, is_admin
 
 # Works out how many types of messages the log has
@@ -26,20 +26,10 @@ def dash_logs ():
     for x in results:
         res[x] = len(results[x])
 
-    # print (res)
     return res
 
-# Returns all users for dashboard
-def dash_users ():
-    user = User.query.filter_by().all()
 
-    res = {}
-    for x in user:
-        res[x] = len(user)
-
-    return user
-
-
+# Flashes the errors contained in the form
 def flash_errors(form):
     """Flashes form errors"""
     for field, errors in form.errors.items():
@@ -69,8 +59,42 @@ def is_day_allowed(date_string, week_string):
         return False # failed to convert string or not valid so return false
 
 
+
+# Checks a complex start & end push times
+# compares to the provided start and end times
+# if the booking has different times then return True
+# if not different return False
+# True means approval needed as custom times used.
+def is_booking_custom(start_t, end_t, complex_id):
+
+    q1 = Complex.query.filter(Complex.id==int(complex_id)).first()
+    if q1.complex_push_start == start_t and q1.complex_push_end == end_t:
+        return False # this is the same timing
+    else:
+        return True # approval needed as this is different
+
+
+
+# takes input of date string e.g. '01/01/2020' and complex id
+# q1 - checks this change not over total changes p/day
+# q2 - checks this change not over total for complex p/day
+# q3 - checks this change not over total for diff complexes p/day
+def is_booking_core_ok(date_str, complex_id):
+
+    date_s = datetime.strptime(date_str, '%d/%m/%Y') # start date with 00:00:00
+    date_e = date_s + timedelta(minutes=1439) # end date with 23:59:00
+
+    # get a count of all bookings where booking start between date_s and date_e
+    q1 = db.session.query(Booking.id).filter(Booking.start_dt.between(date_s, date_e)).count()
+
+    #q2 = db.session.query(Booking.id).filter(Booking.complex==complex_id).filter(Booking.start_dt)
+    return True
+
+
+'''
 def json_fmt_default(o):
     if isinstance(o, datetime):
         return o.isoformat()
     if isInstance(o, InstanceState):
         pass
+'''

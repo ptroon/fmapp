@@ -6,11 +6,11 @@
 {% block content %}
 
 <h5 class="card-header text-white bg-secondary">Push Days</h5>
-<h6 class="p-2 m-2">This is a list of days that each complex is pushed as <strong>standard</strong></h6>    
+<h6 class="p-2 m-2">This report is a list of days that each complex is pushed as <strong>standard</strong></h6>
 
 <div class="container-fluid mt-3">
 
-  <table class="table table-striped">
+  <table class="table table-striped" id="t_push">
     <thead class="thead-light">
       <tr>
         <th scope="col" class="w-50">Complex Name</th>
@@ -42,8 +42,16 @@
 
     </tbody>
   </table>
-
-
 </div>
+
+<script>
+  $(document).ready( function () {
+      table = $('#t_push').DataTable();
+
+      {%- if search -%}
+      table.search('{{ search }}').draw();
+      {%- endif -%}
+  } );
+</script>
 
 {% endblock %}

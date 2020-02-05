@@ -8,7 +8,7 @@
 <div class="container-fluid mt-3">
   <h3>Users&nbsp;&nbsp;&nbsp;<button type="button" onclick=location.href='{{ url_for('gui_blueprint._edituser', id=0) }}' class="btn btn-success">Add</button></h3>
 
-  <table class="table table-striped">
+  <table class="table table-striped" id="t_users">
     <thead class="thead-light">
       <tr>
         <th scope="col">User Login</th>
@@ -36,8 +36,12 @@
 
     </tbody>
   </table>
-
-
 </div>
+
+  <script>
+  $(document).ready( function () {
+      $('#t_users').DataTable();
+  } );
+  </script>
 
 {% endblock %}

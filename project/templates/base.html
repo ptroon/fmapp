@@ -18,6 +18,8 @@
     <link href="{{ url_for('static', filename='fullcalendar/packages/core/main.css')}}" rel='stylesheet' />
     <link href="{{ url_for('static', filename='fullcalendar/packages/daygrid/main.css')}}" rel='stylesheet' />
 
+    <link href="{{ url_for('static', filename='css/jquery.dataTables.min.css')}}" rel='stylesheet' />
+
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 
 
@@ -39,6 +41,7 @@
     <script src="{{ url_for('static', filename='fullcalendar/packages/list/main.js')}}"></script>
     <script src="{{ url_for('static', filename='fullcalendar/packages/timegrid/main.js')}}"></script>
 
+    <script src="{{ url_for('static', filename='js/jquery.dataTables.min.js')}}{{ unique_time() }}"></script>
     <script src="{{ url_for('static', filename='js/booking_calendar.js')}}{{ unique_time() }}"></script>
 
     {% block head %}
@@ -75,7 +78,6 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._parameters') }}">Parameters</a>
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._logs', counter=10) }}">System Logs</a>
-              <a class="dropdown-item" href="{{ url_for('gui_blueprint._email') }}">Email</a>
             </div>
           </li>
           {% endif %}

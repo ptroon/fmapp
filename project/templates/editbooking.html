@@ -7,7 +7,7 @@
 
 
     {% if data %}
-    <h5 class="card-header text-white bg-secondary">Booking: "{{ data.title }}"</h5>
+    <h5 class="card-header text-white bg-secondary">Booking: "{{ form.title }}"</h5>
     <form action="{{ url_for('gui_blueprint._editbooking', id=data.id) }}" method="POST" novalidate class="text-center">
     {% else %}
     <h5 class="card-header text-white bg-secondary">New Booking</h5>
@@ -15,9 +15,9 @@
     {% endif %}
     <h3><span class="badge m-2 p-2 font-weight-bold badge-dark">Step 1 of 2</span></h3>
 
-    {% if form.approval_required.data == 1 -%}
+    {%- if form.approval_required.data == "1" -%}
     <span class="bg-warning p-2 m-3">{{ form.approval_required.render_kw.title }}</span>
-    {% endif -%}
+    {%- endif -%}
 
         <table class="form-group w-75 align-text-top">
           <tr>
@@ -104,6 +104,7 @@
               {% endif %}
             </td>
           </tr>
+          <tr><td>{{ form.approval_required(class_="invisible") }}</td></tr>
         </table>
     </form>
 

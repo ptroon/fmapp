@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, url_for, jsonify, make_response, request
+from flask import Flask, Blueprint, url_for, jsonify, make_response, request, Response
 from flask_restplus import Api, Resource, reqparse
 from flask_login import login_required, login_user, logout_user, current_user
 from itsdangerous import JSONWebSignatureSerializer
@@ -13,15 +13,16 @@ from project.gui.logic import *
 
 api_blueprint = Blueprint('api_blueprint', __name__, url_prefix="/fpa/api")
 api = Api(api_blueprint, version = "1.0", \
-      title = "Firewall Policy Automation API",
-      description = "Provide access to FortiManagers via an API")
+      title = "Firewall Booking API",
+      description = "Provide access to Firewall Bookings via an API")
 
-nsp = api.namespace('v1', description='Firewall Policy Automation APIs v1')
-nsp2 = api.namespace('v2', description='Firewall Policy Automation APIs v2')
+nsp = api.namespace('v1', description='Firewall Booking Automation APIs v1')
+nsp2 = api.namespace('v2', description='Firewall Booking Automation APIs v2')
 
 # returns an error & code in JSON format
 def json_error(_message, _code):
-    return jsonify(error=_message, code=_code, mimetype="application/json")
+    message = json.dumps({'errors': _message})
+    return Response(message, status=_code, mimetype='application/json')
 
 def not_admin():
     return json_error("you are not an administrator or not logged in", 401)
@@ -108,12 +109,16 @@ class _doi(Resource):
             a = aliased(DateOfInterest)
             b = aliased(Parameter)
 
-            print (request.args.get("start", None))
-            print (request.args.get("end", None))
+            d1 = request.args.get("start", None)
+            d2 = request.args.get("end", None)
 
             try:
-                d1 = datetime.strptime(request.args.get("start", None).replace('+01:00','Z'), '%Y-%m-%dT%H:%M:%SZ')
-                d2 = datetime.strptime(request.args.get("end", None).replace('+01:00','Z'), '%Y-%m-%dT%H:%M:%SZ')
+
+                if (not d1 or not d2):
+                    raise Exception ("start or end dates not provided on URL e.g. (?start=<date>&end=<date>)")
+
+                d1 = datetime.strptime(d1.replace('+01:00','Z'), '%Y-%m-%dT%H:%M:%SZ')
+                d2 = datetime.strptime(d2.replace('+01:00','Z'), '%Y-%m-%dT%H:%M:%SZ')
 
                 # get query from database
                 # (start between d1 and d2) AND (end between d1 and d2) OR (start < d1 AND d2 < end)
@@ -125,12 +130,12 @@ class _doi(Resource):
                 (a.doi_end_dt.between(d1, d2))) | \
                 ((a.doi_start_dt < d1) & (d2 < a.doi_end_dt)))
 
-                # subquery and then add columns and filter on locked = Yes
+                # subquery and then add columns and filter on locked = YES
                 subq_locked_ = doi_.subquery()
                 locked_ = db.session.query(subq_locked_, literal("Salmon").label("backgroundColor"), \
                 literal("black").label("textColor")).filter(subq_locked_.c.locked.ilike("YES")).all()
 
-                # subquery and then add columns and filter on locked = Yes
+                # subquery and then add columns and filter on locked = NO
                 subq_notlocked_ = doi_.subquery()
                 notlocked_ = db.session.query(subq_notlocked_, literal("Lightblue").label("backgroundColor"), \
                 literal("black").label("textColor")).filter(subq_notlocked_.c.locked.ilike("NO")).all()

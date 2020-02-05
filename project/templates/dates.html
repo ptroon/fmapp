@@ -8,7 +8,7 @@
 <div class="container-fluid mt-3">
   <h3>Dates&nbsp;&nbsp;&nbsp;<button type="button" onclick=location.href='{{ url_for('gui_blueprint._editdate', id=0) }}' class="btn btn-success">Add</button></h3>
 
-  <table class="table table-striped">
+  <table class="table table-striped" id="t_dates">
     <thead class="thead-light">
       <tr>
         <th scope="col" class="w-50">Name</th>
@@ -29,17 +29,30 @@
         <td>{{ rec[3] }}</td>
         <td>{{ rec[4] }}</td>
         <td>{{ rec[5] }}</td>
-        <td>{{ rec[6] }}</td>
-        <td>{{ rec[7] }}</td>
-      </tr>
-      {% else %}
-        <tr><td colspan=5 class="alert alert-primary"><strong>There are no dates of interest entries to view </strong></td></tr>
-      {% endfor %}
 
+        {%- if rec[6].upper() == 'NO' -%}
+        <td>{{ rec[6] }}</td>
+        {%- else -%}
+        <td>HAP</td>
+        {%- endif -%}
+
+        {%- if rec[7].upper() == 'NO' -%}
+        <td>{{ rec[7] }}</td>
+        {%- else -%}
+        <td>Locked</td>
+        {%- endif -%}
+
+      </tr>
+      {% endfor %}
     </tbody>
   </table>
-
-
 </div>
+
+<script>
+$(document).ready( function () {
+    $('#t_dates').DataTable();
+} );
+
+</script>
 
 {% endblock %}

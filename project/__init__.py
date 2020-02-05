@@ -32,7 +32,7 @@ def get_copyright():
 
 # Gets the user LOGIN_ID
 def get_user():
-    return session["login_id"]
+    return session.get("login_id", "Anonymous") # return "Anon" user if no key found
 
 def unique_time():
     return "?=" + str(datetime.utcnow()).replace(" ","")

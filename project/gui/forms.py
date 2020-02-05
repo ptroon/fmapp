@@ -299,7 +299,6 @@ class BookingForm(FlaskForm):
         self.tmp_end_t.render_kw = {'data-target': '#datetimepicker2', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose end time'}
         self.complex.choices = [(a.id, a.complex_name) for a in Complex.query.order_by(Complex.complex_name)] # Complex Names
         self.cluster.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 97).order_by(Parameter.param_name)] # Cluster Names
-        self.approval_required.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_name)] # Yes/No
 
     def validate_change_subref(form, field):
         if form.change_ref.data.startswith('MCR',0) and not re.match('^[T]CR[1-9]{7}$', field.data):

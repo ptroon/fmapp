@@ -10,8 +10,8 @@
 <div class="container-fluid mt-3">
 
 {% if is_admin() %}
-<div class="p-2 m-3 bg-light text-dark font-weight-bold">Booking Administration</div>
-<table class="table table-striped">
+<div class="p-2 m-3 bg-light text-black font-weight-bold">Booking Administration</div>
+<table class="table table-striped" id="t_admin">
   <thead class="thead-light">
     <tr>
       <th scope="col" class="w-25">Title</th>
@@ -37,15 +37,13 @@
       <td>{{ rec[7] }}</td>
     </tr>
     {%- endfor -%}
-    {%- if data1|length == 0 -%}
-      <tr><td colspan=8 class="alert alert-primary text-secondary">There are no bookings to view</td></tr>
-    {% endif %}
   </tbody>
 </table>
-{% endif %}
 
-<div class="p-2 m-3 bg-light text-dark font-weight-bold">My Bookings</div>
-<table class="table table-striped">
+{%- else -%}
+
+<div class="p-2 m-3 bg-light text-black font-weight-bold">My Bookings</div>
+<table class="table table-striped" id="t_bookings">
   <thead class="thead-light">
     <tr>
       <th scope="col" class="w-25">Title</th>
@@ -70,11 +68,22 @@
       <td>{{ rec[6] }}</td>
       <td>{{ rec[7] }}</td>
     </tr>
-    {%- else -%}
-      <tr><td colspan=8 class="alert alert-primary text-secondary">You have no bookings to view</td></tr>
     {%- endfor -%}
   </tbody>
 </table>
 
+{% endif %}
+
 </div>
+
+<script>
+$(document).ready( function () {
+    $('#t_admin').DataTable();
+} );
+
+$(document).ready( function () {
+    $('#t_bookings').DataTable();
+} );
+</script>
+
 {% endblock %}

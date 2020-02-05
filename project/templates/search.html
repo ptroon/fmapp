@@ -16,9 +16,11 @@
   </form>
 {% endif %}
 
-{%- if results -%}
-  <h4>Search Results for: <i class="text-primary">"{{ query }}"</i></h4>
+{%- if query -%}
+<h5>Search Results for: <i class="text-primary">"{{ query }}"</i></h5>
+{%- endif -%}
 
+{%- if results -%}
   <table class="table table-striped">
     <thead class="thead-light">
       <tr>

@@ -433,7 +433,7 @@ def _search ():
 def _help ():
 
     if request.method == 'GET':
-        help = db.session.query(Parameter.param_name, Parameter.param_value).filter(Parameter.param_group==113).order_by(Parameter.id.desc()).all()
+        help = db.session.query(Parameter.param_name, Parameter.param_value).filter(Parameter.param_group==113).order_by(Parameter.id.asc()).all()
         return render_template("help.html", data = help)
 
 #################################################################
@@ -475,9 +475,9 @@ def _editbooking (id):
             form.tmp_end_t.default = e_time
 
             if is_day_allowed(request.form.get("start"), complex.complex_push_days):
-                form.approval_required.default = 1
+                form.approval_required.default = "0" # may change once the booking has been checked
             else:
-                form.approval_required.default = 0 # may change once the booking has been checked
+                form.approval_required.default = "1"
 
             form.complex.default = request.form.get("complex_select", 1)
             form.complex_text.default = complex.complex_name
@@ -489,14 +489,28 @@ def _editbooking (id):
         # VALID
         if form.validate_on_submit():
 
+            # We have made it to the process/checking section.  Data is valid so we determine if the booking
+            # needs to be approved or not.
             if request.form.get("checkbtn", False):
+                complex = Complex.query.filter(Complex.id==int(form.complex.data)).first() # Get complex object from query
+
+                print (form.tmp_date.data)
+                print (form.tmp_start_t.data)
+                print (form.tmp_end_t.data)
+
+                print (is_booking_custom(form.tmp_start_t.data, form.tmp_end_t.data, form.complex.data))
+                print (is_booking_core_ok(form.tmp_date.data, form.complex.data))
+
+                # if is_booking_core_ok(form.start_dt):
+
                 return redirect(url_for('gui_blueprint._index'))
 
             return redirect(url_for('gui_blueprint._bookings'))
 
 
-        # INVALID
+        # INVALID, so go back to edit page and get corrections by user.
         else:
+            print (form.approval_required.default)
             flash_errors(form)
             return render_template("editbooking.html", form=form)
 
@@ -518,6 +532,8 @@ def _pushdays ():
     # Show the booking calendar view
     if request.method == "GET":
 
+        search = request.args.get('search', None) # see if a search argument was given
+
         complexes = Complex.query.all() # get all complexes
         for cplx in complexes:
             a_cplx.append(cplx.complex_name)
@@ -527,7 +543,7 @@ def _pushdays ():
             print (a_cplx)
             a_cplx = []
 
-        return render_template("push.html", data=cplx_list)
+        return render_template("push.html", data=cplx_list, search=search)
 
 #################################################################
 # PARAMETERS #
@@ -544,7 +560,8 @@ def _parameters ():
             sel.param_groups.default = request.form["param_groups"]
             sel.process()
             session["group"] = sel.param_groups.default # save group into session variable for reference.
-            params = Parameter.query.filter(Parameter.param_group == sel.param_groups.default).paginate(1, app.config["PAGINATION_SIZE"], False) # get the currently chosen option from the select list and use to control which parameters are shown
+            # params = Parameter.query.filter(Parameter.param_group == sel.param_groups.default).paginate(1, app.config["PAGINATION_SIZE"], False) # get the currently chosen option from the select list and use to control which parameters are shown
+            params = Parameter.query.filter(Parameter.param_group == sel.param_groups.default).all()
         else:
             session["group"] = request.args.get('group', 0, type=int)
 
@@ -553,14 +570,17 @@ def _parameters ():
                 # set the session variable to the arg GROUP from the URL and then choose the params from that group id.
                 sel.param_groups.default = session["group"]
                 sel.process()
-                params = Parameter.query.filter(Parameter.param_group == Parameter.query.filter(Parameter.id == session["group"]).first().id).paginate(page, app.config["PAGINATION_SIZE"], False)
+                # params = Parameter.query.filter(Parameter.param_group == Parameter.query.filter(Parameter.id == session["group"]).first().id).paginate(page, app.config["PAGINATION_SIZE"], False)
+                params = Parameter.query.filter(Parameter.param_group == Parameter.query.filter(Parameter.id == session["group"]).first().id).all()
             else:
                 # Just get the first in the list as the chosen option, then get the params for that id.
                 session["group"] = Parameter.query.filter(Parameter.param_group==0).order_by(Parameter.param_name.asc()).first().id
-                params = Parameter.query.filter(Parameter.param_group == session["group"]).paginate(1, app.config["PAGINATION_SIZE"], False)
+                # params = Parameter.query.filter(Parameter.param_group == session["group"]).paginate(1, app.config["PAGINATION_SIZE"], False)
+                params = Parameter.query.filter(Parameter.param_group == session["group"]).all()
                 sel.param_groups.default = session["group"]
                 sel.process()
 
+        print (params)
         return render_template("parameters.html", data=params, sel=sel)
     else:
         return render_template("403.html", error = "You are not an administrator")
@@ -649,6 +669,7 @@ def _editprofile ():
 #################################################################
 # EMAIL #
 #########
+'''
 @gui_blueprint.route("/admin/email", methods=["POST","GET"])
 @login_required
 def _email ():
@@ -667,3 +688,4 @@ def _email ():
         # mail.send(msg)
         # print (msg.__dict__)
         return render_template("email.html", data = msg)
+'''
