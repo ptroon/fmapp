@@ -21,9 +21,13 @@
 {% endblock %}
 {% block content %}
 
+<h5 class="card-header text-white bg-secondary">Bookings</h5>
+
 <div class="container-fluid mt-3">
-  <h3>Bookings</h3>
-  <div id='calendar' class="calendar_fpa"></div>
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div id='calendar' class="calendar_fpa col-lg-9"></div>
+  </div>
 </div>
 
 <div class="modal fade" id="newBookingModal" role="dialog">
@@ -81,6 +85,7 @@
         </div>
         <div class="modal-body bg-light">
           <table>
+          <tr><td class="p-1 mx-1 font-weight-bold">Type</td><td><div id="bookingType"></div></td>
           <tr><td class="p-1 mx-1 font-weight-bold">Info</td><td><div id="bookingInfo"></div></td>
           <tr><td class="p-1 mx-1 font-weight-bold">Start</td><td><div id="bookingStart"></div></td>
           <tr><td class="p-1 mx-1 font-weight-bold">End</td><td><div id="bookingEnd"></div></td>

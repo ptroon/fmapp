@@ -12,6 +12,7 @@ import logging
 from datetime import datetime
 from file_read_backwards import FileReadBackwards
 from sqlalchemy.orm import aliased
+from sqlalchemy import or_
 
 from project.models import *
 from project import app, db, is_admin, mail, get_user
@@ -42,7 +43,7 @@ def _index ():
     if current_user.is_authenticated:
         bookings = Booking.query.filter(Booking.owner_id==get_user()).all()
         admin = Booking.query.all()
-        return render_template("dashboard.html", data1=bookings, data2=admin)
+        return render_template("dashboard.html", data1=admin, data2=bookings)
     else:
         return redirect(url_for('gui_blueprint._login'))
 
@@ -408,6 +409,7 @@ def _editdate (id):
 def _search ():
 
     a = aliased(DateOfInterest)
+    b = aliased(Booking)
 
     form = MainSearchForm()
     if request.method == 'POST':
@@ -416,9 +418,30 @@ def _search ():
         query = request.form.get('search_input', None)
 
         if query:
-            # get matches
-            results = db.session.query(a.id, a.doi_name, a.doi_comment, a.doi_start_dt, a.doi_end_dt).\
-            filter((a.doi_comment+' '+a.doi_name).ilike(('%{}%').format(query))).all()
+
+            ####################################################################
+            # DATES
+            conditions = []
+            for qry in query.split(" "):
+                conditions.append((a.doi_comment+' '+a.doi_name).ilike(('%{}%').format(qry)))
+
+            results1 = db.session.query(a.id, a.doi_name.label("name"), a.doi_comment.label("description"), \
+            a.doi_start_dt.label("start"), a.doi_end_dt.label("end")).\
+            filter(or_(*conditions)).all()
+
+            ####################################################################
+            # BOOKINGS
+            conditions = []
+            for qry in query.split(" "):
+                conditions.append((b.description+' '+b.title).ilike(('%{}%').format(qry)))
+
+            results2 = db.session.query(b.id, b.title.label("name"), b.description, \
+            b.start_dt.label("start"), b.end_dt.label("end")).\
+            filter(or_(*conditions)).all()
+
+            results = []
+            results.extend(results1)
+            results.extend(results2)
 
             return render_template("search.html", query=query, results=results, form=form)
         else:
@@ -449,7 +472,7 @@ def _bookings ():
         defdate = request.args.get("defdate", datetime.now())
         return render_template("calendar.html", form=form, defdate=defdate)
 
-
+# This is waaaayy too long!!
 @gui_blueprint.route("/editbooking/<id>", methods=["GET","POST"])
 def _editbooking (id):
 
@@ -457,9 +480,18 @@ def _editbooking (id):
     #    print(key, value)
 
     booking = Booking.query.filter_by(id=id).first()
-    form = BookingForm(obj=request.form)
+    form = BookingForm(obj=booking)
+
+    if request.method == "GET":
+        return render_template("editbooking.html", form=form)
 
     if request.method == "POST":
+
+        if request.form.get("deletebtn", False):
+            db.session.delete(booking)
+            db.session.commit()
+            flash("Booking deleted successfully", 'success')
+            return redirect(url_for('gui_blueprint._index'))
 
         # check from initial select form submitted as "Next"
         if request.form.get("nextbtn", False):
@@ -490,23 +522,38 @@ def _editbooking (id):
         if form.validate_on_submit():
 
             # We have made it to the process/checking section.  Data is valid so we determine if the booking
-            # needs to be approved or not.
+            # needs to be approved or not.  Bookings are always saved, but either as auto-approved or pending approval
             if request.form.get("checkbtn", False):
+                db.session.autoflush = False
                 complex = Complex.query.filter(Complex.id==int(form.complex.data)).first() # Get complex object from query
 
-                print (form.tmp_date.data)
-                print (form.tmp_start_t.data)
-                print (form.tmp_end_t.data)
+                if not booking: # this is a new record
+                    booking = Booking()
+                    db.session.add(booking)
 
-                print (is_booking_custom(form.tmp_start_t.data, form.tmp_end_t.data, form.complex.data))
-                print (is_booking_core_ok(form.tmp_date.data, form.complex.data))
+                form.populate_obj(booking)
+                booking.start_dt = datetime.strptime(form.start_dt.data, '%d-%m-%Y %H:%M')
+                booking.end_dt = datetime.strptime(form.end_dt.data, '%d-%m-%Y %H:%M')
+                booking.logged = datetime.now()
 
-                # if is_booking_core_ok(form.start_dt):
+                if is_booking_core_ok(form.tmp_date.data, form.complex.data) and \
+                not is_booking_custom(form.tmp_start_t.data, form.tmp_end_t.data, form.complex.data) and \
+                str(form.approval_required.data) != '1':
 
-                return redirect(url_for('gui_blueprint._index'))
+                    booking.approved_date = datetime.now()
+                    booking.approved_by = 'Automatic Approval'
+                    flash ('Booking was saved and automatically approved', 'success')
 
-            return redirect(url_for('gui_blueprint._bookings'))
+                else:
+                    # The booking will be saved, but pending approval
+                    del booking.approved_date
+                    del booking.approved_by
+                    flash ('Booking was saved but is pending approval by the Operations team', 'warning')
 
+                db.session.autoflush = True
+                db.session.commit()
+
+            return redirect(url_for('gui_blueprint._index'))
 
         # INVALID, so go back to edit page and get corrections by user.
         else:
@@ -515,11 +562,25 @@ def _editbooking (id):
             return render_template("editbooking.html", form=form)
 
 
-# Check the booking for business rules
-@gui_blueprint.route("/checkbooking/<id>", methods=["GET","POST"])
-def _checkbooking (id):
+# Toggle approved state for a booking
+@gui_blueprint.route("/approvebooking/<id>", methods=["GET"])
+@login_required
+def _approvebooking (id):
 
-    return redirect(url_for('gui_blueprint._bookings'))
+    if is_admin():
+        booking = Booking.query.filter_by(id=id).first()
+        if booking.approved_date:
+            booking.approved_date = None
+            booking.approved_by = None
+        else:
+            booking.approved_date = datetime.now()
+            booking.approved_by = get_user()
+        flash("Toggled approval date for booking <{}>".format(booking.title))
+        db.session.commit()
+    else:
+        flash ("Cannot toggle booking approval unless an administrator")
+
+    return redirect(url_for('gui_blueprint._index'))
 
 #################################################################
 # PUSH DAYS #

@@ -9,7 +9,7 @@
 
 {% if form %}
   <form action="{{ url_for('gui_blueprint._search') }}" method="POST">
-  <div class="d-flex flex-row bg-secondary">
+  <div class="d-flex flex-row bg-secondary pl-4">
     <div class="p-1 m-1">{{ form.search_input(size=100,maxlength=100,class_="p-1 m-1") }}</div>
     <div class="p-1 m-1">{{ form.search(class_="btn button_fpa btn-success") }}</div>
   </div>
@@ -43,7 +43,7 @@
 
 {%- else -%}
 
-<div class="alert-warning p-2 m-3">No results found or no search query given</div>
+<div class="alert-warning p-2 m-3">Enter text and click Search to continue.  No results found or no search query given</div>
 
 {%- endif -%}
 </div>

@@ -3,9 +3,11 @@
 }
 
 .calendar_fpa {
-  max-width: 1000px;
-  margin: 30px auto;
-  padding: 0 10px;
+  position: sticky;
+  left: 50px;
+  right: 300px;
+  top: 40px;
+  bottom: 100px;
 }
 
 .popper,

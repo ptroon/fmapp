@@ -2,7 +2,7 @@
 var calendar_options = {
   eventSources: [
   {
-    url: '/fpa/api/v1/calendar_doi',
+    url: '/fpa/api/v1/calendar',
     type: 'GET',
     error: function() {
       $('#script-warning').show();
@@ -10,12 +10,14 @@ var calendar_options = {
   }],
   plugins: [ 'dayGrid', 'timeGrid', 'interaction', 'timeGridDay' ],
   selectable: true,
-  aspectRatio: 1.35,
+  aspectRatio: 1.5,
+  height: 'auto',
   editable: false,
   navLinks: true,
   eventLimit: true,
   firstDay: 1,
   eventLimit: true,
+  eventLimitClick: 'week',
   header: {
     left: 'prev,next today dayGridWeek dayGridMonth',
     center: 'title',
@@ -88,7 +90,7 @@ function click_date(cal, info) {  // fired when clicking a calendar date
   } else {
       $("#lockedModalLabel").html(title);
       $("#lockedBookingModal").modal();
-      //cal.unselect();
+      cal.unselect();
       return;
   }
 
@@ -103,21 +105,22 @@ function show_booking_modal (cal, ds) {
   $("#newBookingModal").modal();
   $("#startDate").html(vdate);``
   $("#start").val(vdate);
-  //cal.unselect();
+  cal.unselect();
 }
 
 function event_click (cal, info) {
 
   var dateStart = moment(info.event.start).format("DD-MMM-YYYY HH:mm");
   var dateEnd   = moment(info.event.end).format("DD-MMM-YYYY HH:mm");
-  $("#bookingTitle").html(info.event.title + "  (Locked="+info.event.extendedProps.locked+")");
+  $("#bookingTitle").html(info.event.title);
   $("#bookingTitle").css({"background-color": info.el.style.backgroundColor});
   $("#bookingTitle").css({"color": info.el.style.color});
+  $("#bookingType").html(info.event.extendedProps.eventType);
   $("#bookingInfo").html(info.event.extendedProps.description);
   $("#bookingStart").html(dateStart);
   if (dateEnd == 'Invalid date') {dateEnd=''};
   $("#bookingEnd").html(dateEnd);
   $("#checkBookingModal").modal();
-  //cal.unselect();
+  cal.unselect();
 
 }

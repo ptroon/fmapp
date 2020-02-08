@@ -20,12 +20,13 @@ def model_as_dict(obj):
 class DateTime2(db.TypeDecorator):
     impl = db.DateTime
 
+    # prep for saving to database
     def process_bind_param(self, value, dialect):
         if type(value) is str:
             return datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
         return value
 
-
+    # prep for extraction from database into form fields
     def process_result_value(self, value, dialect):
         if type(value) is datetime:
             return datetime.strftime(value, '%Y-%m-%d %H:%M:%S')
@@ -327,5 +328,6 @@ class Booking(db.Model, UserMixin):
     logged = db.Column(DateTime2)
 
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         self.logged = datetime.now()
+        super(Booking, self).__init__()

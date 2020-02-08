@@ -7,6 +7,7 @@ import logging
 from collections import Counter
 from flask import flash
 from datetime import datetime, timedelta
+from sqlalchemy import func
 
 from project.models import *
 from project import app, db, is_admin
@@ -81,14 +82,33 @@ def is_booking_custom(start_t, end_t, complex_id):
 # q3 - checks this change not over total for diff complexes p/day
 def is_booking_core_ok(date_str, complex_id):
 
-    date_s = datetime.strptime(date_str, '%d/%m/%Y') # start date with 00:00:00
-    date_e = date_s + timedelta(minutes=1439) # end date with 23:59:00
+    with db.session.no_autoflush:
+        
+        # get core rules to check booking against
+        core = db.session.query(Parameter.param_name, Parameter.param_value).filter(Parameter.param_group==109).all()
 
-    # get a count of all bookings where booking start between date_s and date_e
-    q1 = db.session.query(Booking.id).filter(Booking.start_dt.between(date_s, date_e)).count()
+        date_s = datetime.strptime(date_str, '%d/%m/%Y') # start date with 00:00:00
+        date_e = date_s + timedelta(minutes=1439) # start date with 23:59:00
 
-    #q2 = db.session.query(Booking.id).filter(Booking.complex==complex_id).filter(Booking.start_dt)
-    return True
+        # get a count of all bookings where booking start between date_s and date_e
+        q1 = db.session.query(Booking.id).filter(Booking.start_dt.between(date_s, date_e)).count()
+
+        # get a count of all bookings where booking start between date_s and date_e for specific complex
+        q2 = db.session.query(Booking.id).filter(Booking.complex==complex_id).filter(Booking.start_dt.between(date_s, date_e)).count()
+
+        # get a count of all complexes in bookings for a date
+        q3 = db.session.query(func.count(Booking.complex)).group_by(Booking.complex).count()
+
+    # TOTAL_CHANGES_PER_DAY
+    # TOTAL_CHANGES_PER_COMPLEX_PER_DAY
+    # DIFFERENT_COMPLEXES_PER_DAY
+
+    c_dict = dict(core) # turn into a dict
+
+    if int(q1) < int(c_dict['TOTAL_CHANGES_PER_DAY']) and int(q2) < int(c_dict['TOTAL_CHANGES_PER_COMPLEX_PER_DAY']) and int(q3) < int(c_dict['DIFFERENT_COMPLEXES_PER_DAY']):
+        return True
+    else:
+        return False
 
 
 '''

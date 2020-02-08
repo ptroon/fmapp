@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Check Booking{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<h5 class="card-header text-white bg-secondary">Check Booking</h5>
+<h6 class="p-2 m-2">Results for the booking "{{ form.title.data }}"</h6>
+
+<div class="container-fluid mt-3">
+
+  {{ message }}
+
+</div>
+
+
+
+{% endblock %}

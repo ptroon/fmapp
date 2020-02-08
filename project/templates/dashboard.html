@@ -18,7 +18,7 @@
       <th scope="col">Start</th>
       <th scope="col">End</th>
       <th scope="col">Project</th>
-      <th scope="col">Cluster</th>
+      <th scope="col">Complex</th>
       <th scope="col">Approved</th>
       <th scope="col">Approved By</th>
       <th scope="col">Logged</th>
@@ -27,14 +27,14 @@
   <tbody>
     {%- for rec in data1 -%}
     <tr>
-      <td class="w-25">{{ rec[0] }}</td>
-      <td>{{ rec[1] }}</td>
-      <td>{{ rec[2] }}</td>
-      <td>{{ rec[3] }}</td>
-      <td>{{ rec[4] }}</td>
-      <td>{{ rec[5] }}</td>
-      <td>{{ rec[6] }}</td>
-      <td>{{ rec[7] }}</td>
+      <td class="w-25"><a href="{{ url_for('gui_blueprint._editbooking', id=rec.id) }}">{{ rec.title }}</a></td>
+      <td>{{ rec.start_dt }}</td>
+      <td>{{ rec.end_dt }}</td>
+      <td>{{ rec.project }}</td>
+      <td>{{ rec.complex }}</td>
+      <td><a href="{{ url_for('gui_blueprint._approvebooking', id=rec.id) }}">{{ rec.approved_date }}</td>
+      <td>{{ rec.approved_by }}</td>
+      <td>{{ rec.logged }}</td>
     </tr>
     {%- endfor -%}
   </tbody>

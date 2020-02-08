@@ -3,8 +3,10 @@ from flask_restplus import Api, Resource, reqparse
 from flask_login import login_required, login_user, logout_user, current_user
 from itsdangerous import JSONWebSignatureSerializer
 import json
+
 from sqlalchemy.orm import aliased
 from sqlalchemy.sql.expression import literal
+from sqlalchemy import not_, and_, or_
 
 from project.models import *
 from project import app, db, is_admin, mail, get_user
@@ -102,12 +104,13 @@ class _dates(Resource):
             return not_admin()
 
 
-@nsp.route("/calendar_doi")
+@nsp.route("/calendar")
 class _doi(Resource):
     def get(self):
 
             a = aliased(DateOfInterest)
             b = aliased(Parameter)
+            c = aliased(Booking)
 
             d1 = request.args.get("start", None)
             d2 = request.args.get("end", None)
@@ -120,9 +123,11 @@ class _doi(Resource):
                 d1 = datetime.strptime(d1.replace('+01:00','Z'), '%Y-%m-%dT%H:%M:%SZ')
                 d2 = datetime.strptime(d2.replace('+01:00','Z'), '%Y-%m-%dT%H:%M:%SZ')
 
-                # get query from database
+                #########################################################################
+                # get queries from database
                 # (start between d1 and d2) AND (end between d1 and d2) OR (start < d1 AND d2 < end)
 
+                # get dates/events
                 doi_ = db.session.query(a.doi_start_dt.label("start"), a.doi_end_dt.label("end"), \
                 a.doi_name.label("title"), a.doi_comment.label("description"), \
                 b.param_name.label("locked")).join(b, a.doi_locked==b.id).\
@@ -130,19 +135,44 @@ class _doi(Resource):
                 (a.doi_end_dt.between(d1, d2))) | \
                 ((a.doi_start_dt < d1) & (d2 < a.doi_end_dt)))
 
+                # get bookings
+                bookings_ = db.session.query(c.start_dt.label("start"), c.end_dt.label("end"), \
+                c.title.label("title"), c.description.label("description"), \
+                c.approved_date.label("approved")).\
+                filter(((c.start_dt.between(d1, d2)) | \
+                (c.end_dt.between(d1, d2))) | \
+                ((c.start_dt < d1) & (d2 < c.end_dt)))
+
+                #########################################################################
                 # subquery and then add columns and filter on locked = YES
                 subq_locked_ = doi_.subquery()
-                locked_ = db.session.query(subq_locked_, literal("Salmon").label("backgroundColor"), \
-                literal("black").label("textColor")).filter(subq_locked_.c.locked.ilike("YES")).all()
+                locked_ = db.session.query(subq_locked_, literal("Mistyrose").label("backgroundColor"), \
+                literal("Firebrick").label("textColor"), literal("Date Event").label("eventType")). \
+                filter(subq_locked_.c.locked.ilike("YES")).all()
 
                 # subquery and then add columns and filter on locked = NO
                 subq_notlocked_ = doi_.subquery()
                 notlocked_ = db.session.query(subq_notlocked_, literal("Lightblue").label("backgroundColor"), \
-                literal("black").label("textColor")).filter(subq_notlocked_.c.locked.ilike("NO")).all()
+                literal("Darkblue").label("textColor"), literal("Date Event").label("eventType")). \
+                filter(subq_notlocked_.c.locked.ilike("NO")).all()
 
-                # turn into a list of dicts and extend for extra queries
+                subq_booking_approved_ = bookings_.subquery()
+                booking_approved_ = db.session.query(subq_booking_approved_, literal("Lightgreen").label("backgroundColor"), \
+                literal("black").label("textColor"), literal("Booking Event (Approved)").label("eventType")). \
+                filter(subq_booking_approved_.c.approved.isnot(None)).all()
+
+                subq_booking_notapproved_ = bookings_.subquery()
+                booking_notapproved_ = db.session.query(subq_booking_notapproved_, literal("Lightgray").label("backgroundColor"), \
+                literal("black").label("textColor"), literal("Booking Event (Pending)").label("eventType")). \
+                filter(subq_booking_notapproved_.c.approved.is_(None)).all()
+
+                #########################################################################
+                # turn into a list of dicts and extend for the extra queries
                 result = list(map(lambda x: x._asdict(), locked_))
                 result.extend(list(map(lambda x: x._asdict(), notlocked_)))
+                result.extend(list(map(lambda x: x._asdict(), booking_approved_)))
+                result.extend(list(map(lambda x: x._asdict(), booking_notapproved_)))
+
 
             except Exception as ex:
                 return json_error("error " + str(ex) + " getting calendar events", 400)
