@@ -27,7 +27,7 @@
             bottom: 0;
             left: 0;
             width: 320px;
-            height: 360px;
+            height: 460px;
         }
         .align-center {
             text-align:center;
@@ -65,6 +65,9 @@
                 <div class="align-center">
                   <br/>
                   <a href="{{ url_for('gui_blueprint._register') }}">Register for access to {{ get_name() }}</a>
+                </div>
+                <div class="align-center">
+                  {{ motd.param_value }}
                 </div>
             </form>
         </div>

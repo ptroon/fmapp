@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Changes{% endblock %}
+{% block title %}Search{% endblock %}
 {% block head %}
     {{ super() }}
 {% endblock %}
@@ -17,7 +17,7 @@
 {% endif %}
 
 {%- if query -%}
-<h5>Search Results for: <i class="text-primary">"{{ query }}"</i></h5>
+<h5>Search Results for: <i class="text-primary">"{{ query | replace (' ', ' OR ') }}"</i></h5>
 {%- endif -%}
 
 {%- if results -%}

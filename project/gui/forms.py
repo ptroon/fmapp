@@ -12,7 +12,8 @@ from project.models import *
 PUSH_DAY_ERRORMSG = "Push Day must be 7 characters and use Y or N only"
 PASSWORD_ERRORMSG = "Password must contain at least one numeric, alpha, upper & special char and be > 7 chars"
 ENDDATE_ERRORMSG  = 'End Date must be greater than Start Date and not blank'
-CHANGE_SUBREF_ERRORMSG = 'Task must start TCR and contain 7 digits if main reference is an MCR'
+CHANGE_SUBREF_ERRORMSG_MISSING = 'Task must start TCR and contain 7 digits if main reference is an MCR'
+CHANGE_SUBREF_ERRORMSG_NNULL = 'Task must be null if the main reference is not an MCR'
 CHANGE_REF_ERRORMSG = 'Change reference must start with MCR, SCR or RCR and have 7 digits'
 ###############################################################################
 # OVERIDES #
@@ -114,7 +115,7 @@ class ParameterForm(FlaskForm):
     param_name = StringField('Name', validators=[InputRequired()])
     param_value = TextAreaField('Value', validators=[InputRequired()])
     param_group = NoValidateSelectfield('Group', coerce=int, default=0)
-    param_parent = StringField('Parent')
+    param_parent = NoValidateSelectfield('Parent', coerce=int, default=0)
     param_disabled = SelectField('Disabled', coerce=int, default=0)
     param_critical = SelectField('Critical', coerce=int, default=0)
     savebtn = SubmitField('Save')
@@ -127,8 +128,11 @@ class ParameterForm(FlaskForm):
         # Add the 'zero' option into the choices list
         select_option = self.param_group.choices
         self.param_group.choices = [('0', '-- Top Level Group --')] + select_option
-        self.param_parent.render_kw = {'disabled': True}
+        self.param_parent.render_kw = {'disabled': False}
         self.param_critical.choices = [(1, 'Yes'), (0, 'No')]
+        self.param_parent.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group != 0).order_by(Parameter.param_name)]
+        select_option = self.param_parent.choices
+        self.param_parent.choices = [('0', '-- No Parent --')] + select_option
 
 class ParameterSearchForm(FlaskForm):
     param_groups = SelectField('Groups', coerce=int)
@@ -244,7 +248,7 @@ class ComplexForm(FlaskForm):
         self.complex_country.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 1).order_by(Parameter.param_value.asc())] # Parameters for Countries
         self.complex_restricted.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_value.asc())] # Parameters for Restricted as Yes/No
         self.complex_environment.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 92).order_by(Parameter.param_value.asc())] # Parameters for Environments
-        self.complex_active.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 66).order_by(Parameter.param_value.asc())] # Parameters for Active state
+        self.complex_active.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 66).order_by(Parameter.param_value.asc())] # Parameters for Active state
         self.complex_push_start.render_kw = {'data-target': '#datetimepicker1', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose Start time'}
         self.complex_push_end.render_kw = {'data-target': '#datetimepicker2', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose End time'}
         self.complex_restrict_start.render_kw = {'data-target': '#datetimepicker3', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose Start date & time'}
@@ -253,6 +257,18 @@ class ComplexForm(FlaskForm):
     def validate_complex_restrict_end(form, field):
         if datetime.strptime(field.data, '%d/%m/%Y %H:%M') <= datetime.strptime(form.complex_restrict_start.data, '%d/%m/%Y %H:%M'):
             raise ValidationError(ENDDATE_ERRORMSG)
+
+
+class CommsOptionsSelectForm(FlaskForm):
+    date_picker = StringField('Date')
+    type_select = SelectField('Type')
+    btngo = SubmitField('Go')
+
+    def __init__(self, *args, **kwargs):
+        super(CommsOptionsSelectForm, self).__init__(*args, **kwargs)
+        self.type_select.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 116).order_by(Parameter.param_name)] # Comms Email Options
+        self.date_picker.render_kw = {'data-target': '#datetimepicker1', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Select Date to search'}
+
 
 class ComplexNameSelectForm(FlaskForm):
     complex_select = SelectField('Complex')
@@ -274,15 +290,14 @@ class BookingForm(FlaskForm):
     budget = StringField('Budget Code')
     project = StringField('Project Name', validators=[InputRequired()])
     description = TextAreaField('Description', validators=[InputRequired()])
-    owner_id = StringField('Owner', validators=[InputRequired()], render_kw={"title": "Enter Owner RACF"})
+    owner_id = StringField('Owner', validators=[InputRequired()], render_kw={"title": "Booking owner/implementer RACF", "readonly":"true"})
     complex = HiddenField('Complex')
-    complex_text = StringField('Complex', render_kw={'readonly':'true'})
     cluster = SelectField('Cluster', coerce=int)
     approval_required = StringField('Approval Required?', render_kw={"title": "APPROVAL REQUIRED FOR THIS CHANGE DUE TO NON-STANDARD DAY OF WEEK"})
     approved_date = StringField('Approved')
     approved_by = StringField('Approved By')
     change_ref = StringField('Change Ref', render_kw={"title": "Enter SCR/MCR ID"}, validators=[Regexp('^[MRS]CR[1-9]{7}$', message=CHANGE_REF_ERRORMSG)])
-    change_subref = StringField('Change Sub Ref', render_kw={"title": "Enter TCR# if main is MCR"})
+    change_subref = StringField('Task Ref', render_kw={"title": "Enter TCR # if main is MCR"})
     logged = HiddenField('logged')
     savebtn = SubmitField('Save')
     checkbtn = SubmitField('Check')
@@ -290,6 +305,7 @@ class BookingForm(FlaskForm):
     tmp_date = StringField('Booking Date', render_kw={'readonly':'true'})
     tmp_start_t = StringField('Start Time')
     tmp_end_t = StringField('End Time')
+    complex_text = StringField('Complex', render_kw={'readonly':'true'})
     tmp_hash = HiddenField('Hash Token')
 
     def __init__(self, *args, **kwargs):
@@ -302,4 +318,6 @@ class BookingForm(FlaskForm):
 
     def validate_change_subref(form, field):
         if form.change_ref.data.startswith('MCR',0) and not re.match('^[T]CR[1-9]{7}$', field.data):
-            raise ValidationError(CHANGE_SUBREF_ERRORMSG)
+            raise ValidationError(CHANGE_SUBREF_ERRORMSG_MISSING)
+        if re.match('^[RS]CR[1-9]{7}$', form.change_ref.data) and not re.match('^$', field.data):
+            raise ValidationError(CHANGE_SUBREF_ERRORMSG_NNULL)

@@ -41,8 +41,8 @@ def is_loggedin ():
 def _index ():
 
     if current_user.is_authenticated:
-        bookings = Booking.query.filter(Booking.owner_id==get_user()).all()
         admin = Booking.query.all()
+        bookings = Booking.query.filter(Booking.owner_id.ilike(get_user())).all()
         return render_template("dashboard.html", data1=admin, data2=bookings)
     else:
         return redirect(url_for('gui_blueprint._login'))
@@ -54,6 +54,8 @@ def _index ():
 def _login ():
 
     form = UserForm()
+    motd = Parameter.query.filter_by(id=124).first()
+
     if request.method=='POST':
 
         if request.form['login_id'] and request.form['password']:
@@ -61,7 +63,7 @@ def _login ():
             if not user:
                 app.logger.warning ("Log in error for " + request.form['login_id'] + ", no account found")
                 flash('No account found for ' + request.form['login_id'], 'warning')
-                return render_template("login.html", form=form)
+                return render_template("login.html", form=form, motd=motd)
             else:
                 role = Role.query.filter_by(id=user.role).first()
                 _role = re.search("LOGIN", role.role_app_sections)
@@ -77,14 +79,14 @@ def _login ():
                 return redirect(url_for('gui_blueprint._index'))
 
             flash('Error with login! id or password wrong or account currently locked', 'warning')
-            return render_template("login.html", form=form)
+            return render_template("login.html", form=form, motd=motd)
 
         else:
             flash('Login or password missing!', 'warning')
-            return render_template("login.html", form=form)
+            return render_template("login.html", form=form, motd=motd)
 
     else:
-        return render_template("login.html", form=form)
+        return render_template("login.html", form=form, motd=motd)
 
 #################################################################
 # LOGOUT #
@@ -483,6 +485,12 @@ def _editbooking (id):
     form = BookingForm(obj=booking)
 
     if request.method == "GET":
+        complex = Complex.query.filter(Complex.id==int(form.complex.data)).first() # Get complex object from query
+        form.tmp_date.data = datetime.strptime(form.start_dt.data.split()[0], '%Y-%m-%d').strftime('%d-%m-%Y')
+        form.tmp_start_t.data = form.start_dt.data.split()[1]
+        form.tmp_end_t.data = form.end_dt.data.split()[1]
+        form.complex_text.data = complex.complex_name
+        flash_errors(form)
         return render_template("editbooking.html", form=form)
 
     if request.method == "POST":
@@ -553,11 +561,15 @@ def _editbooking (id):
                 db.session.autoflush = True
                 db.session.commit()
 
+            # we are just saving the record
+            if request.form.get("savebtn", False):
+                form.populate_obj(booking)
+                db.session.commit()
+
             return redirect(url_for('gui_blueprint._index'))
 
         # INVALID, so go back to edit page and get corrections by user.
         else:
-            print (form.approval_required.default)
             flash_errors(form)
             return render_template("editbooking.html", form=form)
 
@@ -590,21 +602,46 @@ def _pushdays ():
 
     cplx_list = []
     a_cplx = []
-    # Show the booking calendar view
+
     if request.method == "GET":
 
         search = request.args.get('search', None) # see if a search argument was given
 
-        complexes = Complex.query.all() # get all complexes
+        complexes = Complex.query.filter(Complex.complex_active==1).all() # get all complexes that are ACTIVE
+
+        # put complexes into a list of lists, with inner list containing the specific complex details
+        # and the outer list containing a list of all complexes
         for cplx in complexes:
             a_cplx.append(cplx.complex_name)
             for day_ in cplx.complex_push_days:
                 a_cplx.append(day_)
             cplx_list.append(a_cplx)
-            print (a_cplx)
             a_cplx = []
 
         return render_template("push.html", data=cplx_list, search=search)
+
+#################################################################
+# COMMUNICATIONS #
+##################
+@gui_blueprint.route("/admin/comms", methods=["GET","POST"])
+@login_required
+def _comms ():
+
+    if is_admin():
+        form = CommsOptionsSelectForm()
+
+        if request.method == 'GET':
+            form.date_picker.data = datetime.now().strftime("%d/%m%Y")
+            return render_template("comms.html", form=form)
+
+        if request.method == 'POST':
+            type_ = request.form.get("type_select", 0)
+            emails = Parameter.query.filter(Parameter.param_name.like("OPERATIONS_EMAILS")).first()
+            content = Parameter.query.filter(Parameter.param_parent==type_).first()
+            return render_template("comms.html", form=form, emails=emails, content=content)
+
+    else:
+        return render_template("403.html", error = "You are not an administrator")
 
 #################################################################
 # PARAMETERS #

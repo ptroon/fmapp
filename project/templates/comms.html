@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Communications{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<h5 class="card-header text-white bg-secondary">Communications</h5>
+
+{% if form %}
+  <form action="{{ url_for('gui_blueprint._comms') }}" method="POST">
+  <div class="d-flex flex-row bg-light pl-1 h-30">
+    <div class="p-1 m-1 flex-column justify-content-center align-self-center text-dark font-weight-bold">Date:</div>
+    <div class="p-1 m-1 flex-column justify-content-center align-self-center date input-group w-25" id="datetimepicker1" data-target-input="nearest">{{ form.date_picker(size="15", class_="px-4 datetimepicker-input") }}</div>
+    <div class="p-1 m-1 flex-column justify-content-center align-self-center text-dark font-weight-bold">Type:</div>
+    <div class="p-1 m-1 flex-column">{{ form.type_select(class_="form-control") }}</div>
+    <div class="p-1 m-1 flex-column">{{ form.btngo(class_="btn button_fpa btn-success") }}</div>
+  </div>
+  </form>
+{% endif %}
+
+{% if emails %}
+<div class="d-flex flex-row bg-light pl-1 h-30">
+  <div class="m-2 p-2 flex-column justify-content-center align-self-center text-dark font-weight-bold">Email Recipients</div>
+  <div class="m-2 p-2 flex-column justify-content-center align-self-center text-dark">{{ emails.param_value }}</div>
+</div>
+{% endif %}
+
+
+{% if content %}
+<div class="d-flex flex-row bg-light pl-1 h-30">
+  <div class="m-2 p-2 flex-column justify-content-center align-self-center text-dark font-weight-bold">Email Content</div>
+  <div class="m-2 p-2 flex-column justify-content-center align-self-center text-dark">{{ content.param_value | safe }}</div>
+</div>
+{% endif %}
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+          icons: {
+            time: 'far fa-clock',
+            date: 'far fa-calendar',
+            up: 'fas fa-arrow-up',
+            down: 'fas fa-arrow-down',
+            previous: 'fas fa-chevron-left',
+            next: 'fas fa-chevron-right',
+            today: 'far fa-calendar-check-o',
+            clear: 'far fa-trash',
+            close: 'far fa-times'
+          },
+          locale: 'en-gb',
+          allowInputToggle: false,
+          showClose: true,
+          sideBySide: false,
+          ignoreReadonly: true,
+          format: 'L'
+      });
+    });
+</script>
+
+{% endblock %}

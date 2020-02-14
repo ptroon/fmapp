@@ -23,7 +23,10 @@ class DateTime2(db.TypeDecorator):
     # prep for saving to database
     def process_bind_param(self, value, dialect):
         if type(value) is str:
-            return datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
+            if len(value) > 0: # prevent null string error
+                return datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
+            else:
+                return None
         return value
 
     # prep for extraction from database into form fields

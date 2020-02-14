@@ -29,7 +29,11 @@
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1">{{ form.role_app_sections.label }}</td>
+            {% if form.role_admin.data == 1 %}
+            <td class="w-75 text-right mx-2 p-1">{{ form.role_app_sections(size=32, class_="form-control", readonly=True) }}</td>
+            {% else %}
             <td class="w-75 text-right mx-2 p-1">{{ form.role_app_sections(size=32, class_="form-control") }}</td>
+            {% endif %}
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1">{{ form.created_date.label }}</td>

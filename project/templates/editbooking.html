@@ -6,7 +6,7 @@
 {% block content %}
 
 
-    {% if form.id.data > 0 %}
+    {% if form.id.data|int > 0 %}
     <h5 class="card-header text-white bg-secondary">Booking: "{{ form.title.data }}"</h5>
     <form action="{{ url_for('gui_blueprint._editbooking', id=form.id.data) }}" method="POST" novalidate class="text-center">
     {% else %}
@@ -27,6 +27,10 @@
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.title.label  }}</td>
             <td class="w-75 text-left mx-2 p-1">{{ form.title(class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.owner_id.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.owner_id(class_="form-control"), form.owner_id.render_kw["title"]) }}</td>
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.ticket.label }}</td>
@@ -73,10 +77,6 @@
             <td class="w-75 text-left mx-2 p-1">{{ form.description(rows=5, class_="form-control") }}</td>
           </tr>
           <tr>
-            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.owner_id.label }}</td>
-            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.owner_id(class_="form-control"), form.owner_id.render_kw["title"]) }}</td>
-          </tr>
-          <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.complex_text.label }}</td>
             <td class="w-75 text-left mx-2 p-1">{{ form.complex_text(class_="form-control") }}</td>
           </tr>
@@ -98,13 +98,17 @@
             <td>&nbsp;</td>
             <td class="p-5">
 
-            {%- if form.id.data == 0 or (form.id.data > 0 and (form.owner_id == get_user() or is_admin())) -%}
+            {%- if form.id.data|int == 0 -%}
              {{ form.checkbtn(class_="btn btn-success button_fpa") }}
+            {% endif %}
+
+            {%- if form.id.data|int > 0 or (form.owner_id.data == get_user() or is_admin()) -%}
+             {{ form.savebtn(class_="btn btn-success button_fpa") }}
             {% endif %}
 
             <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._bookings') }}'">Cancel</button>
 
-            {% if form.id.data > 0 and (form.owner_id == get_user() or is_admin()) -%}
+            {% if form.id.data|int > 0 and ((form.owner_id == get_user()) or is_admin()) -%}
               {{ form.deletebtn(class_="btn btn-danger") }}
               &nbsp;<button type=button name="cancel" id="cancel" class="btn btn-danger button_fpa" data-toggle="modal" data-target="#messageModalCenter">Delete</button>
             {%- endif -%}
