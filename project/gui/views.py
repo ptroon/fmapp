@@ -113,6 +113,13 @@ def _register ():
         return render_template("register.html", form=form)
 
     if form.validate_on_submit():
+
+        user = User.query.filter(User.login_id.ilike(form.login_id.data)).first()
+        if user:
+            print (model_as_dict(user))
+            flash ('Error, account already exists for login "{}"'.format(user.login_id), 'warning')
+            return render_template("register.html", form=form)
+
         user = User(form.login_id.data, form.forename.data, form.surname.data, form.comment.data, form.password.data, form.email.data, form.role.data, form.vendor.data)
         db.session.add(user)
 
@@ -128,7 +135,7 @@ def _register ():
             user.created_date = datetime.now()
 
         db.session.commit()
-        flash ('User saved successfully', 'success')
+        flash ('User details registered successfully, please wait for a member of the team to contact you with your login details.', 'success')
         return redirect(url_for('gui_blueprint._index'))
 
     else:
@@ -241,12 +248,11 @@ def _edituser (id):
         if request.method == "GET":
             return render_template("edituser.html", data = user, form = form)
 
-        if request.method == "POST":
+        if form.validate_on_submit():
+
             if not form.password.data:
                 del form.password
 
-
-        if form.validate_on_submit():
             if form.savebtn.data:
                 if not user:
                     user = User(form.login_id.data, form.forename.data, form.surname.data, form.comment.data, form.password.data, form.email.data, form.role.data, form.vendor.data)
@@ -745,14 +751,14 @@ def _editprofile ():
     del form.role # user can't change this in their profile
     del form.last_login # they aren't logging in at this stage
 
-    # delete password if they haven't entered text to change it.
-    if request.method == "POST":
-        if not form.password.data:
-            del form.password
-
     # If we are POST'ing then we are making a change, so show message
     if form.validate_on_submit():
         if form.savebtn.data:
+
+            # delete password if they haven't entered text to change it.
+            if not form.password.data:
+                del form.password
+
             form.populate_obj(profile)
             profile.last_modified = datetime.now()
             profile.modified_by = session["login_id"]

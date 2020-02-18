@@ -11,6 +11,7 @@ from project.models import *
 
 PUSH_DAY_ERRORMSG = "Push Day must be 7 characters and use Y or N only"
 PASSWORD_ERRORMSG = "Password must contain at least one numeric, alpha, upper & special char and be > 7 chars"
+PASSWORD_SUFFIX_ERRORMSG = "Password must have an internal suffix, cannot be external"
 ENDDATE_ERRORMSG  = 'End Date must be greater than Start Date and not blank'
 CHANGE_SUBREF_ERRORMSG_MISSING = 'Task must start TCR and contain 7 digits if main reference is an MCR'
 CHANGE_SUBREF_ERRORMSG_NNULL = 'Task must be null if the main reference is not an MCR'
@@ -56,8 +57,8 @@ class UserForm(FlaskForm):
     forename = StringField('Forename', validators=[InputRequired()])
     surname = StringField('Surname', validators=[InputRequired()])
     comment = TextAreaField('Comment')
-    password = PasswordField('Password', validators=[Regexp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})", message=PASSWORD_ERRORMSG)])
-    email = StringField('Email', validators=[InputRequired(), Email()])
+    password = PasswordField('Password', validators=[Optional(), Regexp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})", message=PASSWORD_ERRORMSG)])
+    email = StringField('Email')
     role = NoValidateSelectfield('Role', coerce=int, validators=[InputRequired()])
     vendor = SelectField('Vendor', coerce=int, validators=[InputRequired()])
     created_date = HiddenField('Created')
@@ -73,6 +74,14 @@ class UserForm(FlaskForm):
         self.role.choices = [(a.id, a.role_name) for a in Role.query.order_by(Role.role_name)]
         self.vendor.choices = [(a.id, a.param_value) for a in Parameter.query.filter(Parameter.param_group == 63).order_by(Parameter.param_name)]
         self.comment.render_kw = {'style': 'resize:none;'}
+
+    def validate_email(form, field):
+        # get the email regexp validation parameter
+        rex = Parameter.query.filter(Parameter.id==125).first()
+
+        if rex:
+            if not re.search(rex.param_value, field.data): # check it matches or raise error
+                raise ValidationError(PASSWORD_SUFFIX_ERRORMSG)
 
 class RoleForm(FlaskForm):
     id = HiddenField('id', default=0)

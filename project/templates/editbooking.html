@@ -169,6 +169,14 @@
         $(document).ready(function () {
             $('.selectpicker').selectpicker();
         })
+
+        {% if not is_admin() and form.approved_date.data is not none %}
+        $(document).ready(function () {
+          $('#datetimepicker1').data("datetimepicker").disable();
+          $('#datetimepicker2').data("datetimepicker").disable();
+        });
+        {% endif %}
+
     </script>
 
 

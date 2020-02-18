@@ -103,7 +103,7 @@ function show_booking_modal (cal, ds) {
 
   var vdate = moment(ds).format("DD-MM-YYYY");
   $("#newBookingModal").modal();
-  $("#startDate").html(vdate);``
+  $("#startDate").html(vdate);
   $("#start").val(vdate);
   cal.unselect();
 }

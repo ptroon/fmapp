@@ -47,7 +47,7 @@
         <div class="form_bg">
             <form action="{{ url_for('gui_blueprint._login') }}" method="POST">
                 <div class="">
-                    <a class="navbar-brand" href="#"><h1><div class="badge badge-primary">FPA</div></h1>{{ get_version() }}</a>
+                    <a class="navbar-brand" href="#"><h1><div class="badge badge-primary">{{ get_name() }}</div></h1>{{ get_version() }}</a>
                 </div>
                 <div>
                   <input type="hidden" id="next" name="next" value="{{ next }}"/>
