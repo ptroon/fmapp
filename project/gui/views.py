@@ -69,7 +69,15 @@ def _login ():
                 _role = re.search("LOGIN", role.role_app_sections)
                 if user.is_correct_password(request.form['password']) and _role: # check hash OK and user can actually log in
                     session['login_id'] = request.form['login_id']
+
+                    # update the LAST_LOGIN field
+                    user.last_login = datetime.now()
+                    db.session.commit()
+
+                    # Log in user
                     login_user(user)
+
+                    # log this
                     app.logger.info ("Successfully logged in " + request.form['login_id'])
 
             if current_user.is_authenticated:
@@ -246,22 +254,19 @@ def _edituser (id):
         form = UserForm(obj=user)
 
         if request.method == "GET":
-            return render_template("edituser.html", data = user, form = form)
+            return render_template("edituser.html", data=user, form=form)
 
         if form.validate_on_submit():
-
-            if not form.password.data:
-                del form.password
 
             if form.savebtn.data:
                 if not user:
                     user = User(form.login_id.data, form.forename.data, form.surname.data, form.comment.data, form.password.data, form.email.data, form.role.data, form.vendor.data)
+                    user.last_login = None
                     db.session.add(user)
 
                 form.populate_obj(user)
                 user.last_modified = datetime.now()
                 user.modified_by = session["login_id"]
-                user.last_login = None
 
                 if not form.created_date.data:
                     user.created_date = datetime.now()
@@ -519,6 +524,7 @@ def _editbooking (id):
             form.tmp_date.default = request.form.get("start").replace("-","/")
             form.tmp_start_t.default = s_time
             form.tmp_end_t.default = e_time
+            form.owner_id.data = get_user()
 
             if is_day_allowed(request.form.get("start"), complex.complex_push_days):
                 form.approval_required.default = "0" # may change once the booking has been checked
@@ -550,18 +556,35 @@ def _editbooking (id):
                 booking.end_dt = datetime.strptime(form.end_dt.data, '%d-%m-%Y %H:%M')
                 booking.logged = datetime.now()
 
-                if is_booking_core_ok(form.tmp_date.data, form.complex.data) and \
-                not is_booking_custom(form.tmp_start_t.data, form.tmp_end_t.data, form.complex.data) and \
-                str(form.approval_required.data) != '1':
+                # Check the booking meets the rules set out in the system for auto approvals
+                # Does the booking meet the core rules?
+                flag_core = is_booking_core_ok(form.tmp_date.data, form.complex.data)
+
+                # Does this deviate from the standard day/time combination in the complex record?
+                flag_cust = is_booking_custom(form.tmp_start_t.data, form.tmp_end_t.data, form.complex.data)
+
+                # Does the booking have an approval flag already set?
+                flag_reqd = (str(form.approval_required.data) != '1')
+
+                if flag_core and not flag_cust and flag_reqd:
 
                     booking.approved_date = datetime.now()
                     booking.approved_by = 'Automatic Approval'
+                    booking.approval_reason = booking.approved_by
                     flash ('Booking was saved and automatically approved', 'success')
 
                 else:
                     # The booking will be saved, but pending approval
                     del booking.approved_date
                     del booking.approved_by
+
+                    booking.approval_reason = 'Booking pending'
+
+                    if not flag_core:
+                        booking.approval_reason += ', too many bookings per day/complex)'
+                    if flag_cust or not flag_reqd:
+                        booking.approval_reason += ', non-standard start/end times requested'
+
                     flash ('Booking was saved but is pending approval by the Operations team', 'warning')
 
                 db.session.autoflush = True
@@ -569,6 +592,13 @@ def _editbooking (id):
 
             # we are just saving the record
             if request.form.get("savebtn", False):
+
+                try:
+                    form.start_dt.data = datetime.strptime(form.tmp_date.data + " " + form.tmp_start_t.data, '%d-%m-%Y %H:%M')
+                    form.end_dt.data = datetime.strptime(form.tmp_date.data + " " + form.tmp_end_t.data, '%d-%m-%Y %H:%M')
+                except:
+                    pass
+
                 form.populate_obj(booking)
                 db.session.commit()
 
@@ -580,6 +610,9 @@ def _editbooking (id):
             return render_template("editbooking.html", form=form)
 
 
+#################################################################
+# APPROVE BOOKIMG #
+###################
 # Toggle approved state for a booking
 @gui_blueprint.route("/approvebooking/<id>", methods=["GET"])
 @login_required
@@ -590,9 +623,11 @@ def _approvebooking (id):
         if booking.approved_date:
             booking.approved_date = None
             booking.approved_by = None
+            booking.approval_reason = "Manually set to not approved by " + get_user()
         else:
             booking.approved_date = datetime.now()
             booking.approved_by = get_user()
+            booking.approval_reason = "Approved by " + get_user()
         flash("Toggled approval date for booking <{}>".format(booking.title))
         db.session.commit()
     else:

@@ -44,6 +44,16 @@ def is_admin():
         return True
     return False
 
+def test_null(var):
+    try:
+        if var is None:
+            return True;
+        if len(var)==0:
+            return True;
+        else:
+            return False
+    except:
+        return True
 
 #################################################################
 # SET-UP APP #
@@ -114,6 +124,7 @@ app.jinja_env.globals.update(get_user=get_user)
 app.jinja_env.globals.update(is_admin=is_admin)
 app.jinja_env.globals.update(unique_time=unique_time)
 app.jinja_env.globals.update(get_copyright=get_copyright)
+app.jinja_env.globals.update(test_null=test_null)
 
 login_manager.blueprint_login_views = { 'gui_blueprint' : '/fpa/login', 'api_blueprint' : '/fpa/login', }
 login_manager.needs_refresh_message = (u"Session timedout, please login again")

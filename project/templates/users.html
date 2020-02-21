@@ -17,6 +17,7 @@
         <th scope="col">Role</th>
         <th scope="col">Vendor</th>
         <th scope="col">Updated</th>
+        <th scope="col">Login</th>
       </tr>
     </thead>
     <tbody>
@@ -29,6 +30,7 @@
         <td>{{ rec[1].role_name }}</td>
         <td>{{ rec[2].param_value }}</td>
         <td>{{ rec[0].last_modified }}</td>
+        <td>{{ rec[0].last_login }}</td>        
       </tr>
       {% else %}
         <tr><td colspan=5 class="alert alert-primary"><strong>There are no user accounts to view </strong></td></tr>

@@ -74,15 +74,12 @@ class User(db.Model, UserMixin):
 
     @password.setter
     def password(self, plaintext_password):
-        self._password = bcrypt.generate_password_hash(plaintext_password)
+        if len(plaintext_password)>0 and plaintext_password is not None:
+            self._password = bcrypt.generate_password_hash(plaintext_password)
 
     @hybrid_method
     def is_correct_password(self, plaintext_password):
         return bcrypt.check_password_hash(self.password, plaintext_password)
-
-    @hybrid_property
-    def created_date_str(self):
-        return datetime.strftime(self.created_date, '%d-%m-%Y %H:%M')
 
 class Role(db.Model, UserMixin):
 
@@ -326,6 +323,7 @@ class Booking(db.Model, UserMixin):
     approval_required = db.Column(db.Integer)
     approved_date = db.Column(DateTime2)
     approved_by = db.Column(db.String(25))
+    approval_reason = db.Column(db.String(200))
     change_ref = db.Column(db.String(20))
     change_subref = db.Column(db.String(20))
     logged = db.Column(DateTime2)

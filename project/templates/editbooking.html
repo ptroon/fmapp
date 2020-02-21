@@ -102,7 +102,7 @@
              {{ form.checkbtn(class_="btn btn-success button_fpa") }}
             {% endif %}
 
-            {%- if form.id.data|int > 0 or (form.owner_id.data == get_user() or is_admin()) -%}
+            {%- if form.id.data|int > 0 and (form.owner_id.data == get_user() or is_admin()) -%}
              {{ form.savebtn(class_="btn btn-success button_fpa") }}
             {% endif %}
 
@@ -135,7 +135,7 @@
               },
               locale: 'en-gb',
               allowInputToggle: false,
-              stepping: 5,
+              stepping: 1,
               showClose: true,
               sideBySide: false,
               ignoreReadonly: true,
@@ -158,7 +158,7 @@
               },
               locale: 'en-gb',
               allowInputToggle: false,
-              stepping: 5,
+              stepping: 1,
               showClose: true,
               sideBySide: false,
               ignoreReadonly: true,
@@ -170,10 +170,12 @@
             $('.selectpicker').selectpicker();
         })
 
-        {% if not is_admin() and form.approved_date.data is not none %}
+        {% if not is_admin() and not test_null(form.approved_date.data) %}
         $(document).ready(function () {
           $('#datetimepicker1').data("datetimepicker").disable();
           $('#datetimepicker2').data("datetimepicker").disable();
+          $('#tmp_start_t').css('cursor', 'not-allowed');
+          $('#tmp_end_t').css('cursor', 'not-allowed');
         });
         {% endif %}
 

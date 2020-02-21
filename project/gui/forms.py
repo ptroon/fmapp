@@ -8,14 +8,17 @@ from datetime import datetime
 import re
 
 from project.models import *
+from project import get_user
 
 PUSH_DAY_ERRORMSG = "Push Day must be 7 characters and use Y or N only"
 PASSWORD_ERRORMSG = "Password must contain at least one numeric, alpha, upper & special char and be > 7 chars"
-PASSWORD_SUFFIX_ERRORMSG = "Password must have an internal suffix, cannot be external"
+PASSWORD_INITIAL_ERRORMSG = "Password must be provided on new user account creation"
+EMAIL_SUFFIX_ERRORMSG = "Email must have an internal suffix, cannot be external"
 ENDDATE_ERRORMSG  = 'End Date must be greater than Start Date and not blank'
 CHANGE_SUBREF_ERRORMSG_MISSING = 'Task must start TCR and contain 7 digits if main reference is an MCR'
 CHANGE_SUBREF_ERRORMSG_NNULL = 'Task must be null if the main reference is not an MCR'
 CHANGE_REF_ERRORMSG = 'Change reference must start with MCR, SCR or RCR and have 7 digits'
+DUPLICATE_USER_ERRORMSG = "User already exists, please use a different Login ID"
 ###############################################################################
 # OVERIDES #
 ############
@@ -57,7 +60,7 @@ class UserForm(FlaskForm):
     forename = StringField('Forename', validators=[InputRequired()])
     surname = StringField('Surname', validators=[InputRequired()])
     comment = TextAreaField('Comment')
-    password = PasswordField('Password', validators=[Optional(), Regexp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})", message=PASSWORD_ERRORMSG)])
+    password = PasswordField('Password')
     email = StringField('Email')
     role = NoValidateSelectfield('Role', coerce=int, validators=[InputRequired()])
     vendor = SelectField('Vendor', coerce=int, validators=[InputRequired()])
@@ -80,8 +83,27 @@ class UserForm(FlaskForm):
         rex = Parameter.query.filter(Parameter.id==125).first()
 
         if rex:
+            # check the suffix using a regex
             if not re.search(rex.param_value, field.data): # check it matches or raise error
-                raise ValidationError(PASSWORD_SUFFIX_ERRORMSG)
+                raise ValidationError(EMAIL_SUFFIX_ERRORMSG)
+
+    def validate_password(form, field):
+        # if a new account, then check password provided
+        if int(form.id.data) == 0:
+            if len(field.data)<=0 or field.data is None:
+                raise ValidationError(PASSWORD_INITIAL_ERRORMSG)
+
+        # check password is valid if supplied
+        if len(field.data)>0:
+            if not re.match ("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})", field.data):
+                raise ValidationError(PASSWORD_ERRORMSG)
+
+    def validate_login_id(form, field):
+        # check for a duplicate user account.
+        if int(form.id.data) == 0:
+            user = User.query.filter(User.login_id==field.data).first()
+            if user:
+                raise ValidationError(DUPLICATE_USER_ERRORMSG)
 
 class RoleForm(FlaskForm):
     id = HiddenField('id', default=0)
@@ -244,13 +266,13 @@ class ComplexForm(FlaskForm):
     complex_change_info = StringField('Change Info')
     complex_environment = SelectField('Environment', coerce=int)
     complex_updated = StringField('Updated', render_kw={'readonly':'true'})
-    complex_active = SelectField('Active', coerce=int)
+    complex_active = SelectField('Active', coerce=str)
     savebtn = SubmitField('Save')
     deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
 
     def __init__(self, *args, **kwargs):
         super(ComplexForm, self).__init__(*args, **kwargs)
-        self.complex_fw_type.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 89).order_by(Parameter.param_name)] # Parameters for Priorities
+        self.complex_fw_type.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 89).order_by(Parameter.param_name)] # Parameters for
         self.complex_manager.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 2).order_by(Parameter.param_name)] # Parameters for FW Managers
         self.complex_type.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 100).order_by(Parameter.param_name)] # Parameters for FW Types
         self.complex_area.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 1).order_by(Parameter.param_value.asc())] # Parameters for Locations
@@ -299,12 +321,13 @@ class BookingForm(FlaskForm):
     budget = StringField('Budget Code')
     project = StringField('Project Name', validators=[InputRequired()])
     description = TextAreaField('Description', validators=[InputRequired()])
-    owner_id = StringField('Owner', validators=[InputRequired()], render_kw={"title": "Booking owner/implementer RACF", "readonly":"true"})
+    owner_id = StringField('Owner', validators=[InputRequired()], render_kw={"title": "Booking owner/implementer RACF", "readonly":"false"})
     complex = HiddenField('Complex')
     cluster = SelectField('Cluster', coerce=int)
     approval_required = StringField('Approval Required?', render_kw={"title": "APPROVAL REQUIRED FOR THIS CHANGE DUE TO NON-STANDARD DAY OF WEEK"})
     approved_date = StringField('Approved')
     approved_by = StringField('Approved By')
+    approval_reason = StringField('Approval Reason')
     change_ref = StringField('Change Ref', render_kw={"title": "Enter SCR/MCR ID"}, validators=[Regexp('^[MRS]CR[1-9]{7}$', message=CHANGE_REF_ERRORMSG)])
     change_subref = StringField('Task Ref', render_kw={"title": "Enter TCR # if main is MCR"})
     logged = HiddenField('logged')
@@ -324,9 +347,14 @@ class BookingForm(FlaskForm):
         self.tmp_end_t.render_kw = {'data-target': '#datetimepicker2', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose end time'}
         self.complex.choices = [(a.id, a.complex_name) for a in Complex.query.order_by(Complex.complex_name)] # Complex Names
         self.cluster.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 97).order_by(Parameter.param_name)] # Cluster Names
+        self.owner_id.default = get_user()
 
     def validate_change_subref(form, field):
         if form.change_ref.data.startswith('MCR',0) and not re.match('^[T]CR[1-9]{7}$', field.data):
             raise ValidationError(CHANGE_SUBREF_ERRORMSG_MISSING)
         if re.match('^[RS]CR[1-9]{7}$', form.change_ref.data) and not re.match('^$', field.data):
             raise ValidationError(CHANGE_SUBREF_ERRORMSG_NNULL)
+
+    def validate_tmp_start_t(form, field):
+        if field.data > form.tmp_end_t.data:
+            raise ValidationError(ENDDATE_ERRORMSG)

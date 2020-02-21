@@ -19,7 +19,7 @@ var calendar_options = {
   eventLimit: true,
   eventLimitClick: 'week',
   header: {
-    left: 'prev,next today dayGridWeek dayGridMonth',
+    left: 'prev,next today dayGridMonth',
     center: 'title',
     right: 'prevYear,nextYear'
   },
@@ -35,13 +35,11 @@ var calendar_options = {
   eventClick: function(info) {
     event_click(this, info);
   },
-  eventRender: function(info) {
-    var tooltip = new Tooltip(info.el, {
-      title: info.event.extendedProps.description,
-      placement: 'top',
-      trigger: 'hover',
-      container: 'body'
-    });
+  eventRender: function (info) {
+    var v_title = info.event.title + "<br/>" + info.event.extendedProps.description + "<br/>Start: " +
+        moment.utc(info.event.start).format("DD-MM-YYYY HH:mm:ss") + "<br/>End: " +
+        moment.utc(info.event.end).format("DD-MM-YYYY HH:mm:ss");
+    $(info.el).tooltip({ title:v_title, html:true, animation:true });
   }
 }
 

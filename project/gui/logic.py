@@ -83,12 +83,12 @@ def is_booking_custom(start_t, end_t, complex_id):
 def is_booking_core_ok(date_str, complex_id):
 
     with db.session.no_autoflush:
-        
+
         # get core rules to check booking against
         core = db.session.query(Parameter.param_name, Parameter.param_value).filter(Parameter.param_group==109).all()
 
         date_s = datetime.strptime(date_str, '%d/%m/%Y') # start date with 00:00:00
-        date_e = date_s + timedelta(minutes=1439) # start date with 23:59:00
+        date_e = date_s + timedelta(minutes=1439) # end date with 23:59:00
 
         # get a count of all bookings where booking start between date_s and date_e
         q1 = db.session.query(Booking.id).filter(Booking.start_dt.between(date_s, date_e)).count()
