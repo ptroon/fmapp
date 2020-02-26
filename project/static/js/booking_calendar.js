@@ -36,10 +36,28 @@ var calendar_options = {
     event_click(this, info);
   },
   eventRender: function (info) {
-    var v_title = info.event.title + "<br/>" + info.event.extendedProps.description + "<br/>Start: " +
-        moment.utc(info.event.start).format("DD-MM-YYYY HH:mm:ss") + "<br/>End: " +
-        moment.utc(info.event.end).format("DD-MM-YYYY HH:mm:ss");
-    $(info.el).tooltip({ title:v_title, html:true, animation:true });
+    var v_br = "<br>";
+    var v_owner = "";
+    var v_complex = "";
+
+    if (is_not_undefined(info.event.extendedProps.owner)) {
+      v_owner = "Owner: " + info.event.extendedProps.owner + v_br;
+    }
+
+    if (is_not_undefined(info.event.extendedProps.complex)) {
+      v_complex = "Complex: " + info.event.extendedProps.complex + v_br;
+    }
+
+    var v_details =
+      v_owner + v_complex +
+      "Type: " +  info.event.extendedProps.eventType + v_br +
+      "Title: " + info.event.title + v_br +
+      "Info: " +  info.event.extendedProps.description + v_br +
+      "Start: " + moment.utc(info.event.start).format("DD-MM-YYYY HH:mm:ss") + v_br +
+      "End: " +   moment.utc(info.event.end).format("DD-MM-YYYY HH:mm:ss");
+
+    $(info.el).tooltip({ title:v_details, html:true, animation:true, template:ttip_template() });
+
   }
 }
 
@@ -115,10 +133,30 @@ function event_click (cal, info) {
   $("#bookingTitle").css({"color": info.el.style.color});
   $("#bookingType").html(info.event.extendedProps.eventType);
   $("#bookingInfo").html(info.event.extendedProps.description);
+  if (is_not_undefined(info.event.extendedProps.owner)) {
+    v_ar = info.event.extendedProps.owner;
+  } else {
+    v_ar = "N/A";
+  }
+  $("#bookingOwner").html(v_ar);
   $("#bookingStart").html(dateStart);
   if (dateEnd == 'Invalid date') {dateEnd=''};
   $("#bookingEnd").html(dateEnd);
   $("#checkBookingModal").modal();
   cal.unselect();
 
+}
+
+// used to override the Bootstrap tooltip template
+function ttip_template () {
+  return '<div class="tooltip" role="tooltip"><div class="arrow"></div><div class="tooltip-inner bg-white text-left custom_tt_template"></div></div>';
+}
+
+// determines if a string is undefined
+function is_not_undefined(strg) {
+  if (typeof strg == 'undefined') {
+    return false;
+  } else {
+    return true;
+  }
 }

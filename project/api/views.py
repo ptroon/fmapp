@@ -111,6 +111,7 @@ class _doi(Resource):
             a = aliased(DateOfInterest)
             b = aliased(Parameter)
             c = aliased(Booking)
+            d = aliased(Complex)
 
             d1 = request.args.get("start", None)
             d2 = request.args.get("end", None)
@@ -137,8 +138,9 @@ class _doi(Resource):
 
                 # get bookings
                 bookings_ = db.session.query(c.start_dt.label("start"), c.end_dt.label("end"), \
-                c.title.label("title"), c.description.label("description"), \
-                c.approved_date.label("approved")).\
+                c.title.label("title"), c.owner_id.label("owner"), c.description.label("description"), \
+                d.complex_name.label("complex"), c.approved_date.label("approved")).\
+                filter(c.complex == d.id). \
                 filter(((c.start_dt.between(d1, d2)) | \
                 (c.end_dt.between(d1, d2))) | \
                 ((c.start_dt < d1) & (d2 < c.end_dt)))

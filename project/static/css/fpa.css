@@ -9,3 +9,10 @@
   top: 40px;
   bottom: 100px;
 }
+
+.custom_tt_template {
+  border-color:black;
+  border-style:solid;
+  color:black;
+  max-width:400px
+}
