@@ -29,11 +29,11 @@
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.doi_comment.label }}</td>
-            <td class="w-75 text-left mx-2 p-1">{{ form.doi_comment(rows=10, cols=30, class_="form-control") }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ form.doi_comment(rows=5, cols=30, class_="form-control") }}</td>
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.doi_regions.label }}</td>
-            <td class="w-75 text-left mx-2 p-1">{{ form.doi_regions(rows=3, class_="selectpicker, form-control") }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ form.doi_regions(rows=3, class_="form-control") }}</td>
           </tr>
 
           <tr>
@@ -62,7 +62,6 @@
                             },
                             locale: 'en-gb',
                             allowInputToggle: false,
-                            minDate: moment(),
                             stepping: 15,
                             showClose: true,
                             sideBySide: true,
@@ -106,7 +105,6 @@
                               },
                               locale: 'en-gb',
                               allowInputToggle: false,
-                          		minDate: moment(),
                           		stepping: 15,
                               showClose: true,
                               sideBySide: true,
@@ -124,12 +122,17 @@
           </tr>
 
           <tr>
-            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.doi_locked.label }}</td>
-            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.doi_locked(rows=3, class_="selectpicker, form-control"), form.doi_locked.render_kw["title"]) }}</td>
+            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.doi_type.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.doi_type(rows=3, class_="form-control"), form.doi_type.render_kw["title"]) }}</td>
           </tr>
           <tr>
+            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.doi_filter.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ form.doi_filter(rows=3, class_="") }}</td>
+          </tr>
+
+          <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.doi_hap.label }}</td>
-            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.doi_hap(rows=3, class_="selectpicker, form-control"), form.doi_hap.render_kw["title"]) }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.doi_hap(rows=3, class_="form-control"), form.doi_hap.render_kw["title"]) }}</td>
           </tr>
 
           <tr>
@@ -144,12 +147,5 @@
           </tr>
         </table>
     </form>
-
-    <script>
-        $(document).ready(function () {
-            $('.selectpicker').selectpicker();
-        })
-    </script>
-
 
 {% endblock %}

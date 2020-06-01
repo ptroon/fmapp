@@ -4,6 +4,7 @@
 from flask_wtf import FlaskForm
 from wtforms import *
 from wtforms.validators import *
+from wtforms.widgets.html5 import *
 from datetime import datetime
 import re
 
@@ -19,6 +20,7 @@ CHANGE_SUBREF_ERRORMSG_MISSING = 'Task must start TCR and contain 7 digits if ma
 CHANGE_SUBREF_ERRORMSG_NNULL = 'Task must be null if the main reference is not an MCR'
 CHANGE_REF_ERRORMSG = 'Change reference must start with MCR, SCR or RCR and have 7 digits'
 DUPLICATE_USER_ERRORMSG = "User already exists, please use a different Login ID"
+MAX_SLOTS_ERRORMSG = "Number of slots is higher than allowed per change, less than or equal to"
 ###############################################################################
 # OVERIDES #
 ############
@@ -200,7 +202,8 @@ class DOIForm(FlaskForm):
     doi_start_dt = StringField('Start', validators=[InputRequired()])
     doi_end_dt = StringField('End', validators=[InputRequired()])
     doi_regions = SelectMultipleField2('Regions')
-    doi_locked = SelectField('Locked', coerce=int, render_kw={"title":"Is the date locked for ALL changes?"})
+    doi_type = SelectField('Event Type', coerce=int, render_kw={"title":"The type of event"})
+    doi_filter = SelectMultipleField2('Allowed Items')
     doi_hap = SelectField('HAP', coerce=int, render_kw={"title":"Is the date a HAP?"})
     savebtn = SubmitField('Save')
     deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
@@ -212,8 +215,10 @@ class DOIForm(FlaskForm):
         self.doi_start_dt.render_kw = {'data-target': '#datetimepicker1', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Choose start date & time'}
         self.doi_end_dt.render_kw = {'data-target': '#datetimepicker2', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Choose end date & time'}
         self.doi_regions.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 1).order_by(Parameter.param_value.asc())] # Parameters for Locations
+        self.doi_filter.choices = [(a.id, a.group_name) for a in ComplexGroup.query.order_by(ComplexGroup.group_name.asc())] # Parameters for Complex Groups
+        self.doi_filter.render_kw = {'data-live-search': 'true', 'class': 'selectpicker form-control', 'width': 'fit', 'data-container': 'body'}
         self.doi_regions.render_kw = {'multiple': 'true'}
-        self.doi_locked.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_name)] # Yes/No
+        self.doi_type.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 127).order_by(Parameter.param_name)] # Event Types
         self.doi_hap.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_name)] # Yes/No
 
     def validate_doi_end_dt(form, field):
@@ -266,7 +271,7 @@ class ComplexForm(FlaskForm):
     complex_change_info = StringField('Change Info')
     complex_environment = SelectField('Environment', coerce=int)
     complex_updated = StringField('Updated', render_kw={'readonly':'true'})
-    complex_active = SelectField('Active', coerce=str)
+    complex_active = SelectField('Active', coerce=int)
     savebtn = SubmitField('Save')
     deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
 
@@ -279,7 +284,7 @@ class ComplexForm(FlaskForm):
         self.complex_country.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 1).order_by(Parameter.param_value.asc())] # Parameters for Countries
         self.complex_restricted.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_value.asc())] # Parameters for Restricted as Yes/No
         self.complex_environment.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 92).order_by(Parameter.param_value.asc())] # Parameters for Environments
-        self.complex_active.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 66).order_by(Parameter.param_value.asc())] # Parameters for Active state
+        self.complex_active.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 66).order_by(Parameter.param_value.asc())] # Parameters for Active state
         self.complex_push_start.render_kw = {'data-target': '#datetimepicker1', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose Start time'}
         self.complex_push_end.render_kw = {'data-target': '#datetimepicker2', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose End time'}
         self.complex_restrict_start.render_kw = {'data-target': '#datetimepicker3', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose Start date & time'}
@@ -288,6 +293,33 @@ class ComplexForm(FlaskForm):
     def validate_complex_restrict_end(form, field):
         if datetime.strptime(field.data, '%d/%m/%Y %H:%M') <= datetime.strptime(form.complex_restrict_start.data, '%d/%m/%Y %H:%M'):
             raise ValidationError(ENDDATE_ERRORMSG)
+
+class ComplexGroupForm(FlaskForm):
+    id = HiddenField('id', default=0)
+    group_name = StringField('Name', validators=[InputRequired()])
+    max_slots = IntegerField('Max slots', widget=NumberInput(min=1, max=10), validators=[InputRequired()])
+    group_members = SelectMultipleField2('Complex Members')
+    group_created = StringField('Created')
+    bau_only = SelectField('BaU Only', coerce=int)
+    group_active = SelectField('Active', coerce=int)
+    savebtn = SubmitField('Save')
+    deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
+
+    def __init__(self, *args, **kwargs):
+        super(ComplexGroupForm, self).__init__(*args, **kwargs)
+        self.group_members.choices = [(a.id, a.complex_name) for a in Complex.query.order_by(Complex.complex_name.asc())] # Complexes
+        self.group_active.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 66).order_by(Parameter.param_value.asc())] # Parameters for Active state
+        self.bau_only.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_name)] # Yes/No
+        self.group_created.render_kw = {'readonly': 'true'}
+        self.group_members.render_kw = {'data-live-search': 'true'}
+
+    def validate_max_slots(form, field):
+        try:
+            max_s = Parameter.query.filter(Parameter.id == 126).first()
+        except:
+            max_s = 10
+        if int(field.data) > int(max_s.param_value):
+            raise ValidationError(MAX_SLOTS_ERRORMSG + " " + max_s.param_value)
 
 
 class CommsOptionsSelectForm(FlaskForm):
@@ -303,11 +335,17 @@ class CommsOptionsSelectForm(FlaskForm):
 
 class ComplexNameSelectForm(FlaskForm):
     complex_select = SelectField('Complex')
+    vendor_select = SelectField('Vendor')
     nextbtn = SubmitField('Next')
 
     def __init__(self, *args, **kwargs):
         super(ComplexNameSelectForm, self).__init__(*args, **kwargs)
         self.complex_select.choices = [(a.id, a.complex_name) for a in Complex.query.order_by(Complex.complex_name)] # Complex Names
+        self.vendor_select.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 100).order_by(Parameter.param_name)] # Complex Type
+        select_option = self.vendor_select.choices
+        self.vendor_select.choices = [('0', '-- All Vendors --')] + select_option
+        self.vendor_select.render_kw = {'onchange': 'change_vendor()'}
+        self.complex_select.render_kw = {'onchange': 'change_complex()'}
 
 
 class BookingForm(FlaskForm):

@@ -41,7 +41,8 @@ def is_loggedin ():
 def _index ():
 
     if current_user.is_authenticated:
-        admin = Booking.query.all()
+        # admin = Booking.query.all()
+        admin = db.session.query(Booking, Complex).filter(Booking.complex==Complex.id).all()
         bookings = Booking.query.filter(Booking.owner_id.ilike(get_user())).all()
         return render_template("dashboard.html", data1=admin, data2=bookings)
     else:
@@ -82,12 +83,12 @@ def _login ():
 
             if current_user.is_authenticated:
                 flash('You were successfully logged in', 'success')
-                if request.form["next"]:
+                if request.form.get("next", False):
                     return redirect(request.form["next"])
                 return redirect(url_for('gui_blueprint._index'))
 
             flash('Error with login! id or password wrong or account currently locked', 'warning')
-            return render_template("login.html", form=form, motd=motd)
+            return render_template("login.html", form=form, motd=motd), 401
 
         else:
             flash('Login or password missing!', 'warning')
@@ -199,6 +200,56 @@ def _editcomplex (id):
             flash_errors(form)
 
         return render_template("editcomplex.html", data=complex, form=form)
+
+    else:
+        return render_template("403.html", error = "You are not an administrator")
+
+
+#################################################################
+# COMPLEX GROUPS #
+##################
+
+@gui_blueprint.route("/admin/complexgroups")
+@login_required
+def _complexgroups ():
+    if is_admin():
+
+        a = aliased(Parameter)
+        b = aliased(Parameter)
+
+        c_groups = db.session.query(ComplexGroup, a, b).\
+        filter(ComplexGroup.bau_only==a.id).\
+        filter(ComplexGroup.group_active==b.id).all()
+        return render_template("complexgroups.html", data = c_groups)
+    else:
+        return render_template("403.html", error = "You are not an administrator")
+
+@gui_blueprint.route("/admin/editcomplexgroup/<id>", methods=["GET","POST"])
+@login_required
+def _editcomplexgroup (id):
+    if is_admin():
+
+        c_groups = ComplexGroup.query.filter_by(id=id).first()
+        form = ComplexGroupForm(obj=c_groups)
+
+        if request.method == "GET":
+            return render_template("editcomplexgroup.html", data=c_groups, form=form)
+
+        if form.validate_on_submit():
+            if not c_groups:
+                c_groups = ComplexGroup()
+                db.session.add(c_groups)
+
+            form.populate_obj(c_groups)
+            if not form.group_created.data:
+                c_groups.group_created = datetime.now()
+            db.session.commit()
+            flash ('Complex Group saved successfully', 'success')
+            return redirect(url_for('gui_blueprint._complexgroups'))
+        else:
+            flash_errors(form)
+
+        return render_template("editcomplexgroup.html", data=c_groups, form=form)
 
     else:
         return render_template("403.html", error = "You are not an administrator")
@@ -358,7 +409,7 @@ def _dates ():
 
         dates = db.session.query(d.id, d.doi_name, d.doi_regions, d.doi_start_dt, d.doi_end_dt, a.param_value, \
         b.param_name, c.param_name).join(a, d.doi_priority==a.id).\
-        join(b, d.doi_hap==b.id).join(c, d.doi_locked==c.id).order_by(d.doi_start_dt.asc()).all()
+        join(b, d.doi_hap==b.id).join(c, d.doi_type==c.id).order_by(d.doi_start_dt.asc()).all()
 
         return render_template("dates.html", data=dates)
     else:
@@ -394,7 +445,7 @@ def _editdate (id):
             if form.savebtn.data:
                 if not doi:
                     doi = DateOfInterest(form.doi_name.data, form.doi_priority.data, form.doi_comment.data, \
-                    start_dt, end_dt, form.doi_regions, form.doi_locked, form.doi_hap)
+                    start_dt, end_dt, form.doi_regions, form.doi_type, form.doi_hap)
                     db.session.add(doi)
 
                 form.populate_obj(doi)
@@ -446,7 +497,11 @@ def _search ():
             # BOOKINGS
             conditions = []
             for qry in query.split(" "):
-                conditions.append((b.description+' '+b.title).ilike(('%{}%').format(qry)))
+                conditions.append((b.description).ilike(('%{}%').format(qry)))
+                conditions.append((b.title).ilike(('%{}%').format(qry)))
+                conditions.append((b.change_ref).ilike(('%{}%').format(qry)))
+                conditions.append((b.change_subref).ilike(('%{}%').format(qry)))
+                conditions.append((b.stakeholder_id).ilike(('%{}%').format(qry)))
 
             results2 = db.session.query(b.id, b.title.label("name"), b.description, \
             b.start_dt.label("start"), b.end_dt.label("end")).\
@@ -719,7 +774,6 @@ def _parameters ():
                 sel.param_groups.default = session["group"]
                 sel.process()
 
-        print (params)
         return render_template("parameters.html", data=params, sel=sel)
     else:
         return render_template("403.html", error = "You are not an administrator")

@@ -27,14 +27,14 @@
   <tbody>
     {%- for rec in data1 -%}
     <tr>
-      <td class="w-25"><a href="{{ url_for('gui_blueprint._editbooking', id=rec.id) }}">{{ rec.title }}</a></td>
-      <td>{{ rec.start_dt }}</td>
-      <td>{{ rec.end_dt }}</td>
-      <td>{{ rec.project }}</td>
-      <td>{{ rec.complex }}</td>
-      <td><a data-toggle="tooltip" data-placement="top" title="{{ rec.approval_reason }}" href="{{ url_for('gui_blueprint._approvebooking', id=rec.id) }}">{{ rec.approved_date }}</a></td>
-      <td>{{ rec.approved_by }}</td>
-      <td>{{ rec.logged }}</td>
+      <td class="w-25"><a href="{{ url_for('gui_blueprint._editbooking', id=rec[0].id) }}">{{ rec[0].title }}</a></td>
+      <td>{{ rec[0].start_dt }}</td>
+      <td>{{ rec[0].end_dt }}</td>
+      <td>{{ rec[0].project }}</td>
+      <td>{{ rec[1].complex_name }}</td>
+      <td><a data-toggle="tooltip" data-placement="top" title="{{ rec.approval_reason }}" href="{{ url_for('gui_blueprint._approvebooking', id=rec[0].id) }}">{{ rec[0].approved_date }}</a></td>
+      <td>{{ rec[0].approved_by }}</td>
+      <td>{{ rec[0].logged }}</td>
     </tr>
     {%- endfor -%}
   </tbody>

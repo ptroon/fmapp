@@ -16,8 +16,7 @@ var calendar_options = {
   navLinks: true,
   eventLimit: true,
   firstDay: 1,
-  eventLimit: true,
-  eventLimitClick: 'week',
+  eventLimitClick: 'popover',
   header: {
     left: 'prev,next today dayGridMonth',
     center: 'title',
@@ -53,11 +52,12 @@ var calendar_options = {
       "Type: " +  info.event.extendedProps.eventType + v_br +
       "Title: " + info.event.title + v_br +
       "Info: " +  info.event.extendedProps.description + v_br +
-      "Start: " + moment.utc(info.event.start).format("DD-MM-YYYY HH:mm:ss") + v_br +
-      "End: " +   moment.utc(info.event.end).format("DD-MM-YYYY HH:mm:ss");
+      "Start: " + moment.parseZone(info.event.start).format("DD-MM-YYYY HH:mm:ss") + v_br +
+      "End: " +   moment.parseZone(info.event.end).format("DD-MM-YYYY HH:mm:ss");
 
     $(info.el).tooltip({ title:v_details, html:true, animation:true, template:ttip_template() });
 
+    info.el.style = info.event.extendedProps.style;
   }
 }
 

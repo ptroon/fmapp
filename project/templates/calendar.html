@@ -16,6 +16,40 @@
     calendar.render();
 
   });
+
+  function change_vendor() {
+    var x = document.getElementById("vendor_select").value;
+    var e = document.getElementById("vendor_select");
+      if(x){
+        $.ajax({
+            type:'GET',
+            url:'/fpa/api/v1/complexes/' + x,
+            dataType:'json',
+            success:function(retData){
+                $('#complex_select').empty().val('0');
+                retData.forEach(function(element) {
+                  $('#complex_select').append('<option value="'+ element.id +'">'+ element.complex_name +'</option>');
+                });
+                $('#complex_select').change();
+            },
+            error: function(req, status, error) {
+             alert( req.responseText );
+            }
+        });
+    }
+  }
+
+  function change_complex() {
+
+    console.log($('#complex_select').val());
+    if ($('#complex_select').val()) {
+      $('#nextbtn').prop("disabled", false);
+    }
+    else {
+      $('#nextbtn').prop("disabled", true);
+    }
+  }
+
 </script>
 
 {% endblock %}
@@ -30,7 +64,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="newBookingModal" role="dialog">
+<div class="modal fade bd-example-modal-lg" id="newBookingModal" role="dialog" data-focus="true">
     <div class="modal-dialog modal-dialog-centered">
       <!-- Modal content-->
       <div class="modal-content">
@@ -43,7 +77,10 @@
         <div id="modal-body">
           <form action="{{ url_for('gui_blueprint._editbooking', id=0) }}" method="POST">
           <div class="modal-body">
-            Choose a zone: {{ form.complex_select(class_="form-control") }}
+            <div>Choose a Vendor/Complex:</div>
+            <div>{{ form.vendor_select(class_="form-control") }}</div>
+            <div>&nbsp;</div>
+            <div>{{ form.complex_select(class_="form-control") }}</div>
             <input type="hidden" id="start" name="start"/>
           </div>
           <div class="modal-footer">

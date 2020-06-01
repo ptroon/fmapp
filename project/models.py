@@ -229,10 +229,15 @@ class DateOfInterest(db.Model, UserMixin):
     doi_start_dt = db.Column(DateTime2, nullable=False)
     doi_end_dt = db.Column(DateTime2, nullable=False)
     doi_regions = db.Column(db.String(100))
-    doi_locked = db.Column(db.Integer, default=0)
+    doi_type = db.Column(db.Integer)
+    doi_filter = db.Column(db.String(2000))
     doi_hap = db.Column(db.Integer, default=0)
 
-    def __init__(self, doi_name, doi_priority, doi_comment, doi_start_dt, doi_end_dt, doi_regions, doi_locked, doi_hap):
+    def __init__(self, *args, **kwargs):
+        super(DateOfInterest, self).__init__()
+
+'''
+    def __init__(self, doi_name, doi_priority, doi_comment, doi_start_dt, doi_end_dt, doi_regions, doi_locked, doi_filter, doi_hap):
         self.doi_name = doi_name
         self.doi_priority = doi_priority
         self.doi_comment = doi_comment
@@ -240,16 +245,8 @@ class DateOfInterest(db.Model, UserMixin):
         self.doi_end_dt = doi_end_dt
         self.doi_regions = doi_regions
         self.doi_locked = doi_locked
+        self.doi_filter = doi_filter
         self.doi_hap = doi_hap
-
-'''
-    @hybrid_property
-    def doi_regions_ms(self):
-        return self.doi_regions.split(',') # provides a list
-
-    @doi_regions_ms.setter
-    def doi_regions_ms(self, _doi_regions):
-        self.doi_regions = ','.join(_doi_regions) # creates a comma delimited string
 '''
 
 class Complex(db.Model, UserMixin):
@@ -301,6 +298,23 @@ class Complex(db.Model, UserMixin):
     complex_environment = db.Column(db.Integer, db.ForeignKey("parameters.id"))
     complex_updated = db.Column(DateTime2, default=datetime.now())
     complex_active = db.Column(db.Integer, db.ForeignKey("parameters.id"), default=1)
+
+
+class ComplexGroup(db.Model, UserMixin):
+
+    __tablename__ = "complexgroups"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    group_name = db.Column(db.String(100), nullable=False)
+    max_slots = db.Column(db.Integer, default=1)
+    group_members = db.Column(db.String(2000), nullable=False)
+    group_created = db.Column(DateTime2, nullable=False, default=datetime.now())
+    bau_only = db.Column(db.Integer, default=1)
+    group_active = db.Column(db.Integer, db.ForeignKey("parameters.id"), default=1)
+
+    def __init__(self, *args, **kwargs):
+        self.group_created = datetime.now()
+        super(ComplexGroup, self).__init__()
 
 
 class Booking(db.Model, UserMixin):

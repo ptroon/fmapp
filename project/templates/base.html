@@ -25,12 +25,14 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{{ url_for('static', filename='js/jquery-3.2.1.slim.min.js')}}"></script>
+    <!--script src="{{ url_for('static', filename='js/jquery-3.2.1.slim.min.js')}}"></script-->
+    <script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js')}}"></script>
     <script src="{{ url_for('static', filename='js/moment-with-locales.min.js')}}{{ unique_time() }}"></script>
     <script src="{{ url_for('static', filename='js/popper.min.js')}}"></script>
     <script src="{{ url_for('static', filename='js/tooltip.min.js')}}"></script>
+    <!--script src="{{ url_for('static', filename='js/bootstrap-dropdown.js')}}"></script-->
     <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap-select.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-select.min.js')}}{{ unique_time() }}"></script>
 
     <script src="{{ url_for('static', filename='js/tempusdominus-bootstrap-4.js')}}"></script>
     <script src="{{ url_for('static', filename='fontawesome5/js/all.js')}}"></script>
@@ -74,12 +76,14 @@
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._users') }}">Users</a>
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._roles') }}">Roles</a>
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._dates') }}">Dates</a>
+              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._complexes') }}">Complexes</a>
+              <a class="dropdown-item" href="{{ url_for('gui_blueprint._complexgroups') }}">Complex Groups</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._parameters') }}">Parameters</a>
               <a class="dropdown-item" href="{{ url_for('gui_blueprint._logs', counter=10) }}">System Logs</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ url_for('gui_blueprint._comms') }}">Communications</a>              
+              <a class="dropdown-item" href="{{ url_for('gui_blueprint._comms') }}">Communications</a>
             </div>
           </li>
           {% endif %}

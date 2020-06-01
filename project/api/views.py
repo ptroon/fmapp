@@ -13,6 +13,7 @@ from project import app, db, is_admin, mail, get_user
 from project.gui.forms import *
 from project.gui.logic import *
 
+
 api_blueprint = Blueprint('api_blueprint', __name__, url_prefix="/fpa/api")
 api = Api(api_blueprint, version = "1.0", \
       title = "Firewall Booking API",
@@ -131,7 +132,9 @@ class _doi(Resource):
                 # get dates/events
                 doi_ = db.session.query(a.doi_start_dt.label("start"), a.doi_end_dt.label("end"), \
                 a.doi_name.label("title"), a.doi_comment.label("description"), \
-                b.param_name.label("locked")).join(b, a.doi_locked==b.id).\
+                b.param_name.label("type"), b.param_value.label("style"),
+                literal("Date Event").label("eventType")).\
+                join(b, a.doi_type==b.id).\
                 filter(((a.doi_start_dt.between(d1, d2)) | \
                 (a.doi_end_dt.between(d1, d2))) | \
                 ((a.doi_start_dt < d1) & (d2 < a.doi_end_dt)))
@@ -148,15 +151,15 @@ class _doi(Resource):
                 #########################################################################
                 # subquery and then add columns and filter on locked = YES
                 subq_locked_ = doi_.subquery()
-                locked_ = db.session.query(subq_locked_, literal("Mistyrose").label("backgroundColor"), \
-                literal("Firebrick").label("textColor"), literal("Date Event").label("eventType")). \
-                filter(subq_locked_.c.locked.ilike("YES")).all()
+                locked_ = db.session.query(subq_locked_).all()
 
                 # subquery and then add columns and filter on locked = NO
+                '''
                 subq_notlocked_ = doi_.subquery()
                 notlocked_ = db.session.query(subq_notlocked_, literal("Lightblue").label("backgroundColor"), \
                 literal("Darkblue").label("textColor"), literal("Date Event").label("eventType")). \
-                filter(subq_notlocked_.c.locked.ilike("NO")).all()
+                filter(subq_notlocked_.c.type.ilike("NO")).all()
+                '''
 
                 subq_booking_approved_ = bookings_.subquery()
                 booking_approved_ = db.session.query(subq_booking_approved_, literal("Lightgreen").label("backgroundColor"), \
@@ -171,7 +174,7 @@ class _doi(Resource):
                 #########################################################################
                 # turn into a list of dicts and extend for the extra queries
                 result = list(map(lambda x: x._asdict(), locked_))
-                result.extend(list(map(lambda x: x._asdict(), notlocked_)))
+                #result.extend(list(map(lambda x: x._asdict(), notlocked_)))
                 result.extend(list(map(lambda x: x._asdict(), booking_approved_)))
                 result.extend(list(map(lambda x: x._asdict(), booking_notapproved_)))
 
@@ -184,9 +187,10 @@ class _doi(Resource):
 #################################################################
 # COMPLEXES #
 #############
-@nsp.route("/complexes")
+@nsp.route("/complexes", defaults={'complex_type': '0'})
+@nsp.route("/complexes/<int:complex_type>")
 class _complexes(Resource):
-    def get(self):
+    def get(self, complex_type):
         if is_admin():
 
             # get query from database
@@ -195,12 +199,24 @@ class _complexes(Resource):
             c = aliased(Parameter)
             d = aliased(Parameter)
 
-            complexes_ = db.session.query(Complex.id, Complex.complex_name, Complex.complex_push_days, \
-            Complex.complex_push_start, Complex.complex_push_end, a.param_value.label("complex_manager"), \
-            b.param_value.label("complex_type"), \
-            c.param_value.label("complex_country"), d.param_name.label("complex_active")).\
-            join(a,Complex.complex_manager==a.id).join(b,Complex.complex_type==b.id).\
-            join(c,Complex.complex_country==c.id).join(d,Complex.complex_active==d.id).all()
+            if complex_type > 0: # return the specific list of complexes
+
+                complexes_ = db.session.query(Complex.id, Complex.complex_name, Complex.complex_push_days, \
+                Complex.complex_push_start, Complex.complex_push_end, a.param_value.label("complex_manager"), \
+                b.param_value.label("vendor"), b.id.label("complex_type"), \
+                c.param_value.label("complex_country"), d.param_name.label("complex_active")).\
+                filter(b.id == complex_type). \
+                join(a,Complex.complex_manager==a.id).join(b,Complex.complex_type==b.id).\
+                join(c,Complex.complex_country==c.id).join(d,Complex.complex_active==d.id).all()
+
+            else: # return all complexes as zero is the flag for everything
+
+                complexes_ = db.session.query(Complex.id, Complex.complex_name, Complex.complex_push_days, \
+                Complex.complex_push_start, Complex.complex_push_end, a.param_value.label("complex_manager"), \
+                b.param_value.label("vendor"), b.id.label("complex_type"), \
+                c.param_value.label("complex_country"), d.param_name.label("complex_active")).\
+                join(a,Complex.complex_manager==a.id).join(b,Complex.complex_type==b.id).\
+                join(c,Complex.complex_country==c.id).join(d,Complex.complex_active==d.id).all()
 
             result = list(map(lambda x: x._asdict(), complexes_))
 
@@ -209,13 +225,22 @@ class _complexes(Resource):
         else:
             return not_admin()
 
-'''
-@nsp.route("/bookings")
-class _bookings(Resource):
-    def get(self):
-        month_name = request.args.get('month', '')
-        booking = Booking.query().all()
-'''
+
+#################################################################
+# PARAMETERS #
+@nsp.route("/parameters", defaults={'p_group': '0'})
+@nsp.route("/parameters/<int:p_group>")
+class _parameters(Resource):
+    def get(self, p_group):
+        if is_admin():
+
+            parameters_ = db.session.query(Parameter.id, Parameter.param_name, Parameter.param_value).filter(Parameter.param_group == p_group).all()
+            result = list(map(lambda x: x._asdict(), parameters_))
+            return result
+
+        else:
+            return not_admin()
+
 
 #
 # AUTHENTICATION

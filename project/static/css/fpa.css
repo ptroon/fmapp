@@ -16,3 +16,27 @@
   color:black;
   max-width:400px
 }
+
+.fc-event {
+    cursor: pointer;
+}
+
+.hap_event {
+  background-color: #48D1CC;
+  color: #000000;
+}
+
+.info_event {
+  background-color: #ADD8E6;
+  color: #000000;
+}
+
+.locked_event {
+  background-color: #FFE4E1;
+  color: #FF0000;
+}
+
+.bau_event {
+    background-color: #FFDAB9;
+    color: #000000;
+}

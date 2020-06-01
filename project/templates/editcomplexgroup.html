@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Edit Complex Group{{ title }}{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+
+    {% if data %}
+    <h5 class="card-header text-white bg-secondary">Complex Group: #{{ data.id }} : "{{ data.group_name }}"</h5>
+    <form action="{{ url_for('gui_blueprint._editcomplexgroup', id=data.id) }}" method="POST" novalidate class="text-center">
+    {% else %}
+    <h5 class="card-header text-white bg-secondary">New Date</h5>
+    <form action="{{ url_for('gui_blueprint._editcomplexgroup', id=0) }}" method="POST" novalidate class="text-center">
+    {% endif %}
+
+        <table class="form-group w-75 align-text-top">
+          <tr>
+            <td>{{ form.hidden_tag() }}</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.group_name.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ form.group_name(class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="w-25 text-right mx-2 p-1 align-text-center">{{ form.max_slots.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ form.max_slots(class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.group_members.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ form.group_members(rows=5, cols=30, class_="selectpicker form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.group_created.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ form.group_created(class_="form-control") }}</td>
+          </tr>
+          <tr>
+            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.bau_only.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.bau_only(class_="form-control"), form.bau_only.render_kw["title"]) }}</td>
+          </tr>
+          <tr>
+            <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.group_active.label }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ form.group_active(class_="form-control") }}</td>
+          </tr>
+
+
+          <tr>
+            <td>&nbsp;</td>
+            <td class="p-5">
+             {{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._complexgroups') }}'">Cancel</button>
+             {% if data %}
+              {{ form.deletebtn(class_="btn btn-danger") }}
+              &nbsp;<button type=button name="delete" id="delete" class="btn btn-danger button_fpa" data-toggle="modal" data-target="#messageModalCenter">Delete</button>
+              {% endif %}
+            </td>
+          </tr>
+        </table>
+    </form>
+
+{% endblock %}

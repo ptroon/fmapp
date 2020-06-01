@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Complex Groups{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid mt-3">
+  <h3>Complex Groups&nbsp;&nbsp;&nbsp;<button type="button" onclick=location.href='{{ url_for('gui_blueprint._editcomplexgroup', id=0) }}' class="btn btn-success">Add</button></h3>
+
+  <table class="table table-striped" id="t_complexes">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Group Name</th>
+        <th scope="col">Max Slots</th>
+        <th scope="col">Created</th>
+        <th scope="col">BaU Only</th>
+        <th scope="col">Active</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for rec in data %}
+      <tr>
+        <td><a href="{{ url_for('gui_blueprint._editcomplexgroup', id=rec[0].id) }}">{{ rec[0].group_name }}</a></td>
+        <td>{{ rec[0].max_slots }}</td>
+        <td>{{ rec[0].group_created }}</td>
+        <td>{{ rec[1].param_name }}</td>
+        <td>{{ rec[2].param_name }}</td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+<script>
+$(document).ready( function () {
+    $('#t_complexes').DataTable();
+} );
+
+</script>
+{% endblock %}
