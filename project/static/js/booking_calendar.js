@@ -14,7 +14,7 @@ var calendar_options = {
   height: 'auto',
   editable: false,
   navLinks: true,
-  eventLimit: true,
+  eventLimit: false,
   firstDay: 1,
   eventLimitClick: 'popover',
   views: {

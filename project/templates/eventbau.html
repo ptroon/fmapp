@@ -35,14 +35,17 @@
               <td>{{ rec["ticket"] }}</td>
             </tr>
             {%- endfor -%}
+            {% if not bookings|length %}
+            <tr><td colspan="3">There are no slots to review</td></tr>
+            {% endif %}
           </tbody>
         </table>
 
         <form action="{{ url_for('gui_blueprint._editbooking', id=0) }}" method="POST">
         <div class="modal-body">
-          <div>Choose a Vendor/Complex:</div>
-          <div>{{ form.vendor_select(class_="form-control") }}</div>
-          <div>&nbsp;</div>
+          <div>Choose a Group/Complex:</div>
+          <div>{{ form.group_select(class_="form-control") }}</div>
+          <hr/>
           <div>{{ form.complex_select(class_="form-control") }}</div>
           <input type="hidden" id="start" name="start" value="{{ dte }}"/>
         </div>

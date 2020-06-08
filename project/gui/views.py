@@ -11,6 +11,7 @@ import re
 import logging
 from datetime import datetime
 from file_read_backwards import FileReadBackwards
+import itertools
 
 from sqlalchemy.orm import aliased
 from sqlalchemy import or_
@@ -461,6 +462,7 @@ def _editdate (id):
 
         else:
             flash_errors(form)
+            print (doi.doi_filter)
             return render_template("editdate.html", form=form, data=doi)
 
         return redirect(url_for('gui_blueprint._dates'))
@@ -902,6 +904,8 @@ def _showdate_bau (dte, id):
 
     a = aliased(DateOfInterest)
     b = aliased(Booking)
+    c = aliased(ComplexGroup)
+    d = aliased(Complex)
 
     events_ = db.session.query(a.id, a.doi_name, a.doi_start_dt, a.doi_end_dt, a.doi_comment, a.doi_type).\
     filter(a.id==id).all()
@@ -911,7 +915,17 @@ def _showdate_bau (dte, id):
     filter(cast(b.slot_id, sqlInteger)==id).all()
     bookings = list(map(lambda x: x._asdict(), bookings_))
 
-    form = ComplexNameSelectForm()
+    form = ComplexGroupNameSelectForm()
+    choices = db.session.query(c.id, c.group_name).join(a, a.doi_filter==c.id).filter(a.id==id).all()
+    form.group_select.choices = choices
+
+    # get the members field for the specified group and turn it into a list
+    members = db.session.query(c.group_members).filter(c.id==choices[0][0]).all()
+    print (members[0][0].split(','))
+    cplxs = db.session.query(d.id, d.complex_name).filter(d.id.in_(members[0][0].split(','))).all()
+    print (cplxs)
+    form.complex_select.choices = cplxs
+
     return render_template("eventbau.html", dte=dte, id=id, events=events, bookings=bookings, form=form)
 
 #################################################################

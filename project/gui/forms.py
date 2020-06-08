@@ -202,8 +202,8 @@ class DOIForm(FlaskForm):
     doi_start_dt = StringField('Start', validators=[InputRequired()])
     doi_end_dt = StringField('End', validators=[InputRequired()])
     doi_regions = SelectMultipleField2('Regions')
-    doi_type = SelectField('Event Type', coerce=int, render_kw={"title":"The type of event"})
-    doi_filter = SelectMultipleField2('Allowed Items')
+    doi_type = SelectField('Event Type', coerce=int, render_kw={"title":"The event type required"})
+    doi_filter = SelectField('Items', coerce=int)
     doi_hap = SelectField('HAP', coerce=int, render_kw={"title":"Is the date a HAP?"})
     savebtn = SubmitField('Save')
     deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
@@ -346,6 +346,19 @@ class ComplexNameSelectForm(FlaskForm):
         select_option = self.vendor_select.choices
         self.vendor_select.choices = [('0', '-- All Vendors --')] + select_option
         self.vendor_select.render_kw = {'onchange': 'change_vendor()'}
+        self.complex_select.render_kw = {'onchange': 'change_complex()'}
+
+
+class ComplexGroupNameSelectForm(FlaskForm):
+    group_select = SelectField('Complex Group')
+    complex_select = SelectField('Complex')
+    nextbtn = SubmitField('Next')
+
+    def __init__(self, *args, **kwargs):
+        super(ComplexGroupNameSelectForm, self).__init__(*args, **kwargs)
+        self.group_select.choices = [(a.id, a.group_name) for a in ComplexGroup.query.order_by(ComplexGroup.group_name)] # Complex Groups
+        self.complex_select.choices = [(a.id, a.complex_name) for a in Complex.query.order_by(Complex.complex_name)] # Complex Names
+        self.group_select.render_kw = {'onchange': 'change_group()'}
         self.complex_select.render_kw = {'onchange': 'change_complex()'}
 
 

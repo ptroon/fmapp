@@ -10,11 +10,11 @@
 <div class="container-fluid mt-3">
 
 {% if is_admin() %}
-<div class="p-2 m-3 bg-light text-black font-weight-bold">Booking Administration</div>
+<div class="p-2 m-3 bg-light text-black font-weight-bold">All Bookings&nbsp<select id="options"></select></div>
 <table class="table table-striped" id="t_admin">
   <thead class="thead-light">
     <tr>
-      <th scope="col" class="w-25">Title</th>
+      <th scope="col" class="">Title</th>
       <th scope="col">Start</th>
       <th scope="col">End</th>
       <th scope="col">Project</th>
@@ -27,7 +27,7 @@
   <tbody>
     {%- for rec in data1 -%}
     <tr>
-      <td class="w-25"><a href="{{ url_for('gui_blueprint._editbooking', id=rec[0].id) }}">{{ rec[0].title }}</a></td>
+      <td class=""><a href="{{ url_for('gui_blueprint._editbooking', id=rec[0].id) }}">{{ rec[0].title }}</a></td>
       <td>{{ rec[0].start_dt }}</td>
       <td>{{ rec[0].end_dt }}</td>
       <td>{{ rec[0].project }}</td>
@@ -78,8 +78,16 @@
 
 <script>
 $(document).ready( function () {
-    $('#t_admin').DataTable();
-} );
+
+    $('#t_admin').DataTable( {
+      buttons: [
+          'excel',
+          'print'
+      ],
+      select: true
+    });
+
+});
 
 $(document).ready( function () {
     $('#t_bookings').DataTable();

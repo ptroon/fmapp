@@ -48,3 +48,13 @@
     background-color: #FFDAB9;
     color: #000000;
 }
+
+.modal-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+.modal-open {
+    overflow: hidden;
+    overflow-y: scroll;
+    padding-right: 0 !important;
+}
