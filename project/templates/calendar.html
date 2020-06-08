@@ -64,31 +64,11 @@
   </div>
 </div>
 
+<!-- Modal used to hold the modeal dialogs for the bookings -->
 <div class="modal fade bd-example-modal-lg" id="newBookingModal" role="dialog" data-focus="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content" id="model-content-opt">
       <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="newModalLabel">New Booking for:  <span id="startDate" name="startDate" class="badge badge-secondary text-white p-1"></span></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div id="modal-body">
-          <form action="{{ url_for('gui_blueprint._editbooking', id=0) }}" method="POST">
-          <div class="modal-body">
-            <div>Choose a Vendor/Complex:</div>
-            <div>{{ form.vendor_select(class_="form-control") }}</div>
-            <div>&nbsp;</div>
-            <div>{{ form.complex_select(class_="form-control") }}</div>
-            <input type="hidden" id="start" name="start"/>
-          </div>
-          <div class="modal-footer">
-            {{ form.nextbtn(class_="btn btn-primary button_fpa") }}
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-          </form>
-        </div>
       </div>
     </div>
 </div>

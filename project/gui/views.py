@@ -11,8 +11,11 @@ import re
 import logging
 from datetime import datetime
 from file_read_backwards import FileReadBackwards
+
 from sqlalchemy.orm import aliased
 from sqlalchemy import or_
+from sqlalchemy.sql.expression import cast
+from sqlalchemy import Integer as sqlInteger, String as sqlString
 
 from project.models import *
 from project import app, db, is_admin, mail, get_user
@@ -540,6 +543,7 @@ def _bookings ():
         defdate = request.args.get("defdate", datetime.now())
         return render_template("calendar.html", form=form, defdate=defdate)
 
+
 # This is waaaayy too long!!
 @gui_blueprint.route("/editbooking/<id>", methods=["GET","POST"])
 def _editbooking (id):
@@ -858,6 +862,57 @@ def _editprofile ():
     else:
         flash_errors(form)
         return render_template("profile.html", data=profile, form=form)
+
+#################################################################
+# SHOW EVENT BOOKING MODALS #
+#############################
+@gui_blueprint.route("/showdate", defaults={'dte': 0}, methods=["GET","POST"])
+@gui_blueprint.route("/showdate/<string:dte>", methods=["GET","POST"])
+@login_required
+def _showdate (dte):
+
+    d1 = datetime.strptime(dte, '%d-%m-%Y')
+    d2 = d1 + timedelta(minutes=1439)
+    locked_flag = 0
+
+    a = aliased(DateOfInterest)
+
+    doi_ = db.session.query(a.id, a.doi_name, a.doi_start_dt, a.doi_end_dt, a.doi_comment, a.doi_type).\
+    filter(((a.doi_start_dt.between(d1, d2)) | \
+    (a.doi_end_dt.between(d1, d2))) | \
+    ((a.doi_start_dt < d1) & (d2 < a.doi_end_dt))).all()
+
+    res = list(map(lambda x: x._asdict(), doi_))
+    locked_flag = len(list(filter(lambda item: item['doi_type'] == 130, res)))
+
+    return render_template("eventinfo.html", dte=dte, events=res, locked_flag=locked_flag)
+
+# Non-BaU Bookings
+@gui_blueprint.route("/showdate/book/<string:dte>", methods=["GET","POST"])
+@login_required
+def _showdate_book (dte):
+
+    form = ComplexNameSelectForm()
+    return render_template("eventbook.html", dte=dte, form=form)
+
+# BAU Bookings
+@gui_blueprint.route("/showdate/bau/<string:dte>/<int:id>", methods=["GET"])
+@login_required
+def _showdate_bau (dte, id):
+
+    a = aliased(DateOfInterest)
+    b = aliased(Booking)
+
+    events_ = db.session.query(a.id, a.doi_name, a.doi_start_dt, a.doi_end_dt, a.doi_comment, a.doi_type).\
+    filter(a.id==id).all()
+    events = list(map(lambda x: x._asdict(), events_))
+
+    bookings_ = db.session.query(b.id, b.slot_id, b.title, b.ticket, b.owner_id).\
+    filter(cast(b.slot_id, sqlInteger)==id).all()
+    bookings = list(map(lambda x: x._asdict(), bookings_))
+
+    form = ComplexNameSelectForm()
+    return render_template("eventbau.html", dte=dte, id=id, events=events, bookings=bookings, form=form)
 
 #################################################################
 # EMAIL #

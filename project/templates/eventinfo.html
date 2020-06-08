@@ -1,0 +1,83 @@
+{% block content %}
+
+  <div class="modal-header">
+  <h2 class="display-10"></h2>
+  <h5 class="modal-title" id="newModalLabel">Date chosen is {{ dte }}</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div id="modal-body">
+    <div class="modal-body">
+
+      <div class="container" id="events-container">
+
+      <div class="row" style="height: 50px;">
+        <div class="col align-self-center">
+          <span>{{ events|length }} event(s) to review</span>
+          <p></p>
+        </div>
+      </div>
+
+      {% for event in events %}
+
+        {% if event["doi_type"] == 130 %}
+        <div class="row">
+          <div class="col-2"><h5><span class="badge badge-danger btn-lrg">LOCKED</span></h5></div>
+          <div class="col">{{ event["doi_name"] }}</div>
+        </div>
+        {% endif %}
+
+        {% if event["doi_type"] == 129 %}
+        <div class="row justify-content-end">
+          <div class="col-2"><h5><span class="badge badge-secondary btn-lrg">HAP</span></h5></div>
+          <div class="col">{{ event["doi_name"] }}</div>
+        </div>
+        {% endif %}
+
+        {% if event["doi_type"] == 128 %}
+        <div class="row justify-content-end">
+          <div class="col-2"><h5><span class="badge badge-info btn-lrg">INFO</span></h5></div>
+          <div class="col">{{ event["doi_name"] }}</div>
+        </div>
+        {% endif %}
+
+        {% if event["doi_type"] == 131 and locked_flag == 0 -%}
+          <div class="row justify-content-end">
+            <div class="col-2"><h5><span class="badge badge-warning">BAU</span></h5></div>
+            <div class="col">Click the button to book a slot for '{{ event["doi_name"] }}''</div>
+            <div class="col-2"><button class="btn btn-sm btn-success" onclick='show_booking_modal("{{ url_for('gui_blueprint._showdate_bau', dte=dte, id=event['id']) }}");'>BOOK SLOT</button></div>
+          </div>
+        {% endif %}
+
+        {% if event["doi_type"] == 131 and locked_flag >= 1 -%}
+          <div class="row justify-content-end">
+            <div class="col-2"><h5><span class="badge badge-warning">BAU</span></h5></div>
+            <div class="col">Unable to book a slot for '{{ event["doi_name"] }}' as this date is locked</div>
+          </div>
+        {% endif %}
+
+      {% endfor %}
+
+      <hr style="border-top: 1px solid black;"/>
+
+      {% if locked_flag == 0 -%}
+      <div class="row justify-content-end">
+        <div class="col-2"><h5><span class="badge badge-primary btn-sm">non-BAU</span></h5></div>
+        <div class="col">Click the button to book a slot for a non-BaU change</div>
+        <div class="col-2"><button class="btn btn-sm btn-success" onclick='show_booking_modal("{{ url_for('gui_blueprint._showdate_book', dte=dte) }}");'>BOOK SLOT</button></div>
+      </div>
+      {% else %}
+      <div class="row justify-content-end">
+        <div class="col-2"><h5><span class="badge badge-primary btn-lrg">non-BAU</span></h5></div>
+        <div class="col">Unable to book a slot for a non-BAU change as this date is locked</div>
+      </div>
+      {% endif %}
+
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+
+{% endblock %}

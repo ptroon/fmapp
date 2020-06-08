@@ -1,0 +1,60 @@
+{% block content %}
+
+  <div class="modal-header">
+  <h2 class="display-10"></h2>
+  <h5 class="modal-title" id="newModalLabel">BaU chosen: {{ dte }}
+    {% for event in events %}
+     &nbsp;&nbsp;"{{ event["doi_name"] }}"
+    {% endfor %}
+  </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+<!-- Used to show the BaU report and booking -->
+
+  <div id="modal-body">
+    <div class="modal-body">
+      <div class="container" id="events-container">
+
+        <div class="p-1 m-1 bg-light text-black font-weight-bold">Slot Bookings</div>
+        <table class="table table-striped" id="t_admin">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Owner</th>
+              <th scope="col">Ticket</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for rec in bookings -%}
+            <tr>
+              <td>{{ rec["title"] }}</td>
+              <td>{{ rec["owner_id"] }}</td>
+              <td>{{ rec["ticket"] }}</td>
+            </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+
+        <form action="{{ url_for('gui_blueprint._editbooking', id=0) }}" method="POST">
+        <div class="modal-body">
+          <div>Choose a Vendor/Complex:</div>
+          <div>{{ form.vendor_select(class_="form-control") }}</div>
+          <div>&nbsp;</div>
+          <div>{{ form.complex_select(class_="form-control") }}</div>
+          <input type="hidden" id="start" name="start" value="{{ dte }}"/>
+        </div>
+        <div class="modal-footer">
+          {{ form.nextbtn(class_="btn btn-primary button_fpa") }}
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </form>
+
+      </div>
+  <div class="modal-footer">
+  </div>
+</div>
+
+{% endblock %}

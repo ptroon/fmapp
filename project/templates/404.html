@@ -54,17 +54,19 @@
                 </div>
                 <br/>
                 <div class="form-group">
-                  <h3>{{ error }}</h3>
+                  <h4>{{ error }}</h4>
+                </div>
+                <div style="height: 50px;" class="text-danger">
+                  <h3>{{ error_url }}</h3>
                 </div>
                 <br/><br/>
                 <div class="align-center">
-                    <button type="button" class="btn btn-info button_fpa" name="login" onclick=location.href="{{ url_for ('gui_blueprint._login') }}">Click to go to Login page</button>
+                    <button type="button" class="btn btn-info" name="index" onclick=location.href="{{ url_for ('gui_blueprint._index') }}">Click to go to main page</button>
                 </div>
                 <div class="align-center">
                   <br/>
                   <a href="{{ url_for('gui_blueprint._register') }}">Register for access to {{ get_name() }}</a>
                 </div>
-
             </form>
         </div>
     </div>

@@ -134,7 +134,7 @@ login_manager.refresh_view = '/fpa/login'
 # Default 404 Error handler
 @app.errorhandler(404)
 def not_found (e):
-    return render_template("404.html", error = e)
+    return render_template("404.html", error=e, error_url=request.path)
 
 # Default 403 Error handler
 @app.errorhandler(403)

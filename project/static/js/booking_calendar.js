@@ -8,7 +8,7 @@ var calendar_options = {
       $('#script-warning').show();
     }
   }],
-  plugins: [ 'dayGrid', 'timeGrid', 'interaction', 'timeGridDay' ],
+  plugins: [ 'dayGrid', 'timeGrid', 'interaction', 'timeGridDay', 'list' ],
   selectable: true,
   aspectRatio: 1.5,
   height: 'auto',
@@ -17,10 +17,18 @@ var calendar_options = {
   eventLimit: true,
   firstDay: 1,
   eventLimitClick: 'popover',
+  views: {
+    listDay: { buttonText: 'list day' },
+    listWeek: { buttonText: 'list week' },
+    listMonth: { buttonText: 'list month' }
+  },
   header: {
-    left: 'prev,next today dayGridMonth',
+    left: 'prev,next today listDay dayGridMonth',
     center: 'title',
     right: 'prevYear,nextYear'
+  },
+  navLinkDayClick: function(date, jsEvent) {
+    // nothing...
   },
   selectAllow: function(info) {
       return moment().diff(info.start, 'days') <= 0
@@ -56,9 +64,15 @@ var calendar_options = {
       "End: " +   moment.parseZone(info.event.end).format("DD-MM-YYYY HH:mm:ss");
 
     $(info.el).tooltip({ title:v_details, html:true, animation:true, template:ttip_template() });
-
     info.el.style = info.event.extendedProps.style;
+
+  },
+  dayRender: function (dayRenderInfo) {
+      //dayRenderInfo.el.innerHTML = "<img src='/static/images/plus.png' width='12' height='12'>";
+      //dayRenderInfo.el.innerHTML = "<button type='button' class='btn button_tiny'>Add</button>";
+      return dayRenderInfo.el
   }
+
 }
 
 function click_date(cal, info) {  // fired when clicking a calendar date
@@ -73,55 +87,24 @@ function click_date(cal, info) {  // fired when clicking a calendar date
 
   // get events in memory
   var arr = cal.getEvents();
+  var vdate = moment(ds).format("DD-MM-YYYY");
+  var vurl = "/fpa/showdate/" + vdate;
 
-  if (!arr.length) { // there are no events shown
-    show_booking_modal(cal, ds);
-    return;
-  }
-
-  var flag = true; // used to record whether any overlapping events are locked
-  var title = ""; // holder for title
-
-  // there are events to check
-  for (index = 0; index < arr.length; ++index) {
-
-    d1=moment.utc(arr[index].start, "DD-MM-YYYY HH:mm:ss");
-    d2=moment.utc(arr[index].end, "DD-MM-YYYY HH:mm:ss");
-
-    if (moment.utc(ds).isSameOrAfter(d1, 'hour') & moment.utc(ds).isSameOrBefore(d2, 'hour')) {
-        if (arr[index].extendedProps.locked.toUpperCase() == "NO") {
-          // do nothing
-        }
-        else if (arr[index].extendedProps.locked.toUpperCase() == "YES") {
-            flag = false; // we have found at least one event with a locked day matching
-            title = arr[index].title;
-        }
-    } // if
-
-  } // for
-
-  if (flag) {
-      show_booking_modal(cal, ds);
-      return;
-  } else {
-      $("#lockedModalLabel").html(title);
-      $("#lockedBookingModal").modal();
-      cal.unselect();
-      return;
-  }
-
-  // if we're still here, then show the modal
-  show_booking_modal(cal, ds);
+  /////
+  show_booking_modal(vurl);
+  cal.unselect();
   return;
+  /////
+
 }
 
-function show_booking_modal (cal, ds) {
+function show_booking_modal (vurl) {
 
-  var vdate = moment(ds).format("DD-MM-YYYY");
+  $.ajax({url: vurl, success: function(result) {
+    $("#model-content-opt").html(result);
+  }});
+
   $("#newBookingModal").modal();
-  $("#startDate").html(vdate);
-  $("#start").val(vdate);
-  cal.unselect();
 }
 
 function event_click (cal, info) {

@@ -220,6 +220,7 @@ class DOIForm(FlaskForm):
         self.doi_regions.render_kw = {'multiple': 'true'}
         self.doi_type.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 127).order_by(Parameter.param_name)] # Event Types
         self.doi_hap.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_name)] # Yes/No
+        self.doi_hap.render_kw = {'readonly': 'true'}
 
     def validate_doi_end_dt(form, field):
         if datetime.strptime(field.data, '%d/%m/%Y %H:%M') <= datetime.strptime(form.doi_start_dt.data, '%d/%m/%Y %H:%M'):

@@ -21,6 +21,14 @@
     cursor: pointer;
 }
 
+.button_tiny {
+      cursor: pointer;
+      background-color: #008000;
+      color: #FFFFFF;
+      font-size: 10px;
+      padding: 2px 3px 2px 3px;
+}
+
 .hap_event {
   background-color: #48D1CC;
   color: #000000;
