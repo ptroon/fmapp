@@ -194,6 +194,15 @@ class LogForm(FlaskForm):
         self.log_options.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 75).order_by(Parameter.param_name)] # Parameters for Log Types
         self.log_records.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 78).order_by(Parameter.param_name)] # Parameters for Number of Records
 
+class DateViewForm(FlaskForm):
+    date_select = SelectField('DateOpts')
+    submit = SubmitField('Go')
+
+    def __init__(self, *args, **kwargs):
+        super(DateViewForm, self).__init__(*args, **kwargs)
+        self.date_select.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 132).order_by(Parameter.param_name)] # Parameters for Date Views
+        self.date_select.render_kw = {'data-style': "btn-secondary"}
+
 class DOIForm(FlaskForm):
     id = HiddenField('id', default=0)
     doi_name = StringField('Name', validators=[InputRequired(),Length(min=5,max=40)])

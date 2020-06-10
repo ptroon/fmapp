@@ -10,13 +10,24 @@
 <div class="container-fluid mt-3">
 
 {% if is_admin() %}
-<div class="p-2 m-3 bg-light text-black font-weight-bold">All Bookings&nbsp<select id="options"></select></div>
+<div class="d-flex justify-content-between bg-light">
+  <div class="p-2 text-black font-weight-bold">Admin View</div>
+  <div class="p-2">
+    <select id="time_opts" class="selectpicker" onchange="get_bookings(this.options[this.selectedIndex].value);">
+      <option value="2" selected>Next 2 Weeks</option>
+      <option value="4">Next 4 Weeks</option>
+      <option value="-4">Last 4 Weeks</option>
+      <option value="0">All Bookings</option>
+    </select>
+  </div>
+</div>
 <table class="table table-striped" id="t_admin">
   <thead class="thead-light">
     <tr>
       <th scope="col" class="">Title</th>
       <th scope="col">Start</th>
       <th scope="col">End</th>
+      <th scope="col">Ticket</th>
       <th scope="col">Project</th>
       <th scope="col">Complex</th>
       <th scope="col">Approved</th>
@@ -30,6 +41,7 @@
       <td class=""><a href="{{ url_for('gui_blueprint._editbooking', id=rec[0].id) }}">{{ rec[0].title }}</a></td>
       <td>{{ rec[0].start_dt }}</td>
       <td>{{ rec[0].end_dt }}</td>
+      <td>{{ rec[0].ticket }}</td>
       <td>{{ rec[0].project }}</td>
       <td>{{ rec[1].complex_name }}</td>
       <td><a data-toggle="tooltip" data-placement="top" title="{{ rec.approval_reason }}" href="{{ url_for('gui_blueprint._approvebooking', id=rec[0].id) }}">{{ rec[0].approved_date }}</a></td>
@@ -80,11 +92,8 @@
 $(document).ready( function () {
 
     $('#t_admin').DataTable( {
-      buttons: [
-          'excel',
-          'print'
-      ],
-      select: true
+      dom: 'ftiprlB',
+      buttons: ['excel','print','pdf']
     });
 
 });
@@ -92,6 +101,12 @@ $(document).ready( function () {
 $(document).ready( function () {
     $('#t_bookings').DataTable();
 } );
+
+function get_bookings (val) {
+  console.log(val);
+}
+
+
 </script>
 
 {% endblock %}

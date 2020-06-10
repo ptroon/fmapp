@@ -411,11 +411,50 @@ def _dates ():
         c = aliased(Parameter)
         d = aliased(DateOfInterest)
 
-        dates = db.session.query(d.id, d.doi_name, d.doi_regions, d.doi_start_dt, d.doi_end_dt, a.param_value, \
-        b.param_name, c.param_name).join(a, d.doi_priority==a.id).\
-        join(b, d.doi_hap==b.id).join(c, d.doi_type==c.id).order_by(d.doi_start_dt.asc()).all()
+        flag = request.args.get("date_select", "14")
+        form = DateViewForm()
 
-        return render_template("dates.html", data=dates)
+        if flag=="14":
+            # Get next two weeks
+            d1 = datetime.now()
+            d2 = d1 + timedelta(days=14)
+            dates_ = db.session.query(d.id, d.doi_name, d.doi_regions, d.doi_start_dt, d.doi_end_dt, a.param_value.label("priority"), \
+            b.param_name.label("hap"), c.param_name.label("type")).join(a, d.doi_priority==a.id).\
+            join(b, d.doi_hap==b.id).join(c, d.doi_type==c.id).\
+            filter(((d.doi_start_dt.between(d1, d2)) | \
+            (d.doi_end_dt.between(d1, d2))) | \
+            ((d.doi_start_dt < d1) & (d2 < d.doi_end_dt))).all()
+
+        if flag=="28":
+            # Get next 4 weeks
+            d1 = datetime.now()
+            d2 = d1 + timedelta(days=28)
+            dates_ = db.session.query(d.id, d.doi_name, d.doi_regions, d.doi_start_dt, d.doi_end_dt, a.param_value.label("priority"), \
+            b.param_name.label("hap"), c.param_name.label("type")).join(a, d.doi_priority==a.id).\
+            join(b, d.doi_hap==b.id).join(c, d.doi_type==c.id).\
+            filter(((d.doi_start_dt.between(d1, d2)) | \
+            (d.doi_end_dt.between(d1, d2))) | \
+            ((d.doi_start_dt < d1) & (d2 < d.doi_end_dt))).all()
+
+        if flag=="-28":
+            # Get last 4 weeks
+            d1 = datetime.now() - timedelta(days=28)
+            d2 = d1 + timedelta(days=28)
+            dates_ = db.session.query(d.id, d.doi_name, d.doi_regions, d.doi_start_dt, d.doi_end_dt, a.param_value.label("priority"), \
+            b.param_name.label("hap"), c.param_name.label("type")).join(a, d.doi_priority==a.id).\
+            join(b, d.doi_hap==b.id).join(c, d.doi_type==c.id).\
+            filter(((d.doi_start_dt.between(d1, d2)) | \
+            (d.doi_end_dt.between(d1, d2))) | \
+            ((d.doi_start_dt < d1) & (d2 < d.doi_end_dt))).all()
+
+        if flag=="0":
+            # Get everything
+            dates_ = db.session.query(d.id, d.doi_name, d.doi_regions, d.doi_start_dt, d.doi_end_dt, a.param_value.label("priority"), \
+            b.param_name.label("hap"), c.param_name.label("type")).join(a, d.doi_priority==a.id).\
+            join(b, d.doi_hap==b.id).join(c, d.doi_type==c.id).order_by(d.doi_start_dt.asc()).all()
+
+        dates = list(map(lambda x: x._asdict(), dates_))
+        return render_template("dates.html", data=dates, form=form, flag=flag)
     else:
         return render_template("403.html", error = "You are not an administrator")
 
@@ -709,7 +748,7 @@ def _pushdays ():
 
         search = request.args.get('search', None) # see if a search argument was given
 
-        complexes = Complex.query.filter(Complex.complex_active==1).all() # get all complexes that are ACTIVE
+        complexes = Complex.query.filter(Complex.complex_active==67).all() # get all complexes that are ACTIVE
 
         # put complexes into a list of lists, with inner list containing the specific complex details
         # and the outer list containing a list of all complexes

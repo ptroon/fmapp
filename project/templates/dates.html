@@ -5,43 +5,41 @@
 {% endblock %}
 {% block content %}
 
-<div class="container-fluid mt-3">
-  <h3>Dates&nbsp;&nbsp;&nbsp;<button type="button" onclick=location.href='{{ url_for('gui_blueprint._editdate', id=0) }}' class="btn btn-success">Add</button></h3>
+<div class="container-fluid">
+
+  <div class="d-flex justify-content-between bg-light">
+    <div class="p-0 text-black font-weight-bold">
+      <h3>Dates&nbsp;&nbsp;&nbsp;<button type="button" onclick=location.href='{{ url_for('gui_blueprint._editdate', id=0) }}' class="btn btn-success">Add</button></h3>
+    </div>
+    <div class="p-2">
+      <form action="{{ url_for('gui_blueprint._dates') }}" method="GET">
+      {{ form.date_select(class_="selectpicker") }}
+      {{ form.submit() }}
+      </form>
+    </div>
+  </div>
 
   <table class="table table-striped" id="t_dates">
     <thead class="thead-light">
       <tr>
-        <th scope="col" class="w-50">Name</th>
+        <th scope="col">Name</th>
         <th scope="col">Regions</th>
         <th scope="col">Start</th>
         <th scope="col">End</th>
         <th scope="col">Priority</th>
-        <th scope="col">HAP</th>
-        <th scope="col">Locked</th>
+        <th scope="col">Type</th>
       </tr>
     </thead>
     <tbody>
 
       {% for rec in data %}
       <tr>
-        <td class="w-50"><a href="{{ url_for('gui_blueprint._editdate', id=rec[0]) }}">{{ rec[1] }}</a></td>
-        <td>{{ rec[2] }}</td>
-        <td>{{ rec[3] }}</td>
-        <td>{{ rec[4] }}</td>
-        <td>{{ rec[5] }}</td>
-
-        {%- if rec[6].upper() == 'NO' -%}
-        <td>{{ rec[6] }}</td>
-        {%- else -%}
-        <td>HAP</td>
-        {%- endif -%}
-
-        {%- if rec[7].upper() == 'NO' -%}
-        <td>{{ rec[7] }}</td>
-        {%- else -%}
-        <td>Locked</td>
-        {%- endif -%}
-
+        <td><a href="{{ url_for('gui_blueprint._editdate', id=rec['id']) }}">{{ rec["doi_name"] }}</a></td>
+        <td>{{ rec["doi_regions"] }}</td>
+        <td>{{ rec["doi_start_dt"] }}</td>
+        <td>{{ rec["doi_end_dt"] }}</td>
+        <td>{{ rec["priority"] }}</td>
+        <td>{{ rec["type"] }}</td>
       </tr>
       {% endfor %}
     </tbody>
@@ -50,8 +48,19 @@
 
 <script>
 $(document).ready( function () {
-    $('#t_dates').DataTable();
-} );
+
+  $('#t_dates').DataTable( {
+    dom: 'ftiprlB',
+    buttons: ['excel','print','pdf']
+  });
+
+  $("#date_select option[value='{{ flag }}']").prop('selected', true);
+
+});
+
+function get_dates(flag) {
+  document.location.href = "{{ url_for('gui_blueprint._dates', flag="") }}" + flag;
+}
 
 </script>
 
