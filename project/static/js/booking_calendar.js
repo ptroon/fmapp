@@ -34,10 +34,23 @@ var calendar_options = {
       return moment().diff(info.start, 'days') <= 0
   },
   dateClick: function(info) {
-    click_date(this, info);
+
+    // format clicked date to UTC string
+    ds=moment.utc(info.dateStr);
+
+    if (moment().diff(ds, 'days') > 0) {
+      // if the date is in the past, then return and do no more...
+      return;
+    }
+
+    var vdate = moment(ds).format("DD-MM-YYYY");
+    var vurl = "/fpa/showdate/" + vdate;
+
+    show_booking_modal(vurl);
+    this.unselect();
   },
   select: function(arg) {
-    // nothing to do..
+    // nothing...
   },
   eventClick: function(info) {
     event_click(this, info);
@@ -75,29 +88,6 @@ var calendar_options = {
 
 }
 
-function click_date(cal, info) {  // fired when clicking a calendar date
-
-  // format clicked date to UTC string
-  ds=moment.utc(info.dateStr);
-
-  if (moment().diff(ds, 'days') > 0) {
-    // if the date is in the past, then return and do no more...
-    return;
-  }
-
-  // get events in memory
-  var arr = cal.getEvents();
-  var vdate = moment(ds).format("DD-MM-YYYY");
-  var vurl = "/fpa/showdate/" + vdate;
-
-  /////
-  show_booking_modal(vurl);
-  cal.unselect();
-  return;
-  /////
-
-}
-
 function show_booking_modal (vurl) {
 
   $.ajax({url: vurl, success: function(result) {
@@ -109,6 +99,14 @@ function show_booking_modal (vurl) {
 
 function event_click (cal, info) {
 
+  ds=moment.utc(info.event.start.toISOString());
+  var vdate = moment(ds).format("DD-MM-YYYY");
+  var vevt  = info.event.extendedProps.eventType
+  var vid   = info.event.id
+  var vurl  = "/fpa/showevent/" + vdate + "/" + vevt + "/" + vid;
+  show_booking_modal(vurl);
+
+  /*
   var dateStart = moment(info.event.start).format("DD-MMM-YYYY HH:mm");
   var dateEnd   = moment(info.event.end).format("DD-MMM-YYYY HH:mm");
   $("#bookingTitle").html(info.event.title);
@@ -126,6 +124,8 @@ function event_click (cal, info) {
   if (dateEnd == 'Invalid date') {dateEnd=''};
   $("#bookingEnd").html(dateEnd);
   $("#checkBookingModal").modal();
+  */
+
   cal.unselect();
 
 }

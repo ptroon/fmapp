@@ -41,14 +41,17 @@ def is_loggedin ():
 #################################################################
 # ROOT #
 ########
-@gui_blueprint.route("/")
+@gui_blueprint.route("/", methods=["GET"])
 def _index ():
 
     if current_user.is_authenticated:
-        # admin = Booking.query.all()
+
+        flag = request.args.get("date_select", "14")
+        form = DateViewForm()
+
         admin = db.session.query(Booking, Complex).filter(Booking.complex==Complex.id).all()
         bookings = Booking.query.filter(Booking.owner_id.ilike(get_user())).all()
-        return render_template("dashboard.html", data1=admin, data2=bookings)
+        return render_template("dashboard.html", data1=admin, data2=bookings, form=form)
     else:
         return redirect(url_for('gui_blueprint._login'))
 
@@ -923,12 +926,14 @@ def _showdate (dte):
     (a.doi_end_dt.between(d1, d2))) | \
     ((a.doi_start_dt < d1) & (d2 < a.doi_end_dt))).all()
 
+    # set the result set as a list with column names
     res = list(map(lambda x: x._asdict(), doi_))
+    # get the count for locked events.
     locked_flag = len(list(filter(lambda item: item['doi_type'] == 130, res)))
 
     return render_template("eventinfo.html", dte=dte, events=res, locked_flag=locked_flag)
 
-# Non-BaU Bookings
+# Non-BaU Bookings form giving all complexes
 @gui_blueprint.route("/showdate/book/<string:dte>", methods=["GET","POST"])
 @login_required
 def _showdate_book (dte):
@@ -936,7 +941,7 @@ def _showdate_book (dte):
     form = ComplexNameSelectForm()
     return render_template("eventbook.html", dte=dte, form=form)
 
-# BAU Bookings
+# Show BAU Event and allow booking a slot
 @gui_blueprint.route("/showdate/bau/<string:dte>/<int:id>", methods=["GET"])
 @login_required
 def _showdate_bau (dte, id):
@@ -960,12 +965,26 @@ def _showdate_bau (dte, id):
 
     # get the members field for the specified group and turn it into a list
     members = db.session.query(c.group_members).filter(c.id==choices[0][0]).all()
-    print (members[0][0].split(','))
     cplxs = db.session.query(d.id, d.complex_name).filter(d.id.in_(members[0][0].split(','))).all()
-    print (cplxs)
     form.complex_select.choices = cplxs
 
     return render_template("eventbau.html", dte=dte, id=id, events=events, bookings=bookings, form=form)
+
+# Entry point for viewing events
+@gui_blueprint.route("/showevent/<string:dte>/<string:evt>/<int:id>", methods=["GET"])
+@login_required
+def _showevent (dte, evt, id):
+
+    a = aliased(DateOfInterest)
+
+    # print (dte + " " + evt + " " + str(id))
+
+    if evt == "DATE":
+        date_ = DateOfInterest.query.filter(DateOfInterest.id==int(id)).first()
+        if date_.doi_type == 131:
+            return redirect(url_for('gui_blueprint._showdate_bau', dte=dte, id=id))
+
+    return render_template("eventreview.html", dte=dte)
 
 #################################################################
 # EMAIL #

@@ -227,7 +227,7 @@ class DOIForm(FlaskForm):
         self.doi_filter.choices = [(a.id, a.group_name) for a in ComplexGroup.query.order_by(ComplexGroup.group_name.asc())] # Parameters for Complex Groups
         self.doi_filter.render_kw = {'data-live-search': 'true', 'class': 'selectpicker form-control', 'width': 'fit', 'data-container': 'body'}
         self.doi_regions.render_kw = {'multiple': 'true'}
-        self.doi_type.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 127).order_by(Parameter.param_name)] # Event Types
+        self.doi_type.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 127).filter(Parameter.param_disabled==0).order_by(Parameter.param_name)] # Event Types
         self.doi_hap.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_name)] # Yes/No
         self.doi_hap.render_kw = {'readonly': 'true'}
 

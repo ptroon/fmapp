@@ -113,6 +113,7 @@ class _doi(Resource):
             b = aliased(Parameter)
             c = aliased(Booking)
             d = aliased(Complex)
+            e = aliased(ComplexGroup)
 
             d1 = request.args.get("start", None)
             d2 = request.args.get("end", None)
@@ -130,51 +131,43 @@ class _doi(Resource):
                 # (start between d1 and d2) AND (end between d1 and d2) OR (start < d1 AND d2 < end)
 
                 # get dates/events
-                doi_ = db.session.query(a.doi_start_dt.label("start"), a.doi_end_dt.label("end"), \
+                doi_ = db.session.query(a.id, a.doi_start_dt.label("start"), a.doi_end_dt.label("end"), \
                 a.doi_name.label("title"), a.doi_comment.label("description"), \
-                b.param_name.label("type"), b.param_value.label("style"),
-                literal("Date Event").label("eventType")).\
+                b.param_name.label("type"), b.param_value.label("style"),\
+                b.id.label("typeid"), literal("DATE").label("eventType")).\
                 join(b, a.doi_type==b.id).\
                 filter(((a.doi_start_dt.between(d1, d2)) | \
                 (a.doi_end_dt.between(d1, d2))) | \
                 ((a.doi_start_dt < d1) & (d2 < a.doi_end_dt)))
 
                 # get bookings
-                bookings_ = db.session.query(c.start_dt.label("start"), c.end_dt.label("end"), \
+                bookings_ = db.session.query(c.id, c.start_dt.label("start"), c.end_dt.label("end"), \
                 c.title.label("title"), c.owner_id.label("owner"), c.description.label("description"), \
-                d.complex_name.label("complex"), c.approved_date.label("approved")).\
+                d.complex_name.label("complex"), c.approved_date.label("approved"),\
+                literal("BOOKING").label("eventType")).\
                 filter(c.complex == d.id). \
                 filter(((c.start_dt.between(d1, d2)) | \
                 (c.end_dt.between(d1, d2))) | \
                 ((c.start_dt < d1) & (d2 < c.end_dt)))
 
                 #########################################################################
-                # subquery and then add columns and filter on locked = YES
-                subq_locked_ = doi_.subquery()
-                locked_ = db.session.query(subq_locked_).all()
-
-                # subquery and then add columns and filter on locked = NO
-                '''
-                subq_notlocked_ = doi_.subquery()
-                notlocked_ = db.session.query(subq_notlocked_, literal("Lightblue").label("backgroundColor"), \
-                literal("Darkblue").label("textColor"), literal("Date Event").label("eventType")). \
-                filter(subq_notlocked_.c.type.ilike("NO")).all()
-                '''
+                # subquery and then add columns and filter on events with types
+                subq_events_ = doi_.subquery()
+                events_ = db.session.query(subq_events_).all()
 
                 subq_booking_approved_ = bookings_.subquery()
-                booking_approved_ = db.session.query(subq_booking_approved_, literal("Lightgreen").label("backgroundColor"), \
-                literal("black").label("textColor"), literal("Booking Event (Approved)").label("eventType")). \
+                booking_approved_ = db.session.query(subq_booking_approved_, literal("background-color: #DAFFB9; color: #000000;").label("style"), \
+                literal("black").label("textColor")). \
                 filter(subq_booking_approved_.c.approved.isnot(None)).all()
 
                 subq_booking_notapproved_ = bookings_.subquery()
-                booking_notapproved_ = db.session.query(subq_booking_notapproved_, literal("Lightgray").label("backgroundColor"), \
-                literal("black").label("textColor"), literal("Booking Event (Pending)").label("eventType")). \
+                booking_notapproved_ = db.session.query(subq_booking_notapproved_, literal("background-color: #CCCCCC; color: #000000;").label("style"), \
+                literal("black").label("textColor")). \
                 filter(subq_booking_notapproved_.c.approved.is_(None)).all()
 
                 #########################################################################
                 # turn into a list of dicts and extend for the extra queries
-                result = list(map(lambda x: x._asdict(), locked_))
-                #result.extend(list(map(lambda x: x._asdict(), notlocked_)))
+                result = list(map(lambda x: x._asdict(), events_))
                 result.extend(list(map(lambda x: x._asdict(), booking_approved_)))
                 result.extend(list(map(lambda x: x._asdict(), booking_notapproved_)))
 

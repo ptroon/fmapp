@@ -11,14 +11,14 @@
 
 {% if is_admin() %}
 <div class="d-flex justify-content-between bg-light">
-  <div class="p-2 text-black font-weight-bold">Admin View</div>
+  <div class="p-0 text-black font-weight-bold">
+    <h5>Bookings</h5>
+  </div>
   <div class="p-2">
-    <select id="time_opts" class="selectpicker" onchange="get_bookings(this.options[this.selectedIndex].value);">
-      <option value="2" selected>Next 2 Weeks</option>
-      <option value="4">Next 4 Weeks</option>
-      <option value="-4">Last 4 Weeks</option>
-      <option value="0">All Bookings</option>
-    </select>
+    <form action="{{ url_for('gui_blueprint._index') }}" method="GET">
+    {{ form.date_select(class_="selectpicker") }}
+    {{ form.submit() }}
+    </form>
   </div>
 </div>
 <table class="table table-striped" id="t_admin">
@@ -54,7 +54,6 @@
 
 {%- else -%}
 
-<div class="p-2 m-3 bg-light text-black font-weight-bold">My Bookings</div>
 <table class="table table-striped" id="t_bookings">
   <thead class="thead-light">
     <tr>
@@ -90,21 +89,21 @@
 
 <script>
 $(document).ready( function () {
-
     $('#t_admin').DataTable( {
       dom: 'ftiprlB',
       buttons: ['excel','print','pdf']
     });
 
+    $("#date_select option[value='{{ flag }}']").prop('selected', true);
+
 });
 
 $(document).ready( function () {
-    $('#t_bookings').DataTable();
-} );
-
-function get_bookings (val) {
-  console.log(val);
-}
+    $('#t_bookings').DataTable( {
+    dom: 'ftiprlB',
+    buttons: ['excel','print','pdf']
+  });
+});
 
 
 </script>

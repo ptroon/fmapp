@@ -236,18 +236,6 @@ class DateOfInterest(db.Model, UserMixin):
     def __init__(self, *args, **kwargs):
         super(DateOfInterest, self).__init__()
 
-'''
-    def __init__(self, doi_name, doi_priority, doi_comment, doi_start_dt, doi_end_dt, doi_regions, doi_locked, doi_filter, doi_hap):
-        self.doi_name = doi_name
-        self.doi_priority = doi_priority
-        self.doi_comment = doi_comment
-        self.doi_start_dt = doi_start_dt
-        self.doi_end_dt = doi_end_dt
-        self.doi_regions = doi_regions
-        self.doi_locked = doi_locked
-        self.doi_filter = doi_filter
-        self.doi_hap = doi_hap
-'''
 
 class Complex(db.Model, UserMixin):
 

@@ -37,6 +37,19 @@ def get_user():
 def unique_time():
     return "?=" + str(datetime.utcnow()).replace(" ","")
 
+def is_now(size):
+    if size=="S":
+        return datetime.now().strftime('%d-%m-%Y')
+    if size=="M":
+        return datetime.now().strftime('%B %d %Y - %H:%M:%S')
+    if size=="L":
+        return datetime.now().strftime('%B %d %Y - %H:%M:%S')
+
+def is_earlier(the_date):
+    if datetime.now() > datetime.strptime(the_date, '%d-%m-%Y'):
+        return 1
+
+
 # Check if the current user is in an admin flagged role and if yes, return True to show the admin menu
 def is_admin():
     user = User.query.filter_by(login_id=get_user()).join(Role, User.role==Role.id).filter_by(role_admin=1).first()
@@ -125,6 +138,8 @@ app.jinja_env.globals.update(is_admin=is_admin)
 app.jinja_env.globals.update(unique_time=unique_time)
 app.jinja_env.globals.update(get_copyright=get_copyright)
 app.jinja_env.globals.update(test_null=test_null)
+app.jinja_env.globals.update(is_now=is_now)
+app.jinja_env.globals.update(is_earlier=is_earlier)
 
 login_manager.blueprint_login_views = { 'gui_blueprint' : '/fpa/login', 'api_blueprint' : '/fpa/login', }
 login_manager.needs_refresh_message = (u"Session timedout, please login again")

@@ -50,7 +50,11 @@
           <input type="hidden" id="start" name="start" value="{{ dte }}"/>
         </div>
         <div class="modal-footer">
+
+          {% if is_now("S") <= dte %}
           {{ form.nextbtn(class_="btn btn-primary button_fpa") }}
+          {% endif %}
+
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
         </form>
