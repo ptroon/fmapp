@@ -21,6 +21,7 @@ CHANGE_SUBREF_ERRORMSG_NNULL = 'Task must be null if the main reference is not a
 CHANGE_REF_ERRORMSG = 'Change reference must start with MCR, SCR or RCR and have 7 digits'
 DUPLICATE_USER_ERRORMSG = "User already exists, please use a different Login ID"
 MAX_SLOTS_ERRORMSG = "Number of slots is higher than allowed per change, less than or equal to"
+DATETYPE_ERRORMSG = "If Date type is 'BaU' then you must have a complex group chosen"
 ###############################################################################
 # OVERIDES #
 ############
@@ -211,7 +212,7 @@ class DOIForm(FlaskForm):
     doi_start_dt = StringField('Start', validators=[InputRequired()])
     doi_end_dt = StringField('End', validators=[InputRequired()])
     doi_regions = SelectMultipleField2('Regions')
-    doi_type = SelectField('Event Type', coerce=int, render_kw={"title":"The event type required"})
+    doi_type = SelectField('Event Type', coerce=int)
     doi_filter = SelectField('Items', coerce=int)
     doi_hap = SelectField('HAP', coerce=int, render_kw={"title":"Is the date a HAP?"})
     savebtn = SubmitField('Save')
@@ -225,15 +226,22 @@ class DOIForm(FlaskForm):
         self.doi_end_dt.render_kw = {'data-target': '#datetimepicker2', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Choose end date & time'}
         self.doi_regions.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 1).order_by(Parameter.param_value.asc())] # Parameters for Locations
         self.doi_filter.choices = [(a.id, a.group_name) for a in ComplexGroup.query.order_by(ComplexGroup.group_name.asc())] # Parameters for Complex Groups
-        self.doi_filter.render_kw = {'data-live-search': 'true', 'class': 'selectpicker form-control', 'width': 'fit', 'data-container': 'body'}
+        select_group = self.doi_filter.choices
+        self.doi_filter.choices = [(0, '-- Complex Groups --')] + select_group
+        self.doi_filter.render_kw = {'data-live-search': 'true', 'class': ' form-control', 'width': 'fit', 'data-container': 'body'}
         self.doi_regions.render_kw = {'multiple': 'true'}
         self.doi_type.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 127).filter(Parameter.param_disabled==0).order_by(Parameter.param_name)] # Event Types
         self.doi_hap.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_name)] # Yes/No
         self.doi_hap.render_kw = {'readonly': 'true'}
+        self.doi_type.render_kw = {"title": "The event type required"}
 
     def validate_doi_end_dt(form, field):
         if datetime.strptime(field.data, '%d/%m/%Y %H:%M') <= datetime.strptime(form.doi_start_dt.data, '%d/%m/%Y %H:%M'):
             raise ValidationError(ENDDATE_ERRORMSG)
+
+    def validate_doi_filter(form, field):
+        if (form.doi_type.data == 131 and field.data == 0):
+            raise ValidationError(DATETYPE_ERRORMSG)
 
 
 class ComplexForm(FlaskForm):
@@ -361,19 +369,20 @@ class ComplexNameSelectForm(FlaskForm):
 class ComplexGroupNameSelectForm(FlaskForm):
     group_select = SelectField('Complex Group')
     complex_select = SelectField('Complex')
+    max_slots = HiddenField('Max Slots')
     nextbtn = SubmitField('Next')
 
     def __init__(self, *args, **kwargs):
         super(ComplexGroupNameSelectForm, self).__init__(*args, **kwargs)
         self.group_select.choices = [(a.id, a.group_name) for a in ComplexGroup.query.order_by(ComplexGroup.group_name)] # Complex Groups
         self.complex_select.choices = [(a.id, a.complex_name) for a in Complex.query.order_by(Complex.complex_name)] # Complex Names
-        self.group_select.render_kw = {'onchange': 'change_group()'}
-        self.complex_select.render_kw = {'onchange': 'change_complex()'}
+        self.group_select.render_kw = {'class':'form-control', 'onchange': 'change_group()'}
+        self.complex_select.render_kw = {'class':'form-control','onchange': 'change_complex()'}
 
 
 class BookingForm(FlaskForm):
     id = HiddenField('id', default=0)
-    slot_id = HiddenField('slot_id', default=0)
+    slot_id = HiddenField('Slot', default=0)
     title = StringField('Title', validators=[InputRequired()])
     start_dt = HiddenField('Start', validators=[InputRequired()])
     end_dt = HiddenField('End', validators=[InputRequired()])

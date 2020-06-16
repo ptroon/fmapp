@@ -3,6 +3,7 @@
 {% block head %}
     {{ super() }}
 {% endblock %}
+
 {% block content %}
 
 <h5 class="card-header text-white bg-secondary">Dashboard</h5>
@@ -21,6 +22,7 @@
     </form>
   </div>
 </div>
+
 <table class="table table-striped" id="t_admin">
   <thead class="thead-light">
     <tr>
@@ -36,7 +38,7 @@
     </tr>
   </thead>
   <tbody>
-    {%- for rec in data1 -%}
+    {%- for rec in admin -%}
     <tr>
       <td class=""><a href="{{ url_for('gui_blueprint._editbooking', id=rec[0].id) }}">{{ rec[0].title }}</a></td>
       <td>{{ rec[0].start_dt }}</td>
@@ -54,30 +56,42 @@
 
 {%- else -%}
 
+<div class="d-flex justify-content-between bg-light">
+  <div class="p-0 text-black font-weight-bold">
+    <h5>My Bookings</h5>
+  </div>
+  <div class="p-2">
+    <form action="{{ url_for('gui_blueprint._index') }}" method="GET">
+    {{ form.date_select(class_="selectpicker") }}
+    {{ form.submit() }}
+    </form>
+  </div>
+</div>
+
 <table class="table table-striped" id="t_bookings">
   <thead class="thead-light">
     <tr>
-      <th scope="col" class="w-25">Title</th>
+      <th scope="col" class="">Title</th>
       <th scope="col">Start</th>
       <th scope="col">End</th>
+      <th scope="col">Ticket</th>
       <th scope="col">Project</th>
       <th scope="col">Cluster</th>
       <th scope="col">Approved</th>
-      <th scope="col">Approved By</th>
       <th scope="col">Logged</th>
     </tr>
   </thead>
   <tbody>
-    {%- for rec in data2 -%}
+    {%- for rec in book -%}
     <tr>
-      <td class="w-25"><a href="{{ url_for('gui_blueprint._editbooking', id=rec.id) }}">{{ rec.title }}</a></td>
-      <td>{{ rec.start_dt }}</td>
-      <td>{{ rec.end_dt }}</td>
-      <td>{{ rec.project }}</td>
-      <td>{{ rec.complex }}</td>
-      <td><span class="btn btn-secondary py-0 my-0 mx-2" data-toggle="tooltip" data-placement="top" title="{{ rec.approval_reason }}">{{ rec.approved_date }}</span></td>
-      <td>{{ rec.approved_by|replace("None", "") }}</td>
-      <td>{{ rec.logged }}</td>
+      <td class=""><a href="{{ url_for('gui_blueprint._editbooking', id=rec[0].id) }}">{{ rec[0].title }}</a></td>
+      <td>{{ rec[0].start_dt }}</td>
+      <td>{{ rec[0].end_dt }}</td>
+      <td>{{ rec[0].ticket }}</td>
+      <td>{{ rec[0].project }}</td>
+      <td>{{ rec[1].complex_name }}</td>
+      <td><span class="btn btn-secondary py-0 my-0 mx-2" data-toggle="tooltip" data-placement="top" title="{{ rec[0].approval_reason }}">{{ rec[0].approved_date }}</span></td>
+      <td>{{ rec[0].logged }}</td>
     </tr>
     {%- endfor -%}
   </tbody>

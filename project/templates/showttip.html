@@ -1,0 +1,98 @@
+<html>
+<head>
+</head>
+
+<table class="" id="events-container" style="min-width:250px; max-width:400px;">
+{% if event %}
+
+  {% if event.slotsAvailable is not none %}
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Slots Available</td>
+    {% if event.slotsAvailable <= 1 %}
+    <td class="col text-left w-50 bg-danger">{{ event.slotsAvailable }}/{{ event[4].max_slots }}</td>
+    {% else %}
+    <td class="col text-left w-50 bg-success">{{ event.slotsAvailable }}/{{ event[4].max_slots }}</td>
+    {% endif %}
+  </tr>
+  {% endif %}
+
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Comment</td>
+    <td class="col text-left w-50">{{ event[0].doi_comment }}</td>
+  </tr>
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Priority</td>
+    <td class="col text-left w-50">{{ event[2].param_value }}</td>
+  </tr>
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Start</td>
+    <td class="col text-left w-50">{{ event[0].doi_start_dt }}</td>
+  </tr>
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">End</td>
+    <td class="col text-left w-50">{{ event[0].doi_end_dt }}</td>
+  </tr>
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Regions</td>
+    <td class="col text-left w-50">{{ event[0].doi_regions }}</td>
+  </tr>
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Type</td>
+    <td class="col text-left w-50">{{ event[1].param_name }}</td>
+  </tr>
+{% endif %}
+
+
+{% if book %}
+
+{% if book[0].approved_date is not none %}
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Approved</td>
+    <td class="col bg-success text-left w-50">Yes</td>
+  </tr>
+  {% else %}
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Approved</td>
+    <td class="col bg-danger text-left w-50">No</td>
+  </tr>
+  {% endif %}
+
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Owner</td>
+    <td class="col text-left w-50">{{ book[0].owner_id }}</td>
+  </tr>
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Start</td>
+    <td class="col text-left w-50">{{ book[0].start_dt }}</td>
+  </tr>
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">End</td>
+    <td class="col text-left">{{ book[0].end_dt }}</td>
+  </tr>
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Ticket</td>
+    <td class="col text-left w-50">{{ book[0].ticket }}</td>
+  </tr>
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Complex</td>
+    <td class="col text-left w-50">{{ book[1].complex_name }}</td>
+  </tr>
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Project</td>
+    <td class="col text-left w-50">{{ book[0].project }}</td>
+  </tr>
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Description</td>
+    <td class="col text-left w-50">{{ book[0].description }}</td>
+  </tr>
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Change Ref</td>
+    <td class="col text-left w-50">{{ book[0].change_ref }}</td>
+  </tr>
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top">Sub Change Ref</td>
+    <td class="col text-left w-50">{{ book[0].change_subref }}</td>
+  </tr>
+{% endif %}
+</table>
+</html>

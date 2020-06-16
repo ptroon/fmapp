@@ -123,7 +123,7 @@
 
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.doi_type.label }}</td>
-            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.doi_type(rows=3, class_="form-control"), form.doi_type.render_kw["title"]) }}</td>
+            <td class="w-75 text-left mx-2 p-1">{{ field_with_help(form.doi_type(class_="form-control"), form.doi_type.render_kw["title"]) }}</td>
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-text-top">{{ form.doi_filter.label }}</td>
@@ -147,5 +147,18 @@
           </tr>
         </table>
     </form>
+
+    <script>
+      $(document).ready(function () {
+          $('select#doi_type').change(function() {
+            if ($( "select#doi_type" ).val()=='131') {
+              $("select#doi_filter").prop( "disabled", false ).change();
+            } else {
+              $("select#doi_filter").prop( "disabled", true );
+              $("select#doi_filter").val(0).change();
+            }
+          }).change();
+      });
+    </script>
 
 {% endblock %}

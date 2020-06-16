@@ -2,7 +2,14 @@
 
   <div class="modal-header">
   <h2 class="display-10"></h2>
-  <h5 class="modal-title" id="newModalLabel">Date chosen is {{ dte }}</h5>
+
+  {% if event %}
+  <h5 class="modal-title" id="newModalLabel"><span class="text-primary">Name: {{ event[0].doi_name }}</span></h5>
+  {% endif %}
+  {% if book %}
+  <h5 class="modal-title" id="newModalLabel"><span class="text-primary">Name: {{ book[0].title }}</span></h5>
+  {% endif %}
+
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -13,8 +20,85 @@
 
       <div class="container" id="events-container">
 
+        {% if event %}
+          <div class="row">
+            <div class="col-2">Comment</div>
+            <div class="col">{{ event[0].doi_comment }}</div>
+          </div>
+          <div class="row">
+            <div class="col-2">Priority</div>
+            <div class="col">{{ event[2].param_value }}</div>
+          </div>
+          <div class="row">
+            <div class="col-2">Start</div>
+            <div class="col">{{ event[0].doi_start_dt }}</div>
+          </div>
+          <div class="row">
+            <div class="col-2">End</div>
+            <div class="col">{{ event[0].doi_end_dt }}</div>
+          </div>
+          <div class="row">
+            <div class="col-2">Regions</div>
+            <div class="col">{{ event[0].doi_regions }}</div>
+          </div>
+          <div class="row">
+            <div class="col-2">Type</div>
+            <div class="col" style="{{ event[1].param_value }}">{{ event[1].param_name }}</div>
+          </div>
+        {% endif %}
 
 
+        {% if book %}
+
+        {% if book[0].approved_date is not none %}
+          <div class="row">
+            <div class="col-3">Approved Date</div>
+            <div class="col text-success">{{ book[0].approved_date }}</div>
+          </div>
+          {% else %}
+          <div class="row">
+            <div class="col-3">Approved Date</div>
+            <div class="col text-danger">UNAPPROVED</div>
+          </div>
+          {% endif %}
+
+          <div class="row">
+            <div class="col-3">Owner</div>
+            <div class="col">{{ book[0].owner_id }}</div>
+          </div>
+          <div class="row">
+            <div class="col-3">Start</div>
+            <div class="col">{{ book[0].start_dt }}</div>
+          </div>
+          <div class="row">
+            <div class="col-3">End</div>
+            <div class="col">{{ book[0].end_dt }}</div>
+          </div>
+          <div class="row">
+            <div class="col-3">Ticket</div>
+            <div class="col">{{ book[0].ticket }}</div>
+          </div>
+          <div class="row">
+            <div class="col-3">Complex</div>
+            <div class="col">{{ book[1].complex_name }}</div>
+          </div>
+          <div class="row">
+            <div class="col-3">Project</div>
+            <div class="col">{{ book[0].project }}</div>
+          </div>
+          <div class="row">
+            <div class="col-3">Description</div>
+            <div class="col">{{ book[0].description }}</div>
+          </div>
+          <div class="row">
+            <div class="col-3">Change Ref</div>
+            <div class="col">{{ book[0].change_ref }}</div>
+          </div>
+          <div class="row">
+            <div class="col-3">Sub Change Ref</div>
+            <div class="col">{{ book[0].change_subref }}</div>
+          </div>
+        {% endif %}
 
 
       </div>

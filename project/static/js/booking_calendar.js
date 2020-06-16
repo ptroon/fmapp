@@ -76,13 +76,19 @@ var calendar_options = {
       "Start: " + moment.parseZone(info.event.start).format("DD-MM-YYYY HH:mm:ss") + v_br +
       "End: " +   moment.parseZone(info.event.end).format("DD-MM-YYYY HH:mm:ss");
 
-    $(info.el).tooltip({ title:v_details, html:true, animation:true, template:ttip_template() });
+    v_details = ""
+    vurl = "/fpa/showttip/" + info.event.id + "/" + info.event.extendedProps.eventType;
+    $.ajax({url: vurl, success: function(result) {
+      $(info.el).tooltip({ title:result, html:true, animation:false, container:"body", boundary:'window' });
+      }});
+
+
+
+    // info.el.querySelector('.fc-title').innerHTML = info.event.title + " (" + info.event.extendedProps.availableSlots + ")";
     info.el.style = info.event.extendedProps.style;
 
   },
   dayRender: function (dayRenderInfo) {
-      //dayRenderInfo.el.innerHTML = "<img src='/static/images/plus.png' width='12' height='12'>";
-      //dayRenderInfo.el.innerHTML = "<button type='button' class='btn button_tiny'>Add</button>";
       return dayRenderInfo.el
   }
 
@@ -105,27 +111,6 @@ function event_click (cal, info) {
   var vid   = info.event.id
   var vurl  = "/fpa/showevent/" + vdate + "/" + vevt + "/" + vid;
   show_booking_modal(vurl);
-
-  /*
-  var dateStart = moment(info.event.start).format("DD-MMM-YYYY HH:mm");
-  var dateEnd   = moment(info.event.end).format("DD-MMM-YYYY HH:mm");
-  $("#bookingTitle").html(info.event.title);
-  $("#bookingTitle").css({"background-color": info.el.style.backgroundColor});
-  $("#bookingTitle").css({"color": info.el.style.color});
-  $("#bookingType").html(info.event.extendedProps.eventType);
-  $("#bookingInfo").html(info.event.extendedProps.description);
-  if (is_not_undefined(info.event.extendedProps.owner)) {
-    v_ar = info.event.extendedProps.owner;
-  } else {
-    v_ar = "N/A";
-  }
-  $("#bookingOwner").html(v_ar);
-  $("#bookingStart").html(dateStart);
-  if (dateEnd == 'Invalid date') {dateEnd=''};
-  $("#bookingEnd").html(dateEnd);
-  $("#checkBookingModal").modal();
-  */
-
   cal.unselect();
 
 }

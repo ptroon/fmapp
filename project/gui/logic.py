@@ -110,6 +110,15 @@ def is_booking_core_ok(date_str, complex_id):
     else:
         return False
 
+# Checks to see if a slot can be booked for a valid event
+def is_valid_bau_booking(evt_id):
+
+    evtc = datesofinterest.query.filter(datesofinterest.id==evt_id).count()
+    if int(evtc) > 0:
+        return True
+    else:
+        return False
+
 
 '''
 def json_fmt_default(o):

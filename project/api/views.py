@@ -134,8 +134,10 @@ class _doi(Resource):
                 doi_ = db.session.query(a.id, a.doi_start_dt.label("start"), a.doi_end_dt.label("end"), \
                 a.doi_name.label("title"), a.doi_comment.label("description"), \
                 b.param_name.label("type"), b.param_value.label("style"),\
-                b.id.label("typeid"), literal("DATE").label("eventType")).\
+                b.id.label("typeid"), literal("DATE").label("eventType"), \
+                func.fmapp.rem_slots(a.id).label("availableSlots"), e.max_slots.label("maxSlots")).\
                 join(b, a.doi_type==b.id).\
+                outerjoin(e, a.doi_filter==e.id).\
                 filter(((a.doi_start_dt.between(d1, d2)) | \
                 (a.doi_end_dt.between(d1, d2))) | \
                 ((a.doi_start_dt < d1) & (d2 < a.doi_end_dt)))
@@ -145,7 +147,8 @@ class _doi(Resource):
                 c.title.label("title"), c.owner_id.label("owner"), c.description.label("description"), \
                 d.complex_name.label("complex"), c.approved_date.label("approved"),\
                 literal("BOOKING").label("eventType")).\
-                filter(c.complex == d.id). \
+                filter(c.complex == d.id).\
+                filter(c.slot_id == 0.0).\
                 filter(((c.start_dt.between(d1, d2)) | \
                 (c.end_dt.between(d1, d2))) | \
                 ((c.start_dt < d1) & (d2 < c.end_dt)))

@@ -1,0 +1,53 @@
+<head>
+  <title>{% block title %}{% endblock %} - Firewall Booking Application</title>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}{{ unique_time() }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-select.min.css') }}{{ unique_time() }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/fpa.css') }}{{ unique_time() }}">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tempusdominus-bootstrap-4.css') }}{{ unique_time() }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='fontawesome5/css/all.css') }}{{ unique_time() }}">
+
+<link href="{{ url_for('static', filename='fullcalendar/packages/core/main.css')}}" rel='stylesheet' />
+<link href="{{ url_for('static', filename='fullcalendar/packages/daygrid/main.css')}}" rel='stylesheet' />
+
+<link href="{{ url_for('static', filename='DataTables/datatables.css')}}" rel='stylesheet' />
+
+<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!--script src="{{ url_for('static', filename='js/jquery-3.2.1.slim.min.js')}}"></script-->
+<script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/moment-with-locales.min.js')}}{{ unique_time() }}"></script>
+<script src="{{ url_for('static', filename='js/popper.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/tooltip.min.js')}}"></script>
+<!--script src="{{ url_for('static', filename='js/bootstrap-dropdown.js')}}"></script-->
+<script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap-select.min.js')}}{{ unique_time() }}"></script>
+
+<script src="{{ url_for('static', filename='js/tempusdominus-bootstrap-4.js')}}"></script>
+<script src="{{ url_for('static', filename='fontawesome5/js/all.js')}}"></script>
+
+<script src="{{ url_for('static', filename='fullcalendar/packages/core/main.js')}}"></script>
+<script src="{{ url_for('static', filename='fullcalendar/packages/daygrid/main.js')}}"></script>
+<script src="{{ url_for('static', filename='fullcalendar/packages/interaction/main.js')}}"></script>
+<script src="{{ url_for('static', filename='fullcalendar/packages/list/main.js')}}"></script>
+<script src="{{ url_for('static', filename='fullcalendar/packages/timegrid/main.js')}}"></script>
+
+<script src="{{ url_for('static', filename='DataTables/datatables.js')}}{{ unique_time() }}"></script>
+<!--script src="{{ url_for('static', filename='js/range_dates.js')}}{{ unique_time() }}"></script-->
+
+<script src="{{ url_for('static', filename='js/booking_calendar.js')}}{{ unique_time() }}"></script>
+{% block head %}
+{% endblock %}
+</head>
+
+{% block content %}
+{% endblock %}

@@ -46,12 +46,44 @@ def _index ():
 
     if current_user.is_authenticated:
 
+        a = aliased(Booking)
+        b = aliased(Complex)
+        c = aliased(Parameter)
+
         flag = request.args.get("date_select", "14")
         form = DateViewForm()
 
-        admin = db.session.query(Booking, Complex).filter(Booking.complex==Complex.id).all()
-        bookings = Booking.query.filter(Booking.owner_id.ilike(get_user())).all()
-        return render_template("dashboard.html", data1=admin, data2=bookings, form=form)
+        if flag=="14":
+            # Get next two weeks
+            d1 = datetime.now()
+            d2 = d1 + timedelta(days=14)
+
+        if flag=="28":
+            # Get next 4 weeks
+            d1 = datetime.now()
+            d2 = d1 + timedelta(days=28)
+
+        if flag=="-28":
+            # Get last 4 weeks
+            d1 = datetime.now() - timedelta(days=28)
+            d2 = d1 + timedelta(days=28)
+
+        if flag=="0":
+            d1 = datetime.now() - timedelta(weeks=52)
+            d2 = datetime.now() + timedelta(weeks=52)
+
+        admin_ = db.session.query(a, b).join(b, a.complex==b.id).\
+        filter(((a.start_dt.between(d1, d2)) | \
+        (a.end_dt.between(d1, d2))) | \
+        ((a.start_dt < d1) & (d2 < a.end_dt))).all()
+
+        book_ = db.session.query(a, b).join(b, a.complex==b.id).\
+        filter(a.owner_id.ilike(get_user())).\
+        filter(((a.start_dt.between(d1, d2)) | \
+        (a.end_dt.between(d1, d2))) | \
+        ((a.start_dt < d1) & (d2 < a.end_dt))).all()
+
+        return render_template("dashboard.html", admin=admin_, book=book_, form=form, flag=flag)
     else:
         return redirect(url_for('gui_blueprint._login'))
 
@@ -421,45 +453,35 @@ def _dates ():
             # Get next two weeks
             d1 = datetime.now()
             d2 = d1 + timedelta(days=14)
-            dates_ = db.session.query(d.id, d.doi_name, d.doi_regions, d.doi_start_dt, d.doi_end_dt, a.param_value.label("priority"), \
-            b.param_name.label("hap"), c.param_name.label("type")).join(a, d.doi_priority==a.id).\
-            join(b, d.doi_hap==b.id).join(c, d.doi_type==c.id).\
-            filter(((d.doi_start_dt.between(d1, d2)) | \
-            (d.doi_end_dt.between(d1, d2))) | \
-            ((d.doi_start_dt < d1) & (d2 < d.doi_end_dt))).all()
 
         if flag=="28":
             # Get next 4 weeks
             d1 = datetime.now()
             d2 = d1 + timedelta(days=28)
-            dates_ = db.session.query(d.id, d.doi_name, d.doi_regions, d.doi_start_dt, d.doi_end_dt, a.param_value.label("priority"), \
-            b.param_name.label("hap"), c.param_name.label("type")).join(a, d.doi_priority==a.id).\
-            join(b, d.doi_hap==b.id).join(c, d.doi_type==c.id).\
-            filter(((d.doi_start_dt.between(d1, d2)) | \
-            (d.doi_end_dt.between(d1, d2))) | \
-            ((d.doi_start_dt < d1) & (d2 < d.doi_end_dt))).all()
 
         if flag=="-28":
             # Get last 4 weeks
             d1 = datetime.now() - timedelta(days=28)
             d2 = d1 + timedelta(days=28)
-            dates_ = db.session.query(d.id, d.doi_name, d.doi_regions, d.doi_start_dt, d.doi_end_dt, a.param_value.label("priority"), \
-            b.param_name.label("hap"), c.param_name.label("type")).join(a, d.doi_priority==a.id).\
-            join(b, d.doi_hap==b.id).join(c, d.doi_type==c.id).\
-            filter(((d.doi_start_dt.between(d1, d2)) | \
-            (d.doi_end_dt.between(d1, d2))) | \
-            ((d.doi_start_dt < d1) & (d2 < d.doi_end_dt))).all()
 
         if flag=="0":
-            # Get everything
-            dates_ = db.session.query(d.id, d.doi_name, d.doi_regions, d.doi_start_dt, d.doi_end_dt, a.param_value.label("priority"), \
-            b.param_name.label("hap"), c.param_name.label("type")).join(a, d.doi_priority==a.id).\
-            join(b, d.doi_hap==b.id).join(c, d.doi_type==c.id).order_by(d.doi_start_dt.asc()).all()
+            d1 = datetime.now() - timedelta(weeks=52)
+            d2 = datetime.now() + timedelta(weeks=52)
+
+
+        dates_ = db.session.query(d.id, d.doi_name, d.doi_regions, d.doi_start_dt, d.doi_end_dt, a.param_value.label("priority"), \
+        b.param_name.label("hap"), c.param_name.label("type")).join(a, d.doi_priority==a.id).\
+        join(b, d.doi_hap==b.id).join(c, d.doi_type==c.id).\
+        filter(((d.doi_start_dt.between(d1, d2)) | \
+        (d.doi_end_dt.between(d1, d2))) | \
+        ((d.doi_start_dt < d1) & (d2 < d.doi_end_dt))).all()
 
         dates = list(map(lambda x: x._asdict(), dates_))
         return render_template("dates.html", data=dates, form=form, flag=flag)
+
     else:
         return render_template("403.html", error = "You are not an administrator")
+
 
 @gui_blueprint.route("/admin/editdate/<id>", methods=["GET","POST"])
 @login_required
@@ -491,8 +513,12 @@ def _editdate (id):
             if form.savebtn.data:
                 if not doi:
                     doi = DateOfInterest(form.doi_name.data, form.doi_priority.data, form.doi_comment.data, \
-                    start_dt, end_dt, form.doi_regions, form.doi_type, form.doi_hap)
+                    start_dt, end_dt, form.doi_regions, form.doi_type, form.doi_filter, form.doi_hap)
                     db.session.add(doi)
+
+                # if the type is not BAU then set to 0 as the complex group is pointless otherwise.
+                if form.doi_type.data != 131:
+                    form.doi_filter.data = 0
 
                 form.populate_obj(doi)
                 doi.doi_start_dt = start_dt
@@ -504,7 +530,6 @@ def _editdate (id):
 
         else:
             flash_errors(form)
-            print (doi.doi_filter)
             return render_template("editdate.html", form=form, data=doi)
 
         return redirect(url_for('gui_blueprint._dates'))
@@ -589,23 +614,28 @@ def _bookings ():
 
 
 # This is waaaayy too long!!
-@gui_blueprint.route("/editbooking/<id>", methods=["GET","POST"])
-def _editbooking (id):
+@gui_blueprint.route("/editbooking/<int:id>", defaults={'evt': 0}, methods=["GET","POST"])
+@gui_blueprint.route("/editbooking/<int:id>/<int:evt>", methods=["GET","POST"])
+def _editbooking (id, evt):
 
     #for key, value in request.form.items():
     #    print(key, value)
 
     booking = Booking.query.filter_by(id=id).first()
     form = BookingForm(obj=booking)
+    event = DateOfInterest.query.filter(DateOfInterest.id==int(form.slot_id.data)).first()
 
-    if request.method == "GET":
+    if request.method == "GET" and request.referrer:
         complex = Complex.query.filter(Complex.id==int(form.complex.data)).first() # Get complex object from query
+        event = DateOfInterest.query.filter(DateOfInterest.id==int(form.slot_id.data)).first()
+
         form.tmp_date.data = datetime.strptime(form.start_dt.data.split()[0], '%Y-%m-%d').strftime('%d-%m-%Y')
         form.tmp_start_t.data = form.start_dt.data.split()[1]
         form.tmp_end_t.data = form.end_dt.data.split()[1]
         form.complex_text.data = complex.complex_name
         flash_errors(form)
-        return render_template("editbooking.html", form=form)
+        return render_template("editbooking.html", form=form, event=event)
+
 
     if request.method == "POST":
 
@@ -619,6 +649,8 @@ def _editbooking (id):
         if request.form.get("nextbtn", False):
             cplx = int(request.form.get("complex_select", 1)) # Get Complex ID
             complex = Complex.query.filter(Complex.id==int(cplx)).first() # Get complex object from query
+            event = DateOfInterest.query.filter(DateOfInterest.id==evt).first()
+            print (event.doi_name)
 
             s_time = complex.complex_push_start
             e_time = complex.complex_push_end
@@ -627,6 +659,7 @@ def _editbooking (id):
             form.tmp_date.default = request.form.get("start").replace("-","/")
             form.tmp_start_t.default = s_time
             form.tmp_end_t.default = e_time
+            form.slot_id.default = evt
             form.owner_id.data = get_user()
 
             if is_day_allowed(request.form.get("start"), complex.complex_push_days):
@@ -638,7 +671,7 @@ def _editbooking (id):
             form.complex_text.default = complex.complex_name
 
             form.process()
-            return render_template("editbooking.html", form=form)
+            return render_template("editbooking.html", form=form, event=event)
 
         # This is the actual booking page and we're trying to save the record
         # VALID
@@ -669,7 +702,9 @@ def _editbooking (id):
                 # Does the booking have an approval flag already set?
                 flag_reqd = (str(form.approval_required.data) != '1')
 
-                if flag_core and not flag_cust and flag_reqd:
+                flag_bau = (int(form.slot_id.data) <= 0)
+
+                if flag_core and not flag_cust and flag_reqd and flag_bau:
 
                     booking.approved_date = datetime.now()
                     booking.approved_by = 'Automatic Approval'
@@ -687,6 +722,8 @@ def _editbooking (id):
                         booking.approval_reason += ', too many bookings per day/complex)'
                     if flag_cust or not flag_reqd:
                         booking.approval_reason += ', non-standard start/end times requested'
+                    if not flag_bau:
+                        booking.approval_reason += ', BaU bookings require manual approval'
 
                     flash ('Booking was saved but is pending approval by the Operations team', 'warning')
 
@@ -951,11 +988,10 @@ def _showdate_bau (dte, id):
     c = aliased(ComplexGroup)
     d = aliased(Complex)
 
-    events_ = db.session.query(a.id, a.doi_name, a.doi_start_dt, a.doi_end_dt, a.doi_comment, a.doi_type).\
-    filter(a.id==id).all()
+    events_ = db.session.query(a.id, a.doi_name, a.doi_start_dt, a.doi_end_dt, a.doi_comment, a.doi_type).filter(a.id==id).all()
     events = list(map(lambda x: x._asdict(), events_))
 
-    bookings_ = db.session.query(b.id, b.slot_id, b.title, b.ticket, b.owner_id).\
+    bookings_ = db.session.query(b.id, b.slot_id, b.title, b.ticket, b.owner_id, b.approved_date).\
     filter(cast(b.slot_id, sqlInteger)==id).all()
     bookings = list(map(lambda x: x._asdict(), bookings_))
 
@@ -968,6 +1004,9 @@ def _showdate_bau (dte, id):
     cplxs = db.session.query(d.id, d.complex_name).filter(d.id.in_(members[0][0].split(','))).all()
     form.complex_select.choices = cplxs
 
+    slots = db.session.query(c.max_slots).filter(c.id==choices[0][0]).first()
+    form.max_slots.data = slots.max_slots
+
     return render_template("eventbau.html", dte=dte, id=id, events=events, bookings=bookings, form=form)
 
 # Entry point for viewing events
@@ -976,15 +1015,50 @@ def _showdate_bau (dte, id):
 def _showevent (dte, evt, id):
 
     a = aliased(DateOfInterest)
-
-    # print (dte + " " + evt + " " + str(id))
+    b = aliased(Booking)
+    c = aliased(Parameter)
+    d = aliased(Parameter)
+    e = aliased(Complex)
 
     if evt == "DATE":
-        date_ = DateOfInterest.query.filter(DateOfInterest.id==int(id)).first()
-        if date_.doi_type == 131:
-            return redirect(url_for('gui_blueprint._showdate_bau', dte=dte, id=id))
+        event_ = db.session.query(a, c, d).join(c, a.doi_type==c.id).join(d, a.doi_priority==d.id).filter(a.id==int(id)).all()
 
-    return render_template("eventreview.html", dte=dte)
+        if event_[0][0].doi_type == 131:
+            # go to the BaU booking page
+            return redirect(url_for('gui_blueprint._showdate_bau', dte=dte, id=id))
+        # Got to the Event Review page
+        return render_template("eventreview.html", dte=dte, event=event_[0])
+
+    if evt == "BOOKING":
+        book_ = db.session.query(b,e).join(e, b.complex==e.id).filter(b.id==int(id)).all()
+
+        # Got to the Event Review page
+        return render_template("eventreview.html", dte=dte, book=book_[0])
+
+    return "Error: /<Date>/DATE|BOOKING/<Id>"
+
+# Provides the text for a tooltip of the specified event by taking the id/type and giving a web page
+@gui_blueprint.route("/showttip/<int:id>/<string:evt>", methods=["GET"])
+@login_required
+def _showttip (id, evt):
+
+    a = aliased(DateOfInterest)
+    b = aliased(Booking)
+    c = aliased(Parameter)
+    d = aliased(Parameter)
+    e = aliased(Complex)
+    f = aliased(ComplexGroup)
+
+    if evt == "DATE":
+        event = db.session.query(a, c, d, func.fmapp.rem_slots(a.id).label("slotsAvailable"), f).\
+        join(c, a.doi_type==c.id).join(d, a.doi_priority==d.id).\
+        outerjoin(f, a.doi_filter==f.id).filter(a.id==int(id)).first()
+        return render_template("showttip.html", event=event)
+
+    if evt == "BOOKING":
+        book = db.session.query(b,e).join(e, b.complex==e.id).filter(b.id==int(id)).first()
+        return render_template("showttip.html", book=book)
+
 
 #################################################################
 # EMAIL #

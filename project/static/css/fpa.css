@@ -58,3 +58,13 @@
     overflow-y: scroll;
     padding-right: 0 !important;
 }
+
+.tooltip-inner {
+    max-width: 400px;
+    white-space: wrap;
+
+}
+
+.tooltip.in {
+  opacity : 1!important;
+}

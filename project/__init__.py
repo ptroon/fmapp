@@ -37,17 +37,27 @@ def get_user():
 def unique_time():
     return "?=" + str(datetime.utcnow()).replace(" ","")
 
-def is_now(size):
-    if size=="S":
+def get_now(fmt):
+    if fmt=="S":
         return datetime.now().strftime('%d-%m-%Y')
-    if size=="M":
+    if fmt=="M":
         return datetime.now().strftime('%B %d %Y - %H:%M:%S')
-    if size=="L":
+    if fmt=="L":
         return datetime.now().strftime('%B %d %Y - %H:%M:%S')
+    if fmt=='UTC':
+        return datetime.utcnow()
 
-def is_earlier(the_date):
-    if datetime.now() > datetime.strptime(the_date, '%d-%m-%Y'):
-        return 1
+def is_earlier(dte):
+    try:
+        d1 = datetime.strptime(dte, '%d-%m-%Y')
+    except Exception as e:
+        print (e)
+        return False
+
+    if get_now('UTC') <= d1:
+        return True
+    else:
+        return False
 
 
 # Check if the current user is in an admin flagged role and if yes, return True to show the admin menu
@@ -130,6 +140,7 @@ from project.models import User, Role
 def load_user(user_id):
     return User.query.filter(User.id == int(user_id)).first()
 
+
 # Register the functions so Jinja can call them from templates
 app.jinja_env.globals.update(get_name=get_name)
 app.jinja_env.globals.update(get_version=get_version)
@@ -138,7 +149,7 @@ app.jinja_env.globals.update(is_admin=is_admin)
 app.jinja_env.globals.update(unique_time=unique_time)
 app.jinja_env.globals.update(get_copyright=get_copyright)
 app.jinja_env.globals.update(test_null=test_null)
-app.jinja_env.globals.update(is_now=is_now)
+app.jinja_env.globals.update(get_now=get_now)
 app.jinja_env.globals.update(is_earlier=is_earlier)
 
 login_manager.blueprint_login_views = { 'gui_blueprint' : '/fpa/login', 'api_blueprint' : '/fpa/login', }

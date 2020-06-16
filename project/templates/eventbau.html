@@ -2,7 +2,7 @@
 
   <div class="modal-header">
   <h2 class="display-10"></h2>
-  <h5 class="modal-title" id="newModalLabel">BaU chosen: {{ dte }}
+  <h5 class="modal-title" id="newModalLabel">Date: {{ dte }}
     {% for event in events %}
      &nbsp;&nbsp;"{{ event["doi_name"] }}"
     {% endfor %}
@@ -18,13 +18,35 @@
     <div class="modal-body">
       <div class="container" id="events-container">
 
-        <div class="p-1 m-1 bg-light text-black font-weight-bold">Slot Bookings</div>
+        <form action="{{ url_for('gui_blueprint._editbooking', id=0, evt=id) }}" method="POST">
+        <div class="modal-body">
+          <div>{{ form.hidden_tag() }}</div>
+          <div class="px-2 bg-secondary text-white">Choose a Group</div>
+          <div>{{ form.group_select() }}</div>
+          <div class="px-2 bg-secondary text-white">Choose a Complex</div>
+          <div>{{ form.complex_select() }}</div>
+          <input type="hidden" id="start" name="start" value="{{ dte }}"/>
+        </div>
+        <div class="modal-footer">
+
+          {% if is_earlier(dte) and bookings|length < form.max_slots.data %}
+          {{ form.nextbtn(class_="btn btn-primary button_fpa") }}
+          {% else %}
+          <div class="px-2 bg-warning text-black">Max slots already booked or date is past</div>
+          {% endif %}
+
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </form>
+
+        <div class="px-2 text-info font-weight-bold">Slot Bookings</div>
         <table class="table table-striped" id="t_admin">
-          <thead class="thead-light">
+          <thead class="">
             <tr>
               <th scope="col">Title</th>
               <th scope="col">Owner</th>
               <th scope="col">Ticket</th>
+              <th scope="col">Approved?</th>
             </tr>
           </thead>
           <tbody>
@@ -33,31 +55,19 @@
               <td>{{ rec["title"] }}</td>
               <td>{{ rec["owner_id"] }}</td>
               <td>{{ rec["ticket"] }}</td>
+              {% if rec["approved_date"] is none %}
+                <td class="text-danger">No</td>
+              {% else %}
+                <td class="text-success">Yes</td>
+              {% endif %}
             </tr>
             {%- endfor -%}
             {% if not bookings|length %}
-            <tr><td colspan="3">There are no slots to review</td></tr>
+            <tr><td colspan="4">There are no slots booked</td></tr>
             {% endif %}
           </tbody>
         </table>
 
-        <form action="{{ url_for('gui_blueprint._editbooking', id=0) }}" method="POST">
-        <div class="modal-body">
-          <div>Choose a Group/Complex:</div>
-          <div>{{ form.group_select(class_="form-control") }}</div>
-          <hr/>
-          <div>{{ form.complex_select(class_="form-control") }}</div>
-          <input type="hidden" id="start" name="start" value="{{ dte }}"/>
-        </div>
-        <div class="modal-footer">
-
-          {% if is_now("S") <= dte %}
-          {{ form.nextbtn(class_="btn btn-primary button_fpa") }}
-          {% endif %}
-
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-        </form>
 
       </div>
   <div class="modal-footer">

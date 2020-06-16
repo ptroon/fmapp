@@ -19,6 +19,10 @@
     <div class="alert-warning p-2 m-3 font-weight-bold text-black">{{ form.approval_required.render_kw.title }}</div>
     {%- endif -%}
 
+    {%- if form.slot_id.data|int > 0 -%}
+    <div class="alert-info p-2 m-3 font-weight-bold text-black">This is a BaU booking for "{{ event.doi_name }}"</div>
+    {%- endif -%}
+
         <table class="form-group w-75 align-text-top">
           <tr>
             <td>{{ form.hidden_tag() }}</td>

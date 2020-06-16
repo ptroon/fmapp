@@ -230,7 +230,7 @@ class DateOfInterest(db.Model, UserMixin):
     doi_end_dt = db.Column(DateTime2, nullable=False)
     doi_regions = db.Column(db.String(100))
     doi_type = db.Column(db.Integer)
-    doi_filter = db.Column(db.String(2000))
+    doi_filter = db.Column(db.Integer)
     doi_hap = db.Column(db.Integer, default=0)
 
     def __init__(self, *args, **kwargs):
