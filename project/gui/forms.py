@@ -380,6 +380,20 @@ class ComplexGroupNameSelectForm(FlaskForm):
         self.complex_select.render_kw = {'class':'form-control','onchange': 'change_complex()'}
 
 
+class CopyDateForm(FlaskForm):
+    id = HiddenField("ID")
+    event_name = HiddenField("Name")
+    copy_select = NoValidateSelectfield('Copy Action')
+    end_date = StringField('Date', validators=[InputRequired()])
+    savebtn = SubmitField("Copy")
+
+    def __init__(self, *args, **kwargs):
+        super(CopyDateForm, self).__init__(*args, **kwargs)
+        self.end_date.render_kw = {'data-target': '#datetimepicker1', 'data-toggle': 'datetimepicker', 'readonly': 'true', 'data-placement':'top', 'onchange': 'change_date()'}
+        self.copy_select.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group==138).order_by(Parameter.id)] # Complex Names
+        self.savebtn.render_kw = {'class': 'button_fpa btn-primary btn'}
+
+
 class BookingForm(FlaskForm):
     id = HiddenField('id', default=0)
     slot_id = HiddenField('Slot', default=0)

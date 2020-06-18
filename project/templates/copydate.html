@@ -1,0 +1,118 @@
+<html>
+<head>
+</head>
+
+  <div class="modal-header">
+  <h2 class="display-10"></h2>
+  <h5 class="modal-title" id="newModalLabel">Copy "{{ event[0].doi_name }}"</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+<form name="copyForm" id="copyForm" method="POST" action="{{ url_for('gui_blueprint._copydate', id=event[0].id) }}">
+{{ form.hidden_tag() }}
+
+<table class="table" id="events-container" style="">
+
+  {% if event.slotsAvailable is not none %}
+  <tr>
+    <td class="col text-left align-text-top">Slots Available</td>
+    <td class="col text-left">{{ event[4].max_slots }}</td>
+  </tr>
+  {% endif %}
+
+  <tr>
+    <td class="col text-left align-text-top">Comment</td>
+    <td class="col text-left">{{ event[0].doi_comment }}</td>
+  </tr>
+  <tr>
+    <td class="col text-left align-text-top">Priority</td>
+    <td class="col text-left">{{ event[2].param_value }}</td>
+  </tr>
+  <tr>
+    <td class="col text-left align-text-top">Start</td>
+    <td class="col text-left">{{ event[0].doi_start_dt }}</td>
+  </tr>
+  <tr>
+    <td class="col text-left align-text-top">End</td>
+    <td class="col text-left">{{ event[0].doi_end_dt }}</td>
+  </tr>
+  <tr>
+    <td class="col text-left align-text-top">Regions</td>
+    <td class="col text-left">{{ event[0].doi_regions }}</td>
+  </tr>
+  <tr>
+    <td class="col text-left align-text-top">Type</td>
+    <td class="col text-left font-weight-bold">{{ event[1].param_name }}</td>
+  </tr>
+  <tr>
+    <td class="col text-left align-text-top">{{ form.copy_select.label() }}</td>
+    <td class="col text-left">{{ form.copy_select() }}
+    </td>
+  </tr>
+  <tr>
+    <td class="col text-left align-text-top">{{ form.end_date.label() }}</td>
+    <td class="col text-left">
+
+      <div class="container">
+        <div class="row">
+          <div class="input-group">
+            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+              {{ form.end_date(class_="form-control-plaintext form-control datetimepicker-input") }}
+
+            <script type="text/javascript">
+                $(function () {
+                    $('#datetimepicker1').datetimepicker({
+                      icons: {
+                        time: 'far fa-clock',
+                        date: 'far fa-calendar',
+                        up: 'fas fa-arrow-up',
+                        down: 'fas fa-arrow-down',
+                        previous: 'fas fa-chevron-left',
+                        next: 'fas fa-chevron-right',
+                        today: 'far fa-calendar-check-o',
+                        clear: 'far fa-trash',
+                        close: 'far fa-times'
+                      },
+                      locale: 'en-gb',
+                      allowInputToggle: false,
+                      showClose: true,
+                      sideBySide: false,
+                      ignoreReadonly: true,
+                      format: 'L',
+                      minDate: moment().add(1, 'days'),
+                      useCurrent: false,
+                      onSelect: function(dateText) {
+                                  console.log(dateText);
+                                  $(this).change();
+                                }
+                    });
+                });
+            </script>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </td>
+  </tr>
+  <tr>
+    <td class="col text-left align-text-top">&nbsp;</td>
+    <td class="col text-left">
+      {{ form.savebtn() }}
+    </td>
+  </tr>
+</table>
+</form>
+
+<script>
+
+function change_date() {
+  console.log("changed date to " + $('#end_date').val());
+}
+
+$('end_date').on("change", 'change_date()');
+
+</script>
+</html>

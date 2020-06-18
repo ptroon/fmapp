@@ -56,32 +56,12 @@ var calendar_options = {
     event_click(this, info);
   },
   eventRender: function (info) {
-    var v_br = "<br>";
-    var v_owner = "";
-    var v_complex = "";
-
-    if (is_not_undefined(info.event.extendedProps.owner)) {
-      v_owner = "Owner: " + info.event.extendedProps.owner + v_br;
-    }
-
-    if (is_not_undefined(info.event.extendedProps.complex)) {
-      v_complex = "Complex: " + info.event.extendedProps.complex + v_br;
-    }
-
-    var v_details =
-      v_owner + v_complex +
-      "Type: " +  info.event.extendedProps.eventType + v_br +
-      "Title: " + info.event.title + v_br +
-      "Info: " +  info.event.extendedProps.description + v_br +
-      "Start: " + moment.parseZone(info.event.start).format("DD-MM-YYYY HH:mm:ss") + v_br +
-      "End: " +   moment.parseZone(info.event.end).format("DD-MM-YYYY HH:mm:ss");
 
     v_details = ""
     vurl = "/fpa/showttip/" + info.event.id + "/" + info.event.extendedProps.eventType;
     $.ajax({url: vurl, success: function(result) {
       $(info.el).tooltip({ title:result, html:true, animation:false, container:"body", boundary:'window' });
       }});
-
 
 
     // info.el.querySelector('.fc-title').innerHTML = info.event.title + " (" + info.event.extendedProps.availableSlots + ")";

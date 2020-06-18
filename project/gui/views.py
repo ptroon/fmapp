@@ -14,6 +14,7 @@ from file_read_backwards import FileReadBackwards
 import itertools
 
 from sqlalchemy.orm import aliased
+from sqlalchemy.orm.session import make_transient
 from sqlalchemy import or_
 from sqlalchemy.sql.expression import cast
 from sqlalchemy import Integer as sqlInteger, String as sqlString
@@ -55,18 +56,18 @@ def _index ():
 
         if flag=="14":
             # Get next two weeks
-            d1 = datetime.now()
+            d1 = datetime.now() - timedelta(days=1)
             d2 = d1 + timedelta(days=14)
 
         if flag=="28":
             # Get next 4 weeks
-            d1 = datetime.now()
+            d1 = datetime.now() - timedelta(days=1)
             d2 = d1 + timedelta(days=28)
 
         if flag=="-28":
             # Get last 4 weeks
             d1 = datetime.now() - timedelta(days=28)
-            d2 = d1 + timedelta(days=28)
+            d2 = d1 + timedelta(days=29)
 
         if flag=="0":
             d1 = datetime.now() - timedelta(weeks=52)
@@ -492,6 +493,9 @@ def _editdate (id):
         doi = DateOfInterest.query.filter_by(id=id).first()
         form = DOIForm(obj=doi)
 
+        if not form.doi_filter.data:
+            form.doi_filter.data = 0
+
         if request.method == "GET":
             if doi:
                 form.doi_start_dt.data = datetime.strftime(datetime.strptime(doi.doi_start_dt, '%Y-%m-%d %H:%M:%S'), '%d/%m/%Y %H:%M')
@@ -537,6 +541,80 @@ def _editdate (id):
 
     else:
         return render_template("403.html", error = "You are not an administrator")
+
+
+@gui_blueprint.route("/admin/copydate/<id>", methods=["GET","POST"])
+@login_required
+def _copydate (id):
+
+    ######################
+    # Inner function to copy the event with ID until date = DTE
+    def copy_event(vobj, vdate):
+        new_doi = vobj                  # Copy object
+        db.session.expunge(new_doi)     # expunge the new object from session
+        make_transient(new_doi)         # Make it transient to mark it as a "new" object
+        new_doi.id  = 0                 # This is a new record now, so init ID to zero
+
+        # Use the new date DD-MM-YYY and append the existing time HH:MM:SS
+        new_sdate = vdate + " " + str(vobj.doi_start_dt).split(' ')[1]
+        new_edate = vdate + " " + str(vobj.doi_end_dt).split(' ')[1]
+        new_doi.doi_start_dt = datetime.strptime(new_sdate, '%d/%m/%Y %H:%M:%S')
+        new_doi.doi_end_dt   = datetime.strptime(new_edate, '%d/%m/%Y %H:%M:%S')
+
+        print (str(new_doi.doi_start_dt) + " " + str(new_doi.doi_end_dt))
+
+        # return object
+        return new_doi
+    ######################
+
+
+    form=CopyDateForm(id=id)
+
+    if request.method == "GET":
+
+        a = aliased(DateOfInterest)
+        c = aliased(Parameter)
+        d = aliased(Parameter)
+        f = aliased(ComplexGroup)
+
+        event = db.session.query(a, c, d, func.fmapp.rem_slots(a.id).label("slotsAvailable"), f).\
+        join(c, a.doi_type==c.id).join(d, a.doi_priority==d.id).\
+        outerjoin(f, a.doi_filter==f.id).filter(a.id==int(id)).first()
+
+        form.event_name.data = event[0].doi_name # cache the name
+
+        return render_template("copydate.html", event=event, form=form)
+
+    if request.method == "POST":
+
+        if not form.end_date.data:
+            flash("No date given so copy not completed for '" + form.event_name.data + "'", "info") # No date provided, so show this
+        else:
+
+            doi = DateOfInterest.query.filter_by(id=id).first()
+            try:
+                if form.copy_select.data == '1':  # Option to copy to that date ONLY
+                    db.session.add(copy_event (doi, form.end_date.data))
+
+                if form.copy_select.data in ['7', '14', '28']: # Copy X times to that date
+                    date_ = datetime.strptime(doi.doi_start_dt, '%Y-%m-%d %H:%M:%S')
+                    end_ =  datetime.strptime(form.end_date.data, '%d/%m/%Y')
+                    vdays = int(form.copy_select.data)
+                    while date_ <= end_:
+                        date_ = date_ + timedelta(days=vdays)
+                        db.session.add(copy_event (doi, date_.strftime('%d/%m/%Y')))
+                        db.session.flush()
+
+                db.session.commit()
+
+            except Exception as e:
+                    flash("Copy failed because " + str(e), "danger") # Copy was a success
+                    return redirect(url_for('gui_blueprint._dates')) # Back to the main Dates page
+
+
+            flash("Copy completed for " + form.event_name.data, "success") # Copy was a success
+
+        return redirect(url_for('gui_blueprint._dates')) # Back to the main Dates page
 
 #################################################################
 # SEARCH #

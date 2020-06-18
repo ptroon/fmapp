@@ -21,7 +21,11 @@
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1">{{ form.param_name.label }}</td>
+            {% if form.param_critical.data == 0 %}
             <td class="w-75 text-right mx-2 p-1">{{ form.param_name(size=32, class_="form-control") }}</td>
+            {% else %}
+            <td class="w-75 text-right mx-2 p-1">{{ form.param_name(size=32, class_="form-control",  disabled=true) }}</td>
+            {% endif %}
           </tr>
           <tr>
             <td class="w-25 text-right mx-2 p-1 align-top">{{ form.param_value.label }}</td>
@@ -59,7 +63,7 @@
               <div class="input-group my-3">
                 {{ form.param_critical(size=1, class_="form-control font-weight-bold text-secondary", disabled=true) }}
                 <div class="input-group-append">
-                  <span class="input-group-text bg-info text-white font-weight-bold">Setting this option means the parameter cannot be deleted in future!</span>
+                  <span class="input-group-text bg-info text-white font-weight-bold">Setting this option means the parameter cannot be edited in the future!</span>
                 </div>
               </div>
             </td>
@@ -68,7 +72,11 @@
 
           <tr>
             <td>&nbsp;</td>
-            <td class="p-5">{{ form.savebtn(class_="btn btn-primary button_fpa") }} <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._parameters', group=session["group"]) }}'">Cancel</button>
+            <td class="p-5">
+              {% if form.param_critical.data == 0 %}
+              {{ form.savebtn(class_="btn btn-primary button_fpa") }}
+              {% endif %}
+              <button type=button name="cancel" id="cancel" class="btn btn-primary button_fpa" onclick="location.href='{{ url_for('gui_blueprint._parameters', group=session["group"]) }}'">Cancel</button>
             {% if form.param_critical.data == 0 %}
             {{ form.deletebtn(class_="btn btn-danger") }}
             {% endif %}

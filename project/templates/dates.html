@@ -22,6 +22,7 @@
   <table class="table table-striped" id="t_dates">
     <thead class="thead-light">
       <tr>
+        <th scope="col">&nbsp;</th>
         <th scope="col">Name</th>
         <th scope="col">Regions</th>
         <th scope="col">Start</th>
@@ -34,6 +35,7 @@
 
       {% for rec in data %}
       <tr>
+        <td><a href="javascript:show_copydate_modal('{{ url_for('gui_blueprint._copydate', id=rec['id']) }}');"><img src="{{ url_for('static', filename='images/copy.png') }}"></a></td>
         <td><a href="{{ url_for('gui_blueprint._editdate', id=rec['id']) }}">{{ rec["doi_name"] }}</a></td>
         <td>{{ rec["doi_regions"] }}</td>
         <td>{{ rec["doi_start_dt"] }}</td>
@@ -45,6 +47,16 @@
     </tbody>
   </table>
 </div>
+
+<!-- Modal used to hold the modal dialogs for the dates -->
+<div class="modal fade" id="dateModal" role="dialog" data-focus="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" id="model-content-opt">
+      <!-- Modal content-->
+      </div>
+    </div>
+</div>
+
 
 <script>
 $(document).ready( function () {
@@ -58,6 +70,13 @@ $(document).ready( function () {
 
 });
 
+function show_copydate_modal (vurl) {
+
+  $.ajax({url: vurl, success: function(result) {
+    $("#model-content-opt").html(result);
+  }});
+  $("#dateModal").modal();
+}
 
 </script>
 
