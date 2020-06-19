@@ -108,7 +108,8 @@ $(document).ready( function () {
       buttons: ['excel','print','pdf']
     });
 
-    $("#date_select option[value='{{ flag }}']").prop('selected', true);
+    // $("#date_select option[value='{{ flag }}']").prop('selected', true);
+    $("#date_select").val('{{ flag }}').change();
 
 });
 

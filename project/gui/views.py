@@ -471,8 +471,8 @@ def _dates ():
 
 
         dates_ = db.session.query(d.id, d.doi_name, d.doi_regions, d.doi_start_dt, d.doi_end_dt, a.param_value.label("priority"), \
-        b.param_name.label("hap"), c.param_name.label("type")).join(a, d.doi_priority==a.id).\
-        join(b, d.doi_hap==b.id).join(c, d.doi_type==c.id).\
+        b.param_name.label("env"), c.param_name.label("type")).join(a, d.doi_priority==a.id).\
+        join(b, d.doi_environment==b.id).join(c, d.doi_type==c.id).\
         filter(((d.doi_start_dt.between(d1, d2)) | \
         (d.doi_end_dt.between(d1, d2))) | \
         ((d.doi_start_dt < d1) & (d2 < d.doi_end_dt))).all()
@@ -517,7 +517,7 @@ def _editdate (id):
             if form.savebtn.data:
                 if not doi:
                     doi = DateOfInterest(form.doi_name.data, form.doi_priority.data, form.doi_comment.data, \
-                    start_dt, end_dt, form.doi_regions, form.doi_type, form.doi_filter, form.doi_hap)
+                    start_dt, end_dt, form.doi_regions, form.doi_type, form.doi_filter, form.doi_environment)
                     db.session.add(doi)
 
                 # if the type is not BAU then set to 0 as the complex group is pointless otherwise.
@@ -728,7 +728,6 @@ def _editbooking (id, evt):
             cplx = int(request.form.get("complex_select", 1)) # Get Complex ID
             complex = Complex.query.filter(Complex.id==int(cplx)).first() # Get complex object from query
             event = DateOfInterest.query.filter(DateOfInterest.id==evt).first()
-            print (event.doi_name)
 
             s_time = complex.complex_push_start
             e_time = complex.complex_push_end
@@ -825,7 +824,7 @@ def _editbooking (id, evt):
         # INVALID, so go back to edit page and get corrections by user.
         else:
             flash_errors(form)
-            return render_template("editbooking.html", form=form)
+            return render_template("editbooking.html", form=form, event=event)
 
 
 #################################################################
@@ -897,6 +896,10 @@ def _comms ():
             type_ = request.form.get("type_select", 0)
             emails = Parameter.query.filter(Parameter.param_name.like("OPERATIONS_EMAILS")).first()
             content = Parameter.query.filter(Parameter.param_parent==type_).first()
+
+            events = DateOfInterest.query.all()
+            book = Booking.query.all()
+
             return render_template("comms.html", form=form, emails=emails, content=content)
 
     else:

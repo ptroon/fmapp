@@ -187,7 +187,7 @@ class _doi(Resource):
 @nsp.route("/complexes/<int:complex_type>")
 class _complexes(Resource):
     def get(self, complex_type):
-        if is_admin():
+
 
             # get query from database
             a = aliased(Parameter)
@@ -217,10 +217,6 @@ class _complexes(Resource):
             result = list(map(lambda x: x._asdict(), complexes_))
 
             return result
-
-        else:
-            return not_admin()
-
 
 #################################################################
 # PARAMETERS #

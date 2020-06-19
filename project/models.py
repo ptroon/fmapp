@@ -231,7 +231,7 @@ class DateOfInterest(db.Model, UserMixin):
     doi_regions = db.Column(db.String(100))
     doi_type = db.Column(db.Integer)
     doi_filter = db.Column(db.Integer, default=0)
-    doi_hap = db.Column(db.Integer, default=0)
+    doi_environment = db.Column(db.Integer, default=0)
 
     def __init__(self, *args, **kwargs):
         super(DateOfInterest, self).__init__()

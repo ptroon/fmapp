@@ -12,6 +12,8 @@
   <div class="d-flex flex-row bg-light pl-1 h-30">
     <div class="p-1 m-1 flex-column justify-content-center align-self-center text-dark font-weight-bold">Date:</div>
     <div class="p-1 m-1 flex-column justify-content-center align-self-center date input-group w-25" id="datetimepicker1" data-target-input="nearest">{{ form.date_picker(size="15", class_="px-4 datetimepicker-input") }}</div>
+    <div class="p-1 m-1 flex-column justify-content-center align-self-center text-dark font-weight-bold">{{ form.env_select.label }}</div>
+    <div class="p-1 m-1 flex-column">{{ form.env_select(class_="form-control") }}</div>
     <div class="p-1 m-1 flex-column justify-content-center align-self-center text-dark font-weight-bold">Type:</div>
     <div class="p-1 m-1 flex-column">{{ form.type_select(class_="form-control") }}</div>
     <div class="p-1 m-1 flex-column">{{ form.btngo(class_="btn button_fpa btn-success") }}</div>

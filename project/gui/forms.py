@@ -214,7 +214,7 @@ class DOIForm(FlaskForm):
     doi_regions = SelectMultipleField2('Regions')
     doi_type = SelectField('Event Type', coerce=int)
     doi_filter = SelectField('Items', coerce=int)
-    doi_hap = SelectField('HAP', coerce=int, render_kw={"title":"Is the date a HAP?"})
+    doi_environment = SelectField('Environment', coerce=int)
     savebtn = SubmitField('Save')
     deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
 
@@ -231,8 +231,10 @@ class DOIForm(FlaskForm):
         self.doi_filter.render_kw = {'data-live-search': 'true', 'class': ' form-control', 'width': 'fit', 'data-container': 'body'}
         self.doi_regions.render_kw = {'multiple': 'true'}
         self.doi_type.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 127).filter(Parameter.param_disabled==0).order_by(Parameter.param_name)] # Event Types
-        self.doi_hap.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_name)] # Yes/No
-        self.doi_hap.render_kw = {'readonly': 'true'}
+        self.doi_environment.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 92).order_by(Parameter.param_name)] # Environments
+        select_group = self.doi_environment.choices
+        self.doi_environment.choices = [(0, 'All Environments')] + select_group
+        self.doi_environment.render_kw = {'readonly': 'false'}
         self.doi_type.render_kw = {"title": "The event type required"}
 
     def validate_doi_end_dt(form, field):
@@ -343,12 +345,16 @@ class ComplexGroupForm(FlaskForm):
 class CommsOptionsSelectForm(FlaskForm):
     date_picker = StringField('Date')
     type_select = SelectField('Type')
+    env_select = SelectField('Env')
     btngo = SubmitField('Go')
 
     def __init__(self, *args, **kwargs):
         super(CommsOptionsSelectForm, self).__init__(*args, **kwargs)
         self.type_select.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 116).order_by(Parameter.param_name)] # Comms Email Options
         self.date_picker.render_kw = {'data-target': '#datetimepicker1', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Select Date to search'}
+        self.env_select.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 92).order_by(Parameter.param_name)] # Environments
+        select_group = self.env_select.choices
+        self.env_select.choices = [(0, 'All Environments')] + select_group
 
 
 class ComplexNameSelectForm(FlaskForm):
