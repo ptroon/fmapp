@@ -21,8 +21,8 @@
     <td class="col text-left w-50">{{ event[0].doi_comment }}</td>
   </tr>
   <tr style="width:200px;">
-    <td class="col text-left w-50 align-text-top">Priority</td>
-    <td class="col text-left w-50">{{ event[2].param_value }}</td>
+    <td class="col text-left w-50 align-text-top">Ref</td>
+    <td class="col text-left w-50">{{ event[0].doi_change_ref }}</td>
   </tr>
   <tr style="width:200px;">
     <td class="col text-left w-50 align-text-top">Start</td>
@@ -39,6 +39,10 @@
   <tr style="width:200px;">
     <td class="col text-left w-50 align-text-top">Type</td>
     <td class="col text-left w-50 text-info font-weight-bold">{{ event[1].param_name }}</td>
+  </tr>
+  <tr style="width:200px;">
+    <td class="col text-left w-50 align-text-top text-info">ID {{ event[0].id }}</td>
+    <td class="col text-left w-50 text-info">&nbsp;</td>
   </tr>
 {% endif %}
 

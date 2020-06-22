@@ -3,9 +3,7 @@
   <div class="modal-header">
   <h2 class="display-10"></h2>
   <h5 class="modal-title" id="newModalLabel">Date: {{ dte }}
-    {% for event in events %}
-     &nbsp;&nbsp;"{{ event["doi_name"] }}"
-    {% endfor %}
+     &nbsp;&nbsp;"{{ events[0]["doi_name"] }}"
   </h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
@@ -29,10 +27,10 @@
         </div>
         <div class="modal-footer">
 
-          {% if is_earlier(dte) and bookings|length < form.max_slots.data %}
+          {% if (is_earlier(dte) and bookings|length < form.max_slots.data) and events[0]["doi_change_ref"] != none %}
           {{ form.nextbtn(class_="btn btn-primary button_fpa") }}
           {% else %}
-          <div class="px-2 bg-warning text-black">Max slots already booked or date is past</div>
+          <div class="px-2 bg-warning text-black">Max slots already booked, date is past or event data missing</div>
           {% endif %}
 
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

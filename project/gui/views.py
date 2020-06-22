@@ -561,8 +561,6 @@ def _copydate (id):
         new_doi.doi_start_dt = datetime.strptime(new_sdate, '%d/%m/%Y %H:%M:%S')
         new_doi.doi_end_dt   = datetime.strptime(new_edate, '%d/%m/%Y %H:%M:%S')
 
-        print (str(new_doi.doi_start_dt) + " " + str(new_doi.doi_end_dt))
-
         # return object
         return new_doi
     ######################
@@ -681,16 +679,25 @@ def _help ():
 # BOOKINGS #
 ############
 
-@gui_blueprint.route("/bookings", methods=["GET"])
-def _bookings ():
+@gui_blueprint.route("/bookings", defaults={'env': 0}, methods=["GET", "POST"])
+@gui_blueprint.route("/bookings/<int:env>", methods=["GET","POST"])
+def _bookings (env):
+
+    envf = EnvForm()
+    form = ComplexNameSelectForm()
+    defdate = request.args.get("defdate", datetime.now())
 
     # Show the booking calendar view
     if request.method == "GET":
-        form = ComplexNameSelectForm()
-        defdate = request.args.get("defdate", datetime.now())
-        return render_template("calendar.html", form=form, defdate=defdate)
+        pass
+
+    if request.method == "POST":
+        session["env"] = request.form.get("env_select", 0)
+
+    return render_template("calendar.html", form=form, defdate=defdate, envf=envf)
 
 
+#################################################################
 # This is waaaayy too long!!
 @gui_blueprint.route("/editbooking/<int:id>", defaults={'evt': 0}, methods=["GET","POST"])
 @gui_blueprint.route("/editbooking/<int:id>/<int:evt>", methods=["GET","POST"])
@@ -893,14 +900,36 @@ def _comms ():
             return render_template("comms.html", form=form)
 
         if request.method == 'POST':
+
+            a = aliased(DateOfInterest)
+            b = aliased(Booking)
+            c = aliased(User)
+            d = aliased(Complex)
+
             type_ = request.form.get("type_select", 0)
             emails = Parameter.query.filter(Parameter.param_name.like("OPERATIONS_EMAILS")).first()
             content = Parameter.query.filter(Parameter.param_parent==type_).first()
 
-            events = DateOfInterest.query.all()
-            book = Booking.query.all()
+            d1 = datetime.strptime(form.date_picker.data, '%d/%m/%Y') # start date with 00:00:00
+            d2 = d1 + timedelta(minutes=1439) # end date with 23:59:00
 
-            return render_template("comms.html", form=form, emails=emails, content=content)
+            events_ = db.session.query(a.id, a.doi_name, a.doi_start_dt, a.doi_end_dt, a.doi_type, \
+            a.doi_change_ref, func.fmapp.total_bookings(a.id).label("totalBookings")).\
+            filter(a.doi_start_dt.between(d1, d2)).all()
+            events = list(map(lambda x: x._asdict(), events_))
+
+            # Show the booking, complex, owner email, SCR
+            bookings_ = db.session.query(b.id, b.title, b.start_dt, b.end_dt, b.ticket, \
+            b.change_ref, b.change_subref,\
+            a.doi_name, c.forename, c.surname, c.email, d.complex_name, b.slot_id).\
+            join(c, b.owner_id==c.login_id).\
+            join(d, b.complex==d.id).\
+            outerjoin(a, b.slot_id==a.id).\
+            filter(b.start_dt.between(d1, d2)).all()
+            bookings = list(map(lambda x: x._asdict(), bookings_))
+            # print (bookings)
+
+            return render_template("comms.html", form=form, emails=emails, content=content, events=events, bookings=bookings)
 
     else:
         return render_template("403.html", error = "You are not an administrator")
@@ -1037,9 +1066,13 @@ def _showdate (dte):
     d2 = d1 + timedelta(minutes=1439)
     locked_flag = 0
 
+    if session["env"] == "":
+        session["env"] = 94
+
     a = aliased(DateOfInterest)
 
     doi_ = db.session.query(a.id, a.doi_name, a.doi_start_dt, a.doi_end_dt, a.doi_comment, a.doi_type).\
+    filter(a.doi_environment==session["env"]).\
     filter(((a.doi_start_dt.between(d1, d2)) | \
     (a.doi_end_dt.between(d1, d2))) | \
     ((a.doi_start_dt < d1) & (d2 < a.doi_end_dt))).all()
@@ -1069,7 +1102,7 @@ def _showdate_bau (dte, id):
     c = aliased(ComplexGroup)
     d = aliased(Complex)
 
-    events_ = db.session.query(a.id, a.doi_name, a.doi_start_dt, a.doi_end_dt, a.doi_comment, a.doi_type).filter(a.id==id).all()
+    events_ = db.session.query(a.id, a.doi_name, a.doi_start_dt, a.doi_end_dt, a.doi_comment, a.doi_type, a.doi_change_ref).filter(a.id==id).all()
     events = list(map(lambda x: x._asdict(), events_))
 
     bookings_ = db.session.query(b.id, b.slot_id, b.title, b.ticket, b.owner_id, b.approved_date).\

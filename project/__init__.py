@@ -59,7 +59,6 @@ def is_earlier(dte):
     else:
         return False
 
-
 # Check if the current user is in an admin flagged role and if yes, return True to show the admin menu
 def is_admin():
     user = User.query.filter_by(login_id=get_user()).join(Role, User.role==Role.id).filter_by(role_admin=1).first()
@@ -77,6 +76,12 @@ def test_null(var):
             return False
     except:
         return True
+
+def fmt_date(v_date):
+    if isinstance(v_date, datetime):
+        return v_date.strftime('%d-%m-%Y %H:%M:%S')
+    if isinstance(v_date, str):
+        return datetime.strptime(v_date, '%Y-%m-%d %H:%M:%S').strftime('%d-%m-%Y %H:%M:%S')
 
 #################################################################
 # SET-UP APP #
@@ -151,6 +156,7 @@ app.jinja_env.globals.update(get_copyright=get_copyright)
 app.jinja_env.globals.update(test_null=test_null)
 app.jinja_env.globals.update(get_now=get_now)
 app.jinja_env.globals.update(is_earlier=is_earlier)
+app.jinja_env.globals.update(fmt_date=fmt_date)
 
 login_manager.blueprint_login_views = { 'gui_blueprint' : '/fpa/login', 'api_blueprint' : '/fpa/login', }
 login_manager.needs_refresh_message = (u"Session timedout, please login again")

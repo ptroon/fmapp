@@ -232,6 +232,7 @@ class DateOfInterest(db.Model, UserMixin):
     doi_type = db.Column(db.Integer)
     doi_filter = db.Column(db.Integer, default=0)
     doi_environment = db.Column(db.Integer, default=0)
+    doi_change_ref = db.Column(db.String(20))
 
     def __init__(self, *args, **kwargs):
         super(DateOfInterest, self).__init__()

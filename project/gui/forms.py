@@ -2,6 +2,7 @@
 # Contains the FLASK_WTF forms
 #
 from flask_wtf import FlaskForm
+from flask import session
 from wtforms import *
 from wtforms.validators import *
 from wtforms.widgets.html5 import *
@@ -22,6 +23,7 @@ CHANGE_REF_ERRORMSG = 'Change reference must start with MCR, SCR or RCR and have
 DUPLICATE_USER_ERRORMSG = "User already exists, please use a different Login ID"
 MAX_SLOTS_ERRORMSG = "Number of slots is higher than allowed per change, less than or equal to"
 DATETYPE_ERRORMSG = "If Date type is 'BaU' then you must have a complex group chosen"
+DATEREF_ERRORMSG = "If Date type is 'BaU' then you must enter an MCR/SCR reference"
 ###############################################################################
 # OVERIDES #
 ############
@@ -215,6 +217,7 @@ class DOIForm(FlaskForm):
     doi_type = SelectField('Event Type', coerce=int)
     doi_filter = SelectField('Items', coerce=int)
     doi_environment = SelectField('Environment', coerce=int)
+    doi_change_ref = StringField('Reference')
     savebtn = SubmitField('Save')
     deletebtn = SubmitField('Delete', render_kw={'hidden':'true'})
 
@@ -231,11 +234,12 @@ class DOIForm(FlaskForm):
         self.doi_filter.render_kw = {'data-live-search': 'true', 'class': ' form-control', 'width': 'fit', 'data-container': 'body'}
         self.doi_regions.render_kw = {'multiple': 'true'}
         self.doi_type.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 127).filter(Parameter.param_disabled==0).order_by(Parameter.param_name)] # Event Types
-        self.doi_environment.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 92).order_by(Parameter.param_name)] # Environments
+        self.doi_environment.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 92).filter(Parameter.param_disabled==0).order_by(Parameter.param_name)] # Environments
         select_group = self.doi_environment.choices
         self.doi_environment.choices = [(0, 'All Environments')] + select_group
-        self.doi_environment.render_kw = {'readonly': 'false'}
+        self.doi_environment.render_kw = {'title': 'Pick the environment this applies to'}
         self.doi_type.render_kw = {"title": "The event type required"}
+        self.doi_change_ref.render_kw = {"title": "Enter the MCR or SCR ref"}
 
     def validate_doi_end_dt(form, field):
         if datetime.strptime(field.data, '%d/%m/%Y %H:%M') <= datetime.strptime(form.doi_start_dt.data, '%d/%m/%Y %H:%M'):
@@ -245,6 +249,9 @@ class DOIForm(FlaskForm):
         if (form.doi_type.data == 131 and field.data == 0):
             raise ValidationError(DATETYPE_ERRORMSG)
 
+    def validate_doi_change_ref(form, field):
+        if (form.doi_type.data == 131 and field.data == ""):
+            raise ValidationError(DATEREF_ERRORMSG)
 
 class ComplexForm(FlaskForm):
     id = HiddenField('id', default=0)
@@ -303,7 +310,7 @@ class ComplexForm(FlaskForm):
         self.complex_area.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 1).order_by(Parameter.param_value.asc())] # Parameters for Locations
         self.complex_country.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 1).order_by(Parameter.param_value.asc())] # Parameters for Countries
         self.complex_restricted.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 105).order_by(Parameter.param_value.asc())] # Parameters for Restricted as Yes/No
-        self.complex_environment.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 92).order_by(Parameter.param_value.asc())] # Parameters for Environments
+        self.complex_environment.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 92).filter(Parameter.param_disabled==0).order_by(Parameter.param_value.asc())] # Parameters for Environments
         self.complex_active.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 66).order_by(Parameter.param_value.asc())] # Parameters for Active state
         self.complex_push_start.render_kw = {'data-target': '#datetimepicker1', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose Start time'}
         self.complex_push_end.render_kw = {'data-target': '#datetimepicker2', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Click to choose End time'}
@@ -352,7 +359,7 @@ class CommsOptionsSelectForm(FlaskForm):
         super(CommsOptionsSelectForm, self).__init__(*args, **kwargs)
         self.type_select.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 116).order_by(Parameter.param_name)] # Comms Email Options
         self.date_picker.render_kw = {'data-target': '#datetimepicker1', 'data-toggle': 'datetimepicker', 'readonly': '', 'data-placement':'top', 'title':'Select Date to search'}
-        self.env_select.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 92).order_by(Parameter.param_name)] # Environments
+        self.env_select.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 92).filter(Parameter.param_disabled==0).order_by(Parameter.param_name)] # Environments
         select_group = self.env_select.choices
         self.env_select.choices = [(0, 'All Environments')] + select_group
 
@@ -364,7 +371,7 @@ class ComplexNameSelectForm(FlaskForm):
 
     def __init__(self, *args, **kwargs):
         super(ComplexNameSelectForm, self).__init__(*args, **kwargs)
-        self.complex_select.choices = [(a.id, a.complex_name) for a in Complex.query.order_by(Complex.complex_name)] # Complex Names
+        self.complex_select.choices = [(a.id, a.complex_name) for a in Complex.query.filter(Complex.complex_environment==session["env"]).order_by(Complex.complex_name)] # Complex Names
         self.vendor_select.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group == 100).order_by(Parameter.param_name)] # Complex Type
         select_option = self.vendor_select.choices
         self.vendor_select.choices = [('0', '-- All Vendors --')] + select_option
@@ -398,6 +405,15 @@ class CopyDateForm(FlaskForm):
         self.end_date.render_kw = {'data-target': '#datetimepicker1', 'data-toggle': 'datetimepicker', 'readonly': 'true', 'data-placement':'top', 'onchange': 'change_date()'}
         self.copy_select.choices = [(a.param_value, a.param_name) for a in Parameter.query.filter(Parameter.param_group==138).order_by(Parameter.id)] # Complex Names
         self.savebtn.render_kw = {'class': 'button_fpa btn-primary btn'}
+
+
+class EnvForm(FlaskForm):
+    env_select = SelectField('Environment')
+
+    def __init__(self, *args, **kwargs):
+        super(EnvForm, self).__init__(*args, **kwargs)
+        self.env_select.choices = [(a.id, a.param_name) for a in Parameter.query.filter(Parameter.param_group==92).filter(Parameter.param_disabled==0).order_by(Parameter.param_name)] # Environments
+        self.env_select.render_kw = {'onchange': 'change_env()', 'class': 'form-control-lg bg-light text-primary'}
 
 
 class BookingForm(FlaskForm):

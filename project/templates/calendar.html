@@ -20,10 +20,17 @@
   function change_vendor() {
     var x = document.getElementById("vendor_select").value;
     var e = document.getElementById("vendor_select");
+
+    {% if session["env"] != "" %}
+    var env = "/{{ session['env'] }}";
+    {% else %}
+    var env = ""
+    {% endif %}
+
       if(x){
         $.ajax({
             type:'GET',
-            url:'/fpa/api/v1/complexes/' + x,
+            url:'/fpa/api/v1/complexes/' + x + env,
             dataType:'json',
             success:function(retData){
                 $('#complex_select').empty().val('0');
@@ -31,6 +38,7 @@
                   $('#complex_select').append('<option value="'+ element.id +'">'+ element.complex_name +'</option>');
                 });
                 $('#complex_select').change();
+                change_complex();
             },
             error: function(req, status, error) {
              alert( req.responseText );
@@ -43,7 +51,7 @@
 
   function change_complex() {
 
-    console.log($('#complex_select').val());
+    // console.log($('#complex_select').val());
     if ($('#complex_select').val()) {
       $('#nextbtn').prop("disabled", false);
     }
@@ -57,7 +65,14 @@
 {% endblock %}
 {% block content %}
 
-<h5 class="card-header text-white bg-secondary">Bookings</h5>
+<form id="envform" action="{{ url_for('gui_blueprint._bookings') }}" method="POST">
+<h5 class="card-header text-white bg-secondary">
+  <span class="px-8">Bookings for &nbsp;&nbsp;&nbsp;</span>
+  <span>
+    {{ envf.env_select() }}
+  </span>
+</h5>
+</form>
 
 <div class="container-fluid mt-3">
   <div class="row">
@@ -75,6 +90,18 @@
     </div>
 </div>
 
+<script>
+
+$(document).ready(function () {
+  $("#env_select option[value='{{ session["env"] }}']").prop('selected', true);
+});
+
+function change_env() {
+  console.log($('#env_select').val());
+  $('#envform').submit();
+}
+
+</script>
 
 
 {% endblock %}

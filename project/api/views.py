@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, url_for, jsonify, make_response, request, Response
+from flask import Flask, Blueprint, url_for, jsonify, make_response, request, Response, session
 from flask_restplus import Api, Resource, reqparse
 from flask_login import login_required, login_user, logout_user, current_user
 from itsdangerous import JSONWebSignatureSerializer
@@ -110,18 +110,23 @@ class _doi(Resource):
     def get(self):
 
             a = aliased(DateOfInterest)
-            b = aliased(Parameter)
+            b = aliased(Parameter)      # join for Event Type
             c = aliased(Booking)
             d = aliased(Complex)
             e = aliased(ComplexGroup)
+            f = aliased(Parameter)      # join for Environments
 
             d1 = request.args.get("start", None)
             d2 = request.args.get("end", None)
+            env = request.args.get("env", session["env"])
 
             try:
 
                 if (not d1 or not d2):
                     raise Exception ("start or end dates not provided on URL e.g. (?start=<date>&end=<date>)")
+
+                if not env:
+                    env = 94 # Production
 
                 d1 = datetime.strptime(d1.replace('+01:00','Z'), '%Y-%m-%dT%H:%M:%SZ')
                 d2 = datetime.strptime(d2.replace('+01:00','Z'), '%Y-%m-%dT%H:%M:%SZ')
@@ -135,9 +140,12 @@ class _doi(Resource):
                 a.doi_name.label("title"), a.doi_comment.label("description"), \
                 b.param_name.label("type"), b.param_value.label("style"),\
                 b.id.label("typeid"), literal("DATE").label("eventType"), \
-                func.fmapp.rem_slots(a.id).label("availableSlots"), e.max_slots.label("maxSlots")).\
+                func.fmapp.rem_slots(a.id).label("availableSlots"), e.max_slots.label("maxSlots"),\
+                f.param_value.label("environment")).\
+                join(f, a.doi_environment==f.id).\
                 join(b, a.doi_type==b.id).\
                 outerjoin(e, a.doi_filter==e.id).\
+                filter(a.doi_environment==env).\
                 filter(((a.doi_start_dt.between(d1, d2)) | \
                 (a.doi_end_dt.between(d1, d2))) | \
                 ((a.doi_start_dt < d1) & (d2 < a.doi_end_dt)))
@@ -148,6 +156,7 @@ class _doi(Resource):
                 d.complex_name.label("complex"), c.approved_date.label("approved"),\
                 literal("BOOKING").label("eventType")).\
                 filter(c.complex == d.id).\
+                filter(d.complex_environment==env).\
                 filter(c.slot_id == 0.0).\
                 filter(((c.start_dt.between(d1, d2)) | \
                 (c.end_dt.between(d1, d2))) | \
@@ -183,10 +192,11 @@ class _doi(Resource):
 #################################################################
 # COMPLEXES #
 #############
-@nsp.route("/complexes", defaults={'complex_type': '0'})
-@nsp.route("/complexes/<int:complex_type>")
+@nsp.route("/complexes", defaults={'complex_type': '0', 'environment': 94})
+@nsp.route("/complexes/<int:complex_type>", defaults={'environment': 94})
+@nsp.route("/complexes/<int:complex_type>/<int:environment>")
 class _complexes(Resource):
-    def get(self, complex_type):
+    def get(self, complex_type, environment):
 
 
             # get query from database
@@ -201,7 +211,8 @@ class _complexes(Resource):
                 Complex.complex_push_start, Complex.complex_push_end, a.param_value.label("complex_manager"), \
                 b.param_value.label("vendor"), b.id.label("complex_type"), \
                 c.param_value.label("complex_country"), d.param_name.label("complex_active")).\
-                filter(b.id == complex_type). \
+                filter(Complex.complex_environment==environment).\
+                filter(b.id == complex_type).\
                 join(a,Complex.complex_manager==a.id).join(b,Complex.complex_type==b.id).\
                 join(c,Complex.complex_country==c.id).join(d,Complex.complex_active==d.id).all()
 
@@ -211,6 +222,7 @@ class _complexes(Resource):
                 Complex.complex_push_start, Complex.complex_push_end, a.param_value.label("complex_manager"), \
                 b.param_value.label("vendor"), b.id.label("complex_type"), \
                 c.param_value.label("complex_country"), d.param_name.label("complex_active")).\
+                filter(Complex.complex_environment==environment).\
                 join(a,Complex.complex_manager==a.id).join(b,Complex.complex_type==b.id).\
                 join(c,Complex.complex_country==c.id).join(d,Complex.complex_active==d.id).all()
 

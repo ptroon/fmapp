@@ -31,10 +31,55 @@
 
 {% if content %}
 <div class="d-flex flex-row bg-light pl-1 h-30">
-  <div class="m-2 p-2 flex-column justify-content-center align-self-center text-dark font-weight-bold">Email Content</div>
   <div class="m-2 p-2 flex-column justify-content-center align-self-center text-dark">{{ content.param_value | safe }}</div>
 </div>
 {% endif %}
+
+
+ {% for event in events %}
+ {% if event["doi_type"] == 131 %}
+   <div>
+    <div class="p-1 bg-info text-white">BaU Event "{{ event["doi_name"] }}"</div>
+    <table class="table table-striped">
+    {% for booked in bookings %}
+     {% if booked["slot_id"] == event["id"] %}
+      <tr>
+        <td>{{ booked["title"] }}</td>
+        <td>{{ booked["ticket"] }}</td>
+        <td>{{ booked["complex_name"] }}</td>
+        <td>{{ fmt_date(booked["start_dt"]) }}<br/>{{ fmt_date(booked["end_dt"]) }}</td>
+        <td>{{ booked["change_ref"] }} {{ booked["change_subref"] }}</td>
+        <td>{{ booked["forename"] }} {{ booked["surname"] }}</td>
+        <td>{{ booked["email"] }}</td>
+      </tr>
+     {% endif %}
+  {% endfor %}
+  {% if event["totalBookings"] == 0 %}
+    <tr><td>No bookings found for this BaU event</td></tr>
+  {% endif %}
+    </table>
+    </div>
+ {% endif %}
+ {% endfor %}
+
+
+ {% for booked in bookings %}
+ {% if booked["slot_id"] == 0 %}
+ <div class="p-1 bg-info text-white">Non-BaU Bookings</div>
+ <table class="table table-striped">
+   <tr>
+     <td>{{ booked["title"] }}</td>
+     <td>{{ booked["ticket"] }}</td>
+     <td>{{ booked["complex_name"] }}</td>
+     <td>{{ fmt_date(booked["start_dt"]) }}<br/>{{ fmt_date(booked["end_dt"]) }}</td>
+     <td>{{ booked["change_ref"] }} {{ booked["change_subref"] }}</td>
+     <td>{{ booked["forename"] }} {{ booked["surname"] }}</td>
+     <td>{{ booked["email"] }}</td>
+   </tr>
+ </table>
+ {% endif %}
+ {% endfor %}
+
 
 <script type="text/javascript">
     $(function () {
